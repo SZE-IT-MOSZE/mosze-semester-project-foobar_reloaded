@@ -46,4 +46,5 @@ TEST_F(WorldTest, test_initWorld) {
     EXPECT_EQ(testWorld.getWorldRooms()[0]->getPopulation().size(), 1);
     EXPECT_STREQ(testWorld.getWorldRooms()[0]->getPopulation()[0]->getName().c_str(), firstEntName.c_str());
     EXPECT_EQ(testWorld.getWorldRooms()[0]->getPopulation()[0]->getInventory()[0]->getID(), 4);
+    EXPECT_EQ(testWorld.getWorldRooms()[0]->getPopulation()[0]->getLocation(), 1);
 }

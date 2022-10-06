@@ -35,14 +35,14 @@ macro(runtest testname)
 	set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 	FetchContent_MakeAvailable(googletest)
 	enable_testing()
-	add_executable(test_module ${testname})
+	add_executable(test_program ${testname})
 	target_link_libraries(
-		test_module	
+		test_program
 		GTest::gtest_main
 		tinyxml2
 	)
 	include(GoogleTest)
-	gtest_discover_tests(test_module)
+	gtest_discover_tests(test_program)
 endmacro()
 
 macro(buildworld)

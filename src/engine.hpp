@@ -1,6 +1,5 @@
 #ifndef ENGINE
 #define ENGINE
-/* Game will be built like a linked list and a graph(tree). */
 #include <vector>
 #include <memory>
 #include <string>
@@ -114,6 +113,7 @@ public:
 class Entity {
 	const std::string name;
 	items inventory;
+	int location;
 	int hp;
 	int stamina;
 	int intelligence;
@@ -164,6 +164,13 @@ public:
 	items& getInventory() {
 		return inventory;
 	}
+	int getLocation() {
+		return location;
+	}
+	Entity& setLocation(int roomID) {
+		this->location = roomID;
+		return *this;
+	}
 	virtual ~Entity() {
 		for (items::iterator it = inventory.begin(); it != inventory.end(); it++) {
 			it->reset();
@@ -197,6 +204,15 @@ public:
 	 * @param n (std::string&): Name of the Room that cant be changed later. 
 	 * @param id (int): This have to be a unique ID to be able to connect keys with rooms. 
 	 * @param desc (std::string&): Description of the room. Cant be changed later.
+	 */
+	Room(const std::string& n, int id, const std::string& desc) : roomName(n), roomID(id), description(desc), lock(locked) {}
+	/**
+	 * @brief Construct a new Room object
+	 * 
+	 * @param n (std::string&): Name of the Room that cant be changed later. 
+	 * @param id (int): This have to be a unique ID to be able to connect keys with rooms. 
+	 * @param desc (std::string&): Description of the room. Cant be changed later.
+	 * @param cn Connected neighbours
 	 */
 	Room(const std::string& n, int id, const std::string& desc, neighbours cn) : roomName(n), roomID(id), description(desc), lock(locked), connectedRooms(cn) {}
 	/**
@@ -324,6 +340,11 @@ public:
 		k = std::make_unique<Object>(*o);
 		return false;
 	}
+	/**
+	 * @brief Get the Population object
+	 * 
+	 * @return const entities& 
+	 */
 	const entities& getPopulation() {return roomPopulation;}
 	/**
 	 * @brief Destroy the Room object. Reset all nodes in the neighours vector and all items in inventory.
@@ -350,11 +371,73 @@ class Mission {
 	int targetRoom;
 	int targetItem;
 	missionStatus status;
+	/**
+	 * @brief Private method, for completing mission
+	 * 
+	 */
+	void complete() {
+		status = finished;
+	}
 public:
-	Mission(node& tr) : targetRoom(tr->getID()), status(in_progress) {}
-	Mission(item& ti) : targetItem(ti->getID()), status(in_progress) {}
+	/**
+	 * @brief Construct a new Mission object with mission target Room
+	 * 
+	 * @param tr 
+	 */
+	Mission(node& tr) : targetRoom(tr->getID()), targetItem(-1), status(in_progress) {}
+	/**
+	 * @brief Construct a new Mission object with mission target Item
+	 * 
+	 * @param ti 
+	 */
+	Mission(item& ti) : targetRoom(-1), targetItem(ti->getID()), status(in_progress) {}
+	/**
+	 * @brief Construct a new Mission object with both Item and Room target
+	 * 
+	 * @param tr 
+	 * @param ti 
+	 */
 	Mission(node& tr,item& ti) : targetRoom(tr->getID()), targetItem(ti->getID()), status(in_progress) {}
-	virtual void complete() {}	
+	/**
+	 * @brief Check if mission is accomplished
+	 * 
+	 * @param player 
+	 * @return true 
+	 * @return false 
+	 */
+	bool checkStatus(ent& player) {
+		if (targetRoom == -1) {
+			for (auto rit = player->getInventory().cbegin(); rit != player->getInventory().cend(); rit++) {
+				if (targetItem == (*rit)->getID()) {
+					this->complete();
+					return true;
+				}
+			}
+		}
+		if (targetItem == -1) {
+			if (player->getLocation() == targetRoom) {
+				this->complete();
+				return true;
+			}
+		}
+		if (targetItem != -1 && targetRoom != -1) {
+			int completed = 0;
+			for (auto rit = player->getInventory().cbegin(); rit != player->getInventory().cend(); rit++) {
+				if (targetItem == (*rit)->getID()) {
+					completed++;
+					break;
+				}
+			}
+			if (player->getLocation() == targetRoom) {
+				completed++;
+			}
+			if (completed == 2) {
+				this->complete();
+				return true;
+			}
+		}
+		return false;
+	}
 };
 
 /**
@@ -490,6 +573,7 @@ public:
 			ent newEnt = std::make_unique<Entity>(name);
 			newEnt->addItems(inv);
 			r->addEntity(newEnt);
+			r->getPopulation().back()->setLocation(r->getID());
 			actual = actual->NextSiblingElement("entity");
 			counter++;
 		}
@@ -504,6 +588,20 @@ public:
 		story.LoadFile(path2story);
 		tinyxml2::XMLElement* worldElement = story.FirstChildElement("world");
 		loadRooms(worldElement->FirstChildElement("room"));
+	}
+	/**
+	 * @brief move player to room
+	 * 
+	 * @param player 
+	 * @param room 
+	 */
+	void enterRoom(ent& player, node& room) {
+		player->setLocation(room->getID());
+		for (auto rit = worldRooms.begin(); rit != worldRooms.end(); rit++) {
+			if ((*rit)->getID() == room->getID()) {
+				room->addEntity(player);
+			}
+		}
 	}
 	/**
 	 * @brief Free resources used by world.
