@@ -1,0 +1,271 @@
+\hypertarget{engine_8hpp_source}{}\doxysection{engine.\+hpp}
+\label{engine_8hpp_source}\index{src/engine.hpp@{src/engine.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef ENGINE}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define ENGINE}}
+\DoxyCodeLine{3 \textcolor{comment}{/* Game will be built like a linked list and a graph(tree). */}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <map>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}tinyxml2.h"{}}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{class }\mbox{\hyperlink{classWorld}{World}};}
+\DoxyCodeLine{12 \textcolor{keyword}{class }\mbox{\hyperlink{classObject}{Object}};}
+\DoxyCodeLine{13 \textcolor{keyword}{class }\mbox{\hyperlink{classRoom}{Room}};}
+\DoxyCodeLine{14 \textcolor{keyword}{class }\mbox{\hyperlink{classEntity}{Entity}};}
+\DoxyCodeLine{15 \textcolor{keyword}{class }\mbox{\hyperlink{classMission}{Mission}};}
+\DoxyCodeLine{16 \textcolor{keyword}{class }Choice;}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{22 \textcolor{keyword}{typedef} std::unique\_ptr<Room> node;}
+\DoxyCodeLine{27 \textcolor{keyword}{typedef} std::unique\_ptr<Object> item;}
+\DoxyCodeLine{32 \textcolor{keyword}{typedef} std::unique\_ptr<Entity> ent;}
+\DoxyCodeLine{37 \textcolor{keyword}{typedef} std::vector<node> nodes;}
+\DoxyCodeLine{42 \textcolor{keyword}{typedef} std::vector<int> neighbours;}
+\DoxyCodeLine{47 \textcolor{keyword}{typedef} std::vector<item> items;}
+\DoxyCodeLine{52 \textcolor{keyword}{typedef} std::vector<ent> entities;}
+\DoxyCodeLine{57 \textcolor{keyword}{typedef} std::pair<int, std::vector<int>> roomConnection;}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 \textcolor{keyword}{enum} missionStatus\{finished, in\_progress\};}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{65 \textcolor{keyword}{class }\mbox{\hyperlink{classObject}{Object}} \{}
+\DoxyCodeLine{66     \textcolor{keyword}{const} std::string objectName;}
+\DoxyCodeLine{67     \textcolor{keyword}{const} std::string objectDescriptor;}
+\DoxyCodeLine{68     \textcolor{keyword}{const} \textcolor{keywordtype}{int} objID;}
+\DoxyCodeLine{69     }
+\DoxyCodeLine{70 \textcolor{keyword}{public}:}
+\DoxyCodeLine{78     \mbox{\hyperlink{classObject_a093caad8e34a80b953f16f10724b39aa}{Object}}(\textcolor{keyword}{const} std::string\& n, \textcolor{keyword}{const} \textcolor{keywordtype}{int} \textcolor{keywordtype}{id}, \textcolor{keyword}{const} std::string\& d) : objectName(n), objectDescriptor(d), objID(id)  \{\}}
+\DoxyCodeLine{84     std::string \mbox{\hyperlink{classObject_acb9b466607cb80beaaa30ece2f7f570a}{getName}}()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} objectName;\}}
+\DoxyCodeLine{90     \textcolor{keywordtype}{int} \textcolor{keyword}{const} \mbox{\hyperlink{classObject_aaad299b2f249c9d89a419b5c1ac22e85}{getID}}() \{\textcolor{keywordflow}{return} objID;\}}
+\DoxyCodeLine{96     std::string \mbox{\hyperlink{classObject_a3f44136a9cb5eda00144695c1a0b1a2c}{getDescription}}()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} objectDescriptor;\}}
+\DoxyCodeLine{97     \textcolor{keyword}{virtual} \mbox{\hyperlink{classObject}{\string~Object}}() \{\}}
+\DoxyCodeLine{98 \};}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{104 \textcolor{keyword}{class }\mbox{\hyperlink{classKey}{Key}} : \textcolor{keyword}{public} \mbox{\hyperlink{classObject}{Object}} \{}
+\DoxyCodeLine{105     \textcolor{keyword}{const} \textcolor{keywordtype}{int} keyID;}
+\DoxyCodeLine{106 \textcolor{keyword}{public}:}
+\DoxyCodeLine{107     \mbox{\hyperlink{classKey}{Key}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} kid, \textcolor{keyword}{const} std::string\& n, \textcolor{keyword}{const} \textcolor{keywordtype}{int} \textcolor{keywordtype}{id}, \textcolor{keyword}{const} std::string\& d) : \mbox{\hyperlink{classObject}{Object}}(n, \textcolor{keywordtype}{id}, d), keyID(kid) \{\}}
+\DoxyCodeLine{108 \};}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{114 \textcolor{keyword}{class }\mbox{\hyperlink{classEntity}{Entity}} \{}
+\DoxyCodeLine{115     \textcolor{keyword}{const} std::string name;}
+\DoxyCodeLine{116     items inventory;}
+\DoxyCodeLine{117     \textcolor{keywordtype}{int} hp;}
+\DoxyCodeLine{118     \textcolor{keywordtype}{int} stamina;}
+\DoxyCodeLine{119     \textcolor{keywordtype}{int} intelligence;}
+\DoxyCodeLine{120     \textcolor{keywordtype}{int} agility;}
+\DoxyCodeLine{121     \textcolor{keywordtype}{int} strenght;}
+\DoxyCodeLine{122     \textcolor{keywordtype}{int} stealth;}
+\DoxyCodeLine{123     \textcolor{keywordtype}{int} carisma;}
+\DoxyCodeLine{124 \textcolor{keyword}{public}:}
+\DoxyCodeLine{130     \mbox{\hyperlink{classEntity_afeaa874d724166b9ad1c240cbd1127ea}{Entity}}(\textcolor{keyword}{const} std::string\& n) : name(n) \{\}}
+\DoxyCodeLine{136     std::string \mbox{\hyperlink{classEntity_a403f69eb888da7c5a690b79c658cdf47}{getName}}()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} name;\}}
+\DoxyCodeLine{143     \mbox{\hyperlink{classEntity}{Entity}}\& \mbox{\hyperlink{classEntity_a0a4f093c549569becf5e0e42b8a1ceb2}{addItem}}(item \&i) \{}
+\DoxyCodeLine{144         inventory.push\_back(std::move(i));}
+\DoxyCodeLine{145         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{146     \}}
+\DoxyCodeLine{153     \mbox{\hyperlink{classEntity}{Entity}}\& \mbox{\hyperlink{classEntity_a9b0ef78013c984bc8cd8944332a14058}{addItems}}(items \&i) \{}
+\DoxyCodeLine{154         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} it = i.begin(); it != i.end(); it++) \{}
+\DoxyCodeLine{155             this-\/>\mbox{\hyperlink{classEntity_a0a4f093c549569becf5e0e42b8a1ceb2}{addItem}}(*it);}
+\DoxyCodeLine{156         \}}
+\DoxyCodeLine{157         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{158     \}}
+\DoxyCodeLine{164     items\& \mbox{\hyperlink{classEntity_a38aad2959e7cbeaf15aa0dbf71df66c5}{getInventory}}() \{}
+\DoxyCodeLine{165         \textcolor{keywordflow}{return} inventory;}
+\DoxyCodeLine{166     \}}
+\DoxyCodeLine{167     \textcolor{keyword}{virtual} \mbox{\hyperlink{classEntity}{\string~Entity}}() \{}
+\DoxyCodeLine{168         \textcolor{keywordflow}{for} (items::iterator it = inventory.begin(); it != inventory.end(); it++) \{}
+\DoxyCodeLine{169             it-\/>reset();}
+\DoxyCodeLine{170         \}}
+\DoxyCodeLine{171     \}}
+\DoxyCodeLine{172 \};}
+\DoxyCodeLine{173 }
+\DoxyCodeLine{178 \textcolor{keyword}{enum} LockStatus\{locked, unlocked\};}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{185 \textcolor{keyword}{class }\mbox{\hyperlink{classRoom}{Room}} \{}
+\DoxyCodeLine{186     \textcolor{keyword}{const} std::string roomName; \textcolor{comment}{// Name of the room.}}
+\DoxyCodeLine{187     \textcolor{keyword}{const} \textcolor{keywordtype}{int} roomID; \textcolor{comment}{// ID of the room, that connects a key to this room.}}
+\DoxyCodeLine{188     \textcolor{keyword}{const} std::string description; \textcolor{comment}{// Description of the room.}}
+\DoxyCodeLine{189     LockStatus lock;}
+\DoxyCodeLine{190     entities roomPopulation;}
+\DoxyCodeLine{191     neighbours connectedRooms; \textcolor{comment}{// Neighbouring rooms.}}
+\DoxyCodeLine{192     items inventory; \textcolor{comment}{// Items, that can be found in the room.}}
+\DoxyCodeLine{193 \textcolor{keyword}{public}:}
+\DoxyCodeLine{201     \mbox{\hyperlink{classRoom_a132d556e8031d955cd0c60cd15e21e35}{Room}}(\textcolor{keyword}{const} std::string\& n, \textcolor{keywordtype}{int} \textcolor{keywordtype}{id}, \textcolor{keyword}{const} std::string\& desc, neighbours cn) : roomName(n), roomID(id), description(desc), lock(locked), connectedRooms(cn) \{\}}
+\DoxyCodeLine{207     std::string \mbox{\hyperlink{classRoom_a767de198f529425dd4ba81810e44d6e4}{getName}}()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} roomName;\}}
+\DoxyCodeLine{213     \textcolor{keywordtype}{int} \mbox{\hyperlink{classRoom_aa6f8e73b0570d7cc208189ebf79b9042}{getID}}()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} roomID;\}}
+\DoxyCodeLine{219     std::string \mbox{\hyperlink{classRoom_a33c1c0ac8a2e43da7b59522175811d63}{getDescription}}()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} description;\}}
+\DoxyCodeLine{225     neighbours \mbox{\hyperlink{classRoom_acb1d70492c33d7ea25ddceaf7efa10b6}{getNeighbours}}()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} connectedRooms;\}  }
+\DoxyCodeLine{232     \mbox{\hyperlink{classRoom}{Room}}\& \mbox{\hyperlink{classRoom_a5b561ea8bbec5e89ad3775da897abc3e}{addNeighbour}}(\textcolor{keywordtype}{int} rid) \{}
+\DoxyCodeLine{233         connectedRooms.push\_back(rid);}
+\DoxyCodeLine{234         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{235     \}}
+\DoxyCodeLine{242     \mbox{\hyperlink{classRoom}{Room}}\& \mbox{\hyperlink{classRoom_a3d0835866913e0196cf1e32cd1447126}{addNeighbours}}(neighbours rids) \{}
+\DoxyCodeLine{243         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} rid : rids) \{}
+\DoxyCodeLine{244             this-\/>\mbox{\hyperlink{classRoom_a5b561ea8bbec5e89ad3775da897abc3e}{addNeighbour}}(rid);}
+\DoxyCodeLine{245         \}}
+\DoxyCodeLine{246         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{247     \}}
+\DoxyCodeLine{253     \textcolor{keyword}{const} items\& \mbox{\hyperlink{classRoom_a3ea7cc3e1150daab366620fd0d6e1d9f}{getItems}}() \{\textcolor{keywordflow}{return} inventory;\} }
+\DoxyCodeLine{260     \mbox{\hyperlink{classRoom}{Room}}\& \mbox{\hyperlink{classRoom_a2a53e91b4f576003f4aa357dfc9a1d70}{addItem}}(item\& i) \{}
+\DoxyCodeLine{261         inventory.emplace\_back(std::move(i));}
+\DoxyCodeLine{262         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{263     \}}
+\DoxyCodeLine{270     \mbox{\hyperlink{classRoom}{Room}}\& \mbox{\hyperlink{classRoom_a93d03e0d911cb12e6eaa1e05eddda1b1}{addItems}}(items\& inv) \{}
+\DoxyCodeLine{271         \textcolor{keywordflow}{for} (items::iterator it = inv.begin(); it != inv.end(); it++) \{}
+\DoxyCodeLine{272             this-\/>\mbox{\hyperlink{classRoom_a2a53e91b4f576003f4aa357dfc9a1d70}{addItem}}(*it);}
+\DoxyCodeLine{273         \}}
+\DoxyCodeLine{274         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{275     \}}
+\DoxyCodeLine{282     \mbox{\hyperlink{classRoom}{Room}}\& \mbox{\hyperlink{classRoom_afa0bebd4b898687e8c9cd6ed2b7e5d67}{addEntity}}(ent\& e) \{}
+\DoxyCodeLine{283         roomPopulation.emplace\_back(std::move(e));}
+\DoxyCodeLine{284         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{285     \}}
+\DoxyCodeLine{292     \mbox{\hyperlink{classRoom}{Room}}\& \mbox{\hyperlink{classRoom_a472a6e27ca1547c9051f1b89692ed0ca}{addEntities}}(entities\& ents) \{}
+\DoxyCodeLine{293         \textcolor{keywordflow}{for} (entities::iterator it = ents.begin(); it != ents.end(); it++) \{}
+\DoxyCodeLine{294             this-\/>\mbox{\hyperlink{classRoom_afa0bebd4b898687e8c9cd6ed2b7e5d67}{addEntity}}(*it);}
+\DoxyCodeLine{295         \}}
+\DoxyCodeLine{296         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{297     \}}
+\DoxyCodeLine{304     \mbox{\hyperlink{classRoom}{Room}}\& \mbox{\hyperlink{classRoom_a3e1b856c3f6c5f562796e857fe4777ac}{setLock}}(LockStatus stat) \{}
+\DoxyCodeLine{305         lock = stat;}
+\DoxyCodeLine{306         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{307     \}}
+\DoxyCodeLine{316     \textcolor{keywordtype}{bool} \textcolor{keyword}{static} \mbox{\hyperlink{classRoom_a10b2b4671e8c461ba07716486c59b30d}{unlock}}(item\& k, node\& r) \{}
+\DoxyCodeLine{317         \mbox{\hyperlink{classKey}{Key}}* k2r = \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classKey}{Key}}*\textcolor{keyword}{>}(k.release());}
+\DoxyCodeLine{318         \textcolor{keywordflow}{if} (k2r != \textcolor{keyword}{nullptr} \&\& k-\/>\mbox{\hyperlink{classObject_aaad299b2f249c9d89a419b5c1ac22e85}{getID}}() == r-\/>getID()) \{}
+\DoxyCodeLine{319             r-\/>setLock(unlocked);}
+\DoxyCodeLine{320             \textcolor{keyword}{delete} k2r;}
+\DoxyCodeLine{321             \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{322         \}}
+\DoxyCodeLine{323         \mbox{\hyperlink{classObject}{Object}}* o = \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classObject}{Object}}*\textcolor{keyword}{>}(k2r);}
+\DoxyCodeLine{324         k = std::make\_unique<Object>(*o);}
+\DoxyCodeLine{325         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{326     \}}
+\DoxyCodeLine{327     \textcolor{keyword}{const} entities\& getPopulation() \{\textcolor{keywordflow}{return} roomPopulation;\}}
+\DoxyCodeLine{333     \mbox{\hyperlink{classRoom_a67d5da09983cc53097807fd43ba5481a}{\string~Room}}() \{}
+\DoxyCodeLine{334         \textcolor{keywordflow}{for} (items::iterator iit = inventory.begin(); iit != inventory.end(); iit++) \{}
+\DoxyCodeLine{335             iit-\/>reset();}
+\DoxyCodeLine{336         \}}
+\DoxyCodeLine{337         \textcolor{keywordflow}{for} (entities::iterator eit = roomPopulation.begin(); eit != roomPopulation.end(); eit++) \{}
+\DoxyCodeLine{338             eit-\/>reset();}
+\DoxyCodeLine{339         \}}
+\DoxyCodeLine{340     \}}
+\DoxyCodeLine{341 \};}
+\DoxyCodeLine{342 }
+\DoxyCodeLine{348 \textcolor{keyword}{class }\mbox{\hyperlink{classMission}{Mission}} \{}
+\DoxyCodeLine{349     std::string description;}
+\DoxyCodeLine{350     \textcolor{keywordtype}{int} targetRoom;}
+\DoxyCodeLine{351     \textcolor{keywordtype}{int} targetItem;}
+\DoxyCodeLine{352     missionStatus status;}
+\DoxyCodeLine{353 \textcolor{keyword}{public}:}
+\DoxyCodeLine{354     \mbox{\hyperlink{classMission}{Mission}}(node\& tr) : targetRoom(tr-\/>getID()), status(in\_progress) \{\}}
+\DoxyCodeLine{355     \mbox{\hyperlink{classMission}{Mission}}(item\& ti) : targetItem(ti-\/>getID()), status(in\_progress) \{\}}
+\DoxyCodeLine{356     \mbox{\hyperlink{classMission}{Mission}}(node\& tr,item\& ti) : targetRoom(tr-\/>getID()), targetItem(ti-\/>getID()), status(in\_progress) \{\}}
+\DoxyCodeLine{357     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} complete() \{\}  }
+\DoxyCodeLine{358 \};}
+\DoxyCodeLine{359 }
+\DoxyCodeLine{365 \textcolor{keyword}{class }\mbox{\hyperlink{classWorld}{World}} \{}
+\DoxyCodeLine{366     std::string title;}
+\DoxyCodeLine{367     nodes worldRooms;}
+\DoxyCodeLine{368     \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{tinyxml2::XMLDocument}} story;}
+\DoxyCodeLine{369     std::map<int, std::vector<int>> roomConnectionMap;}
+\DoxyCodeLine{370 \textcolor{keyword}{public}:}
+\DoxyCodeLine{375     \mbox{\hyperlink{classWorld_afa39d4e6f714a7a3691ac0c656f5e8a8}{World}}() \{\}}
+\DoxyCodeLine{381     \mbox{\hyperlink{classWorld_a99df53285c45b4045aae7b13ecfc023e}{World}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* path2story) \{}
+\DoxyCodeLine{382         story.\mbox{\hyperlink{classtinyxml2_1_1XMLDocument_a2ebd4647a8af5fc6831b294ac26a150a}{LoadFile}}(path2story);}
+\DoxyCodeLine{383     \}}
+\DoxyCodeLine{389     nodes\& \mbox{\hyperlink{classWorld_ab33c8044ee9d0d313ecdb49f2ac4e0e6}{getWorldRooms}}() \{}
+\DoxyCodeLine{390         \textcolor{keywordflow}{return} worldRooms;}
+\DoxyCodeLine{391     \}}
+\DoxyCodeLine{399     \textcolor{keywordtype}{void} \mbox{\hyperlink{classWorld_afe1732e0044e49981005d9564f4c1513}{RoomFactory}}(\textcolor{keyword}{const} std::string\& name, \textcolor{keywordtype}{int} \textcolor{keywordtype}{id}, \textcolor{keyword}{const} std::string\& desc, neighbours nids) \{}
+\DoxyCodeLine{400         \textcolor{keyword}{auto} newRoom = std::make\_unique<Room>(name, \textcolor{keywordtype}{id}, desc, nids);}
+\DoxyCodeLine{401         worldRooms.emplace\_back(std::move(newRoom));}
+\DoxyCodeLine{402     \}}
+\DoxyCodeLine{408     \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{tinyxml2::XMLDocument}}\& \mbox{\hyperlink{classWorld_a9bde3dadff7330368dfa23472b413e15}{getStory}}() \{\textcolor{keywordflow}{return} story;\}}
+\DoxyCodeLine{415     items \mbox{\hyperlink{classWorld_ac9a7d7ff24cdf209e3cde1fa623cee0d}{makeInventory}}(\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2::XMLElement}}* invEle) \{}
+\DoxyCodeLine{416         \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2::XMLElement}}* firstObj = invEle-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLNode_a1bec132dcf085284e0a10755f2cf0d57}{FirstChildElement}}(\textcolor{stringliteral}{"{}object"{}});}
+\DoxyCodeLine{417         \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2::XMLElement}}* actual = firstObj;}
+\DoxyCodeLine{418         items retItems;}
+\DoxyCodeLine{419         \textcolor{keywordflow}{while}(actual) \{}
+\DoxyCodeLine{420             \textcolor{keyword}{const} std::string objName(actual-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLNode_a1bec132dcf085284e0a10755f2cf0d57}{FirstChildElement}}(\textcolor{stringliteral}{"{}name"{}})-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLElement_a0fa5bea0a4daf3ddd503dcabb823eba6}{GetText}}());}
+\DoxyCodeLine{421             \textcolor{keyword}{const} std::string desc(actual-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLNode_a1bec132dcf085284e0a10755f2cf0d57}{FirstChildElement}}(\textcolor{stringliteral}{"{}description"{}})-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLElement_a0fa5bea0a4daf3ddd503dcabb823eba6}{GetText}}());}
+\DoxyCodeLine{422             \textcolor{keywordtype}{int} \textcolor{keywordtype}{id} = 0;}
+\DoxyCodeLine{423             actual-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLNode_a1bec132dcf085284e0a10755f2cf0d57}{FirstChildElement}}(\textcolor{stringliteral}{"{}id"{}})-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLElement_a926357996bef633cb736e1a558419632}{QueryIntText}}(\&\textcolor{keywordtype}{id});}
+\DoxyCodeLine{424             \textcolor{keyword}{auto} newObj = std::make\_unique<Object>(objName, \textcolor{keywordtype}{id}, desc);}
+\DoxyCodeLine{425             retItems.push\_back(std::move(newObj));}
+\DoxyCodeLine{426             actual = actual-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLNode_a14ea560df31110ff07a9f566171bf797}{NextSiblingElement}}(\textcolor{stringliteral}{"{}object"{}});}
+\DoxyCodeLine{427         \}}
+\DoxyCodeLine{428         \textcolor{keywordflow}{return} retItems;}
+\DoxyCodeLine{429     \}}
+\DoxyCodeLine{436     neighbours \mbox{\hyperlink{classWorld_ab3bbb24dc8f5f389134d867b247abd74}{parseConnections}}(\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2::XMLElement}}* conns) \{}
+\DoxyCodeLine{437         \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2::XMLElement}}* firstConn = conns-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLNode_a1bec132dcf085284e0a10755f2cf0d57}{FirstChildElement}}(\textcolor{stringliteral}{"{}id"{}});}
+\DoxyCodeLine{438         \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2::XMLElement}}* actual = firstConn;}
+\DoxyCodeLine{439         std::vector<int> connections;}
+\DoxyCodeLine{440         \textcolor{keywordflow}{while}(actual) \{}
+\DoxyCodeLine{441             \textcolor{keywordtype}{int} nid = 0;}
+\DoxyCodeLine{442             actual-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLElement_a926357996bef633cb736e1a558419632}{QueryIntText}}(\&nid);}
+\DoxyCodeLine{443             connections.push\_back(nid); }
+\DoxyCodeLine{444             actual = actual-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLNode_a14ea560df31110ff07a9f566171bf797}{NextSiblingElement}}(\textcolor{stringliteral}{"{}id"{}});}
+\DoxyCodeLine{445         \}}
+\DoxyCodeLine{446         \textcolor{keywordflow}{return} connections;}
+\DoxyCodeLine{447     \}}
+\DoxyCodeLine{453     \textcolor{keywordtype}{void} \mbox{\hyperlink{classWorld_a7165c451a927399e060fa07a2e6b69d3}{loadRooms}}(\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2::XMLElement}}* firstRoom) \{}
+\DoxyCodeLine{454         \textcolor{keyword}{const} \textcolor{keywordtype}{char}* elementName = \textcolor{stringliteral}{"{}room"{}};}
+\DoxyCodeLine{455         \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2::XMLElement}}* actual = firstRoom;}
+\DoxyCodeLine{456         \textcolor{keywordflow}{while}(actual) \{}
+\DoxyCodeLine{457             \textcolor{keyword}{const} std::string roomName(actual-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLNode_a1bec132dcf085284e0a10755f2cf0d57}{FirstChildElement}}(\textcolor{stringliteral}{"{}name"{}})-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLElement_a0fa5bea0a4daf3ddd503dcabb823eba6}{GetText}}());}
+\DoxyCodeLine{458             \textcolor{keyword}{const} std::string roomDescription(actual-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLNode_a1bec132dcf085284e0a10755f2cf0d57}{FirstChildElement}}(\textcolor{stringliteral}{"{}description"{}})-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLElement_a0fa5bea0a4daf3ddd503dcabb823eba6}{GetText}}());}
+\DoxyCodeLine{459             \textcolor{keywordtype}{int} roomID = 0;}
+\DoxyCodeLine{460             actual-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLNode_a1bec132dcf085284e0a10755f2cf0d57}{FirstChildElement}}(\textcolor{stringliteral}{"{}id"{}})-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLElement_a926357996bef633cb736e1a558419632}{QueryIntText}}(\&roomID);}
+\DoxyCodeLine{461             \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2::XMLElement}}* conns = actual-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLNode_a1bec132dcf085284e0a10755f2cf0d57}{FirstChildElement}}(\textcolor{stringliteral}{"{}connections"{}});}
+\DoxyCodeLine{462             \mbox{\hyperlink{classWorld_afe1732e0044e49981005d9564f4c1513}{RoomFactory}}(roomName, roomID, roomDescription, \mbox{\hyperlink{classWorld_ab3bbb24dc8f5f389134d867b247abd74}{parseConnections}}(conns)); \textcolor{comment}{// Construct room with name, id and desc}}
+\DoxyCodeLine{463             \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2::XMLElement}}* invEle = actual-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLNode_a1bec132dcf085284e0a10755f2cf0d57}{FirstChildElement}}(\textcolor{stringliteral}{"{}inventory"{}});}
+\DoxyCodeLine{464             \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2::XMLElement}}* actualInv = invEle-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLNode_a1bec132dcf085284e0a10755f2cf0d57}{FirstChildElement}}(\textcolor{stringliteral}{"{}object"{}});}
+\DoxyCodeLine{465             \textcolor{keywordflow}{while}(actualInv) \{}
+\DoxyCodeLine{466                 \textcolor{keyword}{const} std::string objName(actualInv-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLNode_a1bec132dcf085284e0a10755f2cf0d57}{FirstChildElement}}(\textcolor{stringliteral}{"{}name"{}})-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLElement_a0fa5bea0a4daf3ddd503dcabb823eba6}{GetText}}());}
+\DoxyCodeLine{467                 \textcolor{keyword}{const} std::string desc(actualInv-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLNode_a1bec132dcf085284e0a10755f2cf0d57}{FirstChildElement}}(\textcolor{stringliteral}{"{}description"{}})-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLElement_a0fa5bea0a4daf3ddd503dcabb823eba6}{GetText}}());}
+\DoxyCodeLine{468                 \textcolor{keywordtype}{int} objectID = 0;}
+\DoxyCodeLine{469                 actualInv-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLNode_a1bec132dcf085284e0a10755f2cf0d57}{FirstChildElement}}(\textcolor{stringliteral}{"{}id"{}})-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLElement_a926357996bef633cb736e1a558419632}{QueryIntText}}(\&objectID);}
+\DoxyCodeLine{470                 \textcolor{keyword}{auto} tmpItem = std::make\_unique<Object>(objName, objectID, desc);}
+\DoxyCodeLine{471                 worldRooms.back()-\/>addItem(tmpItem);}
+\DoxyCodeLine{472                 actualInv = actualInv-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLNode_a14ea560df31110ff07a9f566171bf797}{NextSiblingElement}}(\textcolor{stringliteral}{"{}object"{}});}
+\DoxyCodeLine{473             \}}
+\DoxyCodeLine{474             \mbox{\hyperlink{classWorld_aa7442a677c1c5d5f97c746dfa79768e0}{loadEntities}}(actual-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLNode_a1bec132dcf085284e0a10755f2cf0d57}{FirstChildElement}}(\textcolor{stringliteral}{"{}entity"{}}), worldRooms.back());}
+\DoxyCodeLine{475             actual = actual-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLNode_a14ea560df31110ff07a9f566171bf797}{NextSiblingElement}}(elementName);}
+\DoxyCodeLine{476         \}}
+\DoxyCodeLine{477     \}}
+\DoxyCodeLine{483     \textcolor{keywordtype}{int} \mbox{\hyperlink{classWorld_aa7442a677c1c5d5f97c746dfa79768e0}{loadEntities}}(\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2::XMLElement}}* firstEle, node\& r) \{}
+\DoxyCodeLine{484         \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2::XMLElement}}* actual = firstEle;}
+\DoxyCodeLine{485         \textcolor{keywordtype}{int} counter = 0;}
+\DoxyCodeLine{486         \textcolor{keywordflow}{while}(actual) \{}
+\DoxyCodeLine{487             \textcolor{keyword}{const} std::string name = actual-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLNode_a1bec132dcf085284e0a10755f2cf0d57}{FirstChildElement}}(\textcolor{stringliteral}{"{}name"{}})-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLElement_a0fa5bea0a4daf3ddd503dcabb823eba6}{GetText}}();}
+\DoxyCodeLine{488             \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2::XMLElement}}* invele = actual-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLNode_a1bec132dcf085284e0a10755f2cf0d57}{FirstChildElement}}(\textcolor{stringliteral}{"{}inventory"{}});}
+\DoxyCodeLine{489             items inv = \mbox{\hyperlink{classWorld_ac9a7d7ff24cdf209e3cde1fa623cee0d}{makeInventory}}(invele);}
+\DoxyCodeLine{490             ent newEnt = std::make\_unique<Entity>(name);}
+\DoxyCodeLine{491             newEnt-\/>addItems(inv);}
+\DoxyCodeLine{492             r-\/>addEntity(newEnt);}
+\DoxyCodeLine{493             actual = actual-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLNode_a14ea560df31110ff07a9f566171bf797}{NextSiblingElement}}(\textcolor{stringliteral}{"{}entity"{}});}
+\DoxyCodeLine{494             counter++;}
+\DoxyCodeLine{495         \}}
+\DoxyCodeLine{496         \textcolor{keywordflow}{return} counter;}
+\DoxyCodeLine{497     \}}
+\DoxyCodeLine{503     \textcolor{keywordtype}{void} \mbox{\hyperlink{classWorld_a3b8b43bcb554d3fffa54f1ac7a6892a9}{initWorld}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* path2story) \{}
+\DoxyCodeLine{504         story.\mbox{\hyperlink{classtinyxml2_1_1XMLDocument_a2ebd4647a8af5fc6831b294ac26a150a}{LoadFile}}(path2story);}
+\DoxyCodeLine{505         \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2::XMLElement}}* worldElement = story.\mbox{\hyperlink{classtinyxml2_1_1XMLNode_a1bec132dcf085284e0a10755f2cf0d57}{FirstChildElement}}(\textcolor{stringliteral}{"{}world"{}});}
+\DoxyCodeLine{506         \mbox{\hyperlink{classWorld_a7165c451a927399e060fa07a2e6b69d3}{loadRooms}}(worldElement-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLNode_a1bec132dcf085284e0a10755f2cf0d57}{FirstChildElement}}(\textcolor{stringliteral}{"{}room"{}}));}
+\DoxyCodeLine{507     \}}
+\DoxyCodeLine{512     \textcolor{keywordtype}{void} \mbox{\hyperlink{classWorld_ad4f23168ee864aa7919c2018c4615f77}{destroyWorld}}() \{}
+\DoxyCodeLine{513         \textcolor{keywordflow}{for} (nodes::iterator it = worldRooms.begin(); it != worldRooms.end(); it++) \{}
+\DoxyCodeLine{514             it-\/>reset();}
+\DoxyCodeLine{515         \}}
+\DoxyCodeLine{516     \}}
+\DoxyCodeLine{517     \mbox{\hyperlink{classWorld}{\string~World}}() \{}
+\DoxyCodeLine{518         this-\/>\mbox{\hyperlink{classWorld_ad4f23168ee864aa7919c2018c4615f77}{destroyWorld}}();}
+\DoxyCodeLine{519     \}}
+\DoxyCodeLine{520 \};}
+\DoxyCodeLine{521 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
