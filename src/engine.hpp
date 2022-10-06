@@ -205,6 +205,15 @@ public:
 	 * @param id (int): This have to be a unique ID to be able to connect keys with rooms. 
 	 * @param desc (std::string&): Description of the room. Cant be changed later.
 	 */
+	Room(const std::string& n, int id, const std::string& desc) : roomName(n), roomID(id), description(desc), lock(locked) {}
+	/**
+	 * @brief Construct a new Room object
+	 * 
+	 * @param n (std::string&): Name of the Room that cant be changed later. 
+	 * @param id (int): This have to be a unique ID to be able to connect keys with rooms. 
+	 * @param desc (std::string&): Description of the room. Cant be changed later.
+	 * @param cn Connected neighbours
+	 */
 	Room(const std::string& n, int id, const std::string& desc, neighbours cn) : roomName(n), roomID(id), description(desc), lock(locked), connectedRooms(cn) {}
 	/**
 	 * @brief Get the Name of the Room
