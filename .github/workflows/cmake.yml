@@ -3,12 +3,12 @@ name: CMake
 on:
   push:
     branches: 
-      - master 
-      - "pecneb_work"
+      - main 
+      - "dev_pecneb"
   pull_request:
     branches: 
-      - master 
-      - "pecneb_work"
+      - main   
+      - "dev_pecneb"
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
