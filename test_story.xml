@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<world>
+    <title>SpaceWalk</title>
+    <room>
+        <name>TestRoom1</name>
+        <description>This is the first test room</description>
+        <id>1</id>
+        <inventory>
+            <object>
+                <name>TestObject1</name>
+                <description>This is test object 1</description>
+                <id>1</id>
+            </object>
+        </inventory>
+        <connections>
+            <id>2</id>
+            <id>3</id>
+        </connections>
+        <entity>
+            <name>TestEntity1</name>
+            <inventory>
+                <object>
+                    <name>TestObject4</name>
+                    <description>This is an object in TestEntity1's inv.</description>
+                    <id>4</id>
+                </object>
+            </inventory>
+        </entity>
+    </room>
+    <room>
+        <name>TestRoom2</name>
+        <description>This is the second test room</description>
+        <id>2</id>
+        <inventory>
+            <object>
+                <name>TestObject2</name>
+                <id>2</id>
+                <description>This is test object 2</description>
+            </object>
+        </inventory>
+        <connections>
+            <id>1</id>
+            <id>3</id>
+        </connections>
+    </room>
+    <room>
+        <name>TestRoom3</name>
+        <description>This is the third test room</description>
+        <id>3</id>
+        <inventory>
+            <object>
+                <name>TestObject3</name>
+                <id>3</id>
+                <description>This is test object 3</description>
+            </object>
+        </inventory>
+        <connections>
+            <id>1</id>
+            <id>2</id>
+        </connections>
+    </room>
+</world>

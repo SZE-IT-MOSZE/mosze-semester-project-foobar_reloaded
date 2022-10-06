@@ -1,0 +1,1660 @@
+\hypertarget{tinyxml2_8h_source}{}\doxysection{tinyxml2.\+h}
+\label{tinyxml2_8h_source}\index{src/tinyxml2.h@{src/tinyxml2.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{Original code by Lee Thomason (www.grinninglizard.com)}}
+\DoxyCodeLine{3 \textcolor{comment}{}}
+\DoxyCodeLine{4 \textcolor{comment}{This software is provided 'as-\/is', without any express or implied}}
+\DoxyCodeLine{5 \textcolor{comment}{warranty. In no event will the authors be held liable for any}}
+\DoxyCodeLine{6 \textcolor{comment}{damages arising from the use of this software.}}
+\DoxyCodeLine{7 \textcolor{comment}{}}
+\DoxyCodeLine{8 \textcolor{comment}{Permission is granted to anyone to use this software for any}}
+\DoxyCodeLine{9 \textcolor{comment}{purpose, including commercial applications, and to alter it and}}
+\DoxyCodeLine{10 \textcolor{comment}{redistribute it freely, subject to the following restrictions:}}
+\DoxyCodeLine{11 \textcolor{comment}{}}
+\DoxyCodeLine{12 \textcolor{comment}{1. The origin of this software must not be misrepresented; you must}}
+\DoxyCodeLine{13 \textcolor{comment}{not claim that you wrote the original software. If you use this}}
+\DoxyCodeLine{14 \textcolor{comment}{software in a product, an acknowledgment in the product documentation}}
+\DoxyCodeLine{15 \textcolor{comment}{would be appreciated but is not required.}}
+\DoxyCodeLine{16 \textcolor{comment}{}}
+\DoxyCodeLine{17 \textcolor{comment}{2. Altered source versions must be plainly marked as such, and}}
+\DoxyCodeLine{18 \textcolor{comment}{must not be misrepresented as being the original software.}}
+\DoxyCodeLine{19 \textcolor{comment}{}}
+\DoxyCodeLine{20 \textcolor{comment}{3. This notice may not be removed or altered from any source}}
+\DoxyCodeLine{21 \textcolor{comment}{distribution.}}
+\DoxyCodeLine{22 \textcolor{comment}{*/}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#ifndef TINYXML2\_INCLUDED}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#define TINYXML2\_INCLUDED}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#if defined(ANDROID\_NDK) || defined(\_\_BORLANDC\_\_) || defined(\_\_QNXNTO\_\_)}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#   include <ctype.h>}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#   include <limits.h>}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#   include <stdio.h>}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#   include <stdlib.h>}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#   include <string.h>}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#   if defined(\_\_PS3\_\_)}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#       include <stddef.h>}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#   endif}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#   include <cctype>}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#   include <climits>}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#   include <cstdio>}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#   include <cstdlib>}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#   include <cstring>}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{comment}{/*}}
+\DoxyCodeLine{46 \textcolor{comment}{   TODO: intern strings instead of allocation.}}
+\DoxyCodeLine{47 \textcolor{comment}{*/}}
+\DoxyCodeLine{48 \textcolor{comment}{/*}}
+\DoxyCodeLine{49 \textcolor{comment}{    gcc:}}
+\DoxyCodeLine{50 \textcolor{comment}{        g++ -\/Wall -\/DTINYXML2\_DEBUG tinyxml2.cpp xmltest.cpp -\/o gccxmltest.exe}}
+\DoxyCodeLine{51 \textcolor{comment}{}}
+\DoxyCodeLine{52 \textcolor{comment}{    Formatting, Artistic Style:}}
+\DoxyCodeLine{53 \textcolor{comment}{        AStyle.exe -\/-\/style=1tbs -\/-\/indent-\/switches -\/-\/break-\/closing-\/brackets -\/-\/indent-\/preprocessor tinyxml2.cpp tinyxml2.h}}
+\DoxyCodeLine{54 \textcolor{comment}{*/}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#if defined( \_DEBUG ) || defined (\_\_DEBUG\_\_)}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#   ifndef TINYXML2\_DEBUG}}
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#       define TINYXML2\_DEBUG}}
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#   endif}}
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#ifdef \_MSC\_VER}}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#   pragma warning(push)}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#   pragma warning(disable: 4251)}}
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#ifdef \_WIN32}}
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#   ifdef TINYXML2\_EXPORT}}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#       define TINYXML2\_LIB \_\_declspec(dllexport)}}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#   elif defined(TINYXML2\_IMPORT)}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#       define TINYXML2\_LIB \_\_declspec(dllimport)}}
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#   else}}
+\DoxyCodeLine{73 \textcolor{preprocessor}{\#       define TINYXML2\_LIB}}
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#   endif}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#elif \_\_GNUC\_\_ >= 4}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#   define TINYXML2\_LIB \_\_attribute\_\_((visibility("{}default"{}})))}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#   define TINYXML2\_LIB}}
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 \textcolor{preprocessor}{\#if !defined(TIXMLASSERT)}}
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#if defined(TINYXML2\_DEBUG)}}
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#   if defined(\_MSC\_VER)}}
+\DoxyCodeLine{85 \textcolor{preprocessor}{\#       }\textcolor{comment}{// "{}(void)0,"{} is for suppressing C4127 warning in "{}assert(false)"{}, "{}assert(true)"{} and the like}}
+\DoxyCodeLine{86 \textcolor{preprocessor}{\#       define TIXMLASSERT( x )           do \{ if ( !((void)0,(x))) \{ \_\_debugbreak(); \} \} while(false)}}
+\DoxyCodeLine{87 \textcolor{preprocessor}{\#   elif defined (ANDROID\_NDK)}}
+\DoxyCodeLine{88 \textcolor{preprocessor}{\#       include <android/log.h>}}
+\DoxyCodeLine{89 \textcolor{preprocessor}{\#       define TIXMLASSERT( x )           do \{ if ( !(x)) \{ \_\_android\_log\_assert( "{}assert"{}}, "{}grinliz"{}, "{}ASSERT in '\%s' at \%d."{}, \_\_FILE\_\_, \_\_LINE\_\_ ); \} \} while(false)}
+\DoxyCodeLine{90 \textcolor{preprocessor}{\#   else}}
+\DoxyCodeLine{91 \textcolor{preprocessor}{\#       include <assert.h>}}
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#       define TIXMLASSERT                assert}}
+\DoxyCodeLine{93 \textcolor{preprocessor}{\#   endif}}
+\DoxyCodeLine{94 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{95 \textcolor{preprocessor}{\#   define TIXMLASSERT( x )               do \{\} while(false)}}
+\DoxyCodeLine{96 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99 \textcolor{comment}{/* Versioning, past 1.0.14:}}
+\DoxyCodeLine{100 \textcolor{comment}{    http://semver.org/}}
+\DoxyCodeLine{101 \textcolor{comment}{*/}}
+\DoxyCodeLine{102 \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{int} TIXML2\_MAJOR\_VERSION = 9;}
+\DoxyCodeLine{103 \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{int} TIXML2\_MINOR\_VERSION = 0;}
+\DoxyCodeLine{104 \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{int} TIXML2\_PATCH\_VERSION = 0;}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106 \textcolor{preprocessor}{\#define TINYXML2\_MAJOR\_VERSION 9}}
+\DoxyCodeLine{107 \textcolor{preprocessor}{\#define TINYXML2\_MINOR\_VERSION 0}}
+\DoxyCodeLine{108 \textcolor{preprocessor}{\#define TINYXML2\_PATCH\_VERSION 0}}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110 \textcolor{comment}{// A fixed element depth limit is problematic. There needs to be a}}
+\DoxyCodeLine{111 \textcolor{comment}{// limit to avoid a stack overflow. However, that limit varies per}}
+\DoxyCodeLine{112 \textcolor{comment}{// system, and the capacity of the stack. On the other hand, it's a trivial}}
+\DoxyCodeLine{113 \textcolor{comment}{// attack that can result from ill, malicious, or even correctly formed XML,}}
+\DoxyCodeLine{114 \textcolor{comment}{// so there needs to be a limit in place.}}
+\DoxyCodeLine{115 \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{int} TINYXML2\_MAX\_ELEMENT\_DEPTH = 100;}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117 \textcolor{keyword}{namespace }tinyxml2}
+\DoxyCodeLine{118 \{}
+\DoxyCodeLine{119 \textcolor{keyword}{class }XMLDocument;}
+\DoxyCodeLine{120 \textcolor{keyword}{class }XMLElement;}
+\DoxyCodeLine{121 \textcolor{keyword}{class }XMLAttribute;}
+\DoxyCodeLine{122 \textcolor{keyword}{class }XMLComment;}
+\DoxyCodeLine{123 \textcolor{keyword}{class }XMLText;}
+\DoxyCodeLine{124 \textcolor{keyword}{class }XMLDeclaration;}
+\DoxyCodeLine{125 \textcolor{keyword}{class }XMLUnknown;}
+\DoxyCodeLine{126 \textcolor{keyword}{class }XMLPrinter;}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128 \textcolor{comment}{/*}}
+\DoxyCodeLine{129 \textcolor{comment}{    A class that wraps strings. Normally stores the start and end}}
+\DoxyCodeLine{130 \textcolor{comment}{    pointers into the XML file itself, and will apply normalization}}
+\DoxyCodeLine{131 \textcolor{comment}{    and entity translation if actually read. Can also store (and memory}}
+\DoxyCodeLine{132 \textcolor{comment}{    manage) a traditional char[]}}
+\DoxyCodeLine{133 \textcolor{comment}{}}
+\DoxyCodeLine{134 \textcolor{comment}{    Isn't clear why TINYXML2\_LIB is needed; but seems to fix \#719}}
+\DoxyCodeLine{135 \textcolor{comment}{*/}}
+\DoxyCodeLine{136 \textcolor{keyword}{class }TINYXML2\_LIB \mbox{\hyperlink{classtinyxml2_1_1StrPair}{StrPair}}}
+\DoxyCodeLine{137 \{}
+\DoxyCodeLine{138 \textcolor{keyword}{public}:}
+\DoxyCodeLine{139     \textcolor{keyword}{enum} Mode \{}
+\DoxyCodeLine{140         NEEDS\_ENTITY\_PROCESSING         = 0x01,}
+\DoxyCodeLine{141         NEEDS\_NEWLINE\_NORMALIZATION     = 0x02,}
+\DoxyCodeLine{142         NEEDS\_WHITESPACE\_COLLAPSING     = 0x04,}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144         TEXT\_ELEMENT                    = NEEDS\_ENTITY\_PROCESSING | NEEDS\_NEWLINE\_NORMALIZATION,}
+\DoxyCodeLine{145         TEXT\_ELEMENT\_LEAVE\_ENTITIES     = NEEDS\_NEWLINE\_NORMALIZATION,}
+\DoxyCodeLine{146         ATTRIBUTE\_NAME                  = 0,}
+\DoxyCodeLine{147         ATTRIBUTE\_VALUE                 = NEEDS\_ENTITY\_PROCESSING | NEEDS\_NEWLINE\_NORMALIZATION,}
+\DoxyCodeLine{148         ATTRIBUTE\_VALUE\_LEAVE\_ENTITIES  = NEEDS\_NEWLINE\_NORMALIZATION,}
+\DoxyCodeLine{149         COMMENT                         = NEEDS\_NEWLINE\_NORMALIZATION}
+\DoxyCodeLine{150     \};}
+\DoxyCodeLine{151 }
+\DoxyCodeLine{152     \mbox{\hyperlink{classtinyxml2_1_1StrPair}{StrPair}}() : \_flags( 0 ), \_start( 0 ), \_end( 0 ) \{\}}
+\DoxyCodeLine{153     \mbox{\hyperlink{classtinyxml2_1_1StrPair}{\string~StrPair}}();}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155     \textcolor{keywordtype}{void} Set( \textcolor{keywordtype}{char}* start, \textcolor{keywordtype}{char}* end, \textcolor{keywordtype}{int} flags ) \{}
+\DoxyCodeLine{156         TIXMLASSERT( start );}
+\DoxyCodeLine{157         TIXMLASSERT( end );}
+\DoxyCodeLine{158         Reset();}
+\DoxyCodeLine{159         \_start  = start;}
+\DoxyCodeLine{160         \_end    = end;}
+\DoxyCodeLine{161         \_flags  = flags | NEEDS\_FLUSH;}
+\DoxyCodeLine{162     \}}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* GetStr();}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166     \textcolor{keywordtype}{bool} Empty()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{167         \textcolor{keywordflow}{return} \_start == \_end;}
+\DoxyCodeLine{168     \}}
+\DoxyCodeLine{169 }
+\DoxyCodeLine{170     \textcolor{keywordtype}{void} SetInternedStr( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* str ) \{}
+\DoxyCodeLine{171         Reset();}
+\DoxyCodeLine{172         \_start = \textcolor{keyword}{const\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(str);}
+\DoxyCodeLine{173     \}}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175     \textcolor{keywordtype}{void} SetStr( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* str, \textcolor{keywordtype}{int} flags=0 );}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177     \textcolor{keywordtype}{char}* ParseText( \textcolor{keywordtype}{char}* in, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* endTag, \textcolor{keywordtype}{int} strFlags, \textcolor{keywordtype}{int}* curLineNumPtr );}
+\DoxyCodeLine{178     \textcolor{keywordtype}{char}* ParseName( \textcolor{keywordtype}{char}* in );}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{180     \textcolor{keywordtype}{void} TransferTo( \mbox{\hyperlink{classtinyxml2_1_1StrPair}{StrPair}}* other );}
+\DoxyCodeLine{181     \textcolor{keywordtype}{void} Reset();}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183 \textcolor{keyword}{private}:}
+\DoxyCodeLine{184     \textcolor{keywordtype}{void} CollapseWhitespace();}
+\DoxyCodeLine{185 }
+\DoxyCodeLine{186     \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{187         NEEDS\_FLUSH = 0x100,}
+\DoxyCodeLine{188         NEEDS\_DELETE = 0x200}
+\DoxyCodeLine{189     \};}
+\DoxyCodeLine{190 }
+\DoxyCodeLine{191     \textcolor{keywordtype}{int}     \_flags;}
+\DoxyCodeLine{192     \textcolor{keywordtype}{char}*   \_start;}
+\DoxyCodeLine{193     \textcolor{keywordtype}{char}*   \_end;}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195     \mbox{\hyperlink{classtinyxml2_1_1StrPair}{StrPair}}( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1StrPair}{StrPair}}\& other );  \textcolor{comment}{// not supported}}
+\DoxyCodeLine{196     \textcolor{keywordtype}{void} operator=( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1StrPair}{StrPair}}\& other );  \textcolor{comment}{// not supported, use TransferTo()}}
+\DoxyCodeLine{197 \};}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{199 }
+\DoxyCodeLine{200 \textcolor{comment}{/*}}
+\DoxyCodeLine{201 \textcolor{comment}{    A dynamic array of Plain Old Data. Doesn't support constructors, etc.}}
+\DoxyCodeLine{202 \textcolor{comment}{    Has a small initial memory pool, so that low or no usage will not}}
+\DoxyCodeLine{203 \textcolor{comment}{    cause a call to new/delete}}
+\DoxyCodeLine{204 \textcolor{comment}{*/}}
+\DoxyCodeLine{205 \textcolor{keyword}{template} <\textcolor{keyword}{class} T, \textcolor{keywordtype}{int} INITIAL\_SIZE>}
+\DoxyCodeLine{206 \textcolor{keyword}{class }\mbox{\hyperlink{classtinyxml2_1_1DynArray}{DynArray}}}
+\DoxyCodeLine{207 \{}
+\DoxyCodeLine{208 \textcolor{keyword}{public}:}
+\DoxyCodeLine{209     \mbox{\hyperlink{classtinyxml2_1_1DynArray}{DynArray}}() :}
+\DoxyCodeLine{210         \_mem( \_pool ),}
+\DoxyCodeLine{211         \_allocated( INITIAL\_SIZE ),}
+\DoxyCodeLine{212         \_size( 0 )}
+\DoxyCodeLine{213     \{}
+\DoxyCodeLine{214     \}}
+\DoxyCodeLine{215 }
+\DoxyCodeLine{216     \mbox{\hyperlink{classtinyxml2_1_1DynArray}{\string~DynArray}}() \{}
+\DoxyCodeLine{217         \textcolor{keywordflow}{if} ( \_mem != \_pool ) \{}
+\DoxyCodeLine{218             \textcolor{keyword}{delete} [] \_mem;}
+\DoxyCodeLine{219         \}}
+\DoxyCodeLine{220     \}}
+\DoxyCodeLine{221 }
+\DoxyCodeLine{222     \textcolor{keywordtype}{void} Clear() \{}
+\DoxyCodeLine{223         \_size = 0;}
+\DoxyCodeLine{224     \}}
+\DoxyCodeLine{225 }
+\DoxyCodeLine{226     \textcolor{keywordtype}{void} Push( T t ) \{}
+\DoxyCodeLine{227         TIXMLASSERT( \_size < INT\_MAX );}
+\DoxyCodeLine{228         EnsureCapacity( \_size+1 );}
+\DoxyCodeLine{229         \_mem[\_size] = t;}
+\DoxyCodeLine{230         ++\_size;}
+\DoxyCodeLine{231     \}}
+\DoxyCodeLine{232 }
+\DoxyCodeLine{233     T* PushArr( \textcolor{keywordtype}{int} count ) \{}
+\DoxyCodeLine{234         TIXMLASSERT( count >= 0 );}
+\DoxyCodeLine{235         TIXMLASSERT( \_size <= INT\_MAX -\/ count );}
+\DoxyCodeLine{236         EnsureCapacity( \_size+count );}
+\DoxyCodeLine{237         T* ret = \&\_mem[\_size];}
+\DoxyCodeLine{238         \_size += count;}
+\DoxyCodeLine{239         \textcolor{keywordflow}{return} ret;}
+\DoxyCodeLine{240     \}}
+\DoxyCodeLine{241 }
+\DoxyCodeLine{242     T Pop() \{}
+\DoxyCodeLine{243         TIXMLASSERT( \_size > 0 );}
+\DoxyCodeLine{244         -\/-\/\_size;}
+\DoxyCodeLine{245         \textcolor{keywordflow}{return} \_mem[\_size];}
+\DoxyCodeLine{246     \}}
+\DoxyCodeLine{247 }
+\DoxyCodeLine{248     \textcolor{keywordtype}{void} PopArr( \textcolor{keywordtype}{int} count ) \{}
+\DoxyCodeLine{249         TIXMLASSERT( \_size >= count );}
+\DoxyCodeLine{250         \_size -\/= count;}
+\DoxyCodeLine{251     \}}
+\DoxyCodeLine{252 }
+\DoxyCodeLine{253     \textcolor{keywordtype}{bool} Empty()\textcolor{keyword}{ const                  }\{}
+\DoxyCodeLine{254         \textcolor{keywordflow}{return} \_size == 0;}
+\DoxyCodeLine{255     \}}
+\DoxyCodeLine{256 }
+\DoxyCodeLine{257     T\& operator[](\textcolor{keywordtype}{int} i)                \{}
+\DoxyCodeLine{258         TIXMLASSERT( i>= 0 \&\& i < \_size );}
+\DoxyCodeLine{259         \textcolor{keywordflow}{return} \_mem[i];}
+\DoxyCodeLine{260     \}}
+\DoxyCodeLine{261 }
+\DoxyCodeLine{262     \textcolor{keyword}{const} T\& operator[](\textcolor{keywordtype}{int} i)\textcolor{keyword}{ const    }\{}
+\DoxyCodeLine{263         TIXMLASSERT( i>= 0 \&\& i < \_size );}
+\DoxyCodeLine{264         \textcolor{keywordflow}{return} \_mem[i];}
+\DoxyCodeLine{265     \}}
+\DoxyCodeLine{266 }
+\DoxyCodeLine{267     \textcolor{keyword}{const} T\& PeekTop()\textcolor{keyword}{ const            }\{}
+\DoxyCodeLine{268         TIXMLASSERT( \_size > 0 );}
+\DoxyCodeLine{269         \textcolor{keywordflow}{return} \_mem[ \_size -\/ 1];}
+\DoxyCodeLine{270     \}}
+\DoxyCodeLine{271 }
+\DoxyCodeLine{272     \textcolor{keywordtype}{int} Size()\textcolor{keyword}{ const                    }\{}
+\DoxyCodeLine{273         TIXMLASSERT( \_size >= 0 );}
+\DoxyCodeLine{274         \textcolor{keywordflow}{return} \_size;}
+\DoxyCodeLine{275     \}}
+\DoxyCodeLine{276 }
+\DoxyCodeLine{277     \textcolor{keywordtype}{int} Capacity()\textcolor{keyword}{ const                }\{}
+\DoxyCodeLine{278         TIXMLASSERT( \_allocated >= INITIAL\_SIZE );}
+\DoxyCodeLine{279         \textcolor{keywordflow}{return} \_allocated;}
+\DoxyCodeLine{280     \}}
+\DoxyCodeLine{281 }
+\DoxyCodeLine{282     \textcolor{keywordtype}{void} SwapRemove(\textcolor{keywordtype}{int} i) \{}
+\DoxyCodeLine{283         TIXMLASSERT(i >= 0 \&\& i < \_size);}
+\DoxyCodeLine{284         TIXMLASSERT(\_size > 0);}
+\DoxyCodeLine{285         \_mem[i] = \_mem[\_size -\/ 1];}
+\DoxyCodeLine{286         -\/-\/\_size;}
+\DoxyCodeLine{287     \}}
+\DoxyCodeLine{288 }
+\DoxyCodeLine{289     \textcolor{keyword}{const} T* Mem()\textcolor{keyword}{ const                }\{}
+\DoxyCodeLine{290         TIXMLASSERT( \_mem );}
+\DoxyCodeLine{291         \textcolor{keywordflow}{return} \_mem;}
+\DoxyCodeLine{292     \}}
+\DoxyCodeLine{293 }
+\DoxyCodeLine{294     T* Mem() \{}
+\DoxyCodeLine{295         TIXMLASSERT( \_mem );}
+\DoxyCodeLine{296         \textcolor{keywordflow}{return} \_mem;}
+\DoxyCodeLine{297     \}}
+\DoxyCodeLine{298 }
+\DoxyCodeLine{299 \textcolor{keyword}{private}:}
+\DoxyCodeLine{300     \mbox{\hyperlink{classtinyxml2_1_1DynArray}{DynArray}}( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1DynArray}{DynArray}}\& ); \textcolor{comment}{// not supported}}
+\DoxyCodeLine{301     \textcolor{keywordtype}{void} operator=( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1DynArray}{DynArray}}\& ); \textcolor{comment}{// not supported}}
+\DoxyCodeLine{302 }
+\DoxyCodeLine{303     \textcolor{keywordtype}{void} EnsureCapacity( \textcolor{keywordtype}{int} cap ) \{}
+\DoxyCodeLine{304         TIXMLASSERT( cap > 0 );}
+\DoxyCodeLine{305         \textcolor{keywordflow}{if} ( cap > \_allocated ) \{}
+\DoxyCodeLine{306             TIXMLASSERT( cap <= INT\_MAX / 2 );}
+\DoxyCodeLine{307             \textcolor{keyword}{const} \textcolor{keywordtype}{int} newAllocated = cap * 2;}
+\DoxyCodeLine{308             T* newMem = \textcolor{keyword}{new} T[newAllocated];}
+\DoxyCodeLine{309             TIXMLASSERT( newAllocated >= \_size );}
+\DoxyCodeLine{310             memcpy( newMem, \_mem, \textcolor{keyword}{sizeof}(T)*\_size );    \textcolor{comment}{// warning: not using constructors, only works for PODs}}
+\DoxyCodeLine{311             \textcolor{keywordflow}{if} ( \_mem != \_pool ) \{}
+\DoxyCodeLine{312                 \textcolor{keyword}{delete} [] \_mem;}
+\DoxyCodeLine{313             \}}
+\DoxyCodeLine{314             \_mem = newMem;}
+\DoxyCodeLine{315             \_allocated = newAllocated;}
+\DoxyCodeLine{316         \}}
+\DoxyCodeLine{317     \}}
+\DoxyCodeLine{318 }
+\DoxyCodeLine{319     T*  \_mem;}
+\DoxyCodeLine{320     T   \_pool[INITIAL\_SIZE];}
+\DoxyCodeLine{321     \textcolor{keywordtype}{int} \_allocated;     \textcolor{comment}{// objects allocated}}
+\DoxyCodeLine{322     \textcolor{keywordtype}{int} \_size;          \textcolor{comment}{// number objects in use}}
+\DoxyCodeLine{323 \};}
+\DoxyCodeLine{324 }
+\DoxyCodeLine{325 }
+\DoxyCodeLine{326 \textcolor{comment}{/*}}
+\DoxyCodeLine{327 \textcolor{comment}{    Parent virtual class of a pool for fast allocation}}
+\DoxyCodeLine{328 \textcolor{comment}{    and deallocation of objects.}}
+\DoxyCodeLine{329 \textcolor{comment}{*/}}
+\DoxyCodeLine{330 \textcolor{keyword}{class }\mbox{\hyperlink{classtinyxml2_1_1MemPool}{MemPool}}}
+\DoxyCodeLine{331 \{}
+\DoxyCodeLine{332 \textcolor{keyword}{public}:}
+\DoxyCodeLine{333     \mbox{\hyperlink{classtinyxml2_1_1MemPool}{MemPool}}() \{\}}
+\DoxyCodeLine{334     \textcolor{keyword}{virtual} \mbox{\hyperlink{classtinyxml2_1_1MemPool}{\string~MemPool}}() \{\}}
+\DoxyCodeLine{335 }
+\DoxyCodeLine{336     \textcolor{keyword}{virtual} \textcolor{keywordtype}{int} ItemSize() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{337     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void}* Alloc() = 0;}
+\DoxyCodeLine{338     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} Free( \textcolor{keywordtype}{void}* ) = 0;}
+\DoxyCodeLine{339     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} SetTracked() = 0;}
+\DoxyCodeLine{340 \};}
+\DoxyCodeLine{341 }
+\DoxyCodeLine{342 }
+\DoxyCodeLine{343 \textcolor{comment}{/*}}
+\DoxyCodeLine{344 \textcolor{comment}{    Template child class to create pools of the correct type.}}
+\DoxyCodeLine{345 \textcolor{comment}{*/}}
+\DoxyCodeLine{346 \textcolor{keyword}{template}< \textcolor{keywordtype}{int} ITEM\_SIZE >}
+\DoxyCodeLine{347 \textcolor{keyword}{class }\mbox{\hyperlink{classtinyxml2_1_1MemPoolT}{MemPoolT}} : \textcolor{keyword}{public} \mbox{\hyperlink{classtinyxml2_1_1MemPool}{MemPool}}}
+\DoxyCodeLine{348 \{}
+\DoxyCodeLine{349 \textcolor{keyword}{public}:}
+\DoxyCodeLine{350     \mbox{\hyperlink{classtinyxml2_1_1MemPoolT}{MemPoolT}}() : \_blockPtrs(), \_root(0), \_currentAllocs(0), \_nAllocs(0), \_maxAllocs(0), \_nUntracked(0)  \{\}}
+\DoxyCodeLine{351     \mbox{\hyperlink{classtinyxml2_1_1MemPoolT}{\string~MemPoolT}}() \{}
+\DoxyCodeLine{352         \mbox{\hyperlink{classtinyxml2_1_1MemPoolT}{MemPoolT< ITEM\_SIZE >::Clear}}();}
+\DoxyCodeLine{353     \}}
+\DoxyCodeLine{354 }
+\DoxyCodeLine{355     \textcolor{keywordtype}{void} Clear() \{}
+\DoxyCodeLine{356         \textcolor{comment}{// Delete the blocks.}}
+\DoxyCodeLine{357         \textcolor{keywordflow}{while}( !\_blockPtrs.Empty()) \{}
+\DoxyCodeLine{358             Block* lastBlock = \_blockPtrs.Pop();}
+\DoxyCodeLine{359             \textcolor{keyword}{delete} lastBlock;}
+\DoxyCodeLine{360         \}}
+\DoxyCodeLine{361         \_root = 0;}
+\DoxyCodeLine{362         \_currentAllocs = 0;}
+\DoxyCodeLine{363         \_nAllocs = 0;}
+\DoxyCodeLine{364         \_maxAllocs = 0;}
+\DoxyCodeLine{365         \_nUntracked = 0;}
+\DoxyCodeLine{366     \}}
+\DoxyCodeLine{367 }
+\DoxyCodeLine{368     \textcolor{keyword}{virtual} \textcolor{keywordtype}{int} ItemSize()\textcolor{keyword}{ const    }\{}
+\DoxyCodeLine{369         \textcolor{keywordflow}{return} ITEM\_SIZE;}
+\DoxyCodeLine{370     \}}
+\DoxyCodeLine{371     \textcolor{keywordtype}{int} CurrentAllocs()\textcolor{keyword}{ const       }\{}
+\DoxyCodeLine{372         \textcolor{keywordflow}{return} \_currentAllocs;}
+\DoxyCodeLine{373     \}}
+\DoxyCodeLine{374 }
+\DoxyCodeLine{375     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void}* Alloc() \{}
+\DoxyCodeLine{376         \textcolor{keywordflow}{if} ( !\_root ) \{}
+\DoxyCodeLine{377             \textcolor{comment}{// Need a new block.}}
+\DoxyCodeLine{378             Block* block = \textcolor{keyword}{new} Block();}
+\DoxyCodeLine{379             \_blockPtrs.Push( block );}
+\DoxyCodeLine{380 }
+\DoxyCodeLine{381             Item* blockItems = block-\/>items;}
+\DoxyCodeLine{382             \textcolor{keywordflow}{for}( \textcolor{keywordtype}{int} i = 0; i < ITEMS\_PER\_BLOCK -\/ 1; ++i ) \{}
+\DoxyCodeLine{383                 blockItems[i].next = \&(blockItems[i + 1]);}
+\DoxyCodeLine{384             \}}
+\DoxyCodeLine{385             blockItems[ITEMS\_PER\_BLOCK -\/ 1].next = 0;}
+\DoxyCodeLine{386             \_root = blockItems;}
+\DoxyCodeLine{387         \}}
+\DoxyCodeLine{388         Item* \textcolor{keyword}{const} result = \_root;}
+\DoxyCodeLine{389         TIXMLASSERT( result != 0 );}
+\DoxyCodeLine{390         \_root = \_root-\/>next;}
+\DoxyCodeLine{391 }
+\DoxyCodeLine{392         ++\_currentAllocs;}
+\DoxyCodeLine{393         \textcolor{keywordflow}{if} ( \_currentAllocs > \_maxAllocs ) \{}
+\DoxyCodeLine{394             \_maxAllocs = \_currentAllocs;}
+\DoxyCodeLine{395         \}}
+\DoxyCodeLine{396         ++\_nAllocs;}
+\DoxyCodeLine{397         ++\_nUntracked;}
+\DoxyCodeLine{398         \textcolor{keywordflow}{return} result;}
+\DoxyCodeLine{399     \}}
+\DoxyCodeLine{400 }
+\DoxyCodeLine{401     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} Free( \textcolor{keywordtype}{void}* mem ) \{}
+\DoxyCodeLine{402         \textcolor{keywordflow}{if} ( !mem ) \{}
+\DoxyCodeLine{403             \textcolor{keywordflow}{return};}
+\DoxyCodeLine{404         \}}
+\DoxyCodeLine{405         -\/-\/\_currentAllocs;}
+\DoxyCodeLine{406         Item* item = \textcolor{keyword}{static\_cast<}Item*\textcolor{keyword}{>}( mem );}
+\DoxyCodeLine{407 \textcolor{preprocessor}{\#ifdef TINYXML2\_DEBUG}}
+\DoxyCodeLine{408         memset( item, 0xfe, \textcolor{keyword}{sizeof}( *item ) );}
+\DoxyCodeLine{409 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{410         item-\/>next = \_root;}
+\DoxyCodeLine{411         \_root = item;}
+\DoxyCodeLine{412     \}}
+\DoxyCodeLine{413     \textcolor{keywordtype}{void} Trace( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name ) \{}
+\DoxyCodeLine{414         printf( \textcolor{stringliteral}{"{}Mempool \%s watermark=\%d [\%dk] current=\%d size=\%d nAlloc=\%d blocks=\%d\(\backslash\)n"{}},}
+\DoxyCodeLine{415                 name, \_maxAllocs, \_maxAllocs * ITEM\_SIZE / 1024, \_currentAllocs,}
+\DoxyCodeLine{416                 ITEM\_SIZE, \_nAllocs, \_blockPtrs.Size() );}
+\DoxyCodeLine{417     \}}
+\DoxyCodeLine{418 }
+\DoxyCodeLine{419     \textcolor{keywordtype}{void} SetTracked() \{}
+\DoxyCodeLine{420         -\/-\/\_nUntracked;}
+\DoxyCodeLine{421     \}}
+\DoxyCodeLine{422 }
+\DoxyCodeLine{423     \textcolor{keywordtype}{int} Untracked()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{424         \textcolor{keywordflow}{return} \_nUntracked;}
+\DoxyCodeLine{425     \}}
+\DoxyCodeLine{426 }
+\DoxyCodeLine{427     \textcolor{comment}{// This number is perf sensitive. 4k seems like a good tradeoff on my machine.}}
+\DoxyCodeLine{428     \textcolor{comment}{// The test file is large, 170k.}}
+\DoxyCodeLine{429     \textcolor{comment}{// Release:     VS2010 gcc(no opt)}}
+\DoxyCodeLine{430     \textcolor{comment}{//      1k:     4000}}
+\DoxyCodeLine{431     \textcolor{comment}{//      2k:     4000}}
+\DoxyCodeLine{432     \textcolor{comment}{//      4k:     3900    21000}}
+\DoxyCodeLine{433     \textcolor{comment}{//      16k:    5200}}
+\DoxyCodeLine{434     \textcolor{comment}{//      32k:    4300}}
+\DoxyCodeLine{435     \textcolor{comment}{//      64k:    4000    21000}}
+\DoxyCodeLine{436     \textcolor{comment}{// Declared public because some compilers do not accept to use ITEMS\_PER\_BLOCK}}
+\DoxyCodeLine{437     \textcolor{comment}{// in private part if ITEMS\_PER\_BLOCK is private}}
+\DoxyCodeLine{438     \textcolor{keyword}{enum} \{ ITEMS\_PER\_BLOCK = (4 * 1024) / ITEM\_SIZE \};}
+\DoxyCodeLine{439 }
+\DoxyCodeLine{440 \textcolor{keyword}{private}:}
+\DoxyCodeLine{441     \mbox{\hyperlink{classtinyxml2_1_1MemPoolT}{MemPoolT}}( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1MemPoolT}{MemPoolT}}\& ); \textcolor{comment}{// not supported}}
+\DoxyCodeLine{442     \textcolor{keywordtype}{void} operator=( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1MemPoolT}{MemPoolT}}\& ); \textcolor{comment}{// not supported}}
+\DoxyCodeLine{443 }
+\DoxyCodeLine{444     \textcolor{keyword}{union }Item \{}
+\DoxyCodeLine{445         Item*   next;}
+\DoxyCodeLine{446         \textcolor{keywordtype}{char}    itemData[ITEM\_SIZE];}
+\DoxyCodeLine{447     \};}
+\DoxyCodeLine{448     \textcolor{keyword}{struct }Block \{}
+\DoxyCodeLine{449         Item items[ITEMS\_PER\_BLOCK];}
+\DoxyCodeLine{450     \};}
+\DoxyCodeLine{451     \mbox{\hyperlink{classtinyxml2_1_1DynArray}{DynArray< Block*, 10 >}} \_blockPtrs;}
+\DoxyCodeLine{452     Item* \_root;}
+\DoxyCodeLine{453 }
+\DoxyCodeLine{454     \textcolor{keywordtype}{int} \_currentAllocs;}
+\DoxyCodeLine{455     \textcolor{keywordtype}{int} \_nAllocs;}
+\DoxyCodeLine{456     \textcolor{keywordtype}{int} \_maxAllocs;}
+\DoxyCodeLine{457     \textcolor{keywordtype}{int} \_nUntracked;}
+\DoxyCodeLine{458 \};}
+\DoxyCodeLine{459 }
+\DoxyCodeLine{460 }
+\DoxyCodeLine{461 }
+\DoxyCodeLine{481 \textcolor{keyword}{class }TINYXML2\_LIB \mbox{\hyperlink{classtinyxml2_1_1XMLVisitor}{XMLVisitor}}}
+\DoxyCodeLine{482 \{}
+\DoxyCodeLine{483 \textcolor{keyword}{public}:}
+\DoxyCodeLine{484     \textcolor{keyword}{virtual} \mbox{\hyperlink{classtinyxml2_1_1XMLVisitor}{\string~XMLVisitor}}() \{\}}
+\DoxyCodeLine{485 }
+\DoxyCodeLine{487     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classtinyxml2_1_1XMLVisitor_acb3c22fc5f60eb9db98f533f2761f67d}{VisitEnter}}( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}}\& \textcolor{comment}{/*doc*/} )          \{}
+\DoxyCodeLine{488         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{489     \}}
+\DoxyCodeLine{491     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classtinyxml2_1_1XMLVisitor_a170e9989cd046ba904f302d087e07086}{VisitExit}}( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}}\& \textcolor{comment}{/*doc*/} )            \{}
+\DoxyCodeLine{492         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{493     \}}
+\DoxyCodeLine{494 }
+\DoxyCodeLine{496     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classtinyxml2_1_1XMLVisitor_af97980a17dd4e37448b181f5ddfa92b5}{VisitEnter}}( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}}\& \textcolor{comment}{/*element*/}, \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLAttribute}{XMLAttribute}}* \textcolor{comment}{/*firstAttribute*/} )    \{}
+\DoxyCodeLine{497         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{498     \}}
+\DoxyCodeLine{500     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classtinyxml2_1_1XMLVisitor_a772f10ddc83f881956d32628faa16eb6}{VisitExit}}( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}}\& \textcolor{comment}{/*element*/} )          \{}
+\DoxyCodeLine{501         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{502     \}}
+\DoxyCodeLine{503 }
+\DoxyCodeLine{505     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classtinyxml2_1_1XMLVisitor_adc75bd459fc7ba8223b50f0616767f9a}{Visit}}( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLDeclaration}{XMLDeclaration}}\& \textcolor{comment}{/*declaration*/} )      \{}
+\DoxyCodeLine{506         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{507     \}}
+\DoxyCodeLine{509     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classtinyxml2_1_1XMLVisitor_af30233565856480ea48b6fa0d6dec65b}{Visit}}( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLText}{XMLText}}\& \textcolor{comment}{/*text*/} )                   \{}
+\DoxyCodeLine{510         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{511     \}}
+\DoxyCodeLine{513     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classtinyxml2_1_1XMLVisitor_acc8147fb5a85f6c65721654e427752d7}{Visit}}( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLComment}{XMLComment}}\& \textcolor{comment}{/*comment*/} )              \{}
+\DoxyCodeLine{514         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{515     \}}
+\DoxyCodeLine{517     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classtinyxml2_1_1XMLVisitor_a14e4748387c34bf53d24e8119bb1f292}{Visit}}( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLUnknown}{XMLUnknown}}\& \textcolor{comment}{/*unknown*/} )              \{}
+\DoxyCodeLine{518         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{519     \}}
+\DoxyCodeLine{520 \};}
+\DoxyCodeLine{521 }
+\DoxyCodeLine{522 \textcolor{comment}{// WARNING: must match XMLDocument::\_errorNames[]}}
+\DoxyCodeLine{523 \textcolor{keyword}{enum} XMLError \{}
+\DoxyCodeLine{524     XML\_SUCCESS = 0,}
+\DoxyCodeLine{525     XML\_NO\_ATTRIBUTE,}
+\DoxyCodeLine{526     XML\_WRONG\_ATTRIBUTE\_TYPE,}
+\DoxyCodeLine{527     XML\_ERROR\_FILE\_NOT\_FOUND,}
+\DoxyCodeLine{528     XML\_ERROR\_FILE\_COULD\_NOT\_BE\_OPENED,}
+\DoxyCodeLine{529     XML\_ERROR\_FILE\_READ\_ERROR,}
+\DoxyCodeLine{530     XML\_ERROR\_PARSING\_ELEMENT,}
+\DoxyCodeLine{531     XML\_ERROR\_PARSING\_ATTRIBUTE,}
+\DoxyCodeLine{532     XML\_ERROR\_PARSING\_TEXT,}
+\DoxyCodeLine{533     XML\_ERROR\_PARSING\_CDATA,}
+\DoxyCodeLine{534     XML\_ERROR\_PARSING\_COMMENT,}
+\DoxyCodeLine{535     XML\_ERROR\_PARSING\_DECLARATION,}
+\DoxyCodeLine{536     XML\_ERROR\_PARSING\_UNKNOWN,}
+\DoxyCodeLine{537     XML\_ERROR\_EMPTY\_DOCUMENT,}
+\DoxyCodeLine{538     XML\_ERROR\_MISMATCHED\_ELEMENT,}
+\DoxyCodeLine{539     XML\_ERROR\_PARSING,}
+\DoxyCodeLine{540     XML\_CAN\_NOT\_CONVERT\_TEXT,}
+\DoxyCodeLine{541     XML\_NO\_TEXT\_NODE,}
+\DoxyCodeLine{542     XML\_ELEMENT\_DEPTH\_EXCEEDED,}
+\DoxyCodeLine{543 }
+\DoxyCodeLine{544     XML\_ERROR\_COUNT}
+\DoxyCodeLine{545 \};}
+\DoxyCodeLine{546 }
+\DoxyCodeLine{547 }
+\DoxyCodeLine{548 \textcolor{comment}{/*}}
+\DoxyCodeLine{549 \textcolor{comment}{    Utility functionality.}}
+\DoxyCodeLine{550 \textcolor{comment}{*/}}
+\DoxyCodeLine{551 \textcolor{keyword}{class }TINYXML2\_LIB \mbox{\hyperlink{classtinyxml2_1_1XMLUtil}{XMLUtil}}}
+\DoxyCodeLine{552 \{}
+\DoxyCodeLine{553 \textcolor{keyword}{public}:}
+\DoxyCodeLine{554     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char}* SkipWhiteSpace( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* p, \textcolor{keywordtype}{int}* curLineNumPtr )  \{}
+\DoxyCodeLine{555         TIXMLASSERT( p );}
+\DoxyCodeLine{556 }
+\DoxyCodeLine{557         \textcolor{keywordflow}{while}( IsWhiteSpace(*p) ) \{}
+\DoxyCodeLine{558             \textcolor{keywordflow}{if} (curLineNumPtr \&\& *p == \textcolor{charliteral}{'\(\backslash\)n'}) \{}
+\DoxyCodeLine{559                 ++(*curLineNumPtr);}
+\DoxyCodeLine{560             \}}
+\DoxyCodeLine{561             ++p;}
+\DoxyCodeLine{562         \}}
+\DoxyCodeLine{563         TIXMLASSERT( p );}
+\DoxyCodeLine{564         \textcolor{keywordflow}{return} p;}
+\DoxyCodeLine{565     \}}
+\DoxyCodeLine{566     \textcolor{keyword}{static} \textcolor{keywordtype}{char}* SkipWhiteSpace( \textcolor{keywordtype}{char}* \textcolor{keyword}{const} p, \textcolor{keywordtype}{int}* curLineNumPtr ) \{}
+\DoxyCodeLine{567         \textcolor{keywordflow}{return} \textcolor{keyword}{const\_cast<}\textcolor{keywordtype}{char}*\textcolor{keyword}{>}( SkipWhiteSpace( \textcolor{keyword}{const\_cast<}\textcolor{keyword}{const }\textcolor{keywordtype}{char}*\textcolor{keyword}{>}(p), curLineNumPtr ) );}
+\DoxyCodeLine{568     \}}
+\DoxyCodeLine{569 }
+\DoxyCodeLine{570     \textcolor{comment}{// Anything in the high order range of UTF-\/8 is assumed to not be whitespace. This isn't}}
+\DoxyCodeLine{571     \textcolor{comment}{// correct, but simple, and usually works.}}
+\DoxyCodeLine{572     \textcolor{keyword}{static} \textcolor{keywordtype}{bool} IsWhiteSpace( \textcolor{keywordtype}{char} p )                  \{}
+\DoxyCodeLine{573         \textcolor{keywordflow}{return} !IsUTF8Continuation(p) \&\& isspace( \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}\textcolor{keyword}{>}(p) );}
+\DoxyCodeLine{574     \}}
+\DoxyCodeLine{575 }
+\DoxyCodeLine{576     \textcolor{keyword}{inline} \textcolor{keyword}{static} \textcolor{keywordtype}{bool} IsNameStartChar( \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} ch ) \{}
+\DoxyCodeLine{577         \textcolor{keywordflow}{if} ( ch >= 128 ) \{}
+\DoxyCodeLine{578             \textcolor{comment}{// This is a heuristic guess in attempt to not implement Unicode-\/aware isalpha()}}
+\DoxyCodeLine{579             \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{580         \}}
+\DoxyCodeLine{581         \textcolor{keywordflow}{if} ( isalpha( ch ) ) \{}
+\DoxyCodeLine{582             \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{583         \}}
+\DoxyCodeLine{584         \textcolor{keywordflow}{return} ch == \textcolor{charliteral}{':'} || ch == \textcolor{charliteral}{'\_'};}
+\DoxyCodeLine{585     \}}
+\DoxyCodeLine{586 }
+\DoxyCodeLine{587     \textcolor{keyword}{inline} \textcolor{keyword}{static} \textcolor{keywordtype}{bool} IsNameChar( \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} ch ) \{}
+\DoxyCodeLine{588         \textcolor{keywordflow}{return} IsNameStartChar( ch )}
+\DoxyCodeLine{589                || isdigit( ch )}
+\DoxyCodeLine{590                || ch == \textcolor{charliteral}{'.'}}
+\DoxyCodeLine{591                || ch == \textcolor{charliteral}{'-\/'};}
+\DoxyCodeLine{592     \}}
+\DoxyCodeLine{593 }
+\DoxyCodeLine{594     \textcolor{keyword}{inline} \textcolor{keyword}{static} \textcolor{keywordtype}{bool} IsPrefixHex( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* p) \{}
+\DoxyCodeLine{595         p = SkipWhiteSpace(p, 0);}
+\DoxyCodeLine{596         \textcolor{keywordflow}{return} p \&\& *p == \textcolor{charliteral}{'0'} \&\& ( *(p + 1) == \textcolor{charliteral}{'x'} || *(p + 1) == \textcolor{charliteral}{'X'});}
+\DoxyCodeLine{597     \}}
+\DoxyCodeLine{598 }
+\DoxyCodeLine{599     \textcolor{keyword}{inline} \textcolor{keyword}{static} \textcolor{keywordtype}{bool} StringEqual( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* p, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* q, \textcolor{keywordtype}{int} nChar=INT\_MAX )  \{}
+\DoxyCodeLine{600         \textcolor{keywordflow}{if} ( p == q ) \{}
+\DoxyCodeLine{601             \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{602         \}}
+\DoxyCodeLine{603         TIXMLASSERT( p );}
+\DoxyCodeLine{604         TIXMLASSERT( q );}
+\DoxyCodeLine{605         TIXMLASSERT( nChar >= 0 );}
+\DoxyCodeLine{606         \textcolor{keywordflow}{return} strncmp( p, q, nChar ) == 0;}
+\DoxyCodeLine{607     \}}
+\DoxyCodeLine{608 }
+\DoxyCodeLine{609     \textcolor{keyword}{inline} \textcolor{keyword}{static} \textcolor{keywordtype}{bool} IsUTF8Continuation( \textcolor{keyword}{const} \textcolor{keywordtype}{char} p ) \{}
+\DoxyCodeLine{610         \textcolor{keywordflow}{return} ( p \& 0x80 ) != 0;}
+\DoxyCodeLine{611     \}}
+\DoxyCodeLine{612 }
+\DoxyCodeLine{613     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char}* ReadBOM( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* p, \textcolor{keywordtype}{bool}* hasBOM );}
+\DoxyCodeLine{614     \textcolor{comment}{// p is the starting location,}}
+\DoxyCodeLine{615     \textcolor{comment}{// the UTF-\/8 value of the entity will be placed in value, and length filled in.}}
+\DoxyCodeLine{616     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char}* GetCharacterRef( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* p, \textcolor{keywordtype}{char}* value, \textcolor{keywordtype}{int}* length );}
+\DoxyCodeLine{617     \textcolor{keyword}{static} \textcolor{keywordtype}{void} ConvertUTF32ToUTF8( \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} input, \textcolor{keywordtype}{char}* output, \textcolor{keywordtype}{int}* length );}
+\DoxyCodeLine{618 }
+\DoxyCodeLine{619     \textcolor{comment}{// converts primitive types to strings}}
+\DoxyCodeLine{620     \textcolor{keyword}{static} \textcolor{keywordtype}{void} ToStr( \textcolor{keywordtype}{int} v, \textcolor{keywordtype}{char}* buffer, \textcolor{keywordtype}{int} bufferSize );}
+\DoxyCodeLine{621     \textcolor{keyword}{static} \textcolor{keywordtype}{void} ToStr( \textcolor{keywordtype}{unsigned} v, \textcolor{keywordtype}{char}* buffer, \textcolor{keywordtype}{int} bufferSize );}
+\DoxyCodeLine{622     \textcolor{keyword}{static} \textcolor{keywordtype}{void} ToStr( \textcolor{keywordtype}{bool} v, \textcolor{keywordtype}{char}* buffer, \textcolor{keywordtype}{int} bufferSize );}
+\DoxyCodeLine{623     \textcolor{keyword}{static} \textcolor{keywordtype}{void} ToStr( \textcolor{keywordtype}{float} v, \textcolor{keywordtype}{char}* buffer, \textcolor{keywordtype}{int} bufferSize );}
+\DoxyCodeLine{624     \textcolor{keyword}{static} \textcolor{keywordtype}{void} ToStr( \textcolor{keywordtype}{double} v, \textcolor{keywordtype}{char}* buffer, \textcolor{keywordtype}{int} bufferSize );}
+\DoxyCodeLine{625     \textcolor{keyword}{static} \textcolor{keywordtype}{void} ToStr(int64\_t v, \textcolor{keywordtype}{char}* buffer, \textcolor{keywordtype}{int} bufferSize);}
+\DoxyCodeLine{626     \textcolor{keyword}{static} \textcolor{keywordtype}{void} ToStr(uint64\_t v, \textcolor{keywordtype}{char}* buffer, \textcolor{keywordtype}{int} bufferSize);}
+\DoxyCodeLine{627 }
+\DoxyCodeLine{628     \textcolor{comment}{// converts strings to primitive types}}
+\DoxyCodeLine{629     \textcolor{keyword}{static} \textcolor{keywordtype}{bool} ToInt( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* str, \textcolor{keywordtype}{int}* value );}
+\DoxyCodeLine{630     \textcolor{keyword}{static} \textcolor{keywordtype}{bool} ToUnsigned( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* str, \textcolor{keywordtype}{unsigned}* value );}
+\DoxyCodeLine{631     \textcolor{keyword}{static} \textcolor{keywordtype}{bool} ToBool( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* str, \textcolor{keywordtype}{bool}* value );}
+\DoxyCodeLine{632     \textcolor{keyword}{static} \textcolor{keywordtype}{bool} ToFloat( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* str, \textcolor{keywordtype}{float}* value );}
+\DoxyCodeLine{633     \textcolor{keyword}{static} \textcolor{keywordtype}{bool} ToDouble( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* str, \textcolor{keywordtype}{double}* value );}
+\DoxyCodeLine{634     \textcolor{keyword}{static} \textcolor{keywordtype}{bool} ToInt64(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* str, int64\_t* value);}
+\DoxyCodeLine{635     \textcolor{keyword}{static} \textcolor{keywordtype}{bool} ToUnsigned64(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* str, uint64\_t* value);}
+\DoxyCodeLine{636     \textcolor{comment}{// Changes what is serialized for a boolean value.}}
+\DoxyCodeLine{637     \textcolor{comment}{// Default to "{}true"{} and "{}false"{}. Shouldn't be changed}}
+\DoxyCodeLine{638     \textcolor{comment}{// unless you have a special testing or compatibility need.}}
+\DoxyCodeLine{639     \textcolor{comment}{// Be careful: static, global, \& not thread safe.}}
+\DoxyCodeLine{640     \textcolor{comment}{// Be sure to set static const memory as parameters.}}
+\DoxyCodeLine{641     \textcolor{keyword}{static} \textcolor{keywordtype}{void} SetBoolSerialization(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* writeTrue, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* writeFalse);}
+\DoxyCodeLine{642 }
+\DoxyCodeLine{643 \textcolor{keyword}{private}:}
+\DoxyCodeLine{644     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char}* writeBoolTrue;}
+\DoxyCodeLine{645     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char}* writeBoolFalse;}
+\DoxyCodeLine{646 \};}
+\DoxyCodeLine{647 }
+\DoxyCodeLine{648 }
+\DoxyCodeLine{674 \textcolor{keyword}{class }TINYXML2\_LIB \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}}
+\DoxyCodeLine{675 \{}
+\DoxyCodeLine{676     \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}};}
+\DoxyCodeLine{677     \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}};}
+\DoxyCodeLine{678 \textcolor{keyword}{public}:}
+\DoxyCodeLine{679 }
+\DoxyCodeLine{681     \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}}* \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a6ce3bbe80357f5a4dc5db31a66f2bb18}{GetDocument}}()\textcolor{keyword}{ const    }\{}
+\DoxyCodeLine{682         TIXMLASSERT( \_document );}
+\DoxyCodeLine{683         \textcolor{keywordflow}{return} \_document;}
+\DoxyCodeLine{684     \}}
+\DoxyCodeLine{686     \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}}* \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a48d1695f7c834129e072548957a50501}{GetDocument}}()                \{}
+\DoxyCodeLine{687         TIXMLASSERT( \_document );}
+\DoxyCodeLine{688         \textcolor{keywordflow}{return} \_document;}
+\DoxyCodeLine{689     \}}
+\DoxyCodeLine{690 }
+\DoxyCodeLine{692     \textcolor{keyword}{virtual} \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}}*       \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a9417e1f8a9787ae27741605493514b18}{ToElement}}()        \{}
+\DoxyCodeLine{693         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{694     \}}
+\DoxyCodeLine{696     \textcolor{keyword}{virtual} \mbox{\hyperlink{classtinyxml2_1_1XMLText}{XMLText}}*     \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a0aea8c9c5853c35a06da1988486abc60}{ToText}}()      \{}
+\DoxyCodeLine{697         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{698     \}}
+\DoxyCodeLine{700     \textcolor{keyword}{virtual} \mbox{\hyperlink{classtinyxml2_1_1XMLComment}{XMLComment}}*       \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a5dc13f02ae49e3fa609e426f47c8466d}{ToComment}}()        \{}
+\DoxyCodeLine{701         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{702     \}}
+\DoxyCodeLine{704     \textcolor{keyword}{virtual} \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}}* \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a6107c3f57ab6e0755959947762953652}{ToDocument}}()  \{}
+\DoxyCodeLine{705         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{706     \}}
+\DoxyCodeLine{708     \textcolor{keyword}{virtual} \mbox{\hyperlink{classtinyxml2_1_1XMLDeclaration}{XMLDeclaration}}*   \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a12aa783a3a4445ad5557c7d56cd8dc4a}{ToDeclaration}}()    \{}
+\DoxyCodeLine{709         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{710     \}}
+\DoxyCodeLine{712     \textcolor{keyword}{virtual} \mbox{\hyperlink{classtinyxml2_1_1XMLUnknown}{XMLUnknown}}*       \mbox{\hyperlink{classtinyxml2_1_1XMLNode_aa8a2dd38b786c3b8d406c2047753cbfd}{ToUnknown}}()        \{}
+\DoxyCodeLine{713         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{714     \}}
+\DoxyCodeLine{715 }
+\DoxyCodeLine{716     \textcolor{keyword}{virtual} \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}}*     ToElement()\textcolor{keyword}{ const       }\{}
+\DoxyCodeLine{717         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{718     \}}
+\DoxyCodeLine{719     \textcolor{keyword}{virtual} \textcolor{keyword}{const} XMLText*          ToText()\textcolor{keyword}{ const          }\{}
+\DoxyCodeLine{720         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{721     \}}
+\DoxyCodeLine{722     \textcolor{keyword}{virtual} \textcolor{keyword}{const} XMLComment*       ToComment()\textcolor{keyword}{ const       }\{}
+\DoxyCodeLine{723         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{724     \}}
+\DoxyCodeLine{725     \textcolor{keyword}{virtual} \textcolor{keyword}{const} XMLDocument*      ToDocument()\textcolor{keyword}{ const      }\{}
+\DoxyCodeLine{726         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{727     \}}
+\DoxyCodeLine{728     \textcolor{keyword}{virtual} \textcolor{keyword}{const} XMLDeclaration*   ToDeclaration()\textcolor{keyword}{ const   }\{}
+\DoxyCodeLine{729         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{730     \}}
+\DoxyCodeLine{731     \textcolor{keyword}{virtual} \textcolor{keyword}{const} XMLUnknown*       ToUnknown()\textcolor{keyword}{ const       }\{}
+\DoxyCodeLine{732         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{733     \}}
+\DoxyCodeLine{734 }
+\DoxyCodeLine{744     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* Value() \textcolor{keyword}{const};}
+\DoxyCodeLine{745 }
+\DoxyCodeLine{749     \textcolor{keywordtype}{void} SetValue( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* val, \textcolor{keywordtype}{bool} staticMem=\textcolor{keyword}{false} );}
+\DoxyCodeLine{750 }
+\DoxyCodeLine{752     \textcolor{keywordtype}{int} \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a9b5fc636646fda761d342c72e91cb286}{GetLineNum}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \_parseLineNum; \}}
+\DoxyCodeLine{753 }
+\DoxyCodeLine{755     \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}*   \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a4d76b30d1bf4b166d3e4fa3419d51595}{Parent}}()\textcolor{keyword}{ const            }\{}
+\DoxyCodeLine{756         \textcolor{keywordflow}{return} \_parent;}
+\DoxyCodeLine{757     \}}
+\DoxyCodeLine{758 }
+\DoxyCodeLine{759     \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}* Parent()                        \{}
+\DoxyCodeLine{760         \textcolor{keywordflow}{return} \_parent;}
+\DoxyCodeLine{761     \}}
+\DoxyCodeLine{762 }
+\DoxyCodeLine{764     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classtinyxml2_1_1XMLNode_ac3ab489e6e202a3cd1762d3b332e89d4}{NoChildren}}()\textcolor{keyword}{ const                   }\{}
+\DoxyCodeLine{765         \textcolor{keywordflow}{return} !\_firstChild;}
+\DoxyCodeLine{766     \}}
+\DoxyCodeLine{767 }
+\DoxyCodeLine{769     \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}*  \mbox{\hyperlink{classtinyxml2_1_1XMLNode_abcc2e572dce329539689b426a0840661}{FirstChild}}()\textcolor{keyword}{ const     }\{}
+\DoxyCodeLine{770         \textcolor{keywordflow}{return} \_firstChild;}
+\DoxyCodeLine{771     \}}
+\DoxyCodeLine{772 }
+\DoxyCodeLine{773     \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}*     FirstChild()            \{}
+\DoxyCodeLine{774         \textcolor{keywordflow}{return} \_firstChild;}
+\DoxyCodeLine{775     \}}
+\DoxyCodeLine{776 }
+\DoxyCodeLine{780     \textcolor{keyword}{const} XMLElement* FirstChildElement( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name = 0 ) \textcolor{keyword}{const};}
+\DoxyCodeLine{781 }
+\DoxyCodeLine{782     XMLElement* FirstChildElement( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name = 0 )   \{}
+\DoxyCodeLine{783         \textcolor{keywordflow}{return} \textcolor{keyword}{const\_cast<}XMLElement*\textcolor{keyword}{>}(\textcolor{keyword}{const\_cast<}\textcolor{keyword}{const }XMLNode*\textcolor{keyword}{>}(\textcolor{keyword}{this})-\/>FirstChildElement( name ));}
+\DoxyCodeLine{784     \}}
+\DoxyCodeLine{785 }
+\DoxyCodeLine{787     \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}*   \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a69a29bb8263ff5e9815be180bf27e7af}{LastChild}}()\textcolor{keyword}{ const                      }\{}
+\DoxyCodeLine{788         \textcolor{keywordflow}{return} \_lastChild;}
+\DoxyCodeLine{789     \}}
+\DoxyCodeLine{790 }
+\DoxyCodeLine{791     \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}*     LastChild()                             \{}
+\DoxyCodeLine{792         \textcolor{keywordflow}{return} \_lastChild;}
+\DoxyCodeLine{793     \}}
+\DoxyCodeLine{794 }
+\DoxyCodeLine{798     \textcolor{keyword}{const} XMLElement* LastChildElement( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name = 0 ) \textcolor{keyword}{const};}
+\DoxyCodeLine{799 }
+\DoxyCodeLine{800     XMLElement* LastChildElement( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name = 0 )    \{}
+\DoxyCodeLine{801         \textcolor{keywordflow}{return} \textcolor{keyword}{const\_cast<}XMLElement*\textcolor{keyword}{>}(\textcolor{keyword}{const\_cast<}\textcolor{keyword}{const }XMLNode*\textcolor{keyword}{>}(\textcolor{keyword}{this})-\/>LastChildElement(name) );}
+\DoxyCodeLine{802     \}}
+\DoxyCodeLine{803 }
+\DoxyCodeLine{805     \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}*   \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a92ee96b0d8628bc609f1d34e56d69dfa}{PreviousSibling}}()\textcolor{keyword}{ const                  }\{}
+\DoxyCodeLine{806         \textcolor{keywordflow}{return} \_prev;}
+\DoxyCodeLine{807     \}}
+\DoxyCodeLine{808 }
+\DoxyCodeLine{809     \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}* PreviousSibling()                           \{}
+\DoxyCodeLine{810         \textcolor{keywordflow}{return} \_prev;}
+\DoxyCodeLine{811     \}}
+\DoxyCodeLine{812 }
+\DoxyCodeLine{814     \textcolor{keyword}{const} XMLElement*   PreviousSiblingElement( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name = 0 ) \textcolor{keyword}{const} ;}
+\DoxyCodeLine{815 }
+\DoxyCodeLine{816     XMLElement* PreviousSiblingElement( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name = 0 ) \{}
+\DoxyCodeLine{817         \textcolor{keywordflow}{return} \textcolor{keyword}{const\_cast<}XMLElement*\textcolor{keyword}{>}(\textcolor{keyword}{const\_cast<}\textcolor{keyword}{const }XMLNode*\textcolor{keyword}{>}(\textcolor{keyword}{this})-\/>PreviousSiblingElement( name ) );}
+\DoxyCodeLine{818     \}}
+\DoxyCodeLine{819 }
+\DoxyCodeLine{821     \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}*   \mbox{\hyperlink{classtinyxml2_1_1XMLNode_af986c568061b020cf6232bec091388c0}{NextSibling}}()\textcolor{keyword}{ const                      }\{}
+\DoxyCodeLine{822         \textcolor{keywordflow}{return} \_next;}
+\DoxyCodeLine{823     \}}
+\DoxyCodeLine{824 }
+\DoxyCodeLine{825     \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}* NextSibling()                               \{}
+\DoxyCodeLine{826         \textcolor{keywordflow}{return} \_next;}
+\DoxyCodeLine{827     \}}
+\DoxyCodeLine{828 }
+\DoxyCodeLine{830     \textcolor{keyword}{const} XMLElement*   NextSiblingElement( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name = 0 ) \textcolor{keyword}{const};}
+\DoxyCodeLine{831 }
+\DoxyCodeLine{832     XMLElement* NextSiblingElement( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name = 0 )  \{}
+\DoxyCodeLine{833         \textcolor{keywordflow}{return} \textcolor{keyword}{const\_cast<}XMLElement*\textcolor{keyword}{>}(\textcolor{keyword}{const\_cast<}\textcolor{keyword}{const }XMLNode*\textcolor{keyword}{>}(\textcolor{keyword}{this})-\/>NextSiblingElement( name ) );}
+\DoxyCodeLine{834     \}}
+\DoxyCodeLine{835 }
+\DoxyCodeLine{843     XMLNode* InsertEndChild( XMLNode* addThis );}
+\DoxyCodeLine{844 }
+\DoxyCodeLine{845     XMLNode* LinkEndChild( XMLNode* addThis )   \{}
+\DoxyCodeLine{846         \textcolor{keywordflow}{return} InsertEndChild( addThis );}
+\DoxyCodeLine{847     \}}
+\DoxyCodeLine{855     XMLNode* InsertFirstChild( XMLNode* addThis );}
+\DoxyCodeLine{864     XMLNode* InsertAfterChild( XMLNode* afterThis, XMLNode* addThis );}
+\DoxyCodeLine{865 }
+\DoxyCodeLine{869     \textcolor{keywordtype}{void} DeleteChildren();}
+\DoxyCodeLine{870 }
+\DoxyCodeLine{874     \textcolor{keywordtype}{void} DeleteChild( XMLNode* node );}
+\DoxyCodeLine{875 }
+\DoxyCodeLine{885     \textcolor{keyword}{virtual} \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}* \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a9046880c05b81ad99ee645f4b2a53ecd}{ShallowClone}}( \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}}* document ) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{886 }
+\DoxyCodeLine{900     \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}* DeepClone( \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}}* target ) \textcolor{keyword}{const};}
+\DoxyCodeLine{901 }
+\DoxyCodeLine{908     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a7ce18b751c3ea09eac292dca264f9226}{ShallowEqual}}( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}* compare ) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{909 }
+\DoxyCodeLine{932     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a81e66df0a44c67a7af17f3b77a152785}{Accept}}( \mbox{\hyperlink{classtinyxml2_1_1XMLVisitor}{XMLVisitor}}* visitor ) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{933 }
+\DoxyCodeLine{939     \textcolor{keywordtype}{void} \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a002978fc889cc011d143185f2377eca2}{SetUserData}}(\textcolor{keywordtype}{void}* userData) \{ \_userData = userData; \}}
+\DoxyCodeLine{940 }
+\DoxyCodeLine{946     \textcolor{keywordtype}{void}* \mbox{\hyperlink{classtinyxml2_1_1XMLNode_a18cc02ebd0b06f6bf5db7ef87653e00e}{GetUserData}}()\textcolor{keyword}{ const            }\{ \textcolor{keywordflow}{return} \_userData; \}}
+\DoxyCodeLine{947 }
+\DoxyCodeLine{948 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{949     \textcolor{keyword}{explicit} \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}( \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}}* );}
+\DoxyCodeLine{950     \textcolor{keyword}{virtual} \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{\string~XMLNode}}();}
+\DoxyCodeLine{951 }
+\DoxyCodeLine{952     \textcolor{keyword}{virtual} \textcolor{keywordtype}{char}* ParseDeep( \textcolor{keywordtype}{char}* p, \mbox{\hyperlink{classtinyxml2_1_1StrPair}{StrPair}}* parentEndTag, \textcolor{keywordtype}{int}* curLineNumPtr);}
+\DoxyCodeLine{953 }
+\DoxyCodeLine{954     \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}}* \_document;}
+\DoxyCodeLine{955     \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}*     \_parent;}
+\DoxyCodeLine{956     \textcolor{keyword}{mutable} \mbox{\hyperlink{classtinyxml2_1_1StrPair}{StrPair}}  \_value;}
+\DoxyCodeLine{957     \textcolor{keywordtype}{int}             \_parseLineNum;}
+\DoxyCodeLine{958 }
+\DoxyCodeLine{959     \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}*     \_firstChild;}
+\DoxyCodeLine{960     \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}*     \_lastChild;}
+\DoxyCodeLine{961 }
+\DoxyCodeLine{962     \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}*     \_prev;}
+\DoxyCodeLine{963     \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}*     \_next;}
+\DoxyCodeLine{964 }
+\DoxyCodeLine{965     \textcolor{keywordtype}{void}*           \_userData;}
+\DoxyCodeLine{966 }
+\DoxyCodeLine{967 \textcolor{keyword}{private}:}
+\DoxyCodeLine{968     \mbox{\hyperlink{classtinyxml2_1_1MemPool}{MemPool}}*     \_memPool;}
+\DoxyCodeLine{969     \textcolor{keywordtype}{void} Unlink( \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}* child );}
+\DoxyCodeLine{970     \textcolor{keyword}{static} \textcolor{keywordtype}{void} DeleteNode( \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}* node );}
+\DoxyCodeLine{971     \textcolor{keywordtype}{void} InsertChildPreamble( \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}* insertThis ) \textcolor{keyword}{const};}
+\DoxyCodeLine{972     \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}}* ToElementWithName( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name ) \textcolor{keyword}{const};}
+\DoxyCodeLine{973 }
+\DoxyCodeLine{974     \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}\& );    \textcolor{comment}{// not supported}}
+\DoxyCodeLine{975     \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}\& operator=( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}\& ); \textcolor{comment}{// not supported}}
+\DoxyCodeLine{976 \};}
+\DoxyCodeLine{977 }
+\DoxyCodeLine{978 }
+\DoxyCodeLine{991 \textcolor{keyword}{class }TINYXML2\_LIB \mbox{\hyperlink{classtinyxml2_1_1XMLText}{XMLText}} : \textcolor{keyword}{public} \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}}
+\DoxyCodeLine{992 \{}
+\DoxyCodeLine{993     \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}};}
+\DoxyCodeLine{994 \textcolor{keyword}{public}:}
+\DoxyCodeLine{995     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} Accept( \mbox{\hyperlink{classtinyxml2_1_1XMLVisitor}{XMLVisitor}}* visitor ) \textcolor{keyword}{const};}
+\DoxyCodeLine{996 }
+\DoxyCodeLine{997     \textcolor{keyword}{virtual} \mbox{\hyperlink{classtinyxml2_1_1XMLText}{XMLText}}* \mbox{\hyperlink{classtinyxml2_1_1XMLText_aa5f022b8424f270302ff281c0b9c360b}{ToText}}()          \{}
+\DoxyCodeLine{998         \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{999     \}}
+\DoxyCodeLine{1000     \textcolor{keyword}{virtual} \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLText}{XMLText}}* ToText()\textcolor{keyword}{ const    }\{}
+\DoxyCodeLine{1001         \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{1002     \}}
+\DoxyCodeLine{1003 }
+\DoxyCodeLine{1005     \textcolor{keywordtype}{void} \mbox{\hyperlink{classtinyxml2_1_1XMLText_ad080357d76ab7cc59d7651249949329d}{SetCData}}( \textcolor{keywordtype}{bool} isCData )           \{}
+\DoxyCodeLine{1006         \_isCData = isCData;}
+\DoxyCodeLine{1007     \}}
+\DoxyCodeLine{1009     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classtinyxml2_1_1XMLText_ac1bb5ea4166c320882d9e0ad16fd385b}{CData}}()\textcolor{keyword}{ const                     }\{}
+\DoxyCodeLine{1010         \textcolor{keywordflow}{return} \_isCData;}
+\DoxyCodeLine{1011     \}}
+\DoxyCodeLine{1012 }
+\DoxyCodeLine{1013     \textcolor{keyword}{virtual} \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}* ShallowClone( \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}}* document ) \textcolor{keyword}{const};}
+\DoxyCodeLine{1014     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} ShallowEqual( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}* compare ) \textcolor{keyword}{const};}
+\DoxyCodeLine{1015 }
+\DoxyCodeLine{1016 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{1017     \textcolor{keyword}{explicit} \mbox{\hyperlink{classtinyxml2_1_1XMLText}{XMLText}}( \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}}* doc )  : \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}( doc ), \_isCData( false )  \{\}}
+\DoxyCodeLine{1018     \textcolor{keyword}{virtual} \string~XMLText()                                              \{\}}
+\DoxyCodeLine{1019 }
+\DoxyCodeLine{1020     \textcolor{keywordtype}{char}* ParseDeep( \textcolor{keywordtype}{char}* p, StrPair* parentEndTag, \textcolor{keywordtype}{int}* curLineNumPtr );}
+\DoxyCodeLine{1021 }
+\DoxyCodeLine{1022 \textcolor{keyword}{private}:}
+\DoxyCodeLine{1023     \textcolor{keywordtype}{bool} \_isCData;}
+\DoxyCodeLine{1024 }
+\DoxyCodeLine{1025     XMLText( \textcolor{keyword}{const} XMLText\& );  \textcolor{comment}{// not supported}}
+\DoxyCodeLine{1026     XMLText\& operator=( \textcolor{keyword}{const} XMLText\& );   \textcolor{comment}{// not supported}}
+\DoxyCodeLine{1027 \};}
+\DoxyCodeLine{1028 }
+\DoxyCodeLine{1029 }
+\DoxyCodeLine{1031 \textcolor{keyword}{class }TINYXML2\_LIB \mbox{\hyperlink{classtinyxml2_1_1XMLComment}{XMLComment}} : \textcolor{keyword}{public} \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}}
+\DoxyCodeLine{1032 \{}
+\DoxyCodeLine{1033     \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}};}
+\DoxyCodeLine{1034 \textcolor{keyword}{public}:}
+\DoxyCodeLine{1035     \textcolor{keyword}{virtual} \mbox{\hyperlink{classtinyxml2_1_1XMLComment}{XMLComment}}*   \mbox{\hyperlink{classtinyxml2_1_1XMLComment_a5aa77d6d2499f6b81074ae0d20336c7e}{ToComment}}()                    \{}
+\DoxyCodeLine{1036         \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{1037     \}}
+\DoxyCodeLine{1038     \textcolor{keyword}{virtual} \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLComment}{XMLComment}}* ToComment()\textcolor{keyword}{ const       }\{}
+\DoxyCodeLine{1039         \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{1040     \}}
+\DoxyCodeLine{1041 }
+\DoxyCodeLine{1042     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} Accept( XMLVisitor* visitor ) \textcolor{keyword}{const};}
+\DoxyCodeLine{1043 }
+\DoxyCodeLine{1044     \textcolor{keyword}{virtual} XMLNode* ShallowClone( XMLDocument* document ) \textcolor{keyword}{const};}
+\DoxyCodeLine{1045     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} ShallowEqual( \textcolor{keyword}{const} XMLNode* compare ) \textcolor{keyword}{const};}
+\DoxyCodeLine{1046 }
+\DoxyCodeLine{1047 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{1048     \textcolor{keyword}{explicit} XMLComment( XMLDocument* doc );}
+\DoxyCodeLine{1049     \textcolor{keyword}{virtual} \string~XMLComment();}
+\DoxyCodeLine{1050 }
+\DoxyCodeLine{1051     \textcolor{keywordtype}{char}* ParseDeep( \textcolor{keywordtype}{char}* p, StrPair* parentEndTag, \textcolor{keywordtype}{int}* curLineNumPtr);}
+\DoxyCodeLine{1052 }
+\DoxyCodeLine{1053 \textcolor{keyword}{private}:}
+\DoxyCodeLine{1054     XMLComment( \textcolor{keyword}{const} XMLComment\& );    \textcolor{comment}{// not supported}}
+\DoxyCodeLine{1055     XMLComment\& operator=( \textcolor{keyword}{const} XMLComment\& ); \textcolor{comment}{// not supported}}
+\DoxyCodeLine{1056 \};}
+\DoxyCodeLine{1057 }
+\DoxyCodeLine{1058 }
+\DoxyCodeLine{1070 \textcolor{keyword}{class }TINYXML2\_LIB \mbox{\hyperlink{classtinyxml2_1_1XMLDeclaration}{XMLDeclaration}} : \textcolor{keyword}{public} \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}}
+\DoxyCodeLine{1071 \{}
+\DoxyCodeLine{1072     \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}};}
+\DoxyCodeLine{1073 \textcolor{keyword}{public}:}
+\DoxyCodeLine{1074     \textcolor{keyword}{virtual} \mbox{\hyperlink{classtinyxml2_1_1XMLDeclaration}{XMLDeclaration}}*   \mbox{\hyperlink{classtinyxml2_1_1XMLDeclaration_aa24eb89ab36119e0b18ee06c82ff6c24}{ToDeclaration}}()                    \{}
+\DoxyCodeLine{1075         \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{1076     \}}
+\DoxyCodeLine{1077     \textcolor{keyword}{virtual} \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLDeclaration}{XMLDeclaration}}* ToDeclaration()\textcolor{keyword}{ const       }\{}
+\DoxyCodeLine{1078         \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{1079     \}}
+\DoxyCodeLine{1080 }
+\DoxyCodeLine{1081     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} Accept( XMLVisitor* visitor ) \textcolor{keyword}{const};}
+\DoxyCodeLine{1082 }
+\DoxyCodeLine{1083     \textcolor{keyword}{virtual} XMLNode* ShallowClone( XMLDocument* document ) \textcolor{keyword}{const};}
+\DoxyCodeLine{1084     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} ShallowEqual( \textcolor{keyword}{const} XMLNode* compare ) \textcolor{keyword}{const};}
+\DoxyCodeLine{1085 }
+\DoxyCodeLine{1086 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{1087     \textcolor{keyword}{explicit} XMLDeclaration( XMLDocument* doc );}
+\DoxyCodeLine{1088     \textcolor{keyword}{virtual} \string~XMLDeclaration();}
+\DoxyCodeLine{1089 }
+\DoxyCodeLine{1090     \textcolor{keywordtype}{char}* ParseDeep( \textcolor{keywordtype}{char}* p, StrPair* parentEndTag, \textcolor{keywordtype}{int}* curLineNumPtr );}
+\DoxyCodeLine{1091 }
+\DoxyCodeLine{1092 \textcolor{keyword}{private}:}
+\DoxyCodeLine{1093     XMLDeclaration( \textcolor{keyword}{const} XMLDeclaration\& );    \textcolor{comment}{// not supported}}
+\DoxyCodeLine{1094     XMLDeclaration\& operator=( \textcolor{keyword}{const} XMLDeclaration\& ); \textcolor{comment}{// not supported}}
+\DoxyCodeLine{1095 \};}
+\DoxyCodeLine{1096 }
+\DoxyCodeLine{1097 }
+\DoxyCodeLine{1105 \textcolor{keyword}{class }TINYXML2\_LIB \mbox{\hyperlink{classtinyxml2_1_1XMLUnknown}{XMLUnknown}} : \textcolor{keyword}{public} \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}}
+\DoxyCodeLine{1106 \{}
+\DoxyCodeLine{1107     \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}};}
+\DoxyCodeLine{1108 \textcolor{keyword}{public}:}
+\DoxyCodeLine{1109     \textcolor{keyword}{virtual} \mbox{\hyperlink{classtinyxml2_1_1XMLUnknown}{XMLUnknown}}*   \mbox{\hyperlink{classtinyxml2_1_1XMLUnknown_a7724b3762750762aa7582322f7047086}{ToUnknown}}()                    \{}
+\DoxyCodeLine{1110         \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{1111     \}}
+\DoxyCodeLine{1112     \textcolor{keyword}{virtual} \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLUnknown}{XMLUnknown}}* ToUnknown()\textcolor{keyword}{ const       }\{}
+\DoxyCodeLine{1113         \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{1114     \}}
+\DoxyCodeLine{1115 }
+\DoxyCodeLine{1116     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} Accept( XMLVisitor* visitor ) \textcolor{keyword}{const};}
+\DoxyCodeLine{1117 }
+\DoxyCodeLine{1118     \textcolor{keyword}{virtual} XMLNode* ShallowClone( XMLDocument* document ) \textcolor{keyword}{const};}
+\DoxyCodeLine{1119     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} ShallowEqual( \textcolor{keyword}{const} XMLNode* compare ) \textcolor{keyword}{const};}
+\DoxyCodeLine{1120 }
+\DoxyCodeLine{1121 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{1122     \textcolor{keyword}{explicit} XMLUnknown( XMLDocument* doc );}
+\DoxyCodeLine{1123     \textcolor{keyword}{virtual} \string~XMLUnknown();}
+\DoxyCodeLine{1124 }
+\DoxyCodeLine{1125     \textcolor{keywordtype}{char}* ParseDeep( \textcolor{keywordtype}{char}* p, StrPair* parentEndTag, \textcolor{keywordtype}{int}* curLineNumPtr );}
+\DoxyCodeLine{1126 }
+\DoxyCodeLine{1127 \textcolor{keyword}{private}:}
+\DoxyCodeLine{1128     XMLUnknown( \textcolor{keyword}{const} XMLUnknown\& );    \textcolor{comment}{// not supported}}
+\DoxyCodeLine{1129     XMLUnknown\& operator=( \textcolor{keyword}{const} XMLUnknown\& ); \textcolor{comment}{// not supported}}
+\DoxyCodeLine{1130 \};}
+\DoxyCodeLine{1131 }
+\DoxyCodeLine{1132 }
+\DoxyCodeLine{1133 }
+\DoxyCodeLine{1140 \textcolor{keyword}{class }TINYXML2\_LIB \mbox{\hyperlink{classtinyxml2_1_1XMLAttribute}{XMLAttribute}}}
+\DoxyCodeLine{1141 \{}
+\DoxyCodeLine{1142     \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}};}
+\DoxyCodeLine{1143 \textcolor{keyword}{public}:}
+\DoxyCodeLine{1145     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* Name() \textcolor{keyword}{const};}
+\DoxyCodeLine{1146 }
+\DoxyCodeLine{1148     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* Value() \textcolor{keyword}{const};}
+\DoxyCodeLine{1149 }
+\DoxyCodeLine{1151     \textcolor{keywordtype}{int} \mbox{\hyperlink{classtinyxml2_1_1XMLAttribute_a02d5ea924586e35f9c13857d1671b765}{GetLineNum}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \_parseLineNum; \}}
+\DoxyCodeLine{1152 }
+\DoxyCodeLine{1154     \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLAttribute}{XMLAttribute}}* \mbox{\hyperlink{classtinyxml2_1_1XMLAttribute_aa8c7cf4c94a636ae75046658e551614e}{Next}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{1155         \textcolor{keywordflow}{return} \_next;}
+\DoxyCodeLine{1156     \}}
+\DoxyCodeLine{1157 }
+\DoxyCodeLine{1162     \textcolor{keywordtype}{int} \mbox{\hyperlink{classtinyxml2_1_1XMLAttribute_adfa2433f0fdafd5c3880936de9affa80}{IntValue}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{1163         \textcolor{keywordtype}{int} i = 0;}
+\DoxyCodeLine{1164         QueryIntValue(\&i);}
+\DoxyCodeLine{1165         \textcolor{keywordflow}{return} i;}
+\DoxyCodeLine{1166     \}}
+\DoxyCodeLine{1167 }
+\DoxyCodeLine{1168     int64\_t Int64Value()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{1169         int64\_t i = 0;}
+\DoxyCodeLine{1170         QueryInt64Value(\&i);}
+\DoxyCodeLine{1171         \textcolor{keywordflow}{return} i;}
+\DoxyCodeLine{1172     \}}
+\DoxyCodeLine{1173 }
+\DoxyCodeLine{1174     uint64\_t Unsigned64Value()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{1175         uint64\_t i = 0;}
+\DoxyCodeLine{1176         QueryUnsigned64Value(\&i);}
+\DoxyCodeLine{1177         \textcolor{keywordflow}{return} i;}
+\DoxyCodeLine{1178     \}}
+\DoxyCodeLine{1179 }
+\DoxyCodeLine{1181     \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classtinyxml2_1_1XMLAttribute_a0be5343b08a957c42c02c5d32c35d338}{UnsignedValue}}()\textcolor{keyword}{ const         }\{}
+\DoxyCodeLine{1182         \textcolor{keywordtype}{unsigned} i=0;}
+\DoxyCodeLine{1183         QueryUnsignedValue( \&i );}
+\DoxyCodeLine{1184         \textcolor{keywordflow}{return} i;}
+\DoxyCodeLine{1185     \}}
+\DoxyCodeLine{1187     \textcolor{keywordtype}{bool}     \mbox{\hyperlink{classtinyxml2_1_1XMLAttribute_a98ce5207344ad33a265b0422addae1ff}{BoolValue}}()\textcolor{keyword}{ const             }\{}
+\DoxyCodeLine{1188         \textcolor{keywordtype}{bool} b=\textcolor{keyword}{false};}
+\DoxyCodeLine{1189         QueryBoolValue( \&b );}
+\DoxyCodeLine{1190         \textcolor{keywordflow}{return} b;}
+\DoxyCodeLine{1191     \}}
+\DoxyCodeLine{1193     \textcolor{keywordtype}{double}   \mbox{\hyperlink{classtinyxml2_1_1XMLAttribute_a4aa73513f54ff0087d3e804f0f54e30f}{DoubleValue}}()\textcolor{keyword}{ const         }\{}
+\DoxyCodeLine{1194         \textcolor{keywordtype}{double} d=0;}
+\DoxyCodeLine{1195         QueryDoubleValue( \&d );}
+\DoxyCodeLine{1196         \textcolor{keywordflow}{return} d;}
+\DoxyCodeLine{1197     \}}
+\DoxyCodeLine{1199     \textcolor{keywordtype}{float}    \mbox{\hyperlink{classtinyxml2_1_1XMLAttribute_a27797b45d21c981257720db94f5f8801}{FloatValue}}()\textcolor{keyword}{ const               }\{}
+\DoxyCodeLine{1200         \textcolor{keywordtype}{float} f=0;}
+\DoxyCodeLine{1201         QueryFloatValue( \&f );}
+\DoxyCodeLine{1202         \textcolor{keywordflow}{return} f;}
+\DoxyCodeLine{1203     \}}
+\DoxyCodeLine{1204 }
+\DoxyCodeLine{1209     XMLError QueryIntValue( \textcolor{keywordtype}{int}* value ) \textcolor{keyword}{const};}
+\DoxyCodeLine{1211     XMLError QueryUnsignedValue( \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}* value ) \textcolor{keyword}{const};}
+\DoxyCodeLine{1213     XMLError QueryInt64Value(int64\_t* value) \textcolor{keyword}{const};}
+\DoxyCodeLine{1215     XMLError QueryUnsigned64Value(uint64\_t* value) \textcolor{keyword}{const};}
+\DoxyCodeLine{1217     XMLError QueryBoolValue( \textcolor{keywordtype}{bool}* value ) \textcolor{keyword}{const};}
+\DoxyCodeLine{1219     XMLError QueryDoubleValue( \textcolor{keywordtype}{double}* value ) \textcolor{keyword}{const};}
+\DoxyCodeLine{1221     XMLError QueryFloatValue( \textcolor{keywordtype}{float}* value ) \textcolor{keyword}{const};}
+\DoxyCodeLine{1222 }
+\DoxyCodeLine{1224     \textcolor{keywordtype}{void} SetAttribute( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* value );}
+\DoxyCodeLine{1226     \textcolor{keywordtype}{void} SetAttribute( \textcolor{keywordtype}{int} value );}
+\DoxyCodeLine{1228     \textcolor{keywordtype}{void} SetAttribute( \textcolor{keywordtype}{unsigned} value );}
+\DoxyCodeLine{1230     \textcolor{keywordtype}{void} SetAttribute(int64\_t value);}
+\DoxyCodeLine{1232     \textcolor{keywordtype}{void} SetAttribute(uint64\_t value);}
+\DoxyCodeLine{1234     \textcolor{keywordtype}{void} SetAttribute( \textcolor{keywordtype}{bool} value );}
+\DoxyCodeLine{1236     \textcolor{keywordtype}{void} SetAttribute( \textcolor{keywordtype}{double} value );}
+\DoxyCodeLine{1238     \textcolor{keywordtype}{void} SetAttribute( \textcolor{keywordtype}{float} value );}
+\DoxyCodeLine{1239 }
+\DoxyCodeLine{1240 \textcolor{keyword}{private}:}
+\DoxyCodeLine{1241     \textcolor{keyword}{enum} \{ BUF\_SIZE = 200 \};}
+\DoxyCodeLine{1242 }
+\DoxyCodeLine{1243     XMLAttribute() : \_name(), \_value(),\_parseLineNum( 0 ), \_next( 0 ), \_memPool( 0 ) \{\}}
+\DoxyCodeLine{1244     \textcolor{keyword}{virtual} \string~XMLAttribute() \{\}}
+\DoxyCodeLine{1245 }
+\DoxyCodeLine{1246     XMLAttribute( \textcolor{keyword}{const} XMLAttribute\& );    \textcolor{comment}{// not supported}}
+\DoxyCodeLine{1247     \textcolor{keywordtype}{void} operator=( \textcolor{keyword}{const} XMLAttribute\& );  \textcolor{comment}{// not supported}}
+\DoxyCodeLine{1248     \textcolor{keywordtype}{void} SetName( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name );}
+\DoxyCodeLine{1249 }
+\DoxyCodeLine{1250     \textcolor{keywordtype}{char}* ParseDeep( \textcolor{keywordtype}{char}* p, \textcolor{keywordtype}{bool} processEntities, \textcolor{keywordtype}{int}* curLineNumPtr );}
+\DoxyCodeLine{1251 }
+\DoxyCodeLine{1252     \textcolor{keyword}{mutable} StrPair \_name;}
+\DoxyCodeLine{1253     \textcolor{keyword}{mutable} StrPair \_value;}
+\DoxyCodeLine{1254     \textcolor{keywordtype}{int}             \_parseLineNum;}
+\DoxyCodeLine{1255     XMLAttribute*   \_next;}
+\DoxyCodeLine{1256     MemPool*        \_memPool;}
+\DoxyCodeLine{1257 \};}
+\DoxyCodeLine{1258 }
+\DoxyCodeLine{1259 }
+\DoxyCodeLine{1264 \textcolor{keyword}{class }TINYXML2\_LIB \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}} : \textcolor{keyword}{public} \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}}
+\DoxyCodeLine{1265 \{}
+\DoxyCodeLine{1266     \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}};}
+\DoxyCodeLine{1267 \textcolor{keyword}{public}:}
+\DoxyCodeLine{1269     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \mbox{\hyperlink{classtinyxml2_1_1XMLElement_abd36e34e4428a8eeeffbe87eab0b124d}{Name}}()\textcolor{keyword}{ const        }\{}
+\DoxyCodeLine{1270         \textcolor{keywordflow}{return} Value();}
+\DoxyCodeLine{1271     \}}
+\DoxyCodeLine{1273     \textcolor{keywordtype}{void} \mbox{\hyperlink{classtinyxml2_1_1XMLElement_a97712009a530d8cb8a63bf705f02b4f1}{SetName}}( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* str, \textcolor{keywordtype}{bool} staticMem=\textcolor{keyword}{false} )    \{}
+\DoxyCodeLine{1274         SetValue( str, staticMem );}
+\DoxyCodeLine{1275     \}}
+\DoxyCodeLine{1276 }
+\DoxyCodeLine{1277     \textcolor{keyword}{virtual} \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}}* \mbox{\hyperlink{classtinyxml2_1_1XMLElement_abade4c59bd6f16c85caa42d3c9eb617d}{ToElement}}()              \{}
+\DoxyCodeLine{1278         \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{1279     \}}
+\DoxyCodeLine{1280     \textcolor{keyword}{virtual} \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}}* ToElement()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{1281         \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{1282     \}}
+\DoxyCodeLine{1283     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} Accept( XMLVisitor* visitor ) \textcolor{keyword}{const};}
+\DoxyCodeLine{1284 }
+\DoxyCodeLine{1308     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* Attribute( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* value=0 ) \textcolor{keyword}{const};}
+\DoxyCodeLine{1309 }
+\DoxyCodeLine{1316     \textcolor{keywordtype}{int} IntAttribute(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keywordtype}{int} defaultValue = 0) \textcolor{keyword}{const};}
+\DoxyCodeLine{1318     \textcolor{keywordtype}{unsigned} UnsignedAttribute(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keywordtype}{unsigned} defaultValue = 0) \textcolor{keyword}{const};}
+\DoxyCodeLine{1320     int64\_t Int64Attribute(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, int64\_t defaultValue = 0) \textcolor{keyword}{const};}
+\DoxyCodeLine{1322     uint64\_t Unsigned64Attribute(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, uint64\_t defaultValue = 0) \textcolor{keyword}{const};}
+\DoxyCodeLine{1324     \textcolor{keywordtype}{bool} BoolAttribute(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keywordtype}{bool} defaultValue = \textcolor{keyword}{false}) \textcolor{keyword}{const};}
+\DoxyCodeLine{1326     \textcolor{keywordtype}{double} DoubleAttribute(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keywordtype}{double} defaultValue = 0) \textcolor{keyword}{const};}
+\DoxyCodeLine{1328     \textcolor{keywordtype}{float} FloatAttribute(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keywordtype}{float} defaultValue = 0) \textcolor{keyword}{const};}
+\DoxyCodeLine{1329 }
+\DoxyCodeLine{1343     XMLError \mbox{\hyperlink{classtinyxml2_1_1XMLElement_a8a78bc1187c1c45ad89f2690eab567b1}{QueryIntAttribute}}( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keywordtype}{int}* value )\textcolor{keyword}{ const               }\{}
+\DoxyCodeLine{1344         \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLAttribute}{XMLAttribute}}* a = FindAttribute( name );}
+\DoxyCodeLine{1345         \textcolor{keywordflow}{if} ( !a ) \{}
+\DoxyCodeLine{1346             \textcolor{keywordflow}{return} XML\_NO\_ATTRIBUTE;}
+\DoxyCodeLine{1347         \}}
+\DoxyCodeLine{1348         \textcolor{keywordflow}{return} a-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLAttribute_a6d5176260db00ea301c01af8457cd993}{QueryIntValue}}( value );}
+\DoxyCodeLine{1349     \}}
+\DoxyCodeLine{1350 }
+\DoxyCodeLine{1352     XMLError \mbox{\hyperlink{classtinyxml2_1_1XMLElement_a26fc84cbfba6769dafcfbf256c05e22f}{QueryUnsignedAttribute}}( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}* value )\textcolor{keyword}{ const    }\{}
+\DoxyCodeLine{1353         \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLAttribute}{XMLAttribute}}* a = FindAttribute( name );}
+\DoxyCodeLine{1354         \textcolor{keywordflow}{if} ( !a ) \{}
+\DoxyCodeLine{1355             \textcolor{keywordflow}{return} XML\_NO\_ATTRIBUTE;}
+\DoxyCodeLine{1356         \}}
+\DoxyCodeLine{1357         \textcolor{keywordflow}{return} a-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLAttribute_a48a7f3496f1415832e451bd8d09c9cb9}{QueryUnsignedValue}}( value );}
+\DoxyCodeLine{1358     \}}
+\DoxyCodeLine{1359 }
+\DoxyCodeLine{1361     XMLError \mbox{\hyperlink{classtinyxml2_1_1XMLElement_a7c0955d80b6f8d196744eacb0f6e90a8}{QueryInt64Attribute}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, int64\_t* value)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{1362         \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLAttribute}{XMLAttribute}}* a = FindAttribute(name);}
+\DoxyCodeLine{1363         \textcolor{keywordflow}{if} (!a) \{}
+\DoxyCodeLine{1364             \textcolor{keywordflow}{return} XML\_NO\_ATTRIBUTE;}
+\DoxyCodeLine{1365         \}}
+\DoxyCodeLine{1366         \textcolor{keywordflow}{return} a-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLAttribute_a4e25344d6e4159026be34dbddf1dcac2}{QueryInt64Value}}(value);}
+\DoxyCodeLine{1367     \}}
+\DoxyCodeLine{1368 }
+\DoxyCodeLine{1370     XMLError \mbox{\hyperlink{classtinyxml2_1_1XMLElement_a13dd590b5d3958ce2ed79844aacd9405}{QueryUnsigned64Attribute}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, uint64\_t* value)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{1371         \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLAttribute}{XMLAttribute}}* a = FindAttribute(name);}
+\DoxyCodeLine{1372         \textcolor{keywordflow}{if}(!a) \{}
+\DoxyCodeLine{1373             \textcolor{keywordflow}{return} XML\_NO\_ATTRIBUTE;}
+\DoxyCodeLine{1374         \}}
+\DoxyCodeLine{1375         \textcolor{keywordflow}{return} a-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLAttribute_af793c695e7ee65cf20b8010d38b1d157}{QueryUnsigned64Value}}(value);}
+\DoxyCodeLine{1376     \}}
+\DoxyCodeLine{1377 }
+\DoxyCodeLine{1379     XMLError \mbox{\hyperlink{classtinyxml2_1_1XMLElement_a14c1bb77c39689838be01838d86ca872}{QueryBoolAttribute}}( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keywordtype}{bool}* value )\textcolor{keyword}{ const                }\{}
+\DoxyCodeLine{1380         \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLAttribute}{XMLAttribute}}* a = FindAttribute( name );}
+\DoxyCodeLine{1381         \textcolor{keywordflow}{if} ( !a ) \{}
+\DoxyCodeLine{1382             \textcolor{keywordflow}{return} XML\_NO\_ATTRIBUTE;}
+\DoxyCodeLine{1383         \}}
+\DoxyCodeLine{1384         \textcolor{keywordflow}{return} a-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLAttribute_a5f32e038954256f61c21ff20fd13a09c}{QueryBoolValue}}( value );}
+\DoxyCodeLine{1385     \}}
+\DoxyCodeLine{1387     XMLError \mbox{\hyperlink{classtinyxml2_1_1XMLElement_a5f0964e2dbd8e2ee7fce9beab689443c}{QueryDoubleAttribute}}( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keywordtype}{double}* value )\textcolor{keyword}{ const          }\{}
+\DoxyCodeLine{1388         \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLAttribute}{XMLAttribute}}* a = FindAttribute( name );}
+\DoxyCodeLine{1389         \textcolor{keywordflow}{if} ( !a ) \{}
+\DoxyCodeLine{1390             \textcolor{keywordflow}{return} XML\_NO\_ATTRIBUTE;}
+\DoxyCodeLine{1391         \}}
+\DoxyCodeLine{1392         \textcolor{keywordflow}{return} a-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLAttribute_a2aa6e55e8ea03af0609cf6690bff79b9}{QueryDoubleValue}}( value );}
+\DoxyCodeLine{1393     \}}
+\DoxyCodeLine{1395     XMLError \mbox{\hyperlink{classtinyxml2_1_1XMLElement_acd5eeddf6002ef90806af794b9d9a5a5}{QueryFloatAttribute}}( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keywordtype}{float}* value )\textcolor{keyword}{ const         }\{}
+\DoxyCodeLine{1396         \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLAttribute}{XMLAttribute}}* a = FindAttribute( name );}
+\DoxyCodeLine{1397         \textcolor{keywordflow}{if} ( !a ) \{}
+\DoxyCodeLine{1398             \textcolor{keywordflow}{return} XML\_NO\_ATTRIBUTE;}
+\DoxyCodeLine{1399         \}}
+\DoxyCodeLine{1400         \textcolor{keywordflow}{return} a-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLAttribute_a049dea6449a6259b6cfed44a9427b607}{QueryFloatValue}}( value );}
+\DoxyCodeLine{1401     \}}
+\DoxyCodeLine{1402 }
+\DoxyCodeLine{1404     XMLError \mbox{\hyperlink{classtinyxml2_1_1XMLElement_adb8ae765f98d0c5037faec48deea78bc}{QueryStringAttribute}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keyword}{const} \textcolor{keywordtype}{char}** value)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{1405         \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLAttribute}{XMLAttribute}}* a = FindAttribute(name);}
+\DoxyCodeLine{1406         \textcolor{keywordflow}{if} (!a) \{}
+\DoxyCodeLine{1407             \textcolor{keywordflow}{return} XML\_NO\_ATTRIBUTE;}
+\DoxyCodeLine{1408         \}}
+\DoxyCodeLine{1409         *value = a-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLAttribute_ab1c5cd993f836a771818ca408994b14e}{Value}}();}
+\DoxyCodeLine{1410         \textcolor{keywordflow}{return} XML\_SUCCESS;}
+\DoxyCodeLine{1411     \}}
+\DoxyCodeLine{1412 }
+\DoxyCodeLine{1413 }
+\DoxyCodeLine{1414 }
+\DoxyCodeLine{1432     XMLError \mbox{\hyperlink{classtinyxml2_1_1XMLElement_a5b7df3bed2b8954eabf227fa204522eb}{QueryAttribute}}( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keywordtype}{int}* value )\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{1433         \textcolor{keywordflow}{return} QueryIntAttribute( name, value );}
+\DoxyCodeLine{1434     \}}
+\DoxyCodeLine{1435 }
+\DoxyCodeLine{1436     XMLError QueryAttribute( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int}* value )\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{1437         \textcolor{keywordflow}{return} QueryUnsignedAttribute( name, value );}
+\DoxyCodeLine{1438     \}}
+\DoxyCodeLine{1439 }
+\DoxyCodeLine{1440     XMLError QueryAttribute(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, int64\_t* value)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{1441         \textcolor{keywordflow}{return} QueryInt64Attribute(name, value);}
+\DoxyCodeLine{1442     \}}
+\DoxyCodeLine{1443 }
+\DoxyCodeLine{1444     XMLError QueryAttribute(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, uint64\_t* value)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{1445         \textcolor{keywordflow}{return} QueryUnsigned64Attribute(name, value);}
+\DoxyCodeLine{1446     \}}
+\DoxyCodeLine{1447 }
+\DoxyCodeLine{1448     XMLError QueryAttribute( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keywordtype}{bool}* value )\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{1449         \textcolor{keywordflow}{return} QueryBoolAttribute( name, value );}
+\DoxyCodeLine{1450     \}}
+\DoxyCodeLine{1451 }
+\DoxyCodeLine{1452     XMLError QueryAttribute( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keywordtype}{double}* value )\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{1453         \textcolor{keywordflow}{return} QueryDoubleAttribute( name, value );}
+\DoxyCodeLine{1454     \}}
+\DoxyCodeLine{1455 }
+\DoxyCodeLine{1456     XMLError QueryAttribute( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keywordtype}{float}* value )\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{1457         \textcolor{keywordflow}{return} QueryFloatAttribute( name, value );}
+\DoxyCodeLine{1458     \}}
+\DoxyCodeLine{1459 }
+\DoxyCodeLine{1460     XMLError QueryAttribute(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keyword}{const} \textcolor{keywordtype}{char}** value)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{1461         \textcolor{keywordflow}{return} QueryStringAttribute(name, value);}
+\DoxyCodeLine{1462     \}}
+\DoxyCodeLine{1463 }
+\DoxyCodeLine{1465     \textcolor{keywordtype}{void} \mbox{\hyperlink{classtinyxml2_1_1XMLElement_a11943abf2d0831548c3790dd5d9f119c}{SetAttribute}}( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* value )    \{}
+\DoxyCodeLine{1466         \mbox{\hyperlink{classtinyxml2_1_1XMLAttribute}{XMLAttribute}}* a = FindOrCreateAttribute( name );}
+\DoxyCodeLine{1467         a-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLAttribute_a406d2c4a13c7af99a65edb59dd9f7581}{SetAttribute}}( value );}
+\DoxyCodeLine{1468     \}}
+\DoxyCodeLine{1470     \textcolor{keywordtype}{void} \mbox{\hyperlink{classtinyxml2_1_1XMLElement_aae6568c64c7f1cc88be8461ba41a79cf}{SetAttribute}}( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keywordtype}{int} value )            \{}
+\DoxyCodeLine{1471         \mbox{\hyperlink{classtinyxml2_1_1XMLAttribute}{XMLAttribute}}* a = FindOrCreateAttribute( name );}
+\DoxyCodeLine{1472         a-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLAttribute_a406d2c4a13c7af99a65edb59dd9f7581}{SetAttribute}}( value );}
+\DoxyCodeLine{1473     \}}
+\DoxyCodeLine{1475     \textcolor{keywordtype}{void} \mbox{\hyperlink{classtinyxml2_1_1XMLElement_ae143997e90064ba82326b29a9930ea8f}{SetAttribute}}( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keywordtype}{unsigned} value )       \{}
+\DoxyCodeLine{1476         \mbox{\hyperlink{classtinyxml2_1_1XMLAttribute}{XMLAttribute}}* a = FindOrCreateAttribute( name );}
+\DoxyCodeLine{1477         a-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLAttribute_a406d2c4a13c7af99a65edb59dd9f7581}{SetAttribute}}( value );}
+\DoxyCodeLine{1478     \}}
+\DoxyCodeLine{1479 }
+\DoxyCodeLine{1481     \textcolor{keywordtype}{void} \mbox{\hyperlink{classtinyxml2_1_1XMLElement_aaeefdf9171fec91b13a776b42299b0dd}{SetAttribute}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, int64\_t value) \{}
+\DoxyCodeLine{1482         \mbox{\hyperlink{classtinyxml2_1_1XMLAttribute}{XMLAttribute}}* a = FindOrCreateAttribute(name);}
+\DoxyCodeLine{1483         a-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLAttribute_a406d2c4a13c7af99a65edb59dd9f7581}{SetAttribute}}(value);}
+\DoxyCodeLine{1484     \}}
+\DoxyCodeLine{1485 }
+\DoxyCodeLine{1487     \textcolor{keywordtype}{void} \mbox{\hyperlink{classtinyxml2_1_1XMLElement_ad598868c0599ddc4695dab18552c308d}{SetAttribute}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, uint64\_t value) \{}
+\DoxyCodeLine{1488         \mbox{\hyperlink{classtinyxml2_1_1XMLAttribute}{XMLAttribute}}* a = FindOrCreateAttribute(name);}
+\DoxyCodeLine{1489         a-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLAttribute_a406d2c4a13c7af99a65edb59dd9f7581}{SetAttribute}}(value);}
+\DoxyCodeLine{1490     \}}
+\DoxyCodeLine{1491 }
+\DoxyCodeLine{1493     \textcolor{keywordtype}{void} \mbox{\hyperlink{classtinyxml2_1_1XMLElement_aa848b696e6a75e4e545c6da9893b11e1}{SetAttribute}}( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keywordtype}{bool} value )           \{}
+\DoxyCodeLine{1494         \mbox{\hyperlink{classtinyxml2_1_1XMLAttribute}{XMLAttribute}}* a = FindOrCreateAttribute( name );}
+\DoxyCodeLine{1495         a-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLAttribute_a406d2c4a13c7af99a65edb59dd9f7581}{SetAttribute}}( value );}
+\DoxyCodeLine{1496     \}}
+\DoxyCodeLine{1498     \textcolor{keywordtype}{void} \mbox{\hyperlink{classtinyxml2_1_1XMLElement_a233397ee81e70eb5d4b814c5f8698533}{SetAttribute}}( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keywordtype}{double} value )     \{}
+\DoxyCodeLine{1499         \mbox{\hyperlink{classtinyxml2_1_1XMLAttribute}{XMLAttribute}}* a = FindOrCreateAttribute( name );}
+\DoxyCodeLine{1500         a-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLAttribute_a406d2c4a13c7af99a65edb59dd9f7581}{SetAttribute}}( value );}
+\DoxyCodeLine{1501     \}}
+\DoxyCodeLine{1503     \textcolor{keywordtype}{void} \mbox{\hyperlink{classtinyxml2_1_1XMLElement_a554b70d882e65b28fc084b23df9b9759}{SetAttribute}}( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keywordtype}{float} value )      \{}
+\DoxyCodeLine{1504         \mbox{\hyperlink{classtinyxml2_1_1XMLAttribute}{XMLAttribute}}* a = FindOrCreateAttribute( name );}
+\DoxyCodeLine{1505         a-\/>\mbox{\hyperlink{classtinyxml2_1_1XMLAttribute_a406d2c4a13c7af99a65edb59dd9f7581}{SetAttribute}}( value );}
+\DoxyCodeLine{1506     \}}
+\DoxyCodeLine{1507 }
+\DoxyCodeLine{1511     \textcolor{keywordtype}{void} DeleteAttribute( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name );}
+\DoxyCodeLine{1512 }
+\DoxyCodeLine{1514     \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLAttribute}{XMLAttribute}}* \mbox{\hyperlink{classtinyxml2_1_1XMLElement_a4a7c4392658833bb8138c474d15a805a}{FirstAttribute}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{1515         \textcolor{keywordflow}{return} \_rootAttribute;}
+\DoxyCodeLine{1516     \}}
+\DoxyCodeLine{1518     \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLAttribute}{XMLAttribute}}* FindAttribute( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name ) \textcolor{keyword}{const};}
+\DoxyCodeLine{1519 }
+\DoxyCodeLine{1548     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* GetText() \textcolor{keyword}{const};}
+\DoxyCodeLine{1549 }
+\DoxyCodeLine{1584     \textcolor{keywordtype}{void} SetText( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* inText );}
+\DoxyCodeLine{1586     \textcolor{keywordtype}{void} SetText( \textcolor{keywordtype}{int} value );}
+\DoxyCodeLine{1588     \textcolor{keywordtype}{void} SetText( \textcolor{keywordtype}{unsigned} value );}
+\DoxyCodeLine{1590     \textcolor{keywordtype}{void} SetText(int64\_t value);}
+\DoxyCodeLine{1592     \textcolor{keywordtype}{void} SetText(uint64\_t value);}
+\DoxyCodeLine{1594     \textcolor{keywordtype}{void} SetText( \textcolor{keywordtype}{bool} value );}
+\DoxyCodeLine{1596     \textcolor{keywordtype}{void} SetText( \textcolor{keywordtype}{double} value );}
+\DoxyCodeLine{1598     \textcolor{keywordtype}{void} SetText( \textcolor{keywordtype}{float} value );}
+\DoxyCodeLine{1599 }
+\DoxyCodeLine{1626     XMLError QueryIntText( \textcolor{keywordtype}{int}* ival ) \textcolor{keyword}{const};}
+\DoxyCodeLine{1628     XMLError QueryUnsignedText( \textcolor{keywordtype}{unsigned}* uval ) \textcolor{keyword}{const};}
+\DoxyCodeLine{1630     XMLError QueryInt64Text(int64\_t* uval) \textcolor{keyword}{const};}
+\DoxyCodeLine{1632     XMLError QueryUnsigned64Text(uint64\_t* uval) \textcolor{keyword}{const};}
+\DoxyCodeLine{1634     XMLError QueryBoolText( \textcolor{keywordtype}{bool}* bval ) \textcolor{keyword}{const};}
+\DoxyCodeLine{1636     XMLError QueryDoubleText( \textcolor{keywordtype}{double}* dval ) \textcolor{keyword}{const};}
+\DoxyCodeLine{1638     XMLError QueryFloatText( \textcolor{keywordtype}{float}* fval ) \textcolor{keyword}{const};}
+\DoxyCodeLine{1639 }
+\DoxyCodeLine{1640     \textcolor{keywordtype}{int} IntText(\textcolor{keywordtype}{int} defaultValue = 0) \textcolor{keyword}{const};}
+\DoxyCodeLine{1641 }
+\DoxyCodeLine{1643     \textcolor{keywordtype}{unsigned} UnsignedText(\textcolor{keywordtype}{unsigned} defaultValue = 0) \textcolor{keyword}{const};}
+\DoxyCodeLine{1645     int64\_t Int64Text(int64\_t defaultValue = 0) \textcolor{keyword}{const};}
+\DoxyCodeLine{1647     uint64\_t Unsigned64Text(uint64\_t defaultValue = 0) \textcolor{keyword}{const};}
+\DoxyCodeLine{1649     \textcolor{keywordtype}{bool} BoolText(\textcolor{keywordtype}{bool} defaultValue = \textcolor{keyword}{false}) \textcolor{keyword}{const};}
+\DoxyCodeLine{1651     \textcolor{keywordtype}{double} DoubleText(\textcolor{keywordtype}{double} defaultValue = 0) \textcolor{keyword}{const};}
+\DoxyCodeLine{1653     \textcolor{keywordtype}{float} FloatText(\textcolor{keywordtype}{float} defaultValue = 0) \textcolor{keyword}{const};}
+\DoxyCodeLine{1654 }
+\DoxyCodeLine{1659     \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}}* InsertNewChildElement(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* name);}
+\DoxyCodeLine{1661     \mbox{\hyperlink{classtinyxml2_1_1XMLComment}{XMLComment}}* InsertNewComment(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* comment);}
+\DoxyCodeLine{1663     \mbox{\hyperlink{classtinyxml2_1_1XMLText}{XMLText}}* InsertNewText(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* text);}
+\DoxyCodeLine{1665     \mbox{\hyperlink{classtinyxml2_1_1XMLDeclaration}{XMLDeclaration}}* InsertNewDeclaration(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* text);}
+\DoxyCodeLine{1667     \mbox{\hyperlink{classtinyxml2_1_1XMLUnknown}{XMLUnknown}}* InsertNewUnknown(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* text);}
+\DoxyCodeLine{1668 }
+\DoxyCodeLine{1669 }
+\DoxyCodeLine{1670     \textcolor{comment}{// internal:}}
+\DoxyCodeLine{1671     \textcolor{keyword}{enum} ElementClosingType \{}
+\DoxyCodeLine{1672         OPEN,       \textcolor{comment}{// <foo>}}
+\DoxyCodeLine{1673         CLOSED,     \textcolor{comment}{// <foo/>}}
+\DoxyCodeLine{1674         CLOSING     \textcolor{comment}{// </foo>}}
+\DoxyCodeLine{1675     \};}
+\DoxyCodeLine{1676     ElementClosingType ClosingType()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{1677         \textcolor{keywordflow}{return} \_closingType;}
+\DoxyCodeLine{1678     \}}
+\DoxyCodeLine{1679     \textcolor{keyword}{virtual} XMLNode* ShallowClone( XMLDocument* document ) \textcolor{keyword}{const};}
+\DoxyCodeLine{1680     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} ShallowEqual( \textcolor{keyword}{const} XMLNode* compare ) \textcolor{keyword}{const};}
+\DoxyCodeLine{1681 }
+\DoxyCodeLine{1682 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{1683     \textcolor{keywordtype}{char}* ParseDeep( \textcolor{keywordtype}{char}* p, StrPair* parentEndTag, \textcolor{keywordtype}{int}* curLineNumPtr );}
+\DoxyCodeLine{1684 }
+\DoxyCodeLine{1685 \textcolor{keyword}{private}:}
+\DoxyCodeLine{1686     XMLElement( XMLDocument* doc );}
+\DoxyCodeLine{1687     \textcolor{keyword}{virtual} \string~XMLElement();}
+\DoxyCodeLine{1688     XMLElement( \textcolor{keyword}{const} XMLElement\& );    \textcolor{comment}{// not supported}}
+\DoxyCodeLine{1689     \textcolor{keywordtype}{void} operator=( \textcolor{keyword}{const} XMLElement\& );    \textcolor{comment}{// not supported}}
+\DoxyCodeLine{1690 }
+\DoxyCodeLine{1691     XMLAttribute* FindOrCreateAttribute( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name );}
+\DoxyCodeLine{1692     \textcolor{keywordtype}{char}* ParseAttributes( \textcolor{keywordtype}{char}* p, \textcolor{keywordtype}{int}* curLineNumPtr );}
+\DoxyCodeLine{1693     \textcolor{keyword}{static} \textcolor{keywordtype}{void} DeleteAttribute( XMLAttribute* attribute );}
+\DoxyCodeLine{1694     XMLAttribute* CreateAttribute();}
+\DoxyCodeLine{1695 }
+\DoxyCodeLine{1696     \textcolor{keyword}{enum} \{ BUF\_SIZE = 200 \};}
+\DoxyCodeLine{1697     ElementClosingType \_closingType;}
+\DoxyCodeLine{1698     \textcolor{comment}{// The attribute list is ordered; there is no 'lastAttribute'}}
+\DoxyCodeLine{1699     \textcolor{comment}{// because the list needs to be scanned for dupes before adding}}
+\DoxyCodeLine{1700     \textcolor{comment}{// a new attribute.}}
+\DoxyCodeLine{1701     XMLAttribute* \_rootAttribute;}
+\DoxyCodeLine{1702 \};}
+\DoxyCodeLine{1703 }
+\DoxyCodeLine{1704 }
+\DoxyCodeLine{1705 \textcolor{keyword}{enum} Whitespace \{}
+\DoxyCodeLine{1706     PRESERVE\_WHITESPACE,}
+\DoxyCodeLine{1707     COLLAPSE\_WHITESPACE}
+\DoxyCodeLine{1708 \};}
+\DoxyCodeLine{1709 }
+\DoxyCodeLine{1710 }
+\DoxyCodeLine{1716 \textcolor{keyword}{class }TINYXML2\_LIB \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}} : \textcolor{keyword}{public} \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}}
+\DoxyCodeLine{1717 \{}
+\DoxyCodeLine{1718     \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}};}
+\DoxyCodeLine{1719     \textcolor{comment}{// Gives access to SetError and Push/PopDepth, but over-\/access for everything else.}}
+\DoxyCodeLine{1720     \textcolor{comment}{// Wishing C++ had "{}internal"{} scope.}}
+\DoxyCodeLine{1721     \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}};}
+\DoxyCodeLine{1722     \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classtinyxml2_1_1XMLText}{XMLText}};}
+\DoxyCodeLine{1723     \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classtinyxml2_1_1XMLComment}{XMLComment}};}
+\DoxyCodeLine{1724     \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classtinyxml2_1_1XMLDeclaration}{XMLDeclaration}};}
+\DoxyCodeLine{1725     \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classtinyxml2_1_1XMLUnknown}{XMLUnknown}};}
+\DoxyCodeLine{1726 \textcolor{keyword}{public}:}
+\DoxyCodeLine{1728     \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}}( \textcolor{keywordtype}{bool} processEntities = \textcolor{keyword}{true}, Whitespace whitespaceMode = PRESERVE\_WHITESPACE );}
+\DoxyCodeLine{1729     \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{\string~XMLDocument}}();}
+\DoxyCodeLine{1730 }
+\DoxyCodeLine{1731     \textcolor{keyword}{virtual} \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}}* \mbox{\hyperlink{classtinyxml2_1_1XMLDocument_a88dfd725068a410aed08f55b825f6907}{ToDocument}}()              \{}
+\DoxyCodeLine{1732         TIXMLASSERT( \textcolor{keyword}{this} == \_document );}
+\DoxyCodeLine{1733         \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{1734     \}}
+\DoxyCodeLine{1735     \textcolor{keyword}{virtual} \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}}* ToDocument()\textcolor{keyword}{ const    }\{}
+\DoxyCodeLine{1736         TIXMLASSERT( \textcolor{keyword}{this} == \_document );}
+\DoxyCodeLine{1737         \textcolor{keywordflow}{return} \textcolor{keyword}{this};}
+\DoxyCodeLine{1738     \}}
+\DoxyCodeLine{1739 }
+\DoxyCodeLine{1750     XMLError Parse( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* xml, \textcolor{keywordtype}{size\_t} nBytes=\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(-\/1) );}
+\DoxyCodeLine{1751 }
+\DoxyCodeLine{1757     XMLError LoadFile( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* filename );}
+\DoxyCodeLine{1758 }
+\DoxyCodeLine{1770     XMLError LoadFile( FILE* );}
+\DoxyCodeLine{1771 }
+\DoxyCodeLine{1777     XMLError SaveFile( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* filename, \textcolor{keywordtype}{bool} compact = \textcolor{keyword}{false} );}
+\DoxyCodeLine{1778 }
+\DoxyCodeLine{1786     XMLError SaveFile( FILE* fp, \textcolor{keywordtype}{bool} compact = \textcolor{keyword}{false} );}
+\DoxyCodeLine{1787 }
+\DoxyCodeLine{1788     \textcolor{keywordtype}{bool} ProcessEntities()\textcolor{keyword}{ const        }\{}
+\DoxyCodeLine{1789         \textcolor{keywordflow}{return} \_processEntities;}
+\DoxyCodeLine{1790     \}}
+\DoxyCodeLine{1791     Whitespace WhitespaceMode()\textcolor{keyword}{ const   }\{}
+\DoxyCodeLine{1792         \textcolor{keywordflow}{return} \_whitespaceMode;}
+\DoxyCodeLine{1793     \}}
+\DoxyCodeLine{1794 }
+\DoxyCodeLine{1798     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classtinyxml2_1_1XMLDocument_a33fc5d159db873a179fa26338adb05bd}{HasBOM}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{1799         \textcolor{keywordflow}{return} \_writeBOM;}
+\DoxyCodeLine{1800     \}}
+\DoxyCodeLine{1803     \textcolor{keywordtype}{void} \mbox{\hyperlink{classtinyxml2_1_1XMLDocument_a14419b698f7c4b140df4e80f3f0c93b0}{SetBOM}}( \textcolor{keywordtype}{bool} useBOM ) \{}
+\DoxyCodeLine{1804         \_writeBOM = useBOM;}
+\DoxyCodeLine{1805     \}}
+\DoxyCodeLine{1806 }
+\DoxyCodeLine{1810     \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}}* \mbox{\hyperlink{classtinyxml2_1_1XMLDocument_a0e6855771cbe87d839fb301d3646f5b8}{RootElement}}()              \{}
+\DoxyCodeLine{1811         \textcolor{keywordflow}{return} FirstChildElement();}
+\DoxyCodeLine{1812     \}}
+\DoxyCodeLine{1813     \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}}* RootElement()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{1814         \textcolor{keywordflow}{return} FirstChildElement();}
+\DoxyCodeLine{1815     \}}
+\DoxyCodeLine{1816 }
+\DoxyCodeLine{1831     \textcolor{keywordtype}{void} Print( XMLPrinter* streamer=0 ) \textcolor{keyword}{const};}
+\DoxyCodeLine{1832     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} Accept( XMLVisitor* visitor ) \textcolor{keyword}{const};}
+\DoxyCodeLine{1833 }
+\DoxyCodeLine{1839     XMLElement* NewElement( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name );}
+\DoxyCodeLine{1845     XMLComment* NewComment( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* comment );}
+\DoxyCodeLine{1851     XMLText* NewText( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* text );}
+\DoxyCodeLine{1863     XMLDeclaration* NewDeclaration( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* text=0 );}
+\DoxyCodeLine{1869     XMLUnknown* NewUnknown( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* text );}
+\DoxyCodeLine{1870 }
+\DoxyCodeLine{1875     \textcolor{keywordtype}{void} DeleteNode( XMLNode* node );}
+\DoxyCodeLine{1876 }
+\DoxyCodeLine{1878     \textcolor{keywordtype}{void} ClearError();}
+\DoxyCodeLine{1879 }
+\DoxyCodeLine{1881     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classtinyxml2_1_1XMLDocument_a34e6318e182e40e3cc4f4ba5d59ed9ed}{Error}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{1882         \textcolor{keywordflow}{return} \_errorID != XML\_SUCCESS;}
+\DoxyCodeLine{1883     \}}
+\DoxyCodeLine{1885     XMLError  \mbox{\hyperlink{classtinyxml2_1_1XMLDocument_afa3ed33b3107f920ec2b301f805ac17d}{ErrorID}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{1886         \textcolor{keywordflow}{return} \_errorID;}
+\DoxyCodeLine{1887     \}}
+\DoxyCodeLine{1888     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* ErrorName() \textcolor{keyword}{const};}
+\DoxyCodeLine{1889     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char}* ErrorIDToName(XMLError errorID);}
+\DoxyCodeLine{1890 }
+\DoxyCodeLine{1894     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* ErrorStr() \textcolor{keyword}{const};}
+\DoxyCodeLine{1895 }
+\DoxyCodeLine{1897     \textcolor{keywordtype}{void} PrintError() \textcolor{keyword}{const};}
+\DoxyCodeLine{1898 }
+\DoxyCodeLine{1900     \textcolor{keywordtype}{int} \mbox{\hyperlink{classtinyxml2_1_1XMLDocument_a57400f816dbe7799ece33615ead9ab76}{ErrorLineNum}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{1901 \textcolor{keyword}{    }\{}
+\DoxyCodeLine{1902         \textcolor{keywordflow}{return} \_errorLineNum;}
+\DoxyCodeLine{1903     \}}
+\DoxyCodeLine{1904 }
+\DoxyCodeLine{1906     \textcolor{keywordtype}{void} Clear();}
+\DoxyCodeLine{1907 }
+\DoxyCodeLine{1915     \textcolor{keywordtype}{void} DeepCopy(\mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}}* target) \textcolor{keyword}{const};}
+\DoxyCodeLine{1916 }
+\DoxyCodeLine{1917     \textcolor{comment}{// internal}}
+\DoxyCodeLine{1918     \textcolor{keywordtype}{char}* Identify( \textcolor{keywordtype}{char}* p, \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}** node );}
+\DoxyCodeLine{1919 }
+\DoxyCodeLine{1920     \textcolor{comment}{// internal}}
+\DoxyCodeLine{1921     \textcolor{keywordtype}{void} MarkInUse(\textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}* \textcolor{keyword}{const});}
+\DoxyCodeLine{1922 }
+\DoxyCodeLine{1923     \textcolor{keyword}{virtual} \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}* \mbox{\hyperlink{classtinyxml2_1_1XMLDocument_af4f866a4dace2120ec8cdf6f5ff79f61}{ShallowClone}}( \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}}* \textcolor{comment}{/*document*/} )\textcolor{keyword}{ const  }\{}
+\DoxyCodeLine{1924         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{1925     \}}
+\DoxyCodeLine{1926     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classtinyxml2_1_1XMLDocument_a6fe5ef18699091844fcf64b56ffa5bf9}{ShallowEqual}}( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}* \textcolor{comment}{/*compare*/} )\textcolor{keyword}{ const    }\{}
+\DoxyCodeLine{1927         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{1928     \}}
+\DoxyCodeLine{1929 }
+\DoxyCodeLine{1930 \textcolor{keyword}{private}:}
+\DoxyCodeLine{1931     \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}}( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}}\& );    \textcolor{comment}{// not supported}}
+\DoxyCodeLine{1932     \textcolor{keywordtype}{void} operator=( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}}\& );    \textcolor{comment}{// not supported}}
+\DoxyCodeLine{1933 }
+\DoxyCodeLine{1934     \textcolor{keywordtype}{bool}            \_writeBOM;}
+\DoxyCodeLine{1935     \textcolor{keywordtype}{bool}            \_processEntities;}
+\DoxyCodeLine{1936     XMLError        \_errorID;}
+\DoxyCodeLine{1937     Whitespace      \_whitespaceMode;}
+\DoxyCodeLine{1938     \textcolor{keyword}{mutable} \mbox{\hyperlink{classtinyxml2_1_1StrPair}{StrPair}}  \_errorStr;}
+\DoxyCodeLine{1939     \textcolor{keywordtype}{int}             \_errorLineNum;}
+\DoxyCodeLine{1940     \textcolor{keywordtype}{char}*           \_charBuffer;}
+\DoxyCodeLine{1941     \textcolor{keywordtype}{int}             \_parseCurLineNum;}
+\DoxyCodeLine{1942     \textcolor{keywordtype}{int}             \_parsingDepth;}
+\DoxyCodeLine{1943     \textcolor{comment}{// Memory tracking does add some overhead.}}
+\DoxyCodeLine{1944     \textcolor{comment}{// However, the code assumes that you don't}}
+\DoxyCodeLine{1945     \textcolor{comment}{// have a bunch of unlinked nodes around.}}
+\DoxyCodeLine{1946     \textcolor{comment}{// Therefore it takes less memory to track}}
+\DoxyCodeLine{1947     \textcolor{comment}{// in the document vs. a linked list in the XMLNode,}}
+\DoxyCodeLine{1948     \textcolor{comment}{// and the performance is the same.}}
+\DoxyCodeLine{1949     \mbox{\hyperlink{classtinyxml2_1_1DynArray}{DynArray<XMLNode*, 10>}} \_unlinked;}
+\DoxyCodeLine{1950 }
+\DoxyCodeLine{1951     \mbox{\hyperlink{classtinyxml2_1_1MemPoolT}{MemPoolT}}< \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}}) >     \_elementPool;}
+\DoxyCodeLine{1952     \mbox{\hyperlink{classtinyxml2_1_1MemPoolT}{MemPoolT}}< \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classtinyxml2_1_1XMLAttribute}{XMLAttribute}}) > \_attributePool;}
+\DoxyCodeLine{1953     \mbox{\hyperlink{classtinyxml2_1_1MemPoolT}{MemPoolT}}< \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classtinyxml2_1_1XMLText}{XMLText}}) >       \_textPool;}
+\DoxyCodeLine{1954     \mbox{\hyperlink{classtinyxml2_1_1MemPoolT}{MemPoolT}}< \textcolor{keyword}{sizeof}(\mbox{\hyperlink{classtinyxml2_1_1XMLComment}{XMLComment}}) >     \_commentPool;}
+\DoxyCodeLine{1955 }
+\DoxyCodeLine{1956     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \_errorNames[XML\_ERROR\_COUNT];}
+\DoxyCodeLine{1957 }
+\DoxyCodeLine{1958     \textcolor{keywordtype}{void} Parse();}
+\DoxyCodeLine{1959 }
+\DoxyCodeLine{1960     \textcolor{keywordtype}{void} SetError( XMLError error, \textcolor{keywordtype}{int} lineNum, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* format, ... );}
+\DoxyCodeLine{1961 }
+\DoxyCodeLine{1962     \textcolor{comment}{// Something of an obvious security hole, once it was discovered.}}
+\DoxyCodeLine{1963     \textcolor{comment}{// Either an ill-\/formed XML or an excessively deep one can overflow}}
+\DoxyCodeLine{1964     \textcolor{comment}{// the stack. Track stack depth, and error out if needed.}}
+\DoxyCodeLine{1965     \textcolor{keyword}{class }DepthTracker \{}
+\DoxyCodeLine{1966     \textcolor{keyword}{public}:}
+\DoxyCodeLine{1967         \textcolor{keyword}{explicit} DepthTracker(\mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}} * document) \{}
+\DoxyCodeLine{1968             this-\/>\_document = document;}
+\DoxyCodeLine{1969             document-\/>PushDepth();}
+\DoxyCodeLine{1970         \}}
+\DoxyCodeLine{1971         \string~DepthTracker() \{}
+\DoxyCodeLine{1972             \_document-\/>PopDepth();}
+\DoxyCodeLine{1973         \}}
+\DoxyCodeLine{1974     \textcolor{keyword}{private}:}
+\DoxyCodeLine{1975         XMLDocument * \_document;}
+\DoxyCodeLine{1976     \};}
+\DoxyCodeLine{1977     \textcolor{keywordtype}{void} PushDepth();}
+\DoxyCodeLine{1978     \textcolor{keywordtype}{void} PopDepth();}
+\DoxyCodeLine{1979 }
+\DoxyCodeLine{1980     \textcolor{keyword}{template}<\textcolor{keyword}{class} NodeType, \textcolor{keywordtype}{int} PoolElementSize>}
+\DoxyCodeLine{1981     NodeType* CreateUnlinkedNode( MemPoolT<PoolElementSize>\& pool );}
+\DoxyCodeLine{1982 \};}
+\DoxyCodeLine{1983 }
+\DoxyCodeLine{1984 \textcolor{keyword}{template}<\textcolor{keyword}{class} NodeType, \textcolor{keywordtype}{int} PoolElementSize>}
+\DoxyCodeLine{1985 \textcolor{keyword}{inline} NodeType* XMLDocument::CreateUnlinkedNode( MemPoolT<PoolElementSize>\& pool )}
+\DoxyCodeLine{1986 \{}
+\DoxyCodeLine{1987     TIXMLASSERT( \textcolor{keyword}{sizeof}( NodeType ) == PoolElementSize );}
+\DoxyCodeLine{1988     TIXMLASSERT( \textcolor{keyword}{sizeof}( NodeType ) == pool.ItemSize() );}
+\DoxyCodeLine{1989     NodeType* returnNode = \textcolor{keyword}{new} (pool.Alloc()) NodeType( \textcolor{keyword}{this} );}
+\DoxyCodeLine{1990     TIXMLASSERT( returnNode );}
+\DoxyCodeLine{1991     returnNode-\/>\_memPool = \&pool;}
+\DoxyCodeLine{1992 }
+\DoxyCodeLine{1993     \_unlinked.Push(returnNode);}
+\DoxyCodeLine{1994     \textcolor{keywordflow}{return} returnNode;}
+\DoxyCodeLine{1995 \}}
+\DoxyCodeLine{1996 }
+\DoxyCodeLine{2052 \textcolor{keyword}{class }TINYXML2\_LIB \mbox{\hyperlink{classtinyxml2_1_1XMLHandle}{XMLHandle}}}
+\DoxyCodeLine{2053 \{}
+\DoxyCodeLine{2054 \textcolor{keyword}{public}:}
+\DoxyCodeLine{2056     \textcolor{keyword}{explicit} \mbox{\hyperlink{classtinyxml2_1_1XMLHandle_a9c240a35c18f053509b4b97ddccd9793}{XMLHandle}}( \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}* node ) : \_node( node ) \{}
+\DoxyCodeLine{2057     \}}
+\DoxyCodeLine{2059     \textcolor{keyword}{explicit} \mbox{\hyperlink{classtinyxml2_1_1XMLHandle_aa2edbc1c0d3e3e8259bd98de7f1cf500}{XMLHandle}}( \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}\& node ) : \_node( \&node ) \{}
+\DoxyCodeLine{2060     \}}
+\DoxyCodeLine{2062     \mbox{\hyperlink{classtinyxml2_1_1XMLHandle_afd8e01e6018c07347b8e6d80272466aa}{XMLHandle}}( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLHandle}{XMLHandle}}\& ref ) : \_node( ref.\_node ) \{}
+\DoxyCodeLine{2063     \}}
+\DoxyCodeLine{2065     \mbox{\hyperlink{classtinyxml2_1_1XMLHandle}{XMLHandle}}\& \mbox{\hyperlink{classtinyxml2_1_1XMLHandle_aa07c9a53f78d7b2dc1018668641521d8}{operator=}}( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLHandle}{XMLHandle}}\& ref )                         \{}
+\DoxyCodeLine{2066         \_node = ref.\_node;}
+\DoxyCodeLine{2067         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{2068     \}}
+\DoxyCodeLine{2069 }
+\DoxyCodeLine{2071     \mbox{\hyperlink{classtinyxml2_1_1XMLHandle}{XMLHandle}} \mbox{\hyperlink{classtinyxml2_1_1XMLHandle_a536447dc7f54c0cd11e031dad94795ae}{FirstChild}}()                                                   \{}
+\DoxyCodeLine{2072         \textcolor{keywordflow}{return} \mbox{\hyperlink{classtinyxml2_1_1XMLHandle}{XMLHandle}}( \_node ? \_node-\/>FirstChild() : 0 );}
+\DoxyCodeLine{2073     \}}
+\DoxyCodeLine{2075     \mbox{\hyperlink{classtinyxml2_1_1XMLHandle}{XMLHandle}} \mbox{\hyperlink{classtinyxml2_1_1XMLHandle_a74b04dd0f15e0bf01860e282b840b6a3}{FirstChildElement}}( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name = 0 )                       \{}
+\DoxyCodeLine{2076         \textcolor{keywordflow}{return} \mbox{\hyperlink{classtinyxml2_1_1XMLHandle}{XMLHandle}}( \_node ? \_node-\/>FirstChildElement( name ) : 0 );}
+\DoxyCodeLine{2077     \}}
+\DoxyCodeLine{2079     \mbox{\hyperlink{classtinyxml2_1_1XMLHandle}{XMLHandle}} \mbox{\hyperlink{classtinyxml2_1_1XMLHandle_a9d09f04435f0f2f7d0816b0198d0517b}{LastChild}}()                                                 \{}
+\DoxyCodeLine{2080         \textcolor{keywordflow}{return} \mbox{\hyperlink{classtinyxml2_1_1XMLHandle}{XMLHandle}}( \_node ? \_node-\/>LastChild() : 0 );}
+\DoxyCodeLine{2081     \}}
+\DoxyCodeLine{2083     \mbox{\hyperlink{classtinyxml2_1_1XMLHandle}{XMLHandle}} \mbox{\hyperlink{classtinyxml2_1_1XMLHandle_a42cccd0ce8b1ce704f431025e9f19e0c}{LastChildElement}}( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name = 0 )                     \{}
+\DoxyCodeLine{2084         \textcolor{keywordflow}{return} \mbox{\hyperlink{classtinyxml2_1_1XMLHandle}{XMLHandle}}( \_node ? \_node-\/>LastChildElement( name ) : 0 );}
+\DoxyCodeLine{2085     \}}
+\DoxyCodeLine{2087     \mbox{\hyperlink{classtinyxml2_1_1XMLHandle}{XMLHandle}} \mbox{\hyperlink{classtinyxml2_1_1XMLHandle_a428374e756f4db4cbc287fec64eae02c}{PreviousSibling}}()                                             \{}
+\DoxyCodeLine{2088         \textcolor{keywordflow}{return} \mbox{\hyperlink{classtinyxml2_1_1XMLHandle}{XMLHandle}}( \_node ? \_node-\/>PreviousSibling() : 0 );}
+\DoxyCodeLine{2089     \}}
+\DoxyCodeLine{2091     \mbox{\hyperlink{classtinyxml2_1_1XMLHandle}{XMLHandle}} \mbox{\hyperlink{classtinyxml2_1_1XMLHandle_a786957e498039554ed334cdc36612a7e}{PreviousSiblingElement}}( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name = 0 )             \{}
+\DoxyCodeLine{2092         \textcolor{keywordflow}{return} \mbox{\hyperlink{classtinyxml2_1_1XMLHandle}{XMLHandle}}( \_node ? \_node-\/>PreviousSiblingElement( name ) : 0 );}
+\DoxyCodeLine{2093     \}}
+\DoxyCodeLine{2095     \mbox{\hyperlink{classtinyxml2_1_1XMLHandle}{XMLHandle}} \mbox{\hyperlink{classtinyxml2_1_1XMLHandle_aad2eccc7c7c7b18145877c978c3850b5}{NextSibling}}()                                                 \{}
+\DoxyCodeLine{2096         \textcolor{keywordflow}{return} \mbox{\hyperlink{classtinyxml2_1_1XMLHandle}{XMLHandle}}( \_node ? \_node-\/>NextSibling() : 0 );}
+\DoxyCodeLine{2097     \}}
+\DoxyCodeLine{2099     \mbox{\hyperlink{classtinyxml2_1_1XMLHandle}{XMLHandle}} \mbox{\hyperlink{classtinyxml2_1_1XMLHandle_ae41d88ee061f3c49a081630ff753b2c5}{NextSiblingElement}}( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name = 0 )                 \{}
+\DoxyCodeLine{2100         \textcolor{keywordflow}{return} \mbox{\hyperlink{classtinyxml2_1_1XMLHandle}{XMLHandle}}( \_node ? \_node-\/>NextSiblingElement( name ) : 0 );}
+\DoxyCodeLine{2101     \}}
+\DoxyCodeLine{2102 }
+\DoxyCodeLine{2104     \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}* \mbox{\hyperlink{classtinyxml2_1_1XMLHandle_a689453c96dd3d4016437d2298d1de691}{ToNode}}()                          \{}
+\DoxyCodeLine{2105         \textcolor{keywordflow}{return} \_node;}
+\DoxyCodeLine{2106     \}}
+\DoxyCodeLine{2108     \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}}* \mbox{\hyperlink{classtinyxml2_1_1XMLHandle_ab2371c4adb8b04afe04ed216bf9b0676}{ToElement}}()                  \{}
+\DoxyCodeLine{2109         \textcolor{keywordflow}{return} ( \_node ? \_node-\/>ToElement() : 0 );}
+\DoxyCodeLine{2110     \}}
+\DoxyCodeLine{2112     \mbox{\hyperlink{classtinyxml2_1_1XMLText}{XMLText}}* \mbox{\hyperlink{classtinyxml2_1_1XMLHandle_accc80bcbd81e816f13a23c172587c288}{ToText}}()                          \{}
+\DoxyCodeLine{2113         \textcolor{keywordflow}{return} ( \_node ? \_node-\/>ToText() : 0 );}
+\DoxyCodeLine{2114     \}}
+\DoxyCodeLine{2116     \mbox{\hyperlink{classtinyxml2_1_1XMLUnknown}{XMLUnknown}}* \mbox{\hyperlink{classtinyxml2_1_1XMLHandle_add97784cbe14ef42bb36e158ad6e6082}{ToUnknown}}()                  \{}
+\DoxyCodeLine{2117         \textcolor{keywordflow}{return} ( \_node ? \_node-\/>ToUnknown() : 0 );}
+\DoxyCodeLine{2118     \}}
+\DoxyCodeLine{2120     \mbox{\hyperlink{classtinyxml2_1_1XMLDeclaration}{XMLDeclaration}}* \mbox{\hyperlink{classtinyxml2_1_1XMLHandle_a85d0c76920a013ea2a29456dbf7d160d}{ToDeclaration}}()          \{}
+\DoxyCodeLine{2121         \textcolor{keywordflow}{return} ( \_node ? \_node-\/>ToDeclaration() : 0 );}
+\DoxyCodeLine{2122     \}}
+\DoxyCodeLine{2123 }
+\DoxyCodeLine{2124 \textcolor{keyword}{private}:}
+\DoxyCodeLine{2125     \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}* \_node;}
+\DoxyCodeLine{2126 \};}
+\DoxyCodeLine{2127 }
+\DoxyCodeLine{2128 }
+\DoxyCodeLine{2133 \textcolor{keyword}{class }TINYXML2\_LIB \mbox{\hyperlink{classtinyxml2_1_1XMLConstHandle}{XMLConstHandle}}}
+\DoxyCodeLine{2134 \{}
+\DoxyCodeLine{2135 \textcolor{keyword}{public}:}
+\DoxyCodeLine{2136     \textcolor{keyword}{explicit} \mbox{\hyperlink{classtinyxml2_1_1XMLConstHandle}{XMLConstHandle}}( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}* node ) : \_node( node ) \{}
+\DoxyCodeLine{2137     \}}
+\DoxyCodeLine{2138     \textcolor{keyword}{explicit} \mbox{\hyperlink{classtinyxml2_1_1XMLConstHandle}{XMLConstHandle}}( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}\& node ) : \_node( \&node ) \{}
+\DoxyCodeLine{2139     \}}
+\DoxyCodeLine{2140     \mbox{\hyperlink{classtinyxml2_1_1XMLConstHandle}{XMLConstHandle}}( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLConstHandle}{XMLConstHandle}}\& ref ) : \_node( ref.\_node ) \{}
+\DoxyCodeLine{2141     \}}
+\DoxyCodeLine{2142 }
+\DoxyCodeLine{2143     \mbox{\hyperlink{classtinyxml2_1_1XMLConstHandle}{XMLConstHandle}}\& operator=( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLConstHandle}{XMLConstHandle}}\& ref )                          \{}
+\DoxyCodeLine{2144         \_node = ref.\_node;}
+\DoxyCodeLine{2145         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{2146     \}}
+\DoxyCodeLine{2147 }
+\DoxyCodeLine{2148     \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLConstHandle}{XMLConstHandle}} FirstChild()\textcolor{keyword}{ const                                           }\{}
+\DoxyCodeLine{2149         \textcolor{keywordflow}{return} \mbox{\hyperlink{classtinyxml2_1_1XMLConstHandle}{XMLConstHandle}}( \_node ? \_node-\/>FirstChild() : 0 );}
+\DoxyCodeLine{2150     \}}
+\DoxyCodeLine{2151     \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLConstHandle}{XMLConstHandle}} FirstChildElement( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name = 0 )\textcolor{keyword}{ const              }\{}
+\DoxyCodeLine{2152         \textcolor{keywordflow}{return} \mbox{\hyperlink{classtinyxml2_1_1XMLConstHandle}{XMLConstHandle}}( \_node ? \_node-\/>FirstChildElement( name ) : 0 );}
+\DoxyCodeLine{2153     \}}
+\DoxyCodeLine{2154     \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLConstHandle}{XMLConstHandle}} LastChild()\textcolor{keyword}{  const                                       }\{}
+\DoxyCodeLine{2155         \textcolor{keywordflow}{return} \mbox{\hyperlink{classtinyxml2_1_1XMLConstHandle}{XMLConstHandle}}( \_node ? \_node-\/>LastChild() : 0 );}
+\DoxyCodeLine{2156     \}}
+\DoxyCodeLine{2157     \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLConstHandle}{XMLConstHandle}} LastChildElement( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name = 0 )\textcolor{keyword}{ const               }\{}
+\DoxyCodeLine{2158         \textcolor{keywordflow}{return} \mbox{\hyperlink{classtinyxml2_1_1XMLConstHandle}{XMLConstHandle}}( \_node ? \_node-\/>LastChildElement( name ) : 0 );}
+\DoxyCodeLine{2159     \}}
+\DoxyCodeLine{2160     \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLConstHandle}{XMLConstHandle}} PreviousSibling()\textcolor{keyword}{ const                                  }\{}
+\DoxyCodeLine{2161         \textcolor{keywordflow}{return} \mbox{\hyperlink{classtinyxml2_1_1XMLConstHandle}{XMLConstHandle}}( \_node ? \_node-\/>PreviousSibling() : 0 );}
+\DoxyCodeLine{2162     \}}
+\DoxyCodeLine{2163     \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLConstHandle}{XMLConstHandle}} PreviousSiblingElement( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name = 0 )\textcolor{keyword}{ const     }\{}
+\DoxyCodeLine{2164         \textcolor{keywordflow}{return} \mbox{\hyperlink{classtinyxml2_1_1XMLConstHandle}{XMLConstHandle}}( \_node ? \_node-\/>PreviousSiblingElement( name ) : 0 );}
+\DoxyCodeLine{2165     \}}
+\DoxyCodeLine{2166     \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLConstHandle}{XMLConstHandle}} NextSibling()\textcolor{keyword}{ const                                      }\{}
+\DoxyCodeLine{2167         \textcolor{keywordflow}{return} \mbox{\hyperlink{classtinyxml2_1_1XMLConstHandle}{XMLConstHandle}}( \_node ? \_node-\/>NextSibling() : 0 );}
+\DoxyCodeLine{2168     \}}
+\DoxyCodeLine{2169     \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLConstHandle}{XMLConstHandle}} NextSiblingElement( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name = 0 )\textcolor{keyword}{ const         }\{}
+\DoxyCodeLine{2170         \textcolor{keywordflow}{return} \mbox{\hyperlink{classtinyxml2_1_1XMLConstHandle}{XMLConstHandle}}( \_node ? \_node-\/>NextSiblingElement( name ) : 0 );}
+\DoxyCodeLine{2171     \}}
+\DoxyCodeLine{2172 }
+\DoxyCodeLine{2173 }
+\DoxyCodeLine{2174     \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}* ToNode()\textcolor{keyword}{ const                }\{}
+\DoxyCodeLine{2175         \textcolor{keywordflow}{return} \_node;}
+\DoxyCodeLine{2176     \}}
+\DoxyCodeLine{2177     \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}}* ToElement()\textcolor{keyword}{ const           }\{}
+\DoxyCodeLine{2178         \textcolor{keywordflow}{return} ( \_node ? \_node-\/>ToElement() : 0 );}
+\DoxyCodeLine{2179     \}}
+\DoxyCodeLine{2180     \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLText}{XMLText}}* ToText()\textcolor{keyword}{ const                }\{}
+\DoxyCodeLine{2181         \textcolor{keywordflow}{return} ( \_node ? \_node-\/>ToText() : 0 );}
+\DoxyCodeLine{2182     \}}
+\DoxyCodeLine{2183     \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLUnknown}{XMLUnknown}}* ToUnknown()\textcolor{keyword}{ const           }\{}
+\DoxyCodeLine{2184         \textcolor{keywordflow}{return} ( \_node ? \_node-\/>ToUnknown() : 0 );}
+\DoxyCodeLine{2185     \}}
+\DoxyCodeLine{2186     \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLDeclaration}{XMLDeclaration}}* ToDeclaration()\textcolor{keyword}{ const   }\{}
+\DoxyCodeLine{2187         \textcolor{keywordflow}{return} ( \_node ? \_node-\/>ToDeclaration() : 0 );}
+\DoxyCodeLine{2188     \}}
+\DoxyCodeLine{2189 }
+\DoxyCodeLine{2190 \textcolor{keyword}{private}:}
+\DoxyCodeLine{2191     \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLNode}{XMLNode}}* \_node;}
+\DoxyCodeLine{2192 \};}
+\DoxyCodeLine{2193 }
+\DoxyCodeLine{2194 }
+\DoxyCodeLine{2237 \textcolor{keyword}{class }TINYXML2\_LIB \mbox{\hyperlink{classtinyxml2_1_1XMLPrinter}{XMLPrinter}} : \textcolor{keyword}{public} \mbox{\hyperlink{classtinyxml2_1_1XMLVisitor}{XMLVisitor}}}
+\DoxyCodeLine{2238 \{}
+\DoxyCodeLine{2239 \textcolor{keyword}{public}:}
+\DoxyCodeLine{2246     \mbox{\hyperlink{classtinyxml2_1_1XMLPrinter}{XMLPrinter}}( FILE* file=0, \textcolor{keywordtype}{bool} compact = \textcolor{keyword}{false}, \textcolor{keywordtype}{int} depth = 0 );}
+\DoxyCodeLine{2247     \textcolor{keyword}{virtual} \mbox{\hyperlink{classtinyxml2_1_1XMLPrinter}{\string~XMLPrinter}}()    \{\}}
+\DoxyCodeLine{2248 }
+\DoxyCodeLine{2250     \textcolor{keywordtype}{void} PushHeader( \textcolor{keywordtype}{bool} writeBOM, \textcolor{keywordtype}{bool} writeDeclaration );}
+\DoxyCodeLine{2254     \textcolor{keywordtype}{void} OpenElement( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keywordtype}{bool} compactMode=\textcolor{keyword}{false} );}
+\DoxyCodeLine{2256     \textcolor{keywordtype}{void} PushAttribute( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keyword}{const} \textcolor{keywordtype}{char}* value );}
+\DoxyCodeLine{2257     \textcolor{keywordtype}{void} PushAttribute( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keywordtype}{int} value );}
+\DoxyCodeLine{2258     \textcolor{keywordtype}{void} PushAttribute( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keywordtype}{unsigned} value );}
+\DoxyCodeLine{2259     \textcolor{keywordtype}{void} PushAttribute( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, int64\_t value );}
+\DoxyCodeLine{2260     \textcolor{keywordtype}{void} PushAttribute( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, uint64\_t value );}
+\DoxyCodeLine{2261     \textcolor{keywordtype}{void} PushAttribute( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keywordtype}{bool} value );}
+\DoxyCodeLine{2262     \textcolor{keywordtype}{void} PushAttribute( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* name, \textcolor{keywordtype}{double} value );}
+\DoxyCodeLine{2264     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} CloseElement( \textcolor{keywordtype}{bool} compactMode=\textcolor{keyword}{false} );}
+\DoxyCodeLine{2265 }
+\DoxyCodeLine{2267     \textcolor{keywordtype}{void} PushText( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* text, \textcolor{keywordtype}{bool} cdata=\textcolor{keyword}{false} );}
+\DoxyCodeLine{2269     \textcolor{keywordtype}{void} PushText( \textcolor{keywordtype}{int} value );}
+\DoxyCodeLine{2271     \textcolor{keywordtype}{void} PushText( \textcolor{keywordtype}{unsigned} value );}
+\DoxyCodeLine{2273     \textcolor{keywordtype}{void} PushText( int64\_t value );}
+\DoxyCodeLine{2275     \textcolor{keywordtype}{void} PushText( uint64\_t value );}
+\DoxyCodeLine{2277     \textcolor{keywordtype}{void} PushText( \textcolor{keywordtype}{bool} value );}
+\DoxyCodeLine{2279     \textcolor{keywordtype}{void} PushText( \textcolor{keywordtype}{float} value );}
+\DoxyCodeLine{2281     \textcolor{keywordtype}{void} PushText( \textcolor{keywordtype}{double} value );}
+\DoxyCodeLine{2282 }
+\DoxyCodeLine{2284     \textcolor{keywordtype}{void} PushComment( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* comment );}
+\DoxyCodeLine{2285 }
+\DoxyCodeLine{2286     \textcolor{keywordtype}{void} PushDeclaration( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* value );}
+\DoxyCodeLine{2287     \textcolor{keywordtype}{void} PushUnknown( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* value );}
+\DoxyCodeLine{2288 }
+\DoxyCodeLine{2289     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} VisitEnter( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}}\& \textcolor{comment}{/*doc*/} );}
+\DoxyCodeLine{2290     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classtinyxml2_1_1XMLPrinter_a15fc1f2b922f540917dcf52808737b29}{VisitExit}}( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{XMLDocument}}\& \textcolor{comment}{/*doc*/} )            \{}
+\DoxyCodeLine{2291         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{2292     \}}
+\DoxyCodeLine{2293 }
+\DoxyCodeLine{2294     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} VisitEnter( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}}\& element, \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLAttribute}{XMLAttribute}}* attribute );}
+\DoxyCodeLine{2295     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} VisitExit( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}}\& element );}
+\DoxyCodeLine{2296 }
+\DoxyCodeLine{2297     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} Visit( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLText}{XMLText}}\& text );}
+\DoxyCodeLine{2298     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} Visit( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLComment}{XMLComment}}\& comment );}
+\DoxyCodeLine{2299     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} Visit( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLDeclaration}{XMLDeclaration}}\& declaration );}
+\DoxyCodeLine{2300     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} Visit( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLUnknown}{XMLUnknown}}\& unknown );}
+\DoxyCodeLine{2301 }
+\DoxyCodeLine{2306     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* \mbox{\hyperlink{classtinyxml2_1_1XMLPrinter_abfa772366c44a17cdeb8aea294d57f78}{CStr}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{2307         \textcolor{keywordflow}{return} \_buffer.Mem();}
+\DoxyCodeLine{2308     \}}
+\DoxyCodeLine{2314     \textcolor{keywordtype}{int} \mbox{\hyperlink{classtinyxml2_1_1XMLPrinter_a3256cf3523d4898b91abb18b924be04c}{CStrSize}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{2315         \textcolor{keywordflow}{return} \_buffer.Size();}
+\DoxyCodeLine{2316     \}}
+\DoxyCodeLine{2321     \textcolor{keywordtype}{void} \mbox{\hyperlink{classtinyxml2_1_1XMLPrinter_a690cb140ba98b7339734ff865f56b0b3}{ClearBuffer}}( \textcolor{keywordtype}{bool} resetToFirstElement = \textcolor{keyword}{true} ) \{}
+\DoxyCodeLine{2322         \_buffer.Clear();}
+\DoxyCodeLine{2323         \_buffer.Push(0);}
+\DoxyCodeLine{2324         \_firstElement = resetToFirstElement;}
+\DoxyCodeLine{2325     \}}
+\DoxyCodeLine{2326 }
+\DoxyCodeLine{2327 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{2328     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} CompactMode( \textcolor{keyword}{const} \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{XMLElement}}\& ) \{ \textcolor{keywordflow}{return} \_compactMode; \}}
+\DoxyCodeLine{2329 }
+\DoxyCodeLine{2333     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} PrintSpace( \textcolor{keywordtype}{int} depth );}
+\DoxyCodeLine{2334     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} Print( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* format, ... );}
+\DoxyCodeLine{2335     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} Write( \textcolor{keyword}{const} \textcolor{keywordtype}{char}* data, \textcolor{keywordtype}{size\_t} size );}
+\DoxyCodeLine{2336     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} Putc( \textcolor{keywordtype}{char} ch );}
+\DoxyCodeLine{2337 }
+\DoxyCodeLine{2338     \textcolor{keyword}{inline} \textcolor{keywordtype}{void} Write(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* data) \{ Write(data, strlen(data)); \}}
+\DoxyCodeLine{2339 }
+\DoxyCodeLine{2340     \textcolor{keywordtype}{void} SealElementIfJustOpened();}
+\DoxyCodeLine{2341     \textcolor{keywordtype}{bool} \_elementJustOpened;}
+\DoxyCodeLine{2342     DynArray< const char*, 10 > \_stack;}
+\DoxyCodeLine{2343 }
+\DoxyCodeLine{2344 \textcolor{keyword}{private}:}
+\DoxyCodeLine{2349     \textcolor{keywordtype}{void} PrepareForNewNode( \textcolor{keywordtype}{bool} compactMode );}
+\DoxyCodeLine{2350     \textcolor{keywordtype}{void} PrintString( \textcolor{keyword}{const} \textcolor{keywordtype}{char}*, \textcolor{keywordtype}{bool} restrictedEntitySet );  \textcolor{comment}{// prints out, after detecting entities.}}
+\DoxyCodeLine{2351 }
+\DoxyCodeLine{2352     \textcolor{keywordtype}{bool} \_firstElement;}
+\DoxyCodeLine{2353     FILE* \_fp;}
+\DoxyCodeLine{2354     \textcolor{keywordtype}{int} \_depth;}
+\DoxyCodeLine{2355     \textcolor{keywordtype}{int} \_textDepth;}
+\DoxyCodeLine{2356     \textcolor{keywordtype}{bool} \_processEntities;}
+\DoxyCodeLine{2357     \textcolor{keywordtype}{bool} \_compactMode;}
+\DoxyCodeLine{2358 }
+\DoxyCodeLine{2359     \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{2360         ENTITY\_RANGE = 64,}
+\DoxyCodeLine{2361         BUF\_SIZE = 200}
+\DoxyCodeLine{2362     \};}
+\DoxyCodeLine{2363     \textcolor{keywordtype}{bool} \_entityFlag[ENTITY\_RANGE];}
+\DoxyCodeLine{2364     \textcolor{keywordtype}{bool} \_restrictedEntityFlag[ENTITY\_RANGE];}
+\DoxyCodeLine{2365 }
+\DoxyCodeLine{2366     \mbox{\hyperlink{classtinyxml2_1_1DynArray}{DynArray< char, 20 >}} \_buffer;}
+\DoxyCodeLine{2367 }
+\DoxyCodeLine{2368     \textcolor{comment}{// Prohibit cloning, intentionally not implemented}}
+\DoxyCodeLine{2369     XMLPrinter( \textcolor{keyword}{const} XMLPrinter\& );}
+\DoxyCodeLine{2370     XMLPrinter\& operator=( \textcolor{keyword}{const} XMLPrinter\& );}
+\DoxyCodeLine{2371 \};}
+\DoxyCodeLine{2372 }
+\DoxyCodeLine{2373 }
+\DoxyCodeLine{2374 \}   \textcolor{comment}{// tinyxml2}}
+\DoxyCodeLine{2375 }
+\DoxyCodeLine{2376 \textcolor{preprocessor}{\#if defined(\_MSC\_VER)}}
+\DoxyCodeLine{2377 \textcolor{preprocessor}{\#   pragma warning(pop)}}
+\DoxyCodeLine{2378 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{2379 }
+\DoxyCodeLine{2380 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// TINYXML2\_INCLUDED}}
+
+\end{DoxyCode}

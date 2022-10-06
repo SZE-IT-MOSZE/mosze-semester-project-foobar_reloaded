@@ -1,0 +1,128 @@
+\hypertarget{classEntity}{}\doxysection{Entity Class Reference}
+\label{classEntity}\index{Entity@{Entity}}
+
+
+Base class for a NPC, USER or any other \mbox{\hyperlink{classEntity}{Entity}} living in the game world.  
+
+
+
+
+{\ttfamily \#include $<$engine.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEntity_afeaa874d724166b9ad1c240cbd1127ea}{Entity}} (const std\+::string \&n)
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{classEntity}{Entity}} object. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classEntity_a403f69eb888da7c5a690b79c658cdf47}{get\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Get the Name of the \mbox{\hyperlink{classEntity}{Entity}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEntity}{Entity}} \& \mbox{\hyperlink{classEntity_a0a4f093c549569becf5e0e42b8a1ceb2}{add\+Item}} (item \&i)
+\begin{DoxyCompactList}\small\item\em Add Item to \mbox{\hyperlink{classEntity}{Entity}}\textquotesingle{}s inventory. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEntity}{Entity}} \& \mbox{\hyperlink{classEntity_a9b0ef78013c984bc8cd8944332a14058}{add\+Items}} (items \&i)
+\begin{DoxyCompactList}\small\item\em Add multiple items from an item vector to the entity\textquotesingle{}s inventory. \end{DoxyCompactList}\item 
+items \& \mbox{\hyperlink{classEntity_a38aad2959e7cbeaf15aa0dbf71df66c5}{get\+Inventory}} ()
+\begin{DoxyCompactList}\small\item\em Get the Inventory object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class for a NPC, USER or any other \mbox{\hyperlink{classEntity}{Entity}} living in the game world. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classEntity_afeaa874d724166b9ad1c240cbd1127ea}\label{classEntity_afeaa874d724166b9ad1c240cbd1127ea}} 
+\index{Entity@{Entity}!Entity@{Entity}}
+\index{Entity@{Entity}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{Entity()}{Entity()}}
+{\footnotesize\ttfamily Entity\+::\+Entity (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a new \mbox{\hyperlink{classEntity}{Entity}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & (std\+::string) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classEntity_a0a4f093c549569becf5e0e42b8a1ceb2}\label{classEntity_a0a4f093c549569becf5e0e42b8a1ceb2}} 
+\index{Entity@{Entity}!addItem@{addItem}}
+\index{addItem@{addItem}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{addItem()}{addItem()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEntity}{Entity}} \& Entity\+::add\+Item (\begin{DoxyParamCaption}\item[{item \&}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Add Item to \mbox{\hyperlink{classEntity}{Entity}}\textquotesingle{}s inventory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & (item\&)\+: Item to move to \mbox{\hyperlink{classEntity}{Entity}}\textquotesingle{}s inventory \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classEntity}{Entity}}\&
+\end{DoxyReturn}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & (item\&)\+: Item to move to \mbox{\hyperlink{classEntity}{Entity}}\textquotesingle{}s inventory \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classEntity}{Entity}}\& 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEntity_a9b0ef78013c984bc8cd8944332a14058}\label{classEntity_a9b0ef78013c984bc8cd8944332a14058}} 
+\index{Entity@{Entity}!addItems@{addItems}}
+\index{addItems@{addItems}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{addItems()}{addItems()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEntity}{Entity}} \& Entity\+::add\+Items (\begin{DoxyParamCaption}\item[{items \&}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Add multiple items from an item vector to the entity\textquotesingle{}s inventory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classEntity}{Entity}}\& 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEntity_a38aad2959e7cbeaf15aa0dbf71df66c5}\label{classEntity_a38aad2959e7cbeaf15aa0dbf71df66c5}} 
+\index{Entity@{Entity}!getInventory@{getInventory}}
+\index{getInventory@{getInventory}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{getInventory()}{getInventory()}}
+{\footnotesize\ttfamily items \& Entity\+::get\+Inventory (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the Inventory object. 
+
+\begin{DoxyReturn}{Returns}
+items\& 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEntity_a403f69eb888da7c5a690b79c658cdf47}\label{classEntity_a403f69eb888da7c5a690b79c658cdf47}} 
+\index{Entity@{Entity}!getName@{getName}}
+\index{getName@{getName}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily std\+::string Entity\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the Name of the \mbox{\hyperlink{classEntity}{Entity}}. 
+
+\begin{DoxyReturn}{Returns}
+std\+::string 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/engine.\+hpp\item 
+src/engine.\+cpp\end{DoxyCompactItemize}
