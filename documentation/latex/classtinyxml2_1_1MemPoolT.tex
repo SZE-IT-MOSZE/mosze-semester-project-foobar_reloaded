@@ -1,0 +1,90 @@
+\hypertarget{classtinyxml2_1_1MemPoolT}{}\doxysection{tinyxml2\+::Mem\+PoolT\texorpdfstring{$<$}{<} ITEM\+\_\+\+SIZE \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classtinyxml2_1_1MemPoolT}\index{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}}
+Inheritance diagram for tinyxml2\+::Mem\+PoolT\texorpdfstring{$<$}{<} ITEM\+\_\+\+SIZE \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classtinyxml2_1_1MemPoolT}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtinyxml2_1_1MemPoolT_a402f4b0dd74e3a5260da18bc6275cb29}\label{classtinyxml2_1_1MemPoolT_a402f4b0dd74e3a5260da18bc6275cb29}} 
+enum \{ {\bfseries ITEMS\+\_\+\+PER\+\_\+\+BLOCK} = (4 $\ast$ 1024) / ITEM\+\_\+\+SIZE
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtinyxml2_1_1MemPoolT_a22d595caa0e9d23aa080f49ca6475fdd}\label{classtinyxml2_1_1MemPoolT_a22d595caa0e9d23aa080f49ca6475fdd}} 
+void {\bfseries Clear} ()
+\item 
+virtual int \mbox{\hyperlink{classtinyxml2_1_1MemPoolT_a54e4d9b343459ef1731314a99877ff35}{Item\+Size}} () const
+\item 
+\mbox{\Hypertarget{classtinyxml2_1_1MemPoolT_a445a6c80151ba6268b24ec62a7c84d74}\label{classtinyxml2_1_1MemPoolT_a445a6c80151ba6268b24ec62a7c84d74}} 
+int {\bfseries Current\+Allocs} () const
+\item 
+virtual void $\ast$ \mbox{\hyperlink{classtinyxml2_1_1MemPoolT_a334b67f5bd878b2b3c1746ebd240590a}{Alloc}} ()
+\item 
+virtual void \mbox{\hyperlink{classtinyxml2_1_1MemPoolT_a408ce0918e9d3d5e5e1cc4896944875f}{Free}} (void $\ast$mem)
+\item 
+\mbox{\Hypertarget{classtinyxml2_1_1MemPoolT_a47eefbd934ef70d973ea41d41ab5f239}\label{classtinyxml2_1_1MemPoolT_a47eefbd934ef70d973ea41d41ab5f239}} 
+void {\bfseries Trace} (const char $\ast$name)
+\item 
+void \mbox{\hyperlink{classtinyxml2_1_1MemPoolT_aee3c611215ae08cce41a940bf2763027}{Set\+Tracked}} ()
+\item 
+\mbox{\Hypertarget{classtinyxml2_1_1MemPoolT_a3bcdc302ae15d2810e11192321a8f5f1}\label{classtinyxml2_1_1MemPoolT_a3bcdc302ae15d2810e11192321a8f5f1}} 
+int {\bfseries Untracked} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classtinyxml2_1_1MemPoolT_a334b67f5bd878b2b3c1746ebd240590a}\label{classtinyxml2_1_1MemPoolT_a334b67f5bd878b2b3c1746ebd240590a}} 
+\index{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}!Alloc@{Alloc}}
+\index{Alloc@{Alloc}!tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}}
+\doxysubsubsection{\texorpdfstring{Alloc()}{Alloc()}}
+{\footnotesize\ttfamily template$<$int ITEM\+\_\+\+SIZE$>$ \\
+virtual void $\ast$ \mbox{\hyperlink{classtinyxml2_1_1MemPoolT}{tinyxml2\+::\+Mem\+PoolT}}$<$ ITEM\+\_\+\+SIZE $>$\+::\+Alloc (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classtinyxml2_1_1MemPool}{tinyxml2\+::\+Mem\+Pool}}.
+
+\mbox{\Hypertarget{classtinyxml2_1_1MemPoolT_a408ce0918e9d3d5e5e1cc4896944875f}\label{classtinyxml2_1_1MemPoolT_a408ce0918e9d3d5e5e1cc4896944875f}} 
+\index{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}!Free@{Free}}
+\index{Free@{Free}!tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}}
+\doxysubsubsection{\texorpdfstring{Free()}{Free()}}
+{\footnotesize\ttfamily template$<$int ITEM\+\_\+\+SIZE$>$ \\
+virtual void \mbox{\hyperlink{classtinyxml2_1_1MemPoolT}{tinyxml2\+::\+Mem\+PoolT}}$<$ ITEM\+\_\+\+SIZE $>$\+::\+Free (\begin{DoxyParamCaption}\item[{void $\ast$}]{mem }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classtinyxml2_1_1MemPool}{tinyxml2\+::\+Mem\+Pool}}.
+
+\mbox{\Hypertarget{classtinyxml2_1_1MemPoolT_a54e4d9b343459ef1731314a99877ff35}\label{classtinyxml2_1_1MemPoolT_a54e4d9b343459ef1731314a99877ff35}} 
+\index{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}!ItemSize@{ItemSize}}
+\index{ItemSize@{ItemSize}!tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}}
+\doxysubsubsection{\texorpdfstring{ItemSize()}{ItemSize()}}
+{\footnotesize\ttfamily template$<$int ITEM\+\_\+\+SIZE$>$ \\
+virtual int \mbox{\hyperlink{classtinyxml2_1_1MemPoolT}{tinyxml2\+::\+Mem\+PoolT}}$<$ ITEM\+\_\+\+SIZE $>$\+::\+Item\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classtinyxml2_1_1MemPool}{tinyxml2\+::\+Mem\+Pool}}.
+
+\mbox{\Hypertarget{classtinyxml2_1_1MemPoolT_aee3c611215ae08cce41a940bf2763027}\label{classtinyxml2_1_1MemPoolT_aee3c611215ae08cce41a940bf2763027}} 
+\index{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}!SetTracked@{SetTracked}}
+\index{SetTracked@{SetTracked}!tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$@{tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}}
+\doxysubsubsection{\texorpdfstring{SetTracked()}{SetTracked()}}
+{\footnotesize\ttfamily template$<$int ITEM\+\_\+\+SIZE$>$ \\
+void \mbox{\hyperlink{classtinyxml2_1_1MemPoolT}{tinyxml2\+::\+Mem\+PoolT}}$<$ ITEM\+\_\+\+SIZE $>$\+::\+Set\+Tracked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classtinyxml2_1_1MemPool}{tinyxml2\+::\+Mem\+Pool}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/tinyxml2.\+h\end{DoxyCompactItemize}
