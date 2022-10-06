@@ -1,6 +1,5 @@
 #ifndef ENGINE
 #define ENGINE
-/* Game will be built like a linked list and a graph(tree). */
 #include <vector>
 #include <memory>
 #include <string>
