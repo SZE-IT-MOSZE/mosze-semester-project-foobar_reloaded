@@ -54,6 +54,11 @@ typedef std::vector<ent> entities;
  * 
  */
 typedef std::pair<int, std::vector<int>> roomConnection;
+/**
+ * @typedef Vector of missions. 
+ * 
+ */
+typedef std::vector<Mission> missions;
 
 enum missionStatus{finished, in_progress};
 
@@ -117,10 +122,7 @@ class Entity {
 	int hp;
 	int stamina;
 	int intelligence;
-	int agility;
 	int strenght;
-	int stealth;
-	int carisma;
 public:
 	/**
 	 * @brief Construct a new Entity object
@@ -449,7 +451,8 @@ class World {
 	std::string title;
 	nodes worldRooms;
 	tinyxml2::XMLDocument story;
-	std::map<int, std::vector<int>> roomConnectionMap;
+	ent player;
+	missions storyline;	
 public:
 	/**
 	 * @brief Construct a new World object
@@ -590,18 +593,13 @@ public:
 		loadRooms(worldElement->FirstChildElement("room"));
 	}
 	/**
-	 * @brief move player to room
+	 * @brief move entity to room
 	 * 
 	 * @param player 
 	 * @param room 
 	 */
-	void enterRoom(ent& player, node& room) {
-		player->setLocation(room->getID());
-		for (auto rit = worldRooms.begin(); rit != worldRooms.end(); rit++) {
-			if ((*rit)->getID() == room->getID()) {
-				room->addEntity(player);
-			}
-		}
+	void enterRoom(ent& e, node& r) {
+		e->setLocation(r->getID());
 	}
 	/**
 	 * @brief Free resources used by world.
