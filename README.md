@@ -19,6 +19,10 @@ A Roleplay Space adventure game. You can move room to room, collect items and op
 
 ## Architecture
 
+### Class Architecture
+
+![Class Architecture](Planning/Class_Architecture.jpg)
+
 ### Component Architecure
 
 ![Component Architecure](Planning/Component_Connection.jpg)
@@ -26,6 +30,14 @@ A Roleplay Space adventure game. You can move room to room, collect items and op
 ### World Initialization Sequence
 
 ![World Initialization Sequence](Planning/World_Initialization_Sequence.jpg)
+
+### Functional Use Case diagram
+
+![Functional Use Cases](Planning/Functional_UseCase.jpg)
+
+### Game Loop Activity Diagram
+
+![Game Loop](Planning/GameLoop_ActivityDiagram.jpg)
 
 ## References
 
