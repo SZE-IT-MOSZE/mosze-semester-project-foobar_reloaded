@@ -42,14 +42,3 @@ TEST_F(RoomTest, test_Item_operation_methods) {
     EXPECT_EQ("Item No. 0", testRooms[0]->getItems()[0]->getName());
     EXPECT_EQ("Item No. 1", testRooms[0]->getItems()[1]->getName());
 }
-
-TEST_F(RoomTest, test_Neighbour_operation_methods) {
-    for (int i = 0; i < 10; i++) {
-        EXPECT_EQ(1, testRooms[i].use_count());
-    }
-    for (int i = 1; i < 10; i++) {
-        testRooms[0]->addNeighbour(testRooms[i]);
-        EXPECT_EQ(2, testRooms[i].use_count());
-    }
-    EXPECT_EQ(9, testRooms[0]->getNeighbours().size());
-}

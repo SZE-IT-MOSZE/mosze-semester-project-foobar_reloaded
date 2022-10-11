@@ -382,24 +382,43 @@ class Mission {
 	}
 public:
 	/**
-	 * @brief Construct a new Mission object with mission target Room
+	 * @brief Construct a new Mission object.
 	 * 
-	 * @param tr 
+	 * @param desc Description of the mission.
 	 */
-	Mission(node& tr) : targetRoom(tr->getID()), targetItem(-1), status(in_progress) {}
+	Mission(const std::string& desc) : description(desc) {}	
 	/**
-	 * @brief Construct a new Mission object with mission target Item
+	 * @brief Get the Target Room ID 
 	 * 
-	 * @param ti 
+	 * @return int 
 	 */
-	Mission(item& ti) : targetRoom(-1), targetItem(ti->getID()), status(in_progress) {}
+	int getTargetRoom() {return targetRoom;}
 	/**
-	 * @brief Construct a new Mission object with both Item and Room target
+	 * @brief Set the Target Room ID 
 	 * 
-	 * @param tr 
-	 * @param ti 
+	 * @param targetRoomID 
+	 * @return Mission& 
 	 */
-	Mission(node& tr,item& ti) : targetRoom(tr->getID()), targetItem(ti->getID()), status(in_progress) {}
+	Mission& setTargetRoom(int targetRoomID) {
+		targetRoom = targetRoomID;
+		return *this;
+	}
+	/**
+	 * @brief Get the Target Item ID 
+	 * 
+	 * @return int 
+	 */
+	int getTargetItem() {return targetItem;}
+	/**
+	 * @brief Set the Target Item ID 
+	 * 
+	 * @param targetItemID 
+	 * @return Mission& 
+	 */
+	Mission& setTargetItem(int targetItemID) {
+		targetItem = targetItemID;
+		return *this;
+	}
 	/**
 	 * @brief Check if mission is accomplished
 	 * 
@@ -474,6 +493,14 @@ public:
 	 */
 	nodes& getWorldRooms() {
 		return worldRooms;
+	}
+	/**
+	 * @brief Get the World Mission object
+	 * 
+	 * @return missions& 
+	 */
+	missions& getWorldMission() {
+		return storyline;
 	}
 	/**
 	 * @brief Create Room with initial params and add it to worldRooms.
@@ -583,6 +610,46 @@ public:
 		return counter;
 	}
 	/**
+	 * @brief Construct a new mission with a description, then set mission targets.
+	 * 
+	 * @param missionEle 
+	 * @return Mission 
+	 */
+	Mission makeMission(tinyxml2::XMLElement* missionEle) {
+		std::string description = missionEle->FirstChildElement("description")->GetText();
+		Mission retMission(description);
+		int targetRoomID = -1;
+		int targetItemID = -1;
+		tinyxml2::XMLElement* targetRoomEle = missionEle->FirstChildElement("targetRoom");
+		if (targetRoomEle != 0) {
+			targetRoomEle->QueryIntText(&targetRoomID);
+			if (targetRoomID != -1) {
+				retMission.setTargetRoom(targetRoomID);
+			}
+		}
+		tinyxml2::XMLElement* targetItemEle = missionEle->FirstChildElement("targetItem");
+		if (targetItemEle != 0) {
+			targetItemEle->QueryIntText(&targetItemID);
+			if (targetItemID != -1) {
+				retMission.setTargetItem(targetItemID);
+			}
+		}
+		return retMission;
+	}
+	/**
+	 * @brief Load world story missions from xml doc.
+	 * 
+	 * @param firstEle first mission element in xml doc.
+	 */
+	void loadWorldMissions(tinyxml2::XMLElement* missionsEle) {
+		tinyxml2::XMLElement* firstMission = missionsEle->FirstChildElement("mission");
+		tinyxml2::XMLElement* actual = firstMission;
+		while (actual) {
+			storyline.push_back(makeMission(actual));
+			actual = actual->NextSiblingElement("mission");
+		}
+	}
+	/**
 	 * @brief Initialize world with the xml story file.
 	 * 
 	 * @param path2story 
@@ -591,6 +658,7 @@ public:
 		story.LoadFile(path2story);
 		tinyxml2::XMLElement* worldElement = story.FirstChildElement("world");
 		loadRooms(worldElement->FirstChildElement("room"));
+		loadWorldMissions(worldElement->FirstChildElement("missions"));
 	}
 	/**
 	 * @brief move entity to room
