@@ -59,4 +59,15 @@
             <id>2</id>
         </connections>
     </room>
+    <missions>
+        <mission>
+            <description>
+                This is a test mission.
+            </description>
+            <targetRoom>
+                1
+            </targetRoom>
+        </mission>
+        
+    </missions>
 </world>
