@@ -2,6 +2,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
 
 \title{SpaceWalk The Game}
 \author{Péter Bence, Vasánszky Milán, Székely katalin, Tóth Balázs}
@@ -54,5 +56,55 @@ Az év 2094. A mesterséges intelligencia teljes mértékben átvette az irány�
     \includegraphics[width=1.0\columnwidth]{GameLoop_ActivityDiagram.jpg}
     \caption{Gameloop Activity Diagram}\label{fig:4}
 \end{figure}
+
+\section{Történet tárolási formátuma}
+A történetet xml fájlformátumban tároljuk és a TinyXML2 könyvtár segítségével olvassuk be. Az xml fájlformátum lehetővé teszi, hogy a játékvilágot és hozzá tartozó történelem részleteket modulárisan építhessük fel, így szabadon bővíthető lesz, vagy akár egy teljesen más történetet is betölthetünk.
+
+\subsection{XML file felépítése}
+
+\subsubsection{<world>}
+A <world> tag-ből szigorúan csak egyet szabad használni, mivel ez fogja tartalmazni a játékvilág összes elemét.
+
+\subsubsection{<title>}
+<title> tag-ből megint csak egyet szabad használni, ez tartalmazza a játék címét. Ez a tag a <world> tagnek egy gyereke.
+
+\subsubsection{<room>}
+A <room> tag segítségével tölthetjük meg szobákkal a világot, ebből a tagből akármennyit lehet használi, de szigorúan a <world> tag-en belül.
+
+\subsubsection{<name>}
+A <name> tag a <room> nevét adja meg.
+
+\subsubsection{<description>}
+A <description> tag-el lehet a szobának a leírását, szobához tartozó storyt megadni.
+
+\subsubsection{<id>}
+Az <id> tag egyértelműen a szoba azonosítója, ami segít az egyszerű azonosításban, a kulcsokkal való összekötéssel és a szomszéd szobák megadásában.
+
+\subsubsection{<inventory>}
+A szobában megtalálható tárgyakat foglalja magába az <inventory> tag, amiből szobánként egy van.
+
+\subsubsection{<object>}
+Az <object> tageket az <inventory> tageken belülre kell helyezni, mivel ezzel tudjuk konkrétan megadni egy szobában található tárgynak a tulajdonságait.
+
+\subsubsection{<name>}
+Egy tárgynak is van megnevezése, ezért az <object>-en belül is kell használni a name taget.
+
+\subsubsection{<description>}
+A tárgyak kinézetét, felhasználási módját a leírás - description - tag-el lehet megadni.
+
+\subsubsection{<id>}
+A tárgyakat nehéz lenne csak név és leírás alapján beazonosítani programozási szemszögből így az id tagben megadott id-vel könnyen be lehet azonosítani.
+
+\subsubsection{<entity>}
+A szobákban létező NPC-ket az entity tag-el lehet megadni. Az entity-knek is van nevük, a név megadásához az eddig már többször elhangzott <name> tag-el lehet megadni. Az entity-knek is van <inventory>-juk, amiben ugyan úgy lehet megadni a tárgyakat - <object> -, mint a szobáknak.
+
+\subsubsection{<missions>}
+Ez az új tag a <world>-tag gyereke, a storyhoz tartózó küldetések megadására szolgál.
+
+\subsubsection{<mission>}
+A mission tag-en belül meg kell adni a küldetés leírását <description>-nel adható meg a küldetés leírása. A küldtés célját a <targetRoom> és a <targetItem> tag-el adhatjuk meg, ezeknek a tageknek a szoba vagy tárgy azonosítóját kell tartalmazniuk.
+
+\subsection{Példa az xml story fájl elkészítéséhez}
+\lstinputlisting{../test_story.xml}
 
 \end{document}
