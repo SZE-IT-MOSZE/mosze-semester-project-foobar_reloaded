@@ -6,7 +6,7 @@
 \usepackage{listings}
 
 \title{SpaceWalk The Game}
-\author{Péter Bence, Vasánszky Milán, Székely katalin, Tóth Balázs}
+\author{Péter Bence, Vasánszki Milán, Székely Katalin, Tóth Balázs\\A Foobar Reloaded csapata}
 \date{October 2022}
 
 \begin{document}
@@ -16,7 +16,7 @@
 \tableofcontents
 
 \section{Alapinformációk} 
-Ez a specifikáció egy szöveges, szerepjátékos űrkalandjátékhoz készült. A játék- ban mozoghatsz szobáról szobára, gyűjthetsz tárgyakat és új utakat nyithatsz meg a játék világának felfedezéséhez. Találkozhatsz és interakcióba léphetsz NPC-kkel. A program a felhasználótól vár egyszerűbb parancsokat, amelyeket később eseményként megjelenít. A történet X mélységű. Az alkalmazás a felhasználó által adott helytelen bemenetre hibaüzenettel válaszol.
+Ez a specifikáció egy szöveges, szerepjátékos űrkalandjátékhoz készült. A játék- ban mozoghatsz szobáról szobára, gyűjthetsz tárgyakat és új utakat nyithatsz meg a játék világának felfedezéséhez. Találkozhatsz és interakcióba léphetsz NPC-kkel. A program a felhasználótól vár egyszerűbb parancsokat, amelyeket később eseményként megjelenít. A történet 20 mélységű. Az alkalmazás a felhasználó által adott helytelen bemenetre hibaüzenettel válaszol.
 
 \section{Történetvázlat}
 Az év 2094. A mesterséges intelligencia teljes mértékben átvette az irányítást a Föld nevezetű bolygó felett 30 évvel ezelőtt. De nem úgy ahogy gondolod kedves PLAYERNAME. 2064-ben kifejlesztették az Oázis AI-t, ami egyedül azt a cél szolgálja, hogy az emberek kényelemben éljenek. A tökéletes utópisztikus világ, ahol az emberek azért jönnek a Földre, hogy jól érezzék magukat, azzal foglalkozzanak, amivel csak akarnak, és akkor, amikor akarnak. Minden unalmas és monoton feladat elvégzését átvették a robotok és az OAI. Ebbe beletartozik a teljesen automatikus házvezetés, takarítás, bevásárlás, és még a főzés is. Nem kevés következménnyel járt ez az átállás. Beolvasztották az összes fegyvert, megszüntették az autókat, és csak is mindenki buszokkal, vagy kijelölt szállítási eszközzel közlekedhet. A 2045-ös jégkorszak után nagymértékben megcsappant a Föld lakossága. A tervezett 9,44 milliárd ember helyett kevesebb, mint 1 milliárd maradt.
@@ -112,6 +112,10 @@ A mission tag-en belül meg kell adni a küldetés leírását <description>-nel
 \subsection{Példa az xml story fájl elkészítéséhez}
 \lstinputlisting{../test_story.xml}
 
+\section{Tesztelés}
+\subsection{GoogleTest}
+A GoogleTest könyvtár felhasználásával írtunk teszteket amik a tests mappában találhatók.
+
 \section{Fejlesztési eszközök}
 \begin{itemize}
     \item Verziókezelés: Git, Szolgáltató: Github
@@ -120,6 +124,19 @@ A mission tag-en belül meg kell adni a küldetés leírását <description>-nel
     \item Diagramok elkészítéséhez használt eszközök: VisualParadigm, PlantUML
     \item Operációs rendszerek: Pop! OS (Linux), Windows 10, Windows 11
     \item Dokumentáláshoz használt eszközök: Markdown, LaTeX, Doxygen
+    \item Külső könyvtárak: GoogleTest, TinyXML2
+    \item Debugger eszközök: GDB, Valgrind
+    \item Szövegszerkesztő programok: Word
+    \item Kommunikációs platformok: Discord, Messenger
+\end{itemize}
+
+\section{Glossary}
+\begin{itemize}
+   \item űrkalandjáték: 
+   \item NPC Non - Playable Character: A gép által vezérelt entitás.
+   \item utópia: 
+   \item sci-fi:
+   \item mesterséges intelligencia: 
 \end{itemize}
 
 \end{document}
