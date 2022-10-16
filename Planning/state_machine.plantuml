@@ -21,3 +21,6 @@ Interaction: Talk with NPC.
 Interaction: Take Mission.
 Interaction --> Interaction: talk()
 Interaction --> ChooseAction: takeMission()
+ChooseAction --> ConnectedRooms: renderRoomChoices()
+ConnectedRooms: Room_1, Room_2, ..., Room_i, ..., Room_N 
+ConnectedRooms -->ChooseAction: move(Room_i)
