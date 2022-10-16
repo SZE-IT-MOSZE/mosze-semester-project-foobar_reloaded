@@ -57,6 +57,11 @@ Az év 2094. A mesterséges intelligencia teljes mértékben átvette az irány�
     \caption{Gameloop Activity Diagram}\label{fig:4}
 \end{figure}
 
+\begin{figure}[H]
+    \includegraphics[width=1.0\columnwidth]{State_Machine.png}
+    \caption{State Machine}\label{fig:5}
+\end{figure}
+
 \section{Történet tárolási formátuma}
 A történetet xml fájlformátumban tároljuk és a TinyXML2 könyvtár segítségével olvassuk be. Az xml fájlformátum lehetővé teszi, hogy a játékvilágot és hozzá tartozó történelem részleteket modulárisan építhessük fel, így szabadon bővíthető lesz, vagy akár egy teljesen más történetet is betölthetünk.
 
@@ -106,5 +111,15 @@ A mission tag-en belül meg kell adni a küldetés leírását <description>-nel
 
 \subsection{Példa az xml story fájl elkészítéséhez}
 \lstinputlisting{../test_story.xml}
+
+\section{Fejlesztési eszközök}
+\begin{itemize}
+    \item Verziókezelés: Git, Szolgáltató: Github
+    \item Fejlesztési környezet: VSCode
+    \item Fejlesztési környezet kiegészítők: CMake Tools, LaTeX LaTeX Utilites, LaTeX Workshop, Makefile Tools, PlantUML, PlantUMLViewer, Vim, XML Tools
+    \item Diagramok elkészítéséhez használt eszközök: VisualParadigm, PlantUML
+    \item Operációs rendszerek: Pop! OS (Linux), Windows 10, Windows 11
+    \item Dokumentáláshoz használt eszközök: Markdown, LaTeX, Doxygen
+\end{itemize}
 
 \end{document}
