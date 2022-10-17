@@ -12,14 +12,16 @@
 \begin{document}
 
 \maketitle
+\newpage
 
 \tableofcontents
+\newpage
 
 \section{Alapinformációk} 
 Ez a specifikáció egy szöveges, szerepjátékos űrkalandjátékhoz készült. A játék- ban mozoghatsz szobáról szobára, gyűjthetsz tárgyakat és új utakat nyithatsz meg a játék világának felfedezéséhez. Találkozhatsz és interakcióba léphetsz NPC-kkel. A program a felhasználótól vár egyszerűbb parancsokat, amelyeket később eseményként megjelenít. A történet 20 mélységű. Az alkalmazás a felhasználó által adott helytelen bemenetre hibaüzenettel válaszol.
 
 \section{Történetvázlat}
-Az év 2094. A mesterséges intelligencia teljes mértékben átvette az irányítást a Föld nevezetű bolygó felett 30 évvel ezelőtt. De nem úgy ahogy gondolod kedves PLAYERNAME. 2064-ben kifejlesztették az Oázis AI-t, ami egyedül azt a cél szolgálja, hogy az emberek kényelemben éljenek. A tökéletes utópisztikus világ, ahol az emberek azért jönnek a Földre, hogy jól érezzék magukat, azzal foglalkozzanak, amivel csak akarnak, és akkor, amikor akarnak. Minden unalmas és monoton feladat elvégzését átvették a robotok és az OAI. Ebbe beletartozik a teljesen automatikus házvezetés, takarítás, bevásárlás, és még a főzés is. Nem kevés következménnyel járt ez az átállás. Beolvasztották az összes fegyvert, megszüntették az autókat, és csak is mindenki buszokkal, vagy kijelölt szállítási eszközzel közlekedhet. A 2045-ös jégkorszak után nagymértékben megcsappant a Föld lakossága. A tervezett 9,44 milliárd ember helyett kevesebb, mint 1 milliárd maradt.
+Az év 2094. A mesterséges intelligencia teljes mértékben átvette az irányítást a Föld nevezetű bolygó felett 30 évvel ezelőtt. De nem úgy ahogy gondolod kedves PLAYERNAME. 2064-ben kifejlesztették az Oázis AI-t, ami egyedül azt a cél szolgálja, hogy az emberek kényelemben éljenek. A tökéletes utópisztikus világ, ahol az emberek azért jönnek a Földre, hogy jól érezzék magukat, azzal foglalkozzanak, amivel csak akarnak, és akkor, amikor akarnak. Minden unalmas és monoton feladat elvégzését átvették a robotok és az OAI. Ebbe beletartozik a teljesen automatikus házvezetés, takarítás, bevásárlás, és még a főzés is. Nem kevés következménnyel járt ez az átállás. Beolvasztották az összes fegyvert, megszüntették az autókat, és csak is mindenki buszokkal, vagy kijelölt szállítási eszközzel közlekedhet. A 2045-ös jégkorszak után nagymértékben megcsappant a Föld lakossága. A tervezett 9,44 milliárd ember helyett kevesebb, mint 1 milliárd maradt. Itt kezdődik a napod. Ma van a huszonötödik születésnapod, és nagy terveid vannak a mai napra. Megnyitott az első űr bár és szálló, amit pár nappal ezelőtt állítottak Föld körüli pályára, és benne vagy a szerencsés 100 ember között, akik részt vehetnek a megnyitó rendezvényen. A SpaceWalk™ nevezetű bár óriási hírnévnek örvend. Több tíz éve beszélnek róla, hogy folyamatosan építik, részről részre szobáról szobára. Most ért véget az építkezés, és mindenki részt akar venni a megnyitón. Nagyon sok feltételnek meg kellett felelni, és ezen kívül egy pályázatot is be kellett adni, hogy miért te legyél a kiválasztott, aki részt vehet ezen a rendezvényen. Az, hogy izgatott vagy az egy enyhe alábecslés. Miket is ígér a SpaceWalk™? Kezdésnek egy űrsétával kezdődik az este, ami a legelső dolog, miután megérkezel az űrállomáshoz. Ezek után svédasztalos vacsora, korlátlan bár fogyasztás, diszkó, és az éjszaka végén kényelmes ágyak várják a vendégeket a hotel szobákban.  Az este nagyon jól telt, viszont az éjszaka folyamán, rázkódásra ébredsz, és nem tudod mi történik. Vajon egy aszteroida találhatta el az állomást? Vagy valami meghibásodás állhat a háttérben? Lehet szabotázs? Elképzelhető, hogy ennél sokkal sötétebb történések állhatnak a háttérben? Derítsük ki!
 
 \section{Használati esetek}
 \begin{table}[H] \centering
@@ -42,14 +44,17 @@ Az év 2094. A mesterséges intelligencia teljes mértékben átvette az irány�
 
 \section{Struktura}
 \begin{figure}[H]
-    \includegraphics[width=1.0\columnwidth]{Class_Architecture.jpg}
+    \includegraphics[width=0.75\columnwidth]{Class_Architecture.jpg}
     \caption{Class Architecture}\label{fig:2}
 \end{figure}
 
 \begin{figure}[H]
-    \includegraphics[width=1.0\columnwidth]{Component_Connection.jpg}
+    \includegraphics[width=0.75\columnwidth]{Component_Connection.jpg}
     \caption{Component connection}\label{fig:3}
 \end{figure}
+
+\paragraph{Engine felépítése}
+A játékvilág szobákból tevődik össze, amikben lehet tárgyakkal és NPC-kel interakcióba lépni. Vannak olyan szobák amiket csak kulcsok segítségével lehet kinyitni. A játékvilág felfedezése közben különböző küldetéseket kell végrehajtani, amik a sztori vonalát követik.
 
 \section{Viselkedes}
 \begin{figure}[H]
@@ -61,6 +66,7 @@ Az év 2094. A mesterséges intelligencia teljes mértékben átvette az irány�
     \includegraphics[width=1.0\columnwidth]{State_Machine.png}
     \caption{State Machine}\label{fig:5}
 \end{figure}
+\newpage
 
 \section{Történet tárolási formátuma}
 A történetet xml fájlformátumban tároljuk és a TinyXML2 könyvtár segítségével olvassuk be. Az xml fájlformátum lehetővé teszi, hogy a játékvilágot és hozzá tartozó történelem részleteket modulárisan építhessük fel, így szabadon bővíthető lesz, vagy akár egy teljesen más történetet is betölthetünk.
@@ -86,7 +92,7 @@ A <description> tag-el lehet a szobának a leírását, szobához tartozó story
 Az <id> tag egyértelműen a szoba azonosítója, ami segít az egyszerű azonosításban, a kulcsokkal való összekötéssel és a szomszéd szobák megadásában.
 
 \subsubsection{<inventory>}
-A szobában megtalálható tárgyakat foglalja magába az <inventory> tag, amiből szobánként egy van.
+A szobában megtalálható tárgyakat foglalja magába az <inventory> tag, amiből szobán-\\ként egy van.
 
 \subsubsection{<object>}
 Az <object> tageket az <inventory> tageken belülre kell helyezni, mivel ezzel tudjuk konkrétan megadni egy szobában található tárgynak a tulajdonságait.
@@ -112,9 +118,68 @@ A mission tag-en belül meg kell adni a küldetés leírását <description>-nel
 \subsection{Példa az xml story fájl elkészítéséhez}
 \lstinputlisting{../test_story.xml}
 
+\newpage
 \section{Tesztelés}
 \subsection{GoogleTest}
-A GoogleTest könyvtár felhasználásával írtunk teszteket amik a tests mappában találhatók.
+A GoogleTest könyvtár felhasználásával írtunk teszteket amik a tests mappában találhatók. A tesztek magukat a class-okat, a class-ok egymással való komunikációját és a use case-ket fedik le.
+\subsection{Példák}
+\subsubsection{Room class konstruktorának tesztje}
+\begin{lstlisting}
+TEST_F(RoomTest, constructor_test) {
+    node Room1(
+        new Room("Room1", 1, 
+                 "This room is created to test the constructor."
+        )
+    );
+    EXPECT_EQ("Room1", Room1->getName());
+    EXPECT_EQ(1, Room1->getID());
+    EXPECT_EQ("This room is created to test the constructor.", 
+              Room1->getDescription()
+    );
+}
+\end{lstlisting}
+\subsubsection{Room class item-ekkel való operációja}
+\begin{lstlisting}
+TEST_F(RoomTest, test_Item_operation_methods) {
+    // testItems should have 10 items now
+    ASSERT_EQ(10, testItems.size());
+    testRooms[0]->addItem(testItems[0]).addItem(testItems[1]);
+    // 2 items from testItems were added to testRoom[0]'s 
+    // inventory, so now testItems should have 8 items
+    ASSERT_EQ(2, testRooms[0]->getItems().size());
+    // This unique_ptr should contain a nullptr, 
+    // because addItem moved it to the Room's inventory
+    EXPECT_EQ(nullptr, testItems[0].get()); 
+    EXPECT_EQ(nullptr, testItems[1].get()); // Same as above
+    EXPECT_EQ("Item No. 0", 
+              testRooms[0]->getItems()[0]->getName()
+    );
+    EXPECT_EQ("Item No. 1", 
+              testRooms[0]->getItems()[1]->getName()
+    );}
+\end{lstlisting}
+\subsection{Github Actions}
+A githubnak egy nagyon hasznos funkciója az Actions amivel automatizált Workflow-okat lehet lefuttatni. Mi ennek a funkciónak a segítségével futtatjuk le a megírt teszteket. Ez egy remek újítás, mivel ez megakadályozza a hibás kódok master branchre való feltöltését.
+\begin{figure}[H]
+    \includegraphics[width=1.0\columnwidth]{github_actions.png}
+    \caption{Workflows}\label{fig:6}
+\end{figure}
+\newpage
+
+\section{Fejlesztés menete}
+\subsection{Szoftverfejleszési módszertanok}
+A játék fejlesztéséhez scrum és kanban módszertant törekszünk követni. Ehhez a github "Projektek" felülete nyújt segítséget, ahol egy kanban táblán vesszük fel tevékenységeket amik alkotják a backlogot.
+\begin{figure}[H]
+    \includegraphics[width=1.0\columnwidth]{kanban_scrum.png}
+    \caption{Kanban tábla}\label{fig:7}
+\end{figure}
+\subsection{Dokumentáció}
+\subsubsection{Doxygen}
+A Doxygen nagy segítségnek bizonyult a fejlesztés során, a kódunk megfelelő kommentelésével hasznos dokumentációt készít számunka, hogy megértsük és fel tudjuk használni a másik kódját.
+\begin{figure}[H]
+    \includegraphics[width=1.0\columnwidth]{doxygen_sample.png}
+    \caption{Doxygen}\label{fig:8}
+\end{figure}
 
 \section{Fejlesztési eszközök}
 \begin{itemize}
