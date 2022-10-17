@@ -18,6 +18,8 @@ The world that contains and manages all the rooms, entities. A \mbox{\hyperlink{
 \begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{classWorld}{World}} object. \end{DoxyCompactList}\item 
 nodes \& \mbox{\hyperlink{classWorld_ab33c8044ee9d0d313ecdb49f2ac4e0e6}{get\+World\+Rooms}} ()
 \begin{DoxyCompactList}\small\item\em Get the \mbox{\hyperlink{classWorld}{World}} Rooms object. \end{DoxyCompactList}\item 
+missions \& \mbox{\hyperlink{classWorld_a1c527a7bbe0becc008a87694d823a54b}{get\+World\+Mission}} ()
+\begin{DoxyCompactList}\small\item\em Get the \mbox{\hyperlink{classWorld}{World}} \mbox{\hyperlink{classMission}{Mission}} object. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classWorld_afe1732e0044e49981005d9564f4c1513}{Room\+Factory}} (const std\+::string \&name, int id, const std\+::string \&desc, neighbours nids)
 \begin{DoxyCompactList}\small\item\em Create \mbox{\hyperlink{classRoom}{Room}} with initial params and add it to world\+Rooms. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{tinyxml2\+::\+XMLDocument}} \& \mbox{\hyperlink{classWorld_a9bde3dadff7330368dfa23472b413e15}{get\+Story}} ()
@@ -30,8 +32,14 @@ void \mbox{\hyperlink{classWorld_a7165c451a927399e060fa07a2e6b69d3}{load\+Rooms}
 \begin{DoxyCompactList}\small\item\em This function iterates through the room elements of the world element in the xml file and constructs the rooms of the world. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classWorld_aa7442a677c1c5d5f97c746dfa79768e0}{load\+Entities}} (\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}} $\ast$first\+Ele, node \&r)
 \begin{DoxyCompactList}\small\item\em Load entities from xml doc. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMission}{Mission}} \mbox{\hyperlink{classWorld_a80ac328701bf2fee3450b3395d8e515d}{make\+Mission}} (\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}} $\ast$mission\+Ele)
+\begin{DoxyCompactList}\small\item\em Construct a new mission with a description, then set mission targets. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWorld_a85b75dcb8b3747fff6de80bb4c1d4c77}{load\+World\+Missions}} (\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}} $\ast$missions\+Ele)
+\begin{DoxyCompactList}\small\item\em Load world story missions from xml doc. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classWorld_a3b8b43bcb554d3fffa54f1ac7a6892a9}{init\+World}} (const char $\ast$path2story)
 \begin{DoxyCompactList}\small\item\em Initialize world with the xml story file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWorld_aa3431a1ff14e7a177ded1e037c1941f6}{enter\+Room}} (ent \&e, node \&r)
+\begin{DoxyCompactList}\small\item\em move entity to room \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classWorld_ad4f23168ee864aa7919c2018c4615f77}{destroy\+World}} ()
 \begin{DoxyCompactList}\small\item\em Free resources used by world. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -80,6 +88,23 @@ Construct a new \mbox{\hyperlink{classWorld}{World}} object.
 
 Free resources used by world. 
 
+\mbox{\Hypertarget{classWorld_aa3431a1ff14e7a177ded1e037c1941f6}\label{classWorld_aa3431a1ff14e7a177ded1e037c1941f6}} 
+\index{World@{World}!enterRoom@{enterRoom}}
+\index{enterRoom@{enterRoom}!World@{World}}
+\doxysubsubsection{\texorpdfstring{enterRoom()}{enterRoom()}}
+{\footnotesize\ttfamily void World\+::enter\+Room (\begin{DoxyParamCaption}\item[{ent \&}]{e,  }\item[{node \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+move entity to room 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & \\
+\hline
+{\em room} & \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classWorld_a9bde3dadff7330368dfa23472b413e15}\label{classWorld_a9bde3dadff7330368dfa23472b413e15}} 
 \index{World@{World}!getStory@{getStory}}
 \index{getStory@{getStory}!World@{World}}
@@ -92,6 +117,19 @@ Get the Story object.
 
 \begin{DoxyReturn}{Returns}
 \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{tinyxml2\+::\+XMLDocument}}\& 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWorld_a1c527a7bbe0becc008a87694d823a54b}\label{classWorld_a1c527a7bbe0becc008a87694d823a54b}} 
+\index{World@{World}!getWorldMission@{getWorldMission}}
+\index{getWorldMission@{getWorldMission}!World@{World}}
+\doxysubsubsection{\texorpdfstring{getWorldMission()}{getWorldMission()}}
+{\footnotesize\ttfamily missions \& World\+::get\+World\+Mission (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the \mbox{\hyperlink{classWorld}{World}} \mbox{\hyperlink{classMission}{Mission}} object. 
+
+\begin{DoxyReturn}{Returns}
+missions\& 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classWorld_ab33c8044ee9d0d313ecdb49f2ac4e0e6}\label{classWorld_ab33c8044ee9d0d313ecdb49f2ac4e0e6}} 
 \index{World@{World}!getWorldRooms@{getWorldRooms}}
@@ -151,11 +189,19 @@ This function iterates through the room elements of the world element in the xml
 {\em first\+Room} & \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classWorld_a85b75dcb8b3747fff6de80bb4c1d4c77}\label{classWorld_a85b75dcb8b3747fff6de80bb4c1d4c77}} 
+\index{World@{World}!loadWorldMissions@{loadWorldMissions}}
+\index{loadWorldMissions@{loadWorldMissions}!World@{World}}
+\doxysubsubsection{\texorpdfstring{loadWorldMissions()}{loadWorldMissions()}}
+{\footnotesize\ttfamily void World\+::load\+World\+Missions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}} $\ast$}]{missions\+Ele }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Load world story missions from xml doc. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em first\+Room} & \\
+{\em first\+Ele} & first mission element in xml doc. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classWorld_ac9a7d7ff24cdf209e3cde1fa623cee0d}\label{classWorld_ac9a7d7ff24cdf209e3cde1fa623cee0d}} 
@@ -174,17 +220,25 @@ create inventory
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-items
+items 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classWorld_a80ac328701bf2fee3450b3395d8e515d}\label{classWorld_a80ac328701bf2fee3450b3395d8e515d}} 
+\index{World@{World}!makeMission@{makeMission}}
+\index{makeMission@{makeMission}!World@{World}}
+\doxysubsubsection{\texorpdfstring{makeMission()}{makeMission()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classMission}{Mission}} World\+::make\+Mission (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}} $\ast$}]{mission\+Ele }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+Construct a new mission with a description, then set mission targets. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em inv\+Ele} & (\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}}$\ast$) \\
+{\em mission\+Ele} & \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-items 
+\mbox{\hyperlink{classMission}{Mission}} 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classWorld_ab3bbb24dc8f5f389134d867b247abd74}\label{classWorld_ab3bbb24dc8f5f389134d867b247abd74}} 
 \index{World@{World}!parseConnections@{parseConnections}}
@@ -225,7 +279,6 @@ Create \mbox{\hyperlink{classRoom}{Room}} with initial params and add it to worl
 \end{DoxyParams}
 
 
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-src/engine.\+hpp\item 
-src/engine.\+cpp\end{DoxyCompactItemize}
+src/engine.\+hpp\end{DoxyCompactItemize}

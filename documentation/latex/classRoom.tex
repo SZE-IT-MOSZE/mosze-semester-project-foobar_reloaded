@@ -12,6 +12,8 @@ Part of the \mbox{\hyperlink{classWorld}{World}}. A room that contains items, th
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\mbox{\hyperlink{classRoom_a6444c5cbd53d2120b05a75850ea404cf}{Room}} (const std\+::string \&n, int id, const std\+::string \&desc)
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{classRoom}{Room}} object. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classRoom_a132d556e8031d955cd0c60cd15e21e35}{Room}} (const std\+::string \&n, int id, const std\+::string \&desc, neighbours cn)
 \begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{classRoom}{Room}} object. \end{DoxyCompactList}\item 
 std\+::string \mbox{\hyperlink{classRoom_a767de198f529425dd4ba81810e44d6e4}{get\+Name}} () const
@@ -38,9 +40,8 @@ const items \& \mbox{\hyperlink{classRoom_a3ea7cc3e1150daab366620fd0d6e1d9f}{get
 \begin{DoxyCompactList}\small\item\em Add a bunch of entities to the population of the room. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classRoom}{Room}} \& \mbox{\hyperlink{classRoom_a3e1b856c3f6c5f562796e857fe4777ac}{set\+Lock}} (Lock\+Status stat)
 \begin{DoxyCompactList}\small\item\em Set the Lock object. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classRoom_a0261eb1bbcd1fccb9715fbb1d814a85c}\label{classRoom_a0261eb1bbcd1fccb9715fbb1d814a85c}} 
-const entities \& {\bfseries get\+Population} ()
-\item 
+const entities \& \mbox{\hyperlink{classRoom_a0261eb1bbcd1fccb9715fbb1d814a85c}{get\+Population}} ()
+\begin{DoxyCompactList}\small\item\em Get the Population object. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classRoom_a67d5da09983cc53097807fd43ba5481a}{$\sim$\+Room}} ()
 \begin{DoxyCompactList}\small\item\em Destroy the \mbox{\hyperlink{classRoom}{Room}} object. Reset all nodes in the neighours vector and all items in inventory. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
@@ -56,10 +57,29 @@ Part of the \mbox{\hyperlink{classWorld}{World}}. A room that contains items, th
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classRoom_a6444c5cbd53d2120b05a75850ea404cf}\label{classRoom_a6444c5cbd53d2120b05a75850ea404cf}} 
+\index{Room@{Room}!Room@{Room}}
+\index{Room@{Room}!Room@{Room}}
+\doxysubsubsection{\texorpdfstring{Room()}{Room()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Room\+::\+Room (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{n,  }\item[{int}]{id,  }\item[{const std\+::string \&}]{desc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a new \mbox{\hyperlink{classRoom}{Room}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & (std\+::string\&)\+: Name of the \mbox{\hyperlink{classRoom}{Room}} that cant be changed later. \\
+\hline
+{\em id} & (int)\+: This have to be a unique ID to be able to connect keys with rooms. \\
+\hline
+{\em desc} & (std\+::string\&)\+: Description of the room. Cant be changed later. \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classRoom_a132d556e8031d955cd0c60cd15e21e35}\label{classRoom_a132d556e8031d955cd0c60cd15e21e35}} 
 \index{Room@{Room}!Room@{Room}}
 \index{Room@{Room}!Room@{Room}}
-\doxysubsubsection{\texorpdfstring{Room()}{Room()}}
+\doxysubsubsection{\texorpdfstring{Room()}{Room()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily Room\+::\+Room (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{n,  }\item[{int}]{id,  }\item[{const std\+::string \&}]{desc,  }\item[{neighbours}]{cn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
@@ -73,6 +93,8 @@ Construct a new \mbox{\hyperlink{classRoom}{Room}} object.
 {\em id} & (int)\+: This have to be a unique ID to be able to connect keys with rooms. \\
 \hline
 {\em desc} & (std\+::string\&)\+: Description of the room. Cant be changed later. \\
+\hline
+{\em cn} & Connected neighbours \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classRoom_a67d5da09983cc53097807fd43ba5481a}\label{classRoom_a67d5da09983cc53097807fd43ba5481a}} 
@@ -140,16 +162,6 @@ Add new item to the Inventory of the \mbox{\hyperlink{classRoom}{Room}}.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-\mbox{\hyperlink{classRoom}{Room}}\&
-\end{DoxyReturn}
-
-
-
-\begin{DoxyParams}{Parameters}
-{\em i} & (item\&) new Item \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
 \mbox{\hyperlink{classRoom}{Room}}\& 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classRoom_a93d03e0d911cb12e6eaa1e05eddda1b1}\label{classRoom_a93d03e0d911cb12e6eaa1e05eddda1b1}} 
@@ -161,16 +173,6 @@ Add new item to the Inventory of the \mbox{\hyperlink{classRoom}{Room}}.
 
 
 Add new Items to the Inventory of the \mbox{\hyperlink{classRoom}{Room}}. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em inv} & (items\&) Vector of Items to be added to the Inventory of the \mbox{\hyperlink{classRoom}{Room}} \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-\mbox{\hyperlink{classRoom}{Room}}\&
-\end{DoxyReturn}
-
 
 
 \begin{DoxyParams}{Parameters}
@@ -196,16 +198,6 @@ Add a neighbour to the Neighours object.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-\mbox{\hyperlink{classRoom}{Room}}\&
-\end{DoxyReturn}
-
-
-
-\begin{DoxyParams}{Parameters}
-{\em nn} & (node\&) A new \mbox{\hyperlink{classRoom}{Room}}, that will be added to the Neighbours object. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
 \mbox{\hyperlink{classRoom}{Room}}\& 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classRoom_a3d0835866913e0196cf1e32cd1447126}\label{classRoom_a3d0835866913e0196cf1e32cd1447126}} 
@@ -217,16 +209,6 @@ Add a neighbour to the Neighours object.
 
 
 Add multiple neighbours to the Neighbours object. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em ns} & (nodes\&) Vector of Neighbours object \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-\mbox{\hyperlink{classRoom}{Room}}\&
-\end{DoxyReturn}
-
 
 
 \begin{DoxyParams}{Parameters}
@@ -301,6 +283,19 @@ Get the Neighbours object.
 \begin{DoxyReturn}{Returns}
 neighbours (const nodes) 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classRoom_a0261eb1bbcd1fccb9715fbb1d814a85c}\label{classRoom_a0261eb1bbcd1fccb9715fbb1d814a85c}} 
+\index{Room@{Room}!getPopulation@{getPopulation}}
+\index{getPopulation@{getPopulation}!Room@{Room}}
+\doxysubsubsection{\texorpdfstring{getPopulation()}{getPopulation()}}
+{\footnotesize\ttfamily const entities \& Room\+::get\+Population (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the Population object. 
+
+\begin{DoxyReturn}{Returns}
+const entities\& 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classRoom_a3e1b856c3f6c5f562796e857fe4777ac}\label{classRoom_a3e1b856c3f6c5f562796e857fe4777ac}} 
 \index{Room@{Room}!setLock@{setLock}}
 \index{setLock@{setLock}!Room@{Room}}
@@ -343,7 +338,6 @@ false
 \end{DoxyReturn}
 
 
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-src/engine.\+hpp\item 
-src/engine.\+cpp\end{DoxyCompactItemize}
+src/engine.\+hpp\end{DoxyCompactItemize}

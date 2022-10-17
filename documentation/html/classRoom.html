@@ -85,6 +85,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a6444c5cbd53d2120b05a75850ea404cf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoom.html#a6444c5cbd53d2120b05a75850ea404cf">Room</a> (const std::string &amp;n, int id, const std::string &amp;desc)</td></tr>
+<tr class="memdesc:a6444c5cbd53d2120b05a75850ea404cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classRoom.html" title="Part of the World. A room that contains items, that can be collected, players or npc can move in and ...">Room</a> object.  <a href="classRoom.html#a6444c5cbd53d2120b05a75850ea404cf">More...</a><br /></td></tr>
+<tr class="separator:a6444c5cbd53d2120b05a75850ea404cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a132d556e8031d955cd0c60cd15e21e35"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoom.html#a132d556e8031d955cd0c60cd15e21e35">Room</a> (const std::string &amp;n, int id, const std::string &amp;desc, neighbours cn)</td></tr>
 <tr class="memdesc:a132d556e8031d955cd0c60cd15e21e35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classRoom.html" title="Part of the World. A room that contains items, that can be collected, players or npc can move in and ...">Room</a> object.  <a href="classRoom.html#a132d556e8031d955cd0c60cd15e21e35">More...</a><br /></td></tr>
 <tr class="separator:a132d556e8031d955cd0c60cd15e21e35"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -124,8 +127,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3e1b856c3f6c5f562796e857fe4777ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classRoom.html">Room</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoom.html#a3e1b856c3f6c5f562796e857fe4777ac">setLock</a> (LockStatus stat)</td></tr>
 <tr class="memdesc:a3e1b856c3f6c5f562796e857fe4777ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Lock object.  <a href="classRoom.html#a3e1b856c3f6c5f562796e857fe4777ac">More...</a><br /></td></tr>
 <tr class="separator:a3e1b856c3f6c5f562796e857fe4777ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0261eb1bbcd1fccb9715fbb1d814a85c"><td class="memItemLeft" align="right" valign="top"><a id="a0261eb1bbcd1fccb9715fbb1d814a85c" name="a0261eb1bbcd1fccb9715fbb1d814a85c"></a>
-const entities &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getPopulation</b> ()</td></tr>
+<tr class="memitem:a0261eb1bbcd1fccb9715fbb1d814a85c"><td class="memItemLeft" align="right" valign="top">const entities &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoom.html#a0261eb1bbcd1fccb9715fbb1d814a85c">getPopulation</a> ()</td></tr>
+<tr class="memdesc:a0261eb1bbcd1fccb9715fbb1d814a85c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Population object.  <a href="classRoom.html#a0261eb1bbcd1fccb9715fbb1d814a85c">More...</a><br /></td></tr>
 <tr class="separator:a0261eb1bbcd1fccb9715fbb1d814a85c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67d5da09983cc53097807fd43ba5481a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoom.html#a67d5da09983cc53097807fd43ba5481a">~Room</a> ()</td></tr>
 <tr class="memdesc:a67d5da09983cc53097807fd43ba5481a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy the <a class="el" href="classRoom.html" title="Part of the World. A room that contains items, that can be collected, players or npc can move in and ...">Room</a> object. Reset all nodes in the neighours vector and all items in inventory.  <a href="classRoom.html#a67d5da09983cc53097807fd43ba5481a">More...</a><br /></td></tr>
@@ -140,8 +143,60 @@ Static Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Part of the <a class="el" href="classWorld.html" title="The world that contains and manages all the rooms, entities. A World object will able to parse the st...">World</a>. A room that contains items, that can be collected, players or npc can move in and out of these rooms. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a6444c5cbd53d2120b05a75850ea404cf" name="a6444c5cbd53d2120b05a75850ea404cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6444c5cbd53d2120b05a75850ea404cf">&#9670;&#160;</a></span>Room() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Room::Room </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>n</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>desc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Construct a new <a class="el" href="classRoom.html" title="Part of the World. A room that contains items, that can be collected, players or npc can move in and ...">Room</a> object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>(std::string&amp;): Name of the <a class="el" href="classRoom.html" title="Part of the World. A room that contains items, that can be collected, players or npc can move in and ...">Room</a> that cant be changed later. </td></tr>
+    <tr><td class="paramname">id</td><td>(int): This have to be a unique ID to be able to connect keys with rooms. </td></tr>
+    <tr><td class="paramname">desc</td><td>(std::string&amp;): Description of the room. Cant be changed later. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a132d556e8031d955cd0c60cd15e21e35" name="a132d556e8031d955cd0c60cd15e21e35"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a132d556e8031d955cd0c60cd15e21e35">&#9670;&#160;</a></span>Room()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a132d556e8031d955cd0c60cd15e21e35">&#9670;&#160;</a></span>Room() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -192,6 +247,7 @@ Static Public Member Functions</h2></td></tr>
     <tr><td class="paramname">n</td><td>(std::string&amp;): Name of the <a class="el" href="classRoom.html" title="Part of the World. A room that contains items, that can be collected, players or npc can move in and ...">Room</a> that cant be changed later. </td></tr>
     <tr><td class="paramname">id</td><td>(int): This have to be a unique ID to be able to connect keys with rooms. </td></tr>
     <tr><td class="paramname">desc</td><td>(std::string&amp;): Description of the room. Cant be changed later. </td></tr>
+    <tr><td class="paramname">cn</td><td>Connected neighbours </td></tr>
   </table>
   </dd>
 </dl>
@@ -327,13 +383,6 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classRoom.html" title="Part of the World. A room that contains items, that can be collected, players or npc can move in and ...">Room</a>&amp;</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">i</td><td>(item&amp;) new Item </td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="classRoom.html" title="Part of the World. A room that contains items, that can be collected, players or npc can move in and ...">Room</a>&amp; </dd></dl>
 
 </div>
@@ -363,13 +412,6 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Add new Items to the Inventory of the <a class="el" href="classRoom.html" title="Part of the World. A room that contains items, that can be collected, players or npc can move in and ...">Room</a>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">inv</td><td>(items&amp;) Vector of Items to be added to the Inventory of the <a class="el" href="classRoom.html" title="Part of the World. A room that contains items, that can be collected, players or npc can move in and ...">Room</a> </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classRoom.html" title="Part of the World. A room that contains items, that can be collected, players or npc can move in and ...">Room</a>&amp;</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">inv</td><td>(items&amp;) Vector of Items to be added to the Inventory of the <a class="el" href="classRoom.html" title="Part of the World. A room that contains items, that can be collected, players or npc can move in and ...">Room</a> </td></tr>
@@ -411,13 +453,6 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classRoom.html" title="Part of the World. A room that contains items, that can be collected, players or npc can move in and ...">Room</a>&amp;</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">nn</td><td>(node&amp;) A new <a class="el" href="classRoom.html" title="Part of the World. A room that contains items, that can be collected, players or npc can move in and ...">Room</a>, that will be added to the Neighbours object. </td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="classRoom.html" title="Part of the World. A room that contains items, that can be collected, players or npc can move in and ...">Room</a>&amp; </dd></dl>
 
 </div>
@@ -447,13 +482,6 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Add multiple neighbours to the Neighbours object. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ns</td><td>(nodes&amp;) Vector of Neighbours object </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classRoom.html" title="Part of the World. A room that contains items, that can be collected, players or npc can move in and ...">Room</a>&amp;</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ns</td><td>(nodes&amp;) Vector of Neighbours object </td></tr>
@@ -604,6 +632,34 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a0261eb1bbcd1fccb9715fbb1d814a85c" name="a0261eb1bbcd1fccb9715fbb1d814a85c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0261eb1bbcd1fccb9715fbb1d814a85c">&#9670;&#160;</a></span>getPopulation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const entities &amp; Room::getPopulation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the Population object. </p>
+<dl class="section return"><dt>Returns</dt><dd>const entities&amp; </dd></dl>
+
+</div>
+</div>
 <a id="a3e1b856c3f6c5f562796e857fe4777ac" name="a3e1b856c3f6c5f562796e857fe4777ac"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3e1b856c3f6c5f562796e857fe4777ac">&#9670;&#160;</a></span>setLock()</h2>
 
@@ -687,9 +743,8 @@ false </dd></dl>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/<a class="el" href="engine_8hpp_source.html">engine.hpp</a></li>
-<li>src/engine.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

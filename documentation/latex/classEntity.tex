@@ -21,7 +21,13 @@ std\+::string \mbox{\hyperlink{classEntity_a403f69eb888da7c5a690b79c658cdf47}{ge
 \mbox{\hyperlink{classEntity}{Entity}} \& \mbox{\hyperlink{classEntity_a9b0ef78013c984bc8cd8944332a14058}{add\+Items}} (items \&i)
 \begin{DoxyCompactList}\small\item\em Add multiple items from an item vector to the entity\textquotesingle{}s inventory. \end{DoxyCompactList}\item 
 items \& \mbox{\hyperlink{classEntity_a38aad2959e7cbeaf15aa0dbf71df66c5}{get\+Inventory}} ()
-\begin{DoxyCompactList}\small\item\em Get the Inventory object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Get the Inventory object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classEntity_adf18cdc1c033d4e4a42dba746b5fd831}\label{classEntity_adf18cdc1c033d4e4a42dba746b5fd831}} 
+int {\bfseries get\+Location} ()
+\item 
+\mbox{\Hypertarget{classEntity_a56dfa77b16a99939f8e17446aac4d0fc}\label{classEntity_a56dfa77b16a99939f8e17446aac4d0fc}} 
+\mbox{\hyperlink{classEntity}{Entity}} \& {\bfseries set\+Location} (int room\+ID)
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -57,16 +63,6 @@ Construct a new \mbox{\hyperlink{classEntity}{Entity}} object.
 
 
 Add Item to \mbox{\hyperlink{classEntity}{Entity}}\textquotesingle{}s inventory. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em i} & (item\&)\+: Item to move to \mbox{\hyperlink{classEntity}{Entity}}\textquotesingle{}s inventory \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-\mbox{\hyperlink{classEntity}{Entity}}\&
-\end{DoxyReturn}
-
 
 
 \begin{DoxyParams}{Parameters}
@@ -122,7 +118,6 @@ std\+::string
 \end{DoxyReturn}
 
 
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-src/engine.\+hpp\item 
-src/engine.\+cpp\end{DoxyCompactItemize}
+src/engine.\+hpp\end{DoxyCompactItemize}
