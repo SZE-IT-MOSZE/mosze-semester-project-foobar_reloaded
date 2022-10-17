@@ -108,7 +108,23 @@ public:
 class Key : public Object {
 	const int keyID;
 public:
+	/**
+	 * @brief Construct a new Key object
+	 * 
+	 * @param kid The key id should be identical to the room's it opens
+	 * @param n The name of the key
+	 * @param id The uniqe item id of the key
+	 * @param d A description that describes the keys look, use, etc.
+	 */
 	Key(const int kid, const std::string& n, const int id, const std::string& d) : Object(n, id, d), keyID(kid) {}
+	/**
+	 * @brief Get the KeyID of the key 
+	 * 
+	 * @return int 
+	 */
+	int getKeyID() {
+		return keyID;
+	}
 };
 
 /**
@@ -268,7 +284,7 @@ public:
 	 * 
 	 * @return items const& 
 	 */
-	const items& getItems() {return inventory;}	
+	items& getItems() {return inventory;}	
 	/**
 	 * @brief Add new item to the Inventory of the Room 
 	 * 
@@ -324,7 +340,7 @@ public:
 		return *this;
 	}
 	/**
-	 * @brief With the right key the room given in the argument can be unlocked.
+	 * @brief With the right key the room given in the argument can be unlocked. If the key fits the door, after it unlocked the room, it cant be used anymore.
 	 * 
 	 * @param k key to unlock the room
 	 * @param r room to be unlocked
@@ -333,13 +349,25 @@ public:
 	 */
 	bool static unlock(item& k, node& r) {
 		Key* k2r = dynamic_cast<Key*>(k.release());
-		if (k2r != nullptr && k->getID() == r->getID()) {
+		if (k2r != nullptr && k2r->getKeyID() == r->getID()) {
 			r->setLock(unlocked);
 			delete k2r;
 			return true;
 		}
 		Object* o = dynamic_cast<Object*>(k2r);
 		k = std::make_unique<Object>(*o);
+		return false;
+	}
+	/**
+	 * @brief Check wheter room is locked or not. Returns true if locked, false otherwise.
+	 * 
+	 * @return true 
+	 * @return false 
+	 */
+	bool isLocked() {
+		if ( lock == locked ) {
+			return true;
+		}
 		return false;
 	}
 	/**
