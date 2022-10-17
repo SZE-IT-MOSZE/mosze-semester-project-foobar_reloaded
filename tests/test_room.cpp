@@ -1,5 +1,9 @@
 #include <gtest/gtest.h>
 #include "engine.hpp"
+/**
+ * @brief This cpp file is intended to test the methods of class Room 
+ * 
+ */
 
 class RoomTest : public ::testing::Test {
     protected:

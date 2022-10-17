@@ -28,7 +28,7 @@ neighbours \mbox{\hyperlink{classRoom_acb1d70492c33d7ea25ddceaf7efa10b6}{get\+Ne
 \begin{DoxyCompactList}\small\item\em Add a neighbour to the Neighours object. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classRoom}{Room}} \& \mbox{\hyperlink{classRoom_a3d0835866913e0196cf1e32cd1447126}{add\+Neighbours}} (neighbours rids)
 \begin{DoxyCompactList}\small\item\em Add multiple neighbours to the Neighbours object. \end{DoxyCompactList}\item 
-const items \& \mbox{\hyperlink{classRoom_a3ea7cc3e1150daab366620fd0d6e1d9f}{get\+Items}} ()
+items \& \mbox{\hyperlink{classRoom_a40bed777c79ab2b9a3d0f8bf28eb008d}{get\+Items}} ()
 \begin{DoxyCompactList}\small\item\em Get the Items object. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classRoom}{Room}} \& \mbox{\hyperlink{classRoom_a2a53e91b4f576003f4aa357dfc9a1d70}{add\+Item}} (item \&i)
 \begin{DoxyCompactList}\small\item\em Add new item to the Inventory of the \mbox{\hyperlink{classRoom}{Room}}. \end{DoxyCompactList}\item 
@@ -40,6 +40,8 @@ const items \& \mbox{\hyperlink{classRoom_a3ea7cc3e1150daab366620fd0d6e1d9f}{get
 \begin{DoxyCompactList}\small\item\em Add a bunch of entities to the population of the room. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classRoom}{Room}} \& \mbox{\hyperlink{classRoom_a3e1b856c3f6c5f562796e857fe4777ac}{set\+Lock}} (Lock\+Status stat)
 \begin{DoxyCompactList}\small\item\em Set the Lock object. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classRoom_adc25ce4a3d509baf2d74ce4feaadcfbd}{is\+Locked}} ()
+\begin{DoxyCompactList}\small\item\em Check wheter room is locked or not. Returns true if locked, false otherwise. \end{DoxyCompactList}\item 
 const entities \& \mbox{\hyperlink{classRoom_a0261eb1bbcd1fccb9715fbb1d814a85c}{get\+Population}} ()
 \begin{DoxyCompactList}\small\item\em Get the Population object. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classRoom_a67d5da09983cc53097807fd43ba5481a}{$\sim$\+Room}} ()
@@ -48,7 +50,7 @@ const entities \& \mbox{\hyperlink{classRoom_a0261eb1bbcd1fccb9715fbb1d814a85c}{
 \begin{DoxyCompactItemize}
 \item 
 static bool \mbox{\hyperlink{classRoom_a10b2b4671e8c461ba07716486c59b30d}{unlock}} (item \&k, node \&r)
-\begin{DoxyCompactList}\small\item\em With the right key the room given in the argument can be unlocked. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em With the right key the room given in the argument can be unlocked. If the key fits the door, after it unlocked the room, it cant be used anymore. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -244,11 +246,11 @@ Get the room\+ID of the \mbox{\hyperlink{classRoom}{Room}}.
 \begin{DoxyReturn}{Returns}
 room\+ID (int) 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classRoom_a3ea7cc3e1150daab366620fd0d6e1d9f}\label{classRoom_a3ea7cc3e1150daab366620fd0d6e1d9f}} 
+\mbox{\Hypertarget{classRoom_a40bed777c79ab2b9a3d0f8bf28eb008d}\label{classRoom_a40bed777c79ab2b9a3d0f8bf28eb008d}} 
 \index{Room@{Room}!getItems@{getItems}}
 \index{getItems@{getItems}!Room@{Room}}
 \doxysubsubsection{\texorpdfstring{getItems()}{getItems()}}
-{\footnotesize\ttfamily const items \& Room\+::get\+Items (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily items \& Room\+::get\+Items (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -296,6 +298,21 @@ Get the Population object.
 \begin{DoxyReturn}{Returns}
 const entities\& 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classRoom_adc25ce4a3d509baf2d74ce4feaadcfbd}\label{classRoom_adc25ce4a3d509baf2d74ce4feaadcfbd}} 
+\index{Room@{Room}!isLocked@{isLocked}}
+\index{isLocked@{isLocked}!Room@{Room}}
+\doxysubsubsection{\texorpdfstring{isLocked()}{isLocked()}}
+{\footnotesize\ttfamily bool Room\+::is\+Locked (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check wheter room is locked or not. Returns true if locked, false otherwise. 
+
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classRoom_a3e1b856c3f6c5f562796e857fe4777ac}\label{classRoom_a3e1b856c3f6c5f562796e857fe4777ac}} 
 \index{Room@{Room}!setLock@{setLock}}
 \index{setLock@{setLock}!Room@{Room}}
@@ -322,7 +339,7 @@ Set the Lock object.
 
 
 
-With the right key the room given in the argument can be unlocked. 
+With the right key the room given in the argument can be unlocked. If the key fits the door, after it unlocked the room, it cant be used anymore. 
 
 
 \begin{DoxyParams}{Parameters}

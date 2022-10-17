@@ -151,12 +151,11 @@ TEST_F(RoomTest, test_Item_operation_methods) {
     // because addItem moved it to the Room's inventory
     EXPECT_EQ(nullptr, testItems[0].get()); 
     EXPECT_EQ(nullptr, testItems[1].get()); // Same as above
-    EXPECT_EQ("Item No. 0", 
-              testRooms[0]->getItems()[0]->getName()
-    );
-    EXPECT_EQ("Item No. 1", 
-              testRooms[0]->getItems()[1]->getName()
-    );}
+    EXPECT_STREQ(std::string("Item No. 0").c_str(), 
+                testRooms[0]->getItems()[0]->getName().c_str());
+    EXPECT_STREQ(std::string("Item No. 1").c_str(), 
+                testRooms[0]->getItems()[1]->getName().c_str());
+    }
 \end{lstlisting}
 \subsection{Github Actions}
 A githubnak egy nagyon hasznos funkciója az Actions amivel automatizált Workflow-okat lehet lefuttatni. Mi ennek a funkciónak a segítségével futtatjuk le a megírt teszteket. Ez egy remek újítás, mivel ez megakadályozza a hibás kódok master branchre való feltöltését.
@@ -168,7 +167,7 @@ A githubnak egy nagyon hasznos funkciója az Actions amivel automatizált Workfl
 
 \section{Fejlesztés menete}
 \subsection{Szoftverfejleszési módszertanok}
-A játék fejlesztéséhez scrum és kanban módszertant törekszünk követni. Ehhez a github "Projektek" felülete nyújt segítséget, ahol egy kanban táblán vesszük fel tevékenységeket amik alkotják a backlogot.
+A játék fejlesztéséhez scrum és kanban módszertant törekszünk követni. Ehhez a github "Projektek" felülete nyújt segítséget, ahol egy kanban táblán vesszük fel a tevékeny-\\ségeket amik alkotják a backlogot.
 \begin{figure}[H]
     \includegraphics[width=1.0\columnwidth]{kanban_scrum.png}
     \caption{Kanban tábla}\label{fig:7}
