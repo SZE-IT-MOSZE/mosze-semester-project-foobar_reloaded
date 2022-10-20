@@ -6,14 +6,16 @@
 \usepackage{listings}
 
 \title{SpaceWalk The Game}
-\author{Péter Bence, Vasánszki Milán, Székely Katalin, Tóth Balázs\\A Foobar Reloaded csapata}
+\author{Péter Bence, Vasánszki Milán, Székely Katalin, Tóth Balázs\\A Foobar Reloaded csapata\\Modern szoftverfejlesztési eszközök\\GKNB\_INTM006}
 \date{October 2022}
 
 \begin{document}
 
 \maketitle
+\begin{figure}[H]\centering
+    \includegraphics[width=0.4\columnwidth]{sze_logo.png}\label{fig:logo}
+\end{figure}
 \newpage
-
 \tableofcontents
 \newpage
 
@@ -21,7 +23,7 @@
 Ez a specifikáció egy szöveges, szerepjátékos űrkalandjátékhoz készült. A játék- ban mozoghatsz szobáról szobára, gyűjthetsz tárgyakat és új utakat nyithatsz meg a játék világának felfedezéséhez. Találkozhatsz és interakcióba léphetsz NPC-kkel. A program a felhasználótól vár egyszerűbb parancsokat, amelyeket később eseményként megjelenít. A történet 20 mélységű. Az alkalmazás a felhasználó által adott helytelen bemenetre hibaüzenettel válaszol.
 
 \section{Történetvázlat}
-Az év 2094. A mesterséges intelligencia teljes mértékben átvette az irányítást a Föld nevezetű bolygó felett 30 évvel ezelőtt. De nem úgy ahogy gondolod kedves PLAYERNAME. 2064-ben kifejlesztették az Oázis AI-t, ami egyedül azt a cél szolgálja, hogy az emberek kényelemben éljenek. A tökéletes utópisztikus világ, ahol az emberek azért jönnek a Földre, hogy jól érezzék magukat, azzal foglalkozzanak, amivel csak akarnak, és akkor, amikor akarnak. Minden unalmas és monoton feladat elvégzését átvették a robotok és az OAI. Ebbe beletartozik a teljesen automatikus házvezetés, takarítás, bevásárlás, és még a főzés is. Nem kevés következménnyel járt ez az átállás. Beolvasztották az összes fegyvert, megszüntették az autókat, és csak is mindenki buszokkal, vagy kijelölt szállítási eszközzel közlekedhet. A 2045-ös jégkorszak után nagymértékben megcsappant a Föld lakossága. A tervezett 9,44 milliárd ember helyett kevesebb, mint 1 milliárd maradt. Itt kezdődik a napod. Ma van a huszonötödik születésnapod, és nagy terveid vannak a mai napra. Megnyitott az első űr bár és szálló, amit pár nappal ezelőtt állítottak Föld körüli pályára, és benne vagy a szerencsés 100 ember között, akik részt vehetnek a megnyitó rendezvényen. A SpaceWalk™ nevezetű bár óriási hírnévnek örvend. Több tíz éve beszélnek róla, hogy folyamatosan építik, részről részre szobáról szobára. Most ért véget az építkezés, és mindenki részt akar venni a megnyitón. Nagyon sok feltételnek meg kellett felelni, és ezen kívül egy pályázatot is be kellett adni, hogy miért te legyél a kiválasztott, aki részt vehet ezen a rendezvényen. Az, hogy izgatott vagy az egy enyhe alábecslés. Miket is ígér a SpaceWalk™? Kezdésnek egy űrsétával kezdődik az este, ami a legelső dolog, miután megérkezel az űrállomáshoz. Ezek után svédasztalos vacsora, korlátlan bár fogyasztás, diszkó, és az éjszaka végén kényelmes ágyak várják a vendégeket a hotel szobákban.  Az este nagyon jól telt, viszont az éjszaka folyamán, rázkódásra ébredsz, és nem tudod mi történik. Vajon egy aszteroida találhatta el az állomást? Vagy valami meghibásodás állhat a háttérben? Lehet szabotázs? Elképzelhető, hogy ennél sokkal sötétebb történések állhatnak a háttérben? Derítsük ki!
+Az év 2094. A mesterséges intelligencia teljes mértékben átvette az irányítást a Föld nevezetű bolygó felett 30 évvel ezelőtt. De nem úgy ahogy gondolod kedves PLAYERNAME. 2064-ben kifejlesztették az Oázis AI-t, ami egyedül azt a cél szolgálja, hogy az emberek kényelemben éljenek. A tökéletes utópisztikus világ, ahol az emberek azért jönnek a Földre, hogy jól érezzék magukat, azzal foglalkozzanak, amivel csak akarnak, és akkor, amikor akarnak. Minden unalmas és monoton feladat elvégzését átvették a robotok és az OAI. Ebbe beletartozik a teljesen automatizált házvezetés, takarítás, bevásárlás, és még a főzés is. Nem kevés következménnyel járt ez az átállás. Beolvasztották az összes fegyvert, megszüntették az autókat, és csak is mindenki buszokkal, vagy kijelölt szállítási eszközzel közlekedhet. A 2045-ös jégkorszak után nagymértékben megcsappant a Föld lakossága. A tervezett 9,44 milliárd ember helyett kevesebb, mint 1 milliárd maradt. Itt kezdődik a napod. Ma van a huszonötödik születésnapod, és nagy terveid vannak a mai napra. Megnyitott az első űr bár és szálló, amit pár nappal ezelőtt állítottak Föld körüli pályára, és benne vagy a szerencsés 100 ember között, akik részt vehetnek a megnyitó rendezvényen. A SpaceWalk™ nevezetű bár óriási hírnévnek örvend. Több tíz éve beszélnek róla, hogy folyamatosan építik, részről részre szobáról szobára. Most ért véget az építkezés, és mindenki részt akar venni a megnyitón. Nagyon sok feltételnek meg kellett felelni, és ezen kívül egy pályázatot is be kellett adni, hogy miért te legyél a kiválasztott, aki részt vehet ezen a rendezvényen. Az, hogy izgatott vagy az egy enyhe alábecslés. Miket is ígér a SpaceWalk™? Kezdésnek egy űrsétával kezdődik az este, ami a legelső dolog, miután megérkezel az űrállomáshoz. Ezek után svédasztalos vacsora, korlátlan bár fogyasztás, diszkó, és az éjszaka végén kényelmes ágyak várják a vendégeket a hotel szobákban.  Az este nagyon jól telt, viszont az éjszaka folyamán, rázkódásra ébredsz, és nem tudod mi történik. Vajon egy aszteroida találhatta el az állomást? Vagy valami meghibásodás állhat a háttérben? Lehet szabotázs? Elképzelhető, hogy ennél sokkal sötétebb történések állhatnak a háttérben? Derítsük ki!
 
 \section{Használati esetek}
 \begin{table}[H] \centering
@@ -172,6 +174,7 @@ A játék fejlesztéséhez scrum és kanban módszertant törekszünk követni. 
     \includegraphics[width=1.0\columnwidth]{kanban_scrum.png}
     \caption{Kanban tábla}\label{fig:7}
 \end{figure}
+\newpage
 \subsection{Dokumentáció}
 \subsubsection{Doxygen}
 A Doxygen nagy segítségnek bizonyult a fejlesztés során, a kódunk megfelelő kommentelésével hasznos dokumentációt készít számunka, hogy megértsük és fel tudjuk használni a másik kódját.
@@ -196,11 +199,37 @@ A Doxygen nagy segítségnek bizonyult a fejlesztés során, a kódunk megfelel�
 
 \section{Glossary}
 \begin{itemize}
-   \item űrkalandjáték: 
-   \item NPC Non - Playable Character: A gép által vezérelt entitás.
-   \item utópia: 
-   \item sci-fi:
-   \item mesterséges intelligencia: 
+    \item Űrkalandjáték: Olyan játék, melynek fő helyszíne a világűr.
+    \item Világűr: Az egyes égitestek között jelenlévő légüres tér (vákuum).
+    \item Mesterséges intelligencia (Artificial Intelligence - AI): Egy gép, program vagy mesterségesen létrehozott tudat által megnyilvánuló intelligencia.
+    \item NPC (Non-Playable Character): Olyan karaktert jelöl a játékban, melyet a játékos nem tud irányítani.
+    \item Utópia: Olyan, általában jövőbeli társadalom, mely tökéletes vagy közel tökéletes. (Pl.: Platón - Állam)
+    \item Disztópia: Az utópia ellentéte, azaz olyan társadalom, mely szétesőben van vagy az összeomlás felé tart, vagy már el is érte azt. Gyakori témái a háború, az erőszak, az elnyomás és a diktatúra. (Pl.: George Orwell - 1984)
+    \item Sci-Fi (Science-Fiction): Olyan alkotás, mely létező vagy kitalált tudományoknak a társadalomra gyakorolt hatását mutatja be.
+    \item Jégkorszak: Olyan időszak, amikor az adott égitesten állandó sarki jégtakaró van jelen.
+    \item Űrséta: Olyan speciális tevékenység, melynek során az űrhajós teste, vagy testének egy része az űrhajón kívülre kerül.
+    \item Aszteroida: 1 méterestől akár 1000 kilométeres átmérőig terjedő, szabálytalan alakú, szilárd anyagú égitest, amely nem rendelkezik atmoszférával, és csillag körül kering.
+    \item Szabotázs: Romboló tevékenység, melynek célja valamilyen folyamat késleltetése.
+    \item Speifikáció: Részletes ismertető, a tulajdonságok felsorolása és leírása.
+    \item Monoton: Egyhangú, változatosság nélküli tevékenység.
+    \item Űrállomás: Életfenntartó rendszerrel berendezett bolygó vagy hold körüli pályán keringő űreszköz.
+    \item Svédasztal: Ételek felszolgálási módja, mely során egy külön asztalon mutatják be az ételeket és a vendégek igényeiknek megfelelően válogathatnak az asztalról.
+    \item Diszkó: Szórakozhely, népszerű zenékkel és tánccal.
+    \item Történetvázlat: Rövid, nagy vonalakban történő leírás a történetről és eseményekről. 
+    \item Használati eset / use case: Leírja a modellezendő redszer és a környezete kapcsolatát. Célja a követelményrögzítés.
+    \item Tesztelés: Olyan folyamat, amely a szoftverfejlesztési életciklushoz kapcsolódik és különböző tevékenységekből tevődik össze. Célja hogy megtalálja a hibákat illetve megnézze, hogy a szotvertermék teljesíti-e a meghatározott követelményeket.
+    \item Módszertan: Alkalmazási mód, különböző eljárások és módszerek összessége amelyeket tudatosan felhasználunk a cél elérése érdekében.
+    \item XMl: Extensible Markup Language azaz kiterjeszthető jelölőnyelv. Lehetővé teszi egyéni információs formátumok létrehozását és használatát.
+    \item TinyXML2: C++ XML-elemző, amely könnyen integrálható más programokba mert egyszerű és hatékony.
+    \item GoogleTest: Egy tesztelési keretrendszer, amely platformfüggetlen, nem csak az unit teszteket támogatja, gyors és könnyen tanulható. 
+    \item Workflow: Munkafolyamat, egy kitűzött cél elérése érdekében végrehajtott tevékeny-ségek ésszerű sorrendje. 
+    \item Scrum: Agilis módszertan szigorú szabályokkal és tág felelősségi körökkel.
+    \item Kanban: Emberek csoportos munkájának menedzselésére és fejlesztésére kialakított ütemezési rendszer.
+    \item Git: Gráfalapú nyílt forráskódú verziókezelő rendszer.
+    \item Github: A Microsoft által üzemeltetett felhőalapú git protokollt használó verziókezelő tárhely. 
+    \item VSCode: Ingyenes, nyílt forráskódú kódszerkesztő a modern webes és felhőalapú alkalmazások építéséhez és hibakereséséhez.
+    \item Word: A Microsoft által készített dokumetumszerkesztő program.
+    \item Discord: Ingyenes VoIP alkalmazás, amely lehetőséget nyújt a felhasználók közötti kommunikációra.
+    \item Messenger: Üzenetküldő platform, amit a Facebook fejleszett ki.  
 \end{itemize}
-
 \end{document}
