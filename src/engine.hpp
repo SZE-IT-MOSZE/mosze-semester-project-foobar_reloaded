@@ -11,6 +11,8 @@ class World;
 class Object;
 class Room;
 class Entity;
+class Player;
+class NPC;
 class Mission;
 class Choice;
 
@@ -28,7 +30,7 @@ typedef std::unique_ptr<Object> item;
  * @typedef Entity wrapped in shared_ptr, so World can keep track.
  * 
  */
-typedef std::unique_ptr<Entity> ent;
+typedef std::unique_ptr<NPC> npc;
 /**
  * @typedef Vector of nodes.
  * 
@@ -48,7 +50,7 @@ typedef std::vector<item> items;
  * @typedef Vector of entities.
  * 
  */
-typedef std::vector<ent> entities;
+typedef std::vector<npc> npcs;
 /**
  * @typedef Connection of two rooms represented with the ID's of the rooms.
  * 
@@ -60,7 +62,7 @@ typedef std::pair<int, std::vector<int>> roomConnection;
  */
 typedef std::vector<Mission> missions;
 
-enum missionStatus{finished, in_progress};
+enum missionStatus{finished, active, unactive};
 
 /**
  * @brief Base class for any object that can be owned by an Entity or Room.
@@ -132,9 +134,9 @@ public:
  * 
  */
 class Entity {
+protected:
 	const std::string name;
 	items inventory;
-	int location;
 	int hp;
 	int stamina;
 	int intelligence;
@@ -182,18 +184,65 @@ public:
 	items& getInventory() {
 		return inventory;
 	}
-	int getLocation() {
-		return location;
-	}
-	Entity& setLocation(int roomID) {
-		this->location = roomID;
-		return *this;
-	}
+	
 	virtual ~Entity() {
 		for (items::iterator it = inventory.begin(); it != inventory.end(); it++) {
 			it->reset();
 		}
 	}
+};
+
+class Player : public Entity {
+	Room* location;
+public:
+	/**
+	 * @brief Construct a new Player object with Default values.
+	 * 
+	 */
+	Player() : Entity("Default") {}
+	/**
+	 * @brief Construct a new Player object, giving it an initial location.
+	 * 
+	 * @param n 
+	 * @param init_location 
+	 */
+	Player(const std::string& n, Room* init_location) : Entity(n), location(init_location) {}
+	/**
+	 * @brief Get the Location of the Entity by returning the pointer to the Room. 
+	 * 
+	 * @return Room* 
+	 */
+	Room* getLocation() {
+		return location;
+	}
+	/**
+	 * @brief Set the Location of the Entity by giving the pointer of the Room. 
+	 * 
+	 * @param room_ptr 
+	 * @return Entity& 
+	 */
+	Entity& setLocation(Room* room_ptr) {
+		this->location = room_ptr;
+		return *this;
+	}
+};
+
+class NPC : public Entity {
+	std::string dialog;
+	missions missions_to_give;
+public:
+	/**
+	 * @brief Construct a new NPC object, giving it a dialog and missions that can be accepted by the player.
+	 * 
+	 * @param n 
+	 * @param d 
+	 * @param m 
+	 */
+	NPC(const std::string& n,  const std::string& d, missions m) : Entity(n), dialog(d), missions_to_give(m) {}
+	missions& getMissions() {
+		return missions_to_give;
+	}
+	std::string getDialog() {return dialog;}
 };
 
 /**
@@ -212,7 +261,7 @@ class Room {
 	const int roomID; // ID of the room, that connects a key to this room.
 	const std::string description; // Description of the room.
 	LockStatus lock;
-	entities roomPopulation;
+	npcs roomPopulation;
 	neighbours connectedRooms; // Neighbouring rooms.
 	items inventory; // Items, that can be found in the room.
 public:
@@ -313,7 +362,7 @@ public:
 	 * @param e 
 	 * @return Room& 
 	 */
-	Room& addEntity(ent& e) {
+	Room& addEntity(npc& e) {
 		roomPopulation.emplace_back(std::move(e));
 		return *this;
 	}
@@ -323,8 +372,8 @@ public:
 	 * @param ents 
 	 * @return Room& 
 	 */
-	Room& addEntities(entities& ents) {
-		for (entities::iterator it = ents.begin(); it != ents.end(); it++) {
+	Room& addEntities(npcs& ents) {
+		for (npcs::iterator it = ents.begin(); it != ents.end(); it++) {
 			this->addEntity(*it);
 		}
 		return *this;
@@ -375,7 +424,7 @@ public:
 	 * 
 	 * @return const entities& 
 	 */
-	const entities& getPopulation() {return roomPopulation;}
+	const npcs& getPopulation() {return roomPopulation;}
 	/**
 	 * @brief Destroy the Room object. Reset all nodes in the neighours vector and all items in inventory.
 	 *
@@ -385,7 +434,7 @@ public:
 		for (items::iterator iit = inventory.begin(); iit != inventory.end(); iit++) {
 			iit->reset();
 		}
-		for (entities::iterator eit = roomPopulation.begin(); eit != roomPopulation.end(); eit++) {
+		for (npcs::iterator eit = roomPopulation.begin(); eit != roomPopulation.end(); eit++) {
 			eit->reset();
 		}
 	}
@@ -454,9 +503,9 @@ public:
 	 * @return true 
 	 * @return false 
 	 */
-	bool checkStatus(ent& player) {
+	bool checkStatus(Player& player) {
 		if (targetRoom == -1) {
-			for (auto rit = player->getInventory().cbegin(); rit != player->getInventory().cend(); rit++) {
+			for (auto rit = player.getInventory().cbegin(); rit != player.getInventory().cend(); rit++) {
 				if (targetItem == (*rit)->getID()) {
 					this->complete();
 					return true;
@@ -464,20 +513,20 @@ public:
 			}
 		}
 		if (targetItem == -1) {
-			if (player->getLocation() == targetRoom) {
+			if (player.getLocation()->getID() == targetRoom) {
 				this->complete();
 				return true;
 			}
 		}
 		if (targetItem != -1 && targetRoom != -1) {
 			int completed = 0;
-			for (auto rit = player->getInventory().cbegin(); rit != player->getInventory().cend(); rit++) {
+			for (auto rit = player.getInventory().cbegin(); rit != player.getInventory().cend(); rit++) {
 				if (targetItem == (*rit)->getID()) {
 					completed++;
 					break;
 				}
 			}
-			if (player->getLocation() == targetRoom) {
+			if (player.getLocation()->getID() == targetRoom) {
 				completed++;
 			}
 			if (completed == 2) {
@@ -486,6 +535,10 @@ public:
 			}
 		}
 		return false;
+	}
+	Mission& startMission() {
+		status = active;
+		return *this;
 	}
 };
 
@@ -498,13 +551,9 @@ class World {
 	std::string title;
 	nodes worldRooms;
 	tinyxml2::XMLDocument story;
-	ent player;
-	missions storyline;	
+	Player player;
+	missions active_missions;	
 public:
-	/**
-	 * @brief Construct a new World object
-	 * 
-	 */
 	World() {}
 	/**
 	 * @brief Construct a new World object
@@ -528,7 +577,7 @@ public:
 	 * @return missions& 
 	 */
 	missions& getWorldMission() {
-		return storyline;
+		return active_missions;
 	}
 	/**
 	 * @brief Create Room with initial params and add it to worldRooms.
@@ -621,21 +670,20 @@ public:
 	 * 
 	 * @param firstEle 
 	 */
-	int loadEntities(tinyxml2::XMLElement* firstEle, node& r) {
+	void loadEntities(tinyxml2::XMLElement* firstEle, node& r) {
 		tinyxml2::XMLElement* actual = firstEle;
-		int counter = 0;
 		while(actual) {
 			const std::string name = actual->FirstChildElement("name")->GetText();
+			const std::string dialog = actual->FirstChildElement("dialog")->GetText();
 			tinyxml2::XMLElement* invele = actual->FirstChildElement("inventory");
 			items inv = makeInventory(invele);
-			ent newEnt = std::make_unique<Entity>(name);
+			tinyxml2::XMLElement* missionEle = actual->FirstChildElement("missions");
+			missions npc_missions = loadNPCMissions(missionEle);
+			npc newEnt = std::make_unique<NPC>(name, dialog, npc_missions);
 			newEnt->addItems(inv);
 			r->addEntity(newEnt);
-			r->getPopulation().back()->setLocation(r->getID());
 			actual = actual->NextSiblingElement("entity");
-			counter++;
 		}
-		return counter;
 	}
 	/**
 	 * @brief Construct a new mission with a description, then set mission targets.
@@ -673,10 +721,27 @@ public:
 		tinyxml2::XMLElement* firstMission = missionsEle->FirstChildElement("mission");
 		tinyxml2::XMLElement* actual = firstMission;
 		while (actual) {
-			storyline.push_back(makeMission(actual));
+			active_missions.push_back(makeMission(actual));
 			actual = actual->NextSiblingElement("mission");
 		}
 	}
+	/**
+	 * @brief Load missions of an NPC. 
+	 * 
+	 * @param missionsEle 
+	 * @return missions 
+	 */
+	missions loadNPCMissions(tinyxml2::XMLElement* missionsEle) {
+		tinyxml2::XMLElement* firstMission = missionsEle->FirstChildElement("mission");
+		tinyxml2::XMLElement* actual = firstMission;
+		missions npc_missions;
+		while (actual) {
+			npc_missions.push_back(makeMission(actual));
+			actual = actual->NextSiblingElement("mission");
+		}
+		return npc_missions;
+	}
+
 	/**
 	 * @brief Initialize world with the xml story file.
 	 * 
@@ -694,8 +759,8 @@ public:
 	 * @param player 
 	 * @param room 
 	 */
-	void enterRoom(ent& e, node& r) {
-		e->setLocation(r->getID());
+	void enterRoom(Player& p, node& r) {
+		p.setLocation(r.get());
 	}
 	/**
 	 * @brief Free resources used by world.

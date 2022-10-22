@@ -40,35 +40,40 @@ TEST_F(WorldTest, test_tinyXML) {
     int firstRoomID = 0;
     worldEle->FirstChildElement("room")->FirstChildElement("id")->QueryIntText(&firstRoomID);
     EXPECT_EQ(firstRoomID, 1);
-    // test NextSiblingElement()
 }
 
-/**
- * @brief This tests the initialization of the world.
- * Checks if all the objects defined in the story xml file are loaded.
- * 
- */
-TEST_F(WorldTest, test_initWorld) {
+TEST_F(WorldTest, test_initWorld_room_number) {
     ASSERT_EQ(testWorld.getWorldRooms().size(), 3);
+}
 
+TEST_F(WorldTest, test_initWorld_items) {
+    // Test if items did get loaded to the room.
     for (int i = 0; i < int(testWorld.getWorldRooms().size()); i++) {
         EXPECT_EQ(testWorld.getWorldRooms()[i]->getID(), (i+1));
         for (int j = 0; j < int(testWorld.getWorldRooms()[i]->getItems().size()); j++) {
             EXPECT_EQ(testWorld.getWorldRooms()[i]->getItems()[j]->getID(), (i+1));
         }
     }
+}
 
+TEST_F(WorldTest, test_initWorld_neighbours) {
+    // Test if neighbours were correctly loaded.
     EXPECT_EQ(testWorld.getWorldRooms()[0]->getNeighbours()[0], 2);
     EXPECT_EQ(testWorld.getWorldRooms()[1]->getNeighbours()[0], 1);
     EXPECT_EQ(testWorld.getWorldRooms()[1]->getNeighbours()[1], 3);
     EXPECT_EQ(testWorld.getWorldRooms()[2]->getNeighbours()[1], 2);
+}
 
+TEST_F(WorldTest, test_initWorld_npcs) {
     std::string firstEntName = "TestEntity1";
     ASSERT_EQ(testWorld.getWorldRooms()[0]->getPopulation().size(), 1);
     EXPECT_STREQ(testWorld.getWorldRooms()[0]->getPopulation()[0]->getName().c_str(), firstEntName.c_str());
     EXPECT_EQ(testWorld.getWorldRooms()[0]->getPopulation()[0]->getInventory()[0]->getID(), 4);
-    EXPECT_EQ(testWorld.getWorldRooms()[0]->getPopulation()[0]->getLocation(), 1);
+    EXPECT_STREQ(std::string("This is a test dialog.").c_str(), testWorld.getWorldRooms()[0]->getPopulation()[0]->getDialog().c_str());
+}
 
+TEST_F(WorldTest, test_initWorld_world_missions) {
+    // Test if world missions are loaded correctly.
     ASSERT_EQ(testWorld.getWorldMission().size(), 1);
     EXPECT_EQ(testWorld.getWorldMission()[0].getTargetRoom(), 1);
 }
