@@ -25,16 +25,31 @@ Ez a specifikáció egy szöveges, szerepjátékos űrkalandjátékhoz készült
 \section{Történetvázlat}
 Az év 2094. A mesterséges intelligencia teljes mértékben átvette az irányítást a Föld nevezetű bolygó felett 30 évvel ezelőtt. De nem úgy ahogy gondolod kedves PLAYERNAME. 2064-ben kifejlesztették az Oázis AI-t, ami egyedül azt a cél szolgálja, hogy az emberek kényelemben éljenek. A tökéletes utópisztikus világ, ahol az emberek azért jönnek a Földre, hogy jól érezzék magukat, azzal foglalkozzanak, amivel csak akarnak, és akkor, amikor akarnak. Minden unalmas és monoton feladat elvégzését átvették a robotok és az OAI. Ebbe beletartozik a teljesen automatizált házvezetés, takarítás, bevásárlás, és még a főzés is. Nem kevés következménnyel járt ez az átállás. Beolvasztották az összes fegyvert, megszüntették az autókat, és csak is mindenki buszokkal, vagy kijelölt szállítási eszközzel közlekedhet. A 2045-ös jégkorszak után nagymértékben megcsappant a Föld lakossága. A tervezett 9,44 milliárd ember helyett kevesebb, mint 1 milliárd maradt. Itt kezdődik a napod. Ma van a huszonötödik születésnapod, és nagy terveid vannak a mai napra. Megnyitott az első űr bár és szálló, amit pár nappal ezelőtt állítottak Föld körüli pályára, és benne vagy a szerencsés 100 ember között, akik részt vehetnek a megnyitó rendezvényen. A SpaceWalk™ nevezetű bár óriási hírnévnek örvend. Több tíz éve beszélnek róla, hogy folyamatosan építik, részről részre szobáról szobára. Most ért véget az építkezés, és mindenki részt akar venni a megnyitón. Nagyon sok feltételnek meg kellett felelni, és ezen kívül egy pályázatot is be kellett adni, hogy miért te legyél a kiválasztott, aki részt vehet ezen a rendezvényen. Az, hogy izgatott vagy az egy enyhe alábecslés. Miket is ígér a SpaceWalk™? Kezdésnek egy űrsétával kezdődik az este, ami a legelső dolog, miután megérkezel az űrállomáshoz. Ezek után svédasztalos vacsora, korlátlan bár fogyasztás, diszkó, és az éjszaka végén kényelmes ágyak várják a vendégeket a hotel szobákban.  Az este nagyon jól telt, viszont az éjszaka folyamán, rázkódásra ébredsz, és nem tudod mi történik. Vajon egy aszteroida találhatta el az állomást? Vagy valami meghibásodás állhat a háttérben? Lehet szabotázs? Elképzelhető, hogy ennél sokkal sötétebb történések állhatnak a háttérben? Derítsük ki!
 
+\section{Követelmények}
+\begin{table}[H] \centering
+    \caption{Követelmények}\label{tab:requirements}
+    \begin{tabular}{@{}ll@{}}
+        \emph{Eset} & \emph{Leiras}\\ \hline
+        1. Szobarendszer & A játék világának a felépítése, szobákból álljon.\\
+        2. Mozgás & A játékos tudjon mozogni szobárol szobára.\\
+        3. Környezeti interakció & A játékos tudjon interakcióba lépni környezetével.\\ & Szobák átkutatása, tárgyak megvizsgálása és felvétele,\\ & a játékban élő NPC-kel való interakció.\\
+        4. Történet vonalának követése & Küldetéseken keresztül tudjon a játékos a sztorival haladni.\\
+    \end{tabular}
+\end{table}
+
 \section{Használati esetek}
 \begin{table}[H] \centering
     \caption{Használati esetek}\label{tab:usecasetable}
     \begin{tabular}{@{}ll@{}}
         \emph{Eset} & \emph{Leiras}\\ \hline
-        Move         & Mozgas szobarol szobara\\
-        Search room  & Kutasd at a szobat, itemek es NPC-k utan\\
-        Pick up item & Vegyed fel a talalt targyat\\
-        Interact with NPC & Beszelj a talalt NPC-vel\\
-        Accept mission & Fogadd el az NPC kuldeteset
+        1. Move (player)         & Mozgás szobáról szobára.\\
+        2. Search room (player)  & Szoba átkutatása tárgyak és NPC-k után.\\
+        3. Pick up item (player) & Talált tárgyak felvétele, megviszgálása.\\
+        4. Interact with NPC (player) & Talált NPC-vel való kommunikáció.\\
+        5. Accept mission (player) & Talált NPC küldetésének felvétele.\\ 
+        6. Unlock Room (game) & Ha a játékosnál van kulcs a szobához,\\ & a játék automatikusan kinyitja azt.\\
+        7. Enter Room (game) & Ha a játékos kiválasztotta a mozgás egyik szobárol\\ & a másikra opciót és van nála kulcs,\\ & a játék átlépteti a kiválsztott szobába.\\
+        8. Finish Mission (game) & Ha a küldetés feltételei teljesülnek,\\ & akkor a játék automatikusan lezárja a küldetést.\\ 
     \end{tabular}
 \end{table}
 
@@ -49,6 +64,20 @@ Az év 2094. A mesterséges intelligencia teljes mértékben átvette az irány�
     \includegraphics[width=0.75\columnwidth]{Class_Architecture.jpg}
     \caption{Class Architecture}\label{fig:2}
 \end{figure}
+
+\subsection{Classok}
+\paragraph{class World}
+A játék menetét kontrolláló class, a világ környezeti jellemzőit, szobáit, küldetéseit, sztoriát és magát a játékost kezeli. Ez a class fele az világ inicializálásáért, ezt az xml file parsolásával teszi meg.
+\paragraph{class Room}
+Játék világának fő építőeleme, a szobák kezelik a bennük lévő NPC-ket és tárgyakat.
+\paragraph{class Entity}
+A világ élőlényeit reprezentáló class, általában a szobákban tárolódnak el, kivéve a játékost reprezentáló Entity objectumot, amit a class World tartalmazza. Mindezek mellett a tárgyak inventoryba mozgazásához szükséges funkciókkal is rendelkezik.
+\paragraph{class Object}
+Tárgyak reprezentálására használt class.
+\paragraph{class Key}
+Tárgy class-ból származtatott osztály, ami a szobák nyitási mechanikáját valósítják meg.
+\paragraph{class Mission}
+A sztori haladásáért felelős osztály, a fő küldetéseket a játék inicializásakor már az aktív küldetések közé helyezzük, az opcionális küldetéseket a szobákban található NPC-től lehet felvenni. A küldetés célját tárolja, a státuszát kezeli és adja vissza és az automatikus befejezését kezeli.
 
 \begin{figure}[H]
     \includegraphics[width=0.75\columnwidth]{Component_Connection.jpg}
@@ -69,6 +98,9 @@ A játékvilág szobákból tevődik össze, amikben lehet tárgyakkal és NPC-k
     \caption{State Machine}\label{fig:5}
 \end{figure}
 \newpage
+
+\subsection{Játék menete}
+A játék loop jellegűen ajánlja fel a lehetséges tevékenységeket a játékos számára, a tevékenységek ismételten való elvégzésével lehet a küldetések céljait elérni és a sztori vonalán haladni. Lehetséges tevékenységek lehetnek: másik szobába mozgás, szoba átkutatása, tárgy megvizsgálása és felvétele, NPC-vel való interakció, küldetés elfogadása. A tevékenység sorban és egymásból következhetnek. Pl. ha azt választjuk hogy mozogjunk át egy másik szobába, akkor a játék a következő szobában újra felsorolja a lehetséges tevékenységeket, de ha azt választjuk, hogy kutassuk át a szobát, akkor ebből következhenek a tárgyak megvizsgálása vagy NPC-vel való kommunikáció tevékenységek. A küldetések státuszát a játék automatikusan frissíti a játékos tevékenységeinek és döntéseinek alapján.
 
 \section{Történet tárolási formátuma}
 A történetet xml fájlformátumban tároljuk és a TinyXML2 könyvtár segítségével olvassuk be. Az xml fájlformátum lehetővé teszi, hogy a játékvilágot és hozzá tartozó történelem részleteket modulárisan építhessük fel, így szabadon bővíthető lesz, vagy akár egy teljesen más történetet is betölthetünk.
