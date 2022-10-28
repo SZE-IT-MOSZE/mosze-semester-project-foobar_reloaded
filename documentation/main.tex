@@ -28,28 +28,28 @@ Az év 2094. A mesterséges intelligencia teljes mértékben átvette az irány�
 \section{Követelmények}
 \begin{table}[H] \centering
     \caption{Követelmények}\label{tab:requirements}
-    \begin{tabular}{@{}ll@{}}
-        \emph{Eset} & \emph{Leiras}\\ \hline
-        1. Szobarendszer & A játék világának a felépítése, szobákból álljon.\\
-        2. Mozgás & A játékos tudjon mozogni szobárol szobára.\\
-        3. Környezeti interakció & A játékos tudjon interakcióba lépni környezetével.\\ & Szobák átkutatása, tárgyak megvizsgálása és felvétele,\\ & a játékban élő NPC-kel való interakció.\\
-        4. Történet vonalának követése & Küldetéseken keresztül tudjon a játékos a sztorival haladni.\\
+    \begin{tabular}{@{}ll@{}ll@{}ll}
+        \emph{Eset} & \emph{Leiras} & \emph{Prioritás}\\ \hline
+        1. Szobarendszer & A játék világának a felépítése, szobákból álljon. & Magas\\
+        2. Mozgás & A játékos tudjon mozogni szobárol szobára. & Magas\\
+        3. Környezeti interakció & A játékos tudjon interakcióba lépni környezetével. & Közepes\\ & Szobák átkutatása, tárgyak megvizsgálása és felvétele,\\ & a játékban élő NPC-kel való interakció.\\
+        4. Történet vonalának követése & Küldetéseken keresztül tudjon a játékos a sztorival haladni. & Magas\\
     \end{tabular}
 \end{table}
 
 \section{Használati esetek}
 \begin{table}[H] \centering
     \caption{Használati esetek}\label{tab:usecasetable}
-    \begin{tabular}{@{}ll@{}}
-        \emph{Eset} & \emph{Leiras}\\ \hline
-        1. Move (player)         & Mozgás szobáról szobára.\\
-        2. Search room (player)  & Szoba átkutatása tárgyak és NPC-k után.\\
-        3. Pick up item (player) & Talált tárgyak felvétele, megviszgálása.\\
-        4. Interact with NPC (player) & Talált NPC-vel való kommunikáció.\\
-        5. Accept mission (player) & Talált NPC küldetésének felvétele.\\ 
-        6. Unlock Room (game) & Ha a játékosnál van kulcs a szobához,\\ & a játék automatikusan kinyitja azt.\\
-        7. Enter Room (game) & Ha a játékos kiválasztotta a mozgás egyik szobárol\\ & a másikra opciót és van nála kulcs,\\ & a játék átlépteti a kiválsztott szobába.\\
-        8. Finish Mission (game) & Ha a küldetés feltételei teljesülnek,\\ & akkor a játék automatikusan lezárja a küldetést.\\ 
+    \begin{tabular}{@{}ll@{}ll@{}ll}
+        \emph{Eset} & \emph{Leiras} & \emph{Prioritás}\\ \hline
+        1. Move (player)         & Mozgás szobáról szobára. & Magas\\
+        2. Search room (player)  & Szoba átkutatása tárgyak és NPC-k után. & Magas\\
+        3. Pick up item (player) & Talált tárgyak felvétele, megviszgálása. & Magas\\
+        4. Interact with NPC (player) & Talált NPC-vel való kommunikáció. & Alacsony\\
+        5. Accept mission (player) & Talált NPC küldetésének felvétele. & Alacsony\\ 
+        6. Unlock Room (game) & Ha a játékosnál van kulcs a szobához, & Alacsony\\ & a játék automatikusan kinyitja azt.\\
+        7. Enter Room (game) & Ha a játékos kiválasztotta a mozgás egyik szobárol & Magas\\ & a másikra opciót és van nála kulcs,\\ & a játék átlépteti a kiválsztott szobába.\\
+        8. Finish Mission (game) & Ha a küldetés feltételei teljesülnek, & Közepes\\ & akkor a játék automatikusan lezárja a küldetést.\\ 
     \end{tabular}
 \end{table}
 
@@ -87,17 +87,27 @@ A sztori haladásáért felelős osztály, a fő küldetéseket a játék inicia
 \paragraph{Engine felépítése}
 A játékvilág szobákból tevődik össze, amikben lehet tárgyakkal és NPC-kel interakcióba lépni. Vannak olyan szobák amiket csak kulcsok segítségével lehet kinyitni. A játékvilág felfedezése közben különböző küldetéseket kell végrehajtani, amik a sztori vonalát követik.
 
+\subsection{Világ inicializása}
+\begin{figure}[H]
+    \includegraphics[width=0.95\columnwidth]{World_Initialization_Sequence.jpg}
+    \caption{World Initialization squence}\label{fig:4}
+\end{figure}
+
 \section{Viselkedes}
 \begin{figure}[H]
     \includegraphics[width=1.0\columnwidth]{GameLoop_ActivityDiagram.jpg}
-    \caption{Gameloop Activity Diagram}\label{fig:4}
+    \caption{Gameloop Activity Diagram}\label{fig:5}
 \end{figure}
+\subsection{Aktivitás diagram leírás}
+A játékosnak a játék 2 opciót ad amikor belép egy szobába: menjen tovább a következő szobába, kutassa át a szobát. Ha azt választja, hogy tovább menjen a következő szobába, akkor a játék kilistázza a lehetséges szobákat ahová lehet menni, amiután kiválasztotta a szobát ahová tovább akar menni, a játék átlépteti a játékos karakterét a szobába. A játék automatikusan tesztel, hogy teljesítve lettek-e küldetések. Ha a játékos a szoba átkutatását választja, akkor a játék kilistázza a talált tárgyakat és felfedezett NPC-ket, ezután választani kell, hogy a tárgyakat vizsgálja meg, vagy interakcióba lépjen-e az NPC-vel. Ha a tárgyak vizsgálatát választja akkor, kilistázza a játék a talált tárgyakat, amik közül ki lehet választani melyiket akarja felvenni. Ha az NCP-vel való interakciót választja, akkor megjelenik az NPC dialogja és elfogadhatjuk a felajánlott küldetést. A játék ezek után a tevékenységek után is tesztel, kész lett-e valamelyik küldetés.
 
 \begin{figure}[H]
     \includegraphics[width=1.0\columnwidth]{State_Machine.png}
-    \caption{State Machine}\label{fig:5}
+    \caption{State Machine}\label{fig:6}
 \end{figure}
 \newpage
+\subsection{Állapot diagram leírás}
+Amikor a játékos elindítja a játékot, a játék egy kezdő állapotban van, ahol a játék világ érintetlen, semelyik küldtés sincs befejezve. Ezután a játék egyből kilistázza a lehetséges opciókat, ez a tevékenység választási állapot. Ebből az állapotból átkerülhet a játék a csatolt szobák kilistázása állapotba és a szoba átkeresési állapotba. A szoba átkeresési állapotból 2 opció van, a talált tárgyak és a felfedezett NPC-k kilistázási állapot. Az összes állapot során valamilyen döntést kell hoznia a játékosnak, milyen cslekvést választ következőnek.
 
 \subsection{Játék menete}
 A játék loop jellegűen ajánlja fel a lehetséges tevékenységeket a játékos számára, a tevékenységek ismételten való elvégzésével lehet a küldetések céljait elérni és a sztori vonalán haladni. Lehetséges tevékenységek lehetnek: másik szobába mozgás, szoba átkutatása, tárgy megvizsgálása és felvétele, NPC-vel való interakció, küldetés elfogadása. A tevékenység sorban és egymásból következhetnek. Pl. ha azt választjuk hogy mozogjunk át egy másik szobába, akkor a játék a következő szobában újra felsorolja a lehetséges tevékenységeket, de ha azt választjuk, hogy kutassuk át a szobát, akkor ebből következhenek a tárgyak megvizsgálása vagy NPC-vel való kommunikáció tevékenységek. A küldetések státuszát a játék automatikusan frissíti a játékos tevékenységeinek és döntéseinek alapján.
@@ -195,7 +205,7 @@ TEST_F(RoomTest, test_Item_operation_methods) {
 A githubnak egy nagyon hasznos funkciója az Actions amivel automatizált Workflow-okat lehet lefuttatni. Mi ennek a funkciónak a segítségével futtatjuk le a megírt teszteket. Ez egy remek újítás, mivel ez megakadályozza a hibás kódok master branchre való feltöltését.
 \begin{figure}[H]
     \includegraphics[width=1.0\columnwidth]{github_actions.png}
-    \caption{Workflows}\label{fig:6}
+    \caption{Workflows}\label{fig:7}
 \end{figure}
 \newpage
 
@@ -204,7 +214,7 @@ A githubnak egy nagyon hasznos funkciója az Actions amivel automatizált Workfl
 A játék fejlesztéséhez scrum és kanban módszertant törekszünk követni. Ehhez a github "Projektek" felülete nyújt segítséget, ahol egy kanban táblán vesszük fel a tevékeny-\\ségeket amik alkotják a backlogot.
 \begin{figure}[H]
     \includegraphics[width=1.0\columnwidth]{kanban_scrum.png}
-    \caption{Kanban tábla}\label{fig:7}
+    \caption{Kanban tábla}\label{fig:8}
 \end{figure}
 \newpage
 \subsection{Dokumentáció}
@@ -212,7 +222,7 @@ A játék fejlesztéséhez scrum és kanban módszertant törekszünk követni. 
 A Doxygen nagy segítségnek bizonyult a fejlesztés során, a kódunk megfelelő kommentelésével hasznos dokumentációt készít számunka, hogy megértsük és fel tudjuk használni a másik kódját.
 \begin{figure}[H]
     \includegraphics[width=1.0\columnwidth]{doxygen_sample.png}
-    \caption{Doxygen}\label{fig:8}
+    \caption{Doxygen}\label{fig:9}
 \end{figure}
 
 \section{Fejlesztési eszközök}
