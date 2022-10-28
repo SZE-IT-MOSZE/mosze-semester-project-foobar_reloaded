@@ -22,7 +22,8 @@ option(TEST_UNIT "Build unittest, that tries to cover the core functionalities o
 # add include directories, where header files can be found
 include_directories("${PROJECT_SOURCE_DIR}/src")
 add_library(tinyxml2 src/tinyxml2.cpp)
-#add_library(engine src/engine.cpp)
+add_library(engine src/engine.cpp)
+add_library(interface src/interface.cpp)
 
 macro(runtest testname)
 	include(FetchContent)
@@ -40,6 +41,8 @@ macro(runtest testname)
 		test_program
 		GTest::gtest_main
 		tinyxml2
+		engine
+		interface
 	)
 	include(GoogleTest)
 	gtest_discover_tests(test_program)
@@ -47,7 +50,7 @@ endmacro()
 
 macro(buildworld)
 	add_executable(spacewalk src/main.cpp)
-	target_link_libraries(spacewalk PUBLIC tinyxml2)
+	target_link_libraries(spacewalk PUBLIC tinyxml2 engine interface)
 	target_include_directories(spacewalk PUBLIC
 		"${PROJECT_BINARY_DIR}"
 		"${PROJECT_SOURCE_DIR}"
