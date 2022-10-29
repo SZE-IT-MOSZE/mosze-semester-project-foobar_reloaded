@@ -12,5 +12,6 @@ var searchData=
   ['int64attribute_9',['Int64Attribute',['../classtinyxml2_1_1XMLElement.html#a66d96972adecd816194191f13cc4a0a0',1,'tinyxml2::XMLElement']]],
   ['int64text_10',['Int64Text',['../classtinyxml2_1_1XMLElement.html#aab6151f7e3b4c2c0a8234e262d7b6b8a',1,'tinyxml2::XMLElement']]],
   ['intattribute_11',['IntAttribute',['../classtinyxml2_1_1XMLElement.html#a95a89b13bb14a2d4655e2b5b406c00d4',1,'tinyxml2::XMLElement']]],
-  ['intvalue_12',['IntValue',['../classtinyxml2_1_1XMLAttribute.html#adfa2433f0fdafd5c3880936de9affa80',1,'tinyxml2::XMLAttribute']]]
+  ['intvalue_12',['IntValue',['../classtinyxml2_1_1XMLAttribute.html#adfa2433f0fdafd5c3880936de9affa80',1,'tinyxml2::XMLAttribute']]],
+  ['islocked_13',['isLocked',['../classRoom.html#adc25ce4a3d509baf2d74ce4feaadcfbd',1,'Room']]]
 ];

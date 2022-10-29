@@ -1,16 +1,18 @@
 #ifndef ENGINE
 #define ENGINE
 #include <vector>
-#include <memory>
 #include <string>
 #include <map>
 #include <iostream>
+#include <memory>
 #include "tinyxml2.h"
 
 class World;
 class Object;
 class Room;
 class Entity;
+class Player;
+class NPC;
 class Mission;
 class Choice;
 
@@ -28,7 +30,7 @@ typedef std::unique_ptr<Object> item;
  * @typedef Entity wrapped in shared_ptr, so World can keep track.
  * 
  */
-typedef std::unique_ptr<Entity> ent;
+typedef std::unique_ptr<NPC> npc;
 /**
  * @typedef Vector of nodes.
  * 
@@ -48,14 +50,19 @@ typedef std::vector<item> items;
  * @typedef Vector of entities.
  * 
  */
-typedef std::vector<ent> entities;
+typedef std::vector<npc> npcs;
 /**
  * @typedef Connection of two rooms represented with the ID's of the rooms.
  * 
  */
 typedef std::pair<int, std::vector<int>> roomConnection;
+/**
+ * @typedef Vector of missions. 
+ * 
+ */
+typedef std::vector<Mission> missions;
 
-enum missionStatus{finished, in_progress};
+enum missionStatus{finished, active, unactive};
 
 /**
  * @brief Base class for any object that can be owned by an Entity or Room.
@@ -103,7 +110,23 @@ public:
 class Key : public Object {
 	const int keyID;
 public:
+	/**
+	 * @brief Construct a new Key object
+	 * 
+	 * @param kid The key id should be identical to the room's it opens
+	 * @param n The name of the key
+	 * @param id The uniqe item id of the key
+	 * @param d A description that describes the keys look, use, etc.
+	 */
 	Key(const int kid, const std::string& n, const int id, const std::string& d) : Object(n, id, d), keyID(kid) {}
+	/**
+	 * @brief Get the KeyID of the key 
+	 * 
+	 * @return int 
+	 */
+	int getKeyID() {
+		return keyID;
+	}
 };
 
 /**
@@ -111,16 +134,13 @@ public:
  * 
  */
 class Entity {
+protected:
 	const std::string name;
 	items inventory;
-	int location;
 	int hp;
 	int stamina;
 	int intelligence;
-	int agility;
 	int strenght;
-	int stealth;
-	int carisma;
 public:
 	/**
 	 * @brief Construct a new Entity object
@@ -164,18 +184,65 @@ public:
 	items& getInventory() {
 		return inventory;
 	}
-	int getLocation() {
-		return location;
-	}
-	Entity& setLocation(int roomID) {
-		this->location = roomID;
-		return *this;
-	}
+	
 	virtual ~Entity() {
 		for (items::iterator it = inventory.begin(); it != inventory.end(); it++) {
 			it->reset();
 		}
 	}
+};
+
+class Player : public Entity {
+	Room* location;
+public:
+	/**
+	 * @brief Construct a new Player object with Default values.
+	 * 
+	 */
+	Player() : Entity("Default") {}
+	/**
+	 * @brief Construct a new Player object, giving it an initial location.
+	 * 
+	 * @param n 
+	 * @param init_location 
+	 */
+	Player(const std::string& n, Room* init_location) : Entity(n), location(init_location) {}
+	/**
+	 * @brief Get the Location of the Entity by returning the pointer to the Room. 
+	 * 
+	 * @return Room* 
+	 */
+	Room* getLocation() {
+		return location;
+	}
+	/**
+	 * @brief Set the Location of the Entity by giving the pointer of the Room. 
+	 * 
+	 * @param room_ptr 
+	 * @return Entity& 
+	 */
+	Entity& setLocation(Room* room_ptr) {
+		this->location = room_ptr;
+		return *this;
+	}
+};
+
+class NPC : public Entity {
+	std::string dialog;
+	missions missions_to_give;
+public:
+	/**
+	 * @brief Construct a new NPC object, giving it a dialog and missions that can be accepted by the player.
+	 * 
+	 * @param n 
+	 * @param d 
+	 * @param m 
+	 */
+	NPC(const std::string& n,  const std::string& d, missions m) : Entity(n), dialog(d), missions_to_give(m) {}
+	missions& getMissions() {
+		return missions_to_give;
+	}
+	std::string getDialog() {return dialog;}
 };
 
 /**
@@ -194,7 +261,7 @@ class Room {
 	const int roomID; // ID of the room, that connects a key to this room.
 	const std::string description; // Description of the room.
 	LockStatus lock;
-	entities roomPopulation;
+	npcs roomPopulation;
 	neighbours connectedRooms; // Neighbouring rooms.
 	items inventory; // Items, that can be found in the room.
 public:
@@ -266,7 +333,7 @@ public:
 	 * 
 	 * @return items const& 
 	 */
-	const items& getItems() {return inventory;}	
+	items& getItems() {return inventory;}	
 	/**
 	 * @brief Add new item to the Inventory of the Room 
 	 * 
@@ -295,7 +362,7 @@ public:
 	 * @param e 
 	 * @return Room& 
 	 */
-	Room& addEntity(ent& e) {
+	Room& addEntity(npc& e) {
 		roomPopulation.emplace_back(std::move(e));
 		return *this;
 	}
@@ -305,8 +372,8 @@ public:
 	 * @param ents 
 	 * @return Room& 
 	 */
-	Room& addEntities(entities& ents) {
-		for (entities::iterator it = ents.begin(); it != ents.end(); it++) {
+	Room& addEntities(npcs& ents) {
+		for (npcs::iterator it = ents.begin(); it != ents.end(); it++) {
 			this->addEntity(*it);
 		}
 		return *this;
@@ -322,22 +389,24 @@ public:
 		return *this;
 	}
 	/**
-	 * @brief With the right key the room given in the argument can be unlocked.
+	 * @brief With the right key the room given in the argument can be unlocked. If the key fits the door, after it unlocked the room, it cant be used anymore.
 	 * 
 	 * @param k key to unlock the room
 	 * @param r room to be unlocked
 	 * @return true 
 	 * @return false 
 	 */
-	bool static unlock(item& k, node& r) {
-		Key* k2r = dynamic_cast<Key*>(k.release());
-		if (k2r != nullptr && k->getID() == r->getID()) {
-			r->setLock(unlocked);
-			delete k2r;
+	bool static unlock(item&, node&);
+	/**
+	 * @brief Check wheter room is locked or not. Returns true if locked, false otherwise.
+	 * 
+	 * @return true 
+	 * @return false 
+	 */
+	bool isLocked() {
+		if ( lock == locked ) {
 			return true;
 		}
-		Object* o = dynamic_cast<Object*>(k2r);
-		k = std::make_unique<Object>(*o);
 		return false;
 	}
 	/**
@@ -345,7 +414,7 @@ public:
 	 * 
 	 * @return const entities& 
 	 */
-	const entities& getPopulation() {return roomPopulation;}
+	const npcs& getPopulation() {return roomPopulation;}
 	/**
 	 * @brief Destroy the Room object. Reset all nodes in the neighours vector and all items in inventory.
 	 *
@@ -355,7 +424,7 @@ public:
 		for (items::iterator iit = inventory.begin(); iit != inventory.end(); iit++) {
 			iit->reset();
 		}
-		for (entities::iterator eit = roomPopulation.begin(); eit != roomPopulation.end(); eit++) {
+		for (npcs::iterator eit = roomPopulation.begin(); eit != roomPopulation.end(); eit++) {
 			eit->reset();
 		}
 	}
@@ -380,24 +449,43 @@ class Mission {
 	}
 public:
 	/**
-	 * @brief Construct a new Mission object with mission target Room
+	 * @brief Construct a new Mission object.
 	 * 
-	 * @param tr 
+	 * @param desc Description of the mission.
 	 */
-	Mission(node& tr) : targetRoom(tr->getID()), targetItem(-1), status(in_progress) {}
+	Mission(const std::string& desc) : description(desc) {}	
 	/**
-	 * @brief Construct a new Mission object with mission target Item
+	 * @brief Get the Target Room ID 
 	 * 
-	 * @param ti 
+	 * @return int 
 	 */
-	Mission(item& ti) : targetRoom(-1), targetItem(ti->getID()), status(in_progress) {}
+	int getTargetRoom() {return targetRoom;}
 	/**
-	 * @brief Construct a new Mission object with both Item and Room target
+	 * @brief Set the Target Room ID 
 	 * 
-	 * @param tr 
-	 * @param ti 
+	 * @param targetRoomID 
+	 * @return Mission& 
 	 */
-	Mission(node& tr,item& ti) : targetRoom(tr->getID()), targetItem(ti->getID()), status(in_progress) {}
+	Mission& setTargetRoom(int targetRoomID) {
+		targetRoom = targetRoomID;
+		return *this;
+	}
+	/**
+	 * @brief Get the Target Item ID 
+	 * 
+	 * @return int 
+	 */
+	int getTargetItem() {return targetItem;}
+	/**
+	 * @brief Set the Target Item ID 
+	 * 
+	 * @param targetItemID 
+	 * @return Mission& 
+	 */
+	Mission& setTargetItem(int targetItemID) {
+		targetItem = targetItemID;
+		return *this;
+	}
 	/**
 	 * @brief Check if mission is accomplished
 	 * 
@@ -405,38 +493,15 @@ public:
 	 * @return true 
 	 * @return false 
 	 */
-	bool checkStatus(ent& player) {
-		if (targetRoom == -1) {
-			for (auto rit = player->getInventory().cbegin(); rit != player->getInventory().cend(); rit++) {
-				if (targetItem == (*rit)->getID()) {
-					this->complete();
-					return true;
-				}
-			}
-		}
-		if (targetItem == -1) {
-			if (player->getLocation() == targetRoom) {
-				this->complete();
-				return true;
-			}
-		}
-		if (targetItem != -1 && targetRoom != -1) {
-			int completed = 0;
-			for (auto rit = player->getInventory().cbegin(); rit != player->getInventory().cend(); rit++) {
-				if (targetItem == (*rit)->getID()) {
-					completed++;
-					break;
-				}
-			}
-			if (player->getLocation() == targetRoom) {
-				completed++;
-			}
-			if (completed == 2) {
-				this->complete();
-				return true;
-			}
-		}
-		return false;
+	bool checkStatus(Player&);
+	/**
+	 * @brief Change mission status to active.
+	 * 
+	 * @return Mission& 
+	 */
+	Mission& startMission() {
+		status = active;
+		return *this;
 	}
 };
 
@@ -449,12 +514,9 @@ class World {
 	std::string title;
 	nodes worldRooms;
 	tinyxml2::XMLDocument story;
-	std::map<int, std::vector<int>> roomConnectionMap;
+	Player player;
+	missions active_missions;	
 public:
-	/**
-	 * @brief Construct a new World object
-	 * 
-	 */
 	World() {}
 	/**
 	 * @brief Construct a new World object
@@ -473,16 +535,21 @@ public:
 		return worldRooms;
 	}
 	/**
+	 * @brief Get the World Mission object
+	 * 
+	 * @return missions& 
+	 */
+	missions& getWorldMission() {
+		return active_missions;
+	}
+	/**
 	 * @brief Create Room with initial params and add it to worldRooms.
 	 * 
 	 * @param title (const std::string&): Name of the Room
 	 * @param id (const std::string&): ID of the Room
 	 * @param desc (const std::string&): Description of the Room
 	 */
-	void RoomFactory(const std::string& name, int id, const std::string& desc, neighbours nids) {
-		auto newRoom = std::make_unique<Room>(name, id, desc, nids);
-		worldRooms.emplace_back(std::move(newRoom));
-	}
+	void RoomFactory(const std::string&, int, const std::string&, neighbours);
 	/**
 	 * @brief Get the Story object
 	 * 
@@ -495,113 +562,76 @@ public:
 	 * @param invEle (tinyxml2::XMLElement*)
 	 * @return items 
 	 */
-	items makeInventory(tinyxml2::XMLElement* invEle) {
-		tinyxml2::XMLElement* firstObj = invEle->FirstChildElement("object");
-		tinyxml2::XMLElement* actual = firstObj;
-		items retItems;
-		while(actual) {
-			const std::string objName(actual->FirstChildElement("name")->GetText());
-			const std::string desc(actual->FirstChildElement("description")->GetText());
-			int id = 0;
-			actual->FirstChildElement("id")->QueryIntText(&id);
-			auto newObj = std::make_unique<Object>(objName, id, desc);
-			retItems.push_back(std::move(newObj));
-			actual = actual->NextSiblingElement("object");
-		}
-		return retItems;
-	}
+	items makeInventory(tinyxml2::XMLElement*);
 	/**
 	 * @brief Load neigbouring rooms id's to connection map
 	 * 
 	 * @param conns 
 	 * @return std::vector<int> 
 	 */
-	neighbours parseConnections(tinyxml2::XMLElement* conns) {
-		tinyxml2::XMLElement* firstConn = conns->FirstChildElement("id");
-		tinyxml2::XMLElement* actual = firstConn;
-		std::vector<int> connections;
-		while(actual) {
-			int nid = 0;
-			actual->QueryIntText(&nid);
-			connections.push_back(nid); 
-			actual = actual->NextSiblingElement("id");
-		}
-		return connections;
-	}
+	neighbours parseConnections(tinyxml2::XMLElement*);
 	/**
 	 * @brief This function iterates through the room elements of the world element in the xml file and constructs the rooms of the world.
 	 * 
 	 * @param firstRoom 
 	 */
-	void loadRooms(tinyxml2::XMLElement* firstRoom) {
-		const char* elementName = "room";
-		tinyxml2::XMLElement* actual = firstRoom;
-		while(actual) {
-			const std::string roomName(actual->FirstChildElement("name")->GetText());
-			const std::string roomDescription(actual->FirstChildElement("description")->GetText());
-			int roomID = 0;
-			actual->FirstChildElement("id")->QueryIntText(&roomID);
-			tinyxml2::XMLElement* conns = actual->FirstChildElement("connections");
-			RoomFactory(roomName, roomID, roomDescription, parseConnections(conns)); // Construct room with name, id and desc
-			tinyxml2::XMLElement* invEle = actual->FirstChildElement("inventory");
-			tinyxml2::XMLElement* actualInv = invEle->FirstChildElement("object");
-			while(actualInv) {
-				const std::string objName(actualInv->FirstChildElement("name")->GetText());
-				const std::string desc(actualInv->FirstChildElement("description")->GetText());
-				int objectID = 0;
-				actualInv->FirstChildElement("id")->QueryIntText(&objectID);
-				auto tmpItem = std::make_unique<Object>(objName, objectID, desc);
-				worldRooms.back()->addItem(tmpItem);
-				actualInv = actualInv->NextSiblingElement("object");
-			}
-			loadEntities(actual->FirstChildElement("entity"), worldRooms.back());
-			actual = actual->NextSiblingElement(elementName);
-		}
-	}
+	void loadRooms(tinyxml2::XMLElement*);
 	/**
 	 * @brief Load entities from xml doc.
 	 * 
 	 * @param firstEle 
 	 */
-	int loadEntities(tinyxml2::XMLElement* firstEle, node& r) {
-		tinyxml2::XMLElement* actual = firstEle;
-		int counter = 0;
-		while(actual) {
-			const std::string name = actual->FirstChildElement("name")->GetText();
-			tinyxml2::XMLElement* invele = actual->FirstChildElement("inventory");
-			items inv = makeInventory(invele);
-			ent newEnt = std::make_unique<Entity>(name);
-			newEnt->addItems(inv);
-			r->addEntity(newEnt);
-			r->getPopulation().back()->setLocation(r->getID());
-			actual = actual->NextSiblingElement("entity");
-			counter++;
-		}
-		return counter;
-	}
+	void loadEntities(tinyxml2::XMLElement*, node&);
+	/**
+	 * @brief Construct a new mission with a description, then set mission targets.
+	 * 
+	 * @param missionEle 
+	 * @return Mission 
+	 */
+	Mission makeMission(tinyxml2::XMLElement*);
+	/**
+	 * @brief Load world story missions from xml doc.
+	 * 
+	 * @param firstEle first mission element in xml doc.
+	 */
+	void loadWorldMissions(tinyxml2::XMLElement*);
+	/**
+	 * @brief Load missions of an NPC. 
+	 * 
+	 * @param missionsEle 
+	 * @return missions 
+	 */
+	missions loadNPCMissions(tinyxml2::XMLElement*);
 	/**
 	 * @brief Initialize world with the xml story file.
 	 * 
 	 * @param path2story 
 	 */
-	void initWorld(const char* path2story) {
-		story.LoadFile(path2story);
-		tinyxml2::XMLElement* worldElement = story.FirstChildElement("world");
-		loadRooms(worldElement->FirstChildElement("room"));
-	}
+	void initWorld(const char*);
 	/**
-	 * @brief move player to room
+	 * @brief move entity to room
 	 * 
 	 * @param player 
 	 * @param room 
 	 */
-	void enterRoom(ent& player, node& room) {
-		player->setLocation(room->getID());
-		for (auto rit = worldRooms.begin(); rit != worldRooms.end(); rit++) {
-			if ((*rit)->getID() == room->getID()) {
-				room->addEntity(player);
-			}
-		}
+	void enterRoom(node& r) {
+		player.setLocation(r.get());
+	}
+	/**
+	 * @brief Get the Player object
+	 * 
+	 * @return Player& 
+	 */
+	Player& getPlayer() {
+		return player;
+	}
+	/**
+	 * @brief Start mission by changing mission's status to in progress and placing it to the active_missions vector. 
+	 * 
+	 * @param m 
+	 */
+	void startMission(Mission& m) {
+		active_missions.push_back(m.startMission());
 	}
 	/**
 	 * @brief Free resources used by world.

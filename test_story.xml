@@ -18,6 +18,7 @@
         </connections>
         <entity>
             <name>TestEntity1</name>
+            <dialog>This is a test dialog.</dialog>
             <inventory>
                 <object>
                     <name>TestObject4</name>
@@ -25,6 +26,13 @@
                     <id>4</id>
                 </object>
             </inventory>
+            <missions>
+                <mission>
+                    <description>
+                        This is a NPC test mission.
+                    </description>
+                </mission>
+            </missions>
         </entity>
     </room>
     <room>
@@ -59,4 +67,14 @@
             <id>2</id>
         </connections>
     </room>
+    <missions>
+        <mission>
+            <description>
+                This is a test mission.
+            </description>
+            <targetRoom>
+                1
+            </targetRoom>
+        </mission>
+    </missions>
 </world>

@@ -1,0 +1,26 @@
+@startuml State Machine
+
+[*] --> Start : initWorld()
+Start: Start state of world.
+Start: Rooms, NPC-s, items in initial state.
+Start: All missions are in progress.
+Start --> ChooseAction: renderChoices()
+ChooseAction: Player can choose from rendered choices.
+ChooseAction: Move on to connected rooms or
+ChooseAction: Search the room for items and NCPs.
+ChooseAction --> SearchResults: renderSearchResults()
+SearchResults: Found items.
+SearchResults: Found NPCs.
+SearchResults --> BrowseItems: inspectItems()
+BrowseItems: Item_1, Item_2, ..., Item_i, ..., Item_N.
+BrowseItems --> ChooseAction: takeItem(Item_i)
+SearchResults --> BrowseNPSs: interactWithNPCs()
+BrowseNPSs: NPC_1, NPC_2, ..., NPC_i, ..., NPC_N.
+BrowseNPSs --> Interaction: interact(NPC_i) 
+Interaction: Talk with NPC.
+Interaction: Take Mission.
+Interaction --> Interaction: talk()
+Interaction --> ChooseAction: takeMission()
+ChooseAction --> ConnectedRooms: renderRoomChoices()
+ConnectedRooms: Room_1, Room_2, ..., Room_i, ..., Room_N 
+ConnectedRooms -->ChooseAction: move(Room_i)
