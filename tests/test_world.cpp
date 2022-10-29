@@ -1,10 +1,15 @@
-#include <gtest/gtest.h>
-#include "engine.cpp"
-
 /**
- * @brief This test module intented to test the initWorld and destroyWorld methods of class World.
+ * @file test_world.cpp
+ * @author Peter Bence (ecneb2000@gmail.com)
+ * @brief Testing software of class World, that is the main module of the game engine.
+ * @version 0.1
+ * @date 2022-10-29
+ * 
+ * @copyright Copyright (c) 2022
  * 
  */
+#include <gtest/gtest.h>
+#include "engine.cpp"
 
 /**
  * @brief GTest Class initializes world, from test story file.

@@ -1,3 +1,13 @@
+/**
+ * @file interface.hpp
+ * @author Peter Bence (ecneb2000@gmail.com)
+ * @brief Implementation of interface that connects the game with game eingine.
+ * @version 0.1
+ * @date 2022-10-29
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #ifndef INTERFACE
 #define INTERFACE
 

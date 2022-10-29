@@ -1,3 +1,13 @@
+/**
+ * @file engine.cpp
+ * @author Peter Bence (ecneb2000@gmail.com)
+ * @brief Implementation of the game logic.
+ * @version 0.1
+ * @date 2022-10-29
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include "engine.hpp"
 
 bool Room::unlock(item& k, node& r) {

@@ -1,3 +1,13 @@
+/**
+ * @file engine.hpp
+ * @author Peter Bence (ecneb2000@gmail.com)
+ * @brief Definition and part implementation of game logic.
+ * @version 0.1
+ * @date 2022-10-29
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #ifndef ENGINE
 #define ENGINE
 #include <vector>
