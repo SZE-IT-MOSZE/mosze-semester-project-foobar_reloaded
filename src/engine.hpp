@@ -1,11 +1,11 @@
 #ifndef ENGINE
 #define ENGINE
-#include "tinyxml2.h"
 #include <vector>
 #include <string>
 #include <map>
 #include <iostream>
 #include <memory>
+#include "tinyxml2.h"
 
 class World;
 class Object;

@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "engine.hpp"
+#include "engine.cpp"
 /**
  * @brief This cpp file is intended to test the methods of class Room 
  * 

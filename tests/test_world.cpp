@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "engine.hpp"
+#include "engine.cpp"
 
 /**
  * @brief This test module intented to test the initWorld and destroyWorld methods of class World.
