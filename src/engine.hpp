@@ -259,7 +259,7 @@ public:
  * @brief  Enum class to make tracking room lockstatus easier.
  * 
  */
-enum LockStatus{locked, unlocked};
+enum LockStatus{unlocked, locked};
 
 /**
  * @brief Part of the World. A room that contains items, that can be collected, players or npc can move in and out of these rooms.
@@ -270,7 +270,8 @@ class Room {
 	const std::string roomName; // Name of the room.
 	const int roomID; // ID of the room, that connects a key to this room.
 	const std::string description; // Description of the room.
-	LockStatus lock;
+	const std::string choiceDescription;
+	LockStatus lock; 
 	npcs roomPopulation;
 	neighbours connectedRooms; // Neighbouring rooms.
 	items inventory; // Items, that can be found in the room.
@@ -281,17 +282,19 @@ public:
 	 * @param n (std::string&): Name of the Room that cant be changed later. 
 	 * @param id (int): This have to be a unique ID to be able to connect keys with rooms. 
 	 * @param desc (std::string&): Description of the room. Cant be changed later.
+	 * @param choice (std::string&): Desciption for choice generation.
 	 */
-	Room(const std::string& n, int id, const std::string& desc) : roomName(n), roomID(id), description(desc), lock(locked) {}
+	Room(const std::string& n, int id, const std::string& desc, const std::string& choice, LockStatus ls) : roomName(n), roomID(id), description(desc), choiceDescription(choice), lock(ls) {}
 	/**
 	 * @brief Construct a new Room object
 	 * 
 	 * @param n (std::string&): Name of the Room that cant be changed later. 
 	 * @param id (int): This have to be a unique ID to be able to connect keys with rooms. 
 	 * @param desc (std::string&): Description of the room. Cant be changed later.
+	 * @param choice (std::string&): Desciption for choice generation.
 	 * @param cn Connected neighbours
 	 */
-	Room(const std::string& n, int id, const std::string& desc, neighbours cn) : roomName(n), roomID(id), description(desc), lock(locked), connectedRooms(cn) {}
+	Room(const std::string& n, int id, const std::string& desc, const std::string& choice, LockStatus ls, neighbours cn) : roomName(n), roomID(id), description(desc), choiceDescription(choice), lock(ls), connectedRooms(cn) {}
 	/**
 	 * @brief Get the Name of the Room
 	 * 
@@ -310,6 +313,12 @@ public:
 	 * @return description (std::string) 
 	 */
 	std::string getDescription() const {return description;}
+	/**
+	 * @brief Get the Choice Description of the Room 
+	 * 
+	 * @return std::string 
+	 */
+	std::string getChoiceDescription() const {return choiceDescription;}
 	/**
 	 * @brief Get the Neighbours object
 	 * 
@@ -406,7 +415,7 @@ public:
 	 * @return true 
 	 * @return false 
 	 */
-	bool static unlock(item&, node&);
+	bool static unlock(item&, Room*);
 	/**
 	 * @brief Check wheter room is locked or not. Returns true if locked, false otherwise.
 	 * 
@@ -558,8 +567,10 @@ public:
 	 * @param title (const std::string&): Name of the Room
 	 * @param id (const std::string&): ID of the Room
 	 * @param desc (const std::string&): Description of the Room
+	 * @param choice (const std::string&): Choice description of the Room
+	 * @param ls (LockStatus): Status of the lock of the Room.
 	 */
-	void RoomFactory(const std::string&, int, const std::string&, neighbours);
+	void RoomFactory(const std::string&, int, const std::string&, const std::string&, LockStatus, neighbours);
 	/**
 	 * @brief Get the Story object
 	 * 
@@ -613,20 +624,38 @@ public:
 	 */
 	missions loadNPCMissions(tinyxml2::XMLElement*);
 	/**
+	 * @brief Set the Player Spawn Room. The XML element contains the id of the spawn room. 
+	 * 
+	 * @param spawnEle
+	 * @return true if spawn location is given in XML file, false otherwise
+	 */
+	bool setPlayerSpawn(tinyxml2::XMLElement*);
+	/**
 	 * @brief Initialize world with the xml story file.
 	 * 
 	 * @param path2story 
 	 */
 	void initWorld(const char*);
 	/**
-	 * @brief move entity to room
+	 * @brief Search key for room ID given in args.
 	 * 
-	 * @param player 
-	 * @param room 
+	 * @param roomID (int): ID of the room which's key should be searched for.
+	 * @return Object* 
 	 */
-	void enterRoom(node& r) {
-		player.setLocation(r.get());
-	}
+	item& searchKey(int);	
+	/**
+	 * @brief Searches for the room which's id was given in args, if it finds the room, then returns the pointer of that room, nullptr otherwise.
+	 * 
+	 * @param id (int) Room's id.
+	 * @return Room* 
+	 */
+	Room* lookUpRoom(int);
+	/**
+	 * @brief Sets player's location to the room, which's id was given in the args. 
+	 * 
+	 * @param id (int) The room's id.
+	 */
+	bool enterRoom(int);
 	/**
 	 * @brief Get the Player object
 	 * 

@@ -82,3 +82,15 @@ TEST_F(WorldTest, test_initWorld_world_missions) {
     ASSERT_EQ(testWorld.getWorldMission().size(), 1);
     EXPECT_EQ(testWorld.getWorldMission()[0].getTargetRoom(), 1);
 }
+
+TEST_F(WorldTest, test_initWorld_room_choiceDescription) {
+    EXPECT_STREQ(std::string("Choice Description of room 1").c_str(), testWorld.getWorldRooms()[0]->getChoiceDescription().c_str());
+    EXPECT_STREQ(std::string("Choice Description of room 2").c_str(), testWorld.getWorldRooms()[1]->getChoiceDescription().c_str());
+    EXPECT_STREQ(std::string("Choice Description of room 3").c_str(), testWorld.getWorldRooms()[2]->getChoiceDescription().c_str());
+}
+
+TEST_F(WorldTest, test_initWorld_room_initial_lock_status) {
+    EXPECT_EQ(false, testWorld.getWorldRooms()[0]->isLocked());
+    EXPECT_EQ(true, testWorld.getWorldRooms()[1]->isLocked());
+    EXPECT_EQ(false, testWorld.getWorldRooms()[2]->isLocked());
+}

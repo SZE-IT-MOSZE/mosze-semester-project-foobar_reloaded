@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <world>
     <title>SpaceWalk</title>
+    <spawn>
+        1
+    </spawn>
     <room>
         <name>TestRoom1</name>
         <description>This is the first test room</description>
+        <choice>Choice Description of room 1</choice>
         <id>1</id>
+        <lock>0</lock>
         <inventory>
             <object>
                 <name>TestObject1</name>
@@ -31,6 +36,9 @@
                     <description>
                         This is a NPC test mission.
                     </description>
+                    <targetItem>
+                        1
+                    </targetItem>
                 </mission>
             </missions>
         </entity>
@@ -38,7 +46,9 @@
     <room>
         <name>TestRoom2</name>
         <description>This is the second test room</description>
+        <choice>Choice Description of room 2</choice>
         <id>2</id>
+        <lock>1</lock>
         <inventory>
             <object>
                 <name>TestObject2</name>
@@ -54,7 +64,9 @@
     <room>
         <name>TestRoom3</name>
         <description>This is the third test room</description>
+        <choice>Choice Description of room 3</choice>
         <id>3</id>
+        <lock>0</lock>
         <inventory>
             <object>
                 <name>TestObject3</name>
@@ -75,6 +87,9 @@
             <targetRoom>
                 1
             </targetRoom>
+            <targetItem>
+                2
+            </targetItem>
         </mission>
     </missions>
 </world>

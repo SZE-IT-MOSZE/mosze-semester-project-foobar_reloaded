@@ -9,8 +9,9 @@
  * 
  */
 #include "engine.hpp"
+#include <algorithm>
 
-bool Room::unlock(item& k, node& r) {
+bool Room::unlock(item& k, Room* r) {
     Key* k2r = dynamic_cast<Key*>(k.release());
     if (k2r != nullptr && k2r->getKeyID() == r->getID()) {
         r->setLock(unlocked);
@@ -23,7 +24,7 @@ bool Room::unlock(item& k, node& r) {
 }
 
 bool Mission::checkStatus(Player& player) {
-    if (targetRoom == -1) {
+    if (targetItem != -1 && targetRoom == -1) {
         for (auto rit = player.getInventory().cbegin(); rit != player.getInventory().cend(); rit++) {
             if (targetItem == (*rit)->getID()) {
                 this->complete();
@@ -31,7 +32,7 @@ bool Mission::checkStatus(Player& player) {
             }
         }
     }
-    if (targetItem == -1) {
+    if (targetRoom != -1 && targetItem == -1) {
         if (player.getLocation()->getID() == targetRoom) {
             this->complete();
             return true;
@@ -56,8 +57,42 @@ bool Mission::checkStatus(Player& player) {
     return false;
 }
 
-void World::RoomFactory(const std::string& name, int id, const std::string& desc, neighbours nids) {
-    auto newRoom = std::make_unique<Room>(name, id, desc, nids);
+item& World::searchKey(int roomID) {
+    for (items::iterator it = player.getInventory().begin(); it != player.getInventory().end(); it++) {
+        Key* k = dynamic_cast<Key*>(it->get());
+        if (k != nullptr) {
+            return (*it);
+        }
+    }
+} 
+
+Room* World::lookUpRoom(int id) {
+    nodes::iterator found_room = find_if(
+        worldRooms.begin(), worldRooms.end(),
+        [&id](node& element){
+            if (element->getID() == id) {
+                return true;
+            } else return false;
+        }
+    );
+    if (found_room == worldRooms.end()) return nullptr;
+    return found_room->get();
+}
+
+bool World::enterRoom(int id) {
+    Room* r = lookUpRoom(id);
+    if (r) {
+        item& key = searchKey(id);
+        if (Room::unlock(key, r)) {
+            player.setLocation(r);
+            return true;
+        }
+        return false;
+    }
+}
+
+void World::RoomFactory(const std::string& name, int id, const std::string& desc, const std::string& choice, LockStatus ls, neighbours nids) {
+    auto newRoom = std::make_unique<Room>(name, id, desc, choice, ls, nids);
     worldRooms.emplace_back(std::move(newRoom));
 }
 
@@ -96,10 +131,19 @@ void World::loadRooms(tinyxml2::XMLElement* firstRoom) {
     while(actual) {
         const std::string roomName(actual->FirstChildElement("name")->GetText());
         const std::string roomDescription(actual->FirstChildElement("description")->GetText());
+        const std::string choiceDescription(actual->FirstChildElement("choice")->GetText());
         int roomID = 0;
         actual->FirstChildElement("id")->QueryIntText(&roomID);
+        LockStatus ls;
+        int lockInt = -1;
+        actual->FirstChildElement("lock")->QueryIntText(&lockInt);
+        if (lockInt != -1) {
+            if (lockInt == 0) {
+                ls = unlocked;
+            } else ls = locked;
+        } else exit(1); //Exit failure, because there is no value in lock, or no lock tag.
         tinyxml2::XMLElement* conns = actual->FirstChildElement("connections");
-        RoomFactory(roomName, roomID, roomDescription, parseConnections(conns)); // Construct room with name, id and desc
+        RoomFactory(roomName, roomID, roomDescription, choiceDescription, ls, parseConnections(conns)); // Construct room with name, id and desc
         tinyxml2::XMLElement* invEle = actual->FirstChildElement("inventory");
         tinyxml2::XMLElement* actualInv = invEle->FirstChildElement("object");
         while(actualInv) {
@@ -111,6 +155,8 @@ void World::loadRooms(tinyxml2::XMLElement* firstRoom) {
             worldRooms.back()->addItem(tmpItem);
             actualInv = actualInv->NextSiblingElement("object");
         }
+        //items inv = makeInventory(invEle);
+        //worldRooms.back()->addItems(inv);
         loadEntities(actual->FirstChildElement("entity"), worldRooms.back());
         actual = actual->NextSiblingElement(elementName);
     }
@@ -174,9 +220,27 @@ missions World::loadNPCMissions(tinyxml2::XMLElement* missionsEle) {
     return npc_missions;
 }
 
+bool World::setPlayerSpawn(tinyxml2::XMLElement* spawnEle) {
+    int spawnID = -1;
+    spawnEle->QueryIntText(&spawnID);
+    for (nodes::iterator it = worldRooms.begin(); it != worldRooms.end(); it++) {
+        if ((*it)->getID() == spawnID) {
+            player.setLocation(it->get());
+            return true;
+        }
+    }
+    return false;
+}
+
 void World::initWorld(const char* path2story) {
     story.LoadFile(path2story);
     tinyxml2::XMLElement* worldElement = story.FirstChildElement("world");
     loadRooms(worldElement->FirstChildElement("room"));
     loadWorldMissions(worldElement->FirstChildElement("missions"));
+    if (setPlayerSpawn(worldElement->FirstChildElement("spawn")));
+    else {
+        std::cerr << "Error: no player spawn location given." << std::endl;
+        // Exit failure
+        exit(1);
+    }
 }
