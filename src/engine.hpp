@@ -72,7 +72,7 @@ typedef std::pair<int, std::vector<int>> roomConnection;
  */
 typedef std::vector<Mission> missions;
 
-enum missionStatus{finished, active, unactive};
+enum missionStatus{finished, active, inactive};
 
 /**
  * @brief Base class for any object that can be owned by an Entity or Room.
@@ -137,7 +137,7 @@ public:
 	int getKeyID() {
 		return keyID;
 	}
-};
+	};
 
 /**
  * @brief Base class for a NPC, USER or any other Entity living in the game world.
@@ -239,6 +239,7 @@ public:
 
 class NPC : public Entity {
 	std::string dialog;
+	std::string dialog_no_access = "This NPC will not talk with you yet.";
 	missions missions_to_give;
 public:
 	/**
@@ -252,7 +253,18 @@ public:
 	missions& getMissions() {
 		return missions_to_give;
 	}
+	/**
+	 * @brief Get the Dialog object
+	 * 
+	 * @return std::string 
+	 */
 	std::string getDialog() {return dialog;}
+	/**
+	 * @brief Get the Dialog No Acess object
+	 * 
+	 * @return std::string 
+	 */
+	std::string getDialogNoAcess() {return dialog_no_access;}
 };
 
 /**
@@ -415,7 +427,7 @@ public:
 	 * @return true 
 	 * @return false 
 	 */
-	bool static unlock(item&, Room*);
+	bool static unlock(item*, Room*);
 	/**
 	 * @brief Check wheter room is locked or not. Returns true if locked, false otherwise.
 	 * 
@@ -642,7 +654,7 @@ public:
 	 * @param roomID (int): ID of the room which's key should be searched for.
 	 * @return Object* 
 	 */
-	item& searchKey(int);	
+	item* searchKey(int);	
 	/**
 	 * @brief Searches for the room which's id was given in args, if it finds the room, then returns the pointer of that room, nullptr otherwise.
 	 * 
@@ -672,6 +684,11 @@ public:
 	void startMission(Mission& m) {
 		active_missions.push_back(m.startMission());
 	}
+	/**
+	 * @brief Iterates through every room, entity inventory in the world and removes item smart pointers that point to nullptr. This is neccessary, because if an item is moved from one place to another, then it leaves a smart pointer pointing to a nullptr.
+	 * 
+	 */
+	void cleanInventories();
 	/**
 	 * @brief Free resources used by world.
 	 * 

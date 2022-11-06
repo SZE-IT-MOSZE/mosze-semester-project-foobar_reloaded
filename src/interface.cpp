@@ -19,23 +19,24 @@ std::string Action::getDescription() {
 
 Move::Move(const std::string& desc, World& gm) : Action(desc, gm) {}
 
-void Move::doAction(node& r) {
-    game_world.enterRoom(r);
+void Move::doAction(int id) {
+    game_world.enterRoom(id);
 }
 
-void Move::operator ()(node& r) {
-    doAction(r);
+void Move::operator ()(int id) {
+    doAction(id);
 }
 
 Search::Search(const std::string& desc, World& gm) : Action(desc, gm) {}
 
-search_results Search::doAction(Room* r) {
+search_results Search::doAction() {
+    Room* r = game_world.getPlayer().getLocation();
     search_results results = search_results(r->getItems(), r->getPopulation()); 
     return results;
 }
 
-search_results Search::operator ()(Room* r) {
-    return doAction(r);
+search_results Search::operator ()() {
+    return doAction();
 }
 
 PickUp::PickUp(const std::string& desc, World& gm) : Action(desc, gm) {}
@@ -50,9 +51,14 @@ void PickUp::operator ()(item& i) {
 
 Interact::Interact(const std::string& desc, World& gm) : Action(desc, gm) {}
 
-missions Interact::doAction(npc& npc) {
-    std::cout << npc->getDialog();
-    return npc->getMissions();
+std::string Interact::doAction(npc& npc) {
+    missions npc_missions = npc->getMissions();
+    for (missions::iterator it = npc_missions.begin(); it != npc_missions.end(); it++) {
+        if (it->checkStatus(game_world.getPlayer())) {
+            return npc->getDialog();
+        }
+    }
+    return npc->getDialogNoAcess();
 }
 
 AcceptMission::AcceptMission(const std::string& desc, World& gm) : Action(desc, gm) {}
