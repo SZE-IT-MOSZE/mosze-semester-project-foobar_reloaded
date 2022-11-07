@@ -10,12 +10,6 @@
  */
 #ifndef ENGINE
 #define ENGINE
-#include <vector>
-#include <string>
-#include <map>
-#include <iostream>
-#include <memory>
-#include "tinyxml2.h"
 
 class World;
 class Object;
@@ -239,7 +233,7 @@ public:
 
 class NPC : public Entity {
 	std::string dialog;
-	std::string dialog_no_access = "This NPC will not talk with you yet.";
+	std::string dialog_no_access = "Ezzel az NPCvel most nem tudsz kommunikálni, folytasd a felfedezést, és gyere vissza kicsit később.";
 	missions missions_to_give;
 public:
 	/**

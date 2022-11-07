@@ -24,7 +24,7 @@ class RoomTest : public ::testing::Test {
         npcs testEntities;
         void SetUp() override {
             for (int i = 0; i < 10; i++) {
-                testRooms.emplace_back(new Room("Room", i, "This is a test room."));
+                testRooms.emplace_back(new Room("Room", i, "This is a test room.", "Room", unlocked));
                 testItems.emplace_back(new Object("Item No. " + std::to_string(i), i, "This is a test item."));
                 testKeys.emplace_back(new Key(i, "TestKey No." + std::to_string(i), i, "This is a testKey."));
                 testEntities.emplace_back(new NPC("TestEntity No." + std::to_string(i), "TestDialog", missions{}));
@@ -38,7 +38,7 @@ class RoomTest : public ::testing::Test {
 };
 
 TEST_F(RoomTest, constructor_test) {
-    node Room1(new Room("Room1", 1, "This room is created to test the constructor."));
+    node Room1(new Room("Room1", 1, "This room is created to test the constructor.", "Room1", unlocked));
     EXPECT_EQ("Room1", Room1->getName());
     EXPECT_EQ(1, Room1->getID());
     EXPECT_EQ("This room is created to test the constructor.", Room1->getDescription());
@@ -61,7 +61,7 @@ TEST_F(RoomTest, test_lock_feature) {
         EXPECT_EQ(true, r->isLocked());
     }
     for ( int i = 0 ; i < int(testRooms.size()) ; i++ ) {
-        Room::unlock(testKeys[i], testRooms[i]);
+        Room::unlock(&testKeys[i], testRooms[i].get());
     }
     for (node &r : testRooms) {
         EXPECT_EQ(false, r->isLocked()) << "After using the static unlock() method of the Room class, then each room should be opened";

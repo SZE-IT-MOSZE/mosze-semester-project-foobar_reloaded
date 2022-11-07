@@ -8,8 +8,14 @@
  * @copyright Copyright (c) 2022
  * 
  */
-#include "engine.hpp"
+#include <vector>
+#include <string>
+#include <map>
+#include <iostream>
+#include <memory>
 #include <algorithm>
+#include "tinyxml2.h"
+#include "engine.hpp"
 
 bool Room::unlock(item* k, Room* r) {
     Key* k2r = dynamic_cast<Key*>(k->release());
@@ -246,20 +252,35 @@ bool World::setPlayerSpawn(tinyxml2::XMLElement* spawnEle) {
 }
 
 void World::cleanInventories() {
-    auto it = std::remove_if(
-        worldRooms.begin(),
-        worldRooms.end(),
-        [](node& n) {
-            if (n.get()) return false;
-            return true;
+    for (auto r = this->worldRooms.begin(); r != this->worldRooms.end(); r++) {
+        auto i = std::remove_if(
+            (*r)->getItems().begin(),
+            (*r)->getItems().end(),
+            [](item& i) {
+                if (i.get()) return false;
+                return true;
+            }
+        );
+        (*r)->getItems().erase(i, (*r)->getItems().end());
+    }
+    for (auto r = this->worldRooms.begin(); r != this->worldRooms.end(); r++) {
+        for (auto e = (*r)->getPopulation().begin(); e != (*r)->getPopulation().end(); e++) {
+            auto i = std::remove_if(
+                (*e)->getInventory().begin(),
+                (*e)->getInventory().end(),
+                [](item& i) {
+                    if (i.get()) return false;
+                    return true;
+                }
+            );
+            (*e)->getInventory().erase(i, (*e)->getInventory().end());
         }
-    );
-    worldRooms.erase(it, worldRooms.end());
+    }
     auto iit = std::remove_if(
-        player.getInventory().begin(),
-        player.getInventory().end(),
-        [](item& n) {
-            if (n.get()) return false;
+        this->player.getInventory().begin(),
+        this->player.getInventory().end(),
+        [](item& i) {
+            if (i.get()) return false;
             return true;
         }
     );

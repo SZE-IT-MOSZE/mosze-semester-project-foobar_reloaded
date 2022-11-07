@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2022
  * 
  */
-#include "engine.hpp"
+#include "engine.cpp"
 #include "interface.hpp"
 
 Action::Action(const std::string& desc, World& gm) : description(desc), game_world(gm) {}
@@ -55,9 +55,23 @@ std::string Interact::doAction(npc& npc) {
     missions npc_missions = npc->getMissions();
     for (missions::iterator it = npc_missions.begin(); it != npc_missions.end(); it++) {
         if (it->checkStatus(game_world.getPlayer())) {
+            //move npc items to players inventory
+            game_world.getPlayer().addItem(npc->getInventory()[0]);
+            //remove target item from players inventory
+            auto rm_it = remove_if(
+                game_world.getPlayer().getInventory().begin(),
+                game_world.getPlayer().getInventory().end(),
+                [&it](item& i) {
+                    if (i->getID() == it->getTargetItem()) return true;
+                    return false;
+                }
+            );
+            game_world.getPlayer().getInventory().erase(rm_it, game_world.getPlayer().getInventory().end());
+            //return npc's dialog
             return npc->getDialog();
         }
     }
+    // if mission is not finished then npc's dialog cannot be accessed
     return npc->getDialogNoAcess();
 }
 
