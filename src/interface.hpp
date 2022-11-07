@@ -223,6 +223,29 @@ public:
 
 class SessionManager {
 //TODO Implement session manager class that will manage actions and handle user input.
+    World game_world;
+public:
+    /**
+     * @brief Construct a new Session Manager object
+     * 
+     * @param path2story (std::string)
+     */
+    SessionManager(const std::string&);
+    /**
+     * @brief Start game session. 
+     * 
+     */
+    void startSession();
+    /**
+     * @brief Return possible actions, that can be performed in the current state of the game world and the player. 
+     * 
+     */
+    std::vector<Action> possibleActions();
+    /**
+     * @brief Run one iteration of the game loop.
+     * 
+     */
+    void doLoop();
 };
 
 #endif
