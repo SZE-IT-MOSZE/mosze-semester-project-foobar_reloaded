@@ -45,3 +45,7 @@ TEST_F(InterfaceTest, test_Move_LockSystem) {
     EXPECT_EQ(nullptr, testWorld.getPlayer().getInventory()[0].get());
     delete test_action;
 }
+
+TEST_F(InterfaceTest, test_Search) {
+    //TODO Test Search Action class
+}

@@ -84,3 +84,13 @@ void AcceptMission::doAction(Mission& m) {
 void AcceptMission::operator ()(Mission& m) {
     doAction(m);
 }
+
+OpenInventory::OpenInventory(const std::string& desc, World& gm) : Action(desc, gm) {}
+
+items& OpenInventory::doAction() {
+    return game_world.getPlayer().getInventory();
+}
+
+items& OpenInventory::operator()() {
+    return doAction();
+}

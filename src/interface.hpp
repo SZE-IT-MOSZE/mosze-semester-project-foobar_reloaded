@@ -200,4 +200,29 @@ public:
     void operator ()(Mission&) ;
 };
 
+class OpenInventory : public Action {
+public:
+    /**
+     * @brief Construct a new Open Inventory object
+     * 
+     */
+    OpenInventory(const std::string&, World&);
+    /**
+     * @brief Interact with the players inventory. Returns the inventory of the player.
+     * 
+     * @return items& 
+     */
+    items& doAction();
+    /**
+     * @brief The OpenInventory object is a callable object, and will call the doAction method of the object.
+     * 
+     * @return items& 
+     */
+    items& operator ()();
+};
+
+class SessionManager {
+//TODO Implement session manager class that will manage actions and handle user input.
+};
+
 #endif
