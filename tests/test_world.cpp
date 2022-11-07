@@ -99,6 +99,11 @@ TEST_F(WorldTest, test_cleanInventories) {
     testWorld.getPlayer().addItem(testWorld.getWorldRooms()[0]->getItems()[0]);
     EXPECT_EQ(1, testWorld.getWorldRooms()[0]->getItems().size());
     testWorld.cleanInventories();
-    EXPECT_EQ(nullptr, testWorld.getWorldRooms()[0]->getItems()[0].get());
     EXPECT_EQ(0, testWorld.getWorldRooms()[0]->getItems().size()) << "The size of the room inventory vector should be 0, because when cleanInventories() is called, all thrash should be removed from inventories.";
+    EXPECT_EQ(1, testWorld.getPlayer().getInventory().size());
+    testWorld.getWorldRooms()[1]->addItem(testWorld.getPlayer().getInventory()[0]);
+    testWorld.cleanInventories();
+    EXPECT_EQ(0, testWorld.getWorldRooms()[0]->getItems().size());
+    EXPECT_EQ(2, testWorld.getWorldRooms()[1]->getItems().size());
+    EXPECT_EQ(0, testWorld.getPlayer().getInventory().size());
 }
