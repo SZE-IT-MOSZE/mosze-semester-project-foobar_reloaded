@@ -24,7 +24,7 @@ option(TEST_INTERFACE "Test interface implementation, that connects the game wit
 include_directories("${PROJECT_SOURCE_DIR}/src")
 add_library(tinyxml2 src/tinyxml2.cpp)
 add_library(engine src/engine.cpp)
-#add_library(interface src/interface.cpp)
+add_library(interface src/interface.cpp)
 
 macro(runtest testname)
 	include(FetchContent)
@@ -43,7 +43,7 @@ macro(runtest testname)
 		GTest::gtest_main
 		tinyxml2
 		engine
-#		interface
+		interface
 	)
 	include(GoogleTest)
 	gtest_discover_tests(test_program)
