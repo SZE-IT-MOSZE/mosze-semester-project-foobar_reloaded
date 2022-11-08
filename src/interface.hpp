@@ -242,13 +242,29 @@ public:
      */
     std::vector<Action> possibleActions();
     /**
-     * @brief 
+     * @brief Player interaction with Movement action. 
      * 
      */
     void doMove();
+    /**
+     * @brief Player interaction with Search action.
+     * 
+     */
     void doSearch();
-    void doOpenInventory();
+    /**
+     * @brief Method to handle interaction with items.
+     * 
+     */
+    void doOpenInventory(items&);
+    /**
+     * @brief Method to handle interaction with NPCs.
+     * 
+     */
     void doInteract();
+    /**
+     * @brief Run an iteration of the game loop. This method handles the user input.
+     * 
+     */
     void doIteration();
 };
 
