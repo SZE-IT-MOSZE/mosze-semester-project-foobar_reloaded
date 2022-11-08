@@ -242,10 +242,14 @@ public:
      */
     std::vector<Action> possibleActions();
     /**
-     * @brief Run one iteration of the game loop.
+     * @brief 
      * 
      */
-    void doLoop();
+    void doMove();
+    void doSearch();
+    void doOpenInventory();
+    void doInteract();
+    void doIteration();
 };
 
 #endif
