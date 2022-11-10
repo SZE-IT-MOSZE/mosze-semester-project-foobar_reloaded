@@ -35,6 +35,7 @@
         </entity>
     </room>
 -->
+    <spawn>1</spawn>
     <room>
         <name>Spawn</name>
         <description>Óriási ricsajra ébredsz, és nem tudod, mi történik. Megpróbálod felkapcsolni a világítást, de sehogy sem sikerül. Az ajtó sem nyílik, és az egyre erősödő rázkódások miatt elveszted az egyensúlyod, és elesel. Balszerencsédre bevered az éjjeli szekrénybe a fejed, és elsötétül minden. \n 

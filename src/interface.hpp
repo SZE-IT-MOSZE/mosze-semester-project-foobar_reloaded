@@ -1,7 +1,7 @@
 /**
  * @file interface.hpp
  * @author Peter Bence (ecneb2000@gmail.com)
- * @brief Implementation of interface that connects the game with game eingine.
+ * @brief Implementation of interface that connects the game with game engine.
  * @version 0.1
  * @date 2022-10-29
  * 
@@ -67,16 +67,16 @@ public:
      * @brief Take action with the player character and move to another room.
      * 
      * @param r (node&): The room that the player will be moved to.
-     * 
+     * @return bool 
      */
-    void doAction(int); 
+    bool doAction(int); 
     /**
      * @brief The Move object is a callable object, and will call the doAction method of the object. 
      * 
      * @param r (node&): The room that the player will be moved to.
-     * 
+     * @return bool 
      */
-    void operator ()(int);
+    bool operator ()(int);
 };
 
 /**
@@ -219,61 +219,6 @@ public:
      * @return items& 
      */
     items& operator ()();
-};
-
-class SessionManager {
-//TODO Implement session manager class that will manage actions and handle user input.
-    std::string path2story;
-    World game_world;
-public:
-    /**
-     * @brief Construct a new Session Manager object
-     * 
-     * @param path2story (std::string)
-     */
-    SessionManager(const std::string&);
-    /**
-     * @brief Start game session. 
-     * 
-     */
-    void startSession();
-    /**
-     * @brief Return possible actions, that can be performed in the current state of the game world and the player. 
-     * 
-     */
-    std::vector<Action> possibleActions();
-    /**
-     * @brief Player interaction with Movement action. 
-     * 
-     * @return bool
-     */
-    bool doMove();
-    /**
-     * @brief Player interaction with Search action.
-     * 
-     */
-    bool doSearch();
-    /**
-     * @brief Method to handle interaction with objects found in room.
-     * 
-     */
-    bool doOpenInventory(items&);
-    /**
-     * @brief Method to handle interaction with NPCs.
-     * 
-     */
-    bool doInteract();
-    /**
-     * @brief Handle item interaction.
-     * 
-     */
-    bool doPickUp();
-    /**
-     * @brief Run an iteration of the game loop. This method handles the user input.
-     *
-     * @return Returns a bool if all missions are finished. 
-     */
-    bool doIteration();
 };
 
 #endif
