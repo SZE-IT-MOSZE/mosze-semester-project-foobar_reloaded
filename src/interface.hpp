@@ -11,7 +11,7 @@
 #ifndef INTERFACE
 #define INTERFACE
 
-typedef std::pair<items&, const npcs&> search_results;
+typedef std::pair<items&, npcs&> search_results;
 
 /**
  * @brief Abstract class representing a player action.
@@ -157,7 +157,7 @@ public:
      * @param npc (npc&): The smart pointer of the npc that will be talked to.
      * @return std::string 
      */
-    std::string doAction(npc&) ;
+    std::string doAction(npc&);
     /**
      * @brief Accept NPC's mission.
      * 
@@ -171,7 +171,7 @@ public:
      * @param npc (npc&): The smart pointer of the npc that will be talked to.
      * 
      */
-    void operator ()(npc&) ;
+    std::string operator ()(npc&);
 };
 
 class AcceptMission : public Action {

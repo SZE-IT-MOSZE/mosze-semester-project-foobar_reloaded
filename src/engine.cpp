@@ -30,17 +30,18 @@ bool Room::unlock(item* k, Room* r) {
 }
 
 bool Mission::checkStatus(Player& player) {
+    if (status == finished) return true;
     if (targetItem != -1 && targetRoom == -1) {
         for (auto rit = player.getInventory().cbegin(); rit != player.getInventory().cend(); rit++) {
             if (targetItem == (*rit)->getID()) {
-                this->complete();
+                complete();
                 return true;
             }
         }
     }
     if (targetRoom != -1 && targetItem == -1) {
         if (player.getLocation()->getID() == targetRoom) {
-            this->complete();
+            complete();
             return true;
         }
     }
@@ -56,7 +57,7 @@ bool Mission::checkStatus(Player& player) {
             completed++;
         }
         if (completed == 2) {
-            this->complete();
+            complete();
             return true;
         }
     }
@@ -216,14 +217,14 @@ Mission World::makeMission(tinyxml2::XMLElement* missionEle) {
         if (targetRoomID != -1) {
             retMission.setTargetRoom(targetRoomID);
         }
-    }
+    } else retMission.setTargetRoom(targetRoomID);
     tinyxml2::XMLElement* targetItemEle = missionEle->FirstChildElement("targetItem");
     if (targetItemEle != 0) {
         targetItemEle->QueryIntText(&targetItemID);
         if (targetItemID != -1) {
             retMission.setTargetItem(targetItemID);
         }
-    }
+    } else retMission.setTargetItem(targetItemID);
     retMission.startMission(); // Set mission status to active.
     return retMission;
 }

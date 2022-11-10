@@ -439,7 +439,7 @@ public:
 	 * 
 	 * @return const entities& 
 	 */
-	const npcs& getPopulation() {return roomPopulation;}
+	npcs& getPopulation() {return roomPopulation;}
 	/**
 	 * @brief Destroy the Room object. Reset all nodes in the neighours vector and all items in inventory.
 	 *
@@ -465,13 +465,6 @@ class Mission {
 	int targetRoom;
 	int targetItem;
 	missionStatus status;
-	/**
-	 * @brief Private method, for completing mission
-	 * 
-	 */
-	void complete() {
-		status = finished;
-	}
 public:
 	/**
 	 * @brief Construct a new Mission object.
@@ -512,6 +505,13 @@ public:
 		return *this;
 	}
 	/**
+	 * @brief Set missionStatus to finished. 
+	 * 
+	 */
+	void complete() {
+		status = finished;
+	}
+	/**
 	 * @brief Check if mission is accomplished
 	 * 
 	 * @param player 
@@ -519,6 +519,12 @@ public:
 	 * @return false 
 	 */
 	bool checkStatus(Player&);
+	/**
+	 * @brief Get the Status object
+	 * 
+	 * @return missionStatus 
+	 */
+	missionStatus getStatus() {return status;}	
 	/**
 	 * @brief Change mission status to active.
 	 * 

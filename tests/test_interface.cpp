@@ -59,6 +59,7 @@ TEST_F(InterfaceTest, test_Search) {
 }
 
 TEST_F(InterfaceTest, test_PickUp) {
+    /* This is the same as above, because to test PickUp search_results are needed. With the ASSERT_EQ, there is no place for error in the Search. */
     Action* test_action = new Search("Test room search action.", testWorld);
     Search* test_search = dynamic_cast<Search*>(test_action);
     ASSERT_EQ(typeid(Search), typeid(*test_action));
@@ -74,4 +75,32 @@ TEST_F(InterfaceTest, test_PickUp) {
     EXPECT_EQ(1, testWorld.getPlayer().getInventory()[0]->getID());
     EXPECT_STREQ(std::string("TestObject1").c_str(), testWorld.getPlayer().getInventory()[0]->getName().c_str());
     delete test_action;
+}
+
+TEST_F(InterfaceTest, test_Interact) {
+    /* This is the same as above, because to test Interact there need to be search_results from Search. No worry, if Search is not working, then ASSERT_EQ stops execution anyways. */
+    Action* test_action = new Search("Test room search action.", testWorld);
+    Search* test_search = dynamic_cast<Search*>(test_action);
+    ASSERT_EQ(typeid(Search), typeid(*test_action));
+    search_results results = (*test_search)();
+    ASSERT_EQ(1, results.first.size());
+    ASSERT_EQ(1, results.second.size());
+    delete test_action;
+    
+    /* This tests when the player dont have the target item for the quest. */
+    test_action = new Interact("Test interaction with test npc.", testWorld);
+    Interact* test_interaction = dynamic_cast<Interact*>(test_action);
+    ASSERT_EQ(typeid(Interact), typeid(*test_action));
+    EXPECT_STREQ(results.second[0]->getDialogNoAcess().c_str(), (*test_interaction)(results.second[0]).c_str());
+    delete test_action;
+
+    /* This tests when the player has the target item for the quest. */
+    testWorld.getPlayer().addItem(testWorld.getWorldRooms()[0]->getItems()[0]); // This adds the Object ID 1 to the players inventory.
+    test_action = new Interact("Test interaction with test npc.", testWorld);
+    test_interaction = dynamic_cast<Interact*>(test_action);
+    ASSERT_EQ(typeid(Interact), typeid(*test_action));
+    EXPECT_STREQ(results.second[0]->getDialog().c_str(), (*test_interaction)(results.second[0]).c_str());
+    EXPECT_EQ(4, testWorld.getPlayer().getInventory()[0]->getID());
+    EXPECT_EQ(1, testWorld.getPlayer().getInventory().size());
+    delete test_action;  
 }
