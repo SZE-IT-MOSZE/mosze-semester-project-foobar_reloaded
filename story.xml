@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <world>
+<!-- This is a template to add rooms in the story.
     <room>
         <name></name>
         <description></description>
@@ -33,6 +34,7 @@
             </missions>
         </entity>
     </room>
+-->
     <room>
         <name>Spawn</name>
         <description>Óriási ricsajra ébredsz, és nem tudod, mi történik. Megpróbálod felkapcsolni a világítást, de sehogy sem sikerül. Az ajtó sem nyílik, és az egyre erősödő rázkódások miatt elveszted az egyensúlyod, és elesel. Balszerencsédre bevered az éjjeli szekrénybe a fejed, és elsötétül minden. \n 
@@ -97,7 +99,7 @@
                     <name>Raktár kulcs</name>
                     <description></description>
                     <id>3</id>
-                    <keyID><!-- TODO keyID--></keyID>
+                    <keyID>6</keyID>
                 </key>
             </inventory>
             <missions>
@@ -135,7 +137,7 @@
                 <name>Bridge Key</name>
                 <description>Ez a kulcs a hidat nyitja.</description>
                 <id>6</id>
-                <keyID><!-- TODO room id bridge--></keyID>
+                <keyID>9</keyID>
             </key>
         </inventory>
         <connections>
@@ -178,7 +180,7 @@
             <missions>
                 <mission>
                     <description>Alma</description>
-                    <targetItem><!-- TODO Alma object id--></targetItem>
+                    <targetItem>9</targetItem>
                 </mission>
             </missions>
         </entity>
@@ -239,8 +241,8 @@
             </inventory>
             <missions>
                 <mission>
-                    <name>Csavarhúzó</name>
-                    <targetItem><!-- TODO csavarhuzo id--></targetItem>
+                    <description>Csavarhúzó</description>
+                    <targetItem>15</targetItem>
                 </mission>
             </missions>
         </entity>
@@ -342,7 +344,7 @@
             </inventory>
             <missions>
                 <mission>
-                    <name>Captain's hat</name>
+                    <description>Captain's hat</description>
                     <targetItem>5</targetItem>
                 </mission>
             </missions>
@@ -379,8 +381,8 @@
             </inventory>
             <missions>
                 <mission>
-                    <name>Karton doboz</name>
-                    <target>11</target>
+                    <description>Karton doboz</description>
+                    <targetItem>11</targetItem>
                 </mission>
             </missions>
         </entity>
@@ -415,11 +417,23 @@
             <object>
                 <name>Nagy piros gomb</name>
                 <description>
-                    Megnyomtad a gombot, és elsötétül minden. Elindulsz a Föld felé. Az oxigén hiány miatt elveszted az eszméleted…. Mikor magadhoz térsz már a Földön vagy, de nem úgy néz ki, mint amikor itt hagytad. Teljes anarchiába zuhant az emberiség az AI hiánya miatt. Kilépsz a kapszulából, és elindulsz megkeresni a családod, és barátaidat. Egyedül te tudod mi történt odafent, és bármennyire azt akarod hinni, hogy egy álom volt, nem volt az. Tudod mi a teendő, nem vagy átlagos, és az emberiség sorsa a kezedben van.
+                    Nagy piros gomb. Valószínűleg a menekülő kapszulát indítja el.
                 </description>
                 <id>19</id>
             </object>
         </inventory>
+        <entity>
+            <name>Nagy piros gomb</name>
+            <dialog>
+                Megnyomtad a gombot, és elsötétül minden. Elindulsz a Föld felé. Az oxigén hiány miatt elveszted az eszméleted…. Mikor magadhoz térsz már a Földön vagy, de nem úgy néz ki, mint amikor itt hagytad. Teljes anarchiába zuhant az emberiség az AI hiánya miatt. Kilépsz a kapszulából, és elindulsz megkeresni a családod, és barátaidat. Egyedül te tudod mi történt odafent, és bármennyire azt akarod hinni, hogy egy álom volt, nem volt az. Tudod mi a teendő, nem vagy átlagos, és az emberiség sorsa a kezedben van.
+            </dialog>
+            <missions>
+                <mission>
+                    <description>Nagy piros gomb</description>
+                    <targetItem>19</targetItem>
+                </mission>
+            </missions>
+        </entity>
         <connections>
             <id>2</id>
             <id>7</id>
