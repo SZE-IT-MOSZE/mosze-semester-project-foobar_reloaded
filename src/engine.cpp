@@ -63,6 +63,15 @@ bool Mission::checkStatus(Player& player) {
     return false;
 }
 
+World::World(const char* path2story) {
+    try {
+        story.LoadFile(path2story);
+    } catch(int errorID) {
+        std::cerr << "Error: Cant load story file " << path2story << std::endl;
+        exit(1);
+    }
+}
+
 item* World::searchKey(int roomID) {
     for (items::iterator it = player.getInventory().begin(); it != player.getInventory().end(); it++) {
         Key* k = dynamic_cast<Key*>(it->get());
@@ -287,8 +296,13 @@ void World::cleanInventories() {
     player.getInventory().erase(iit, player.getInventory().end());
 }
 
-void World::initWorld(const char* path2story) {
-    story.LoadFile(path2story);
+void World::initWorld(const std::string& path2story) {
+    try {
+        story.LoadFile(path2story.c_str());
+    } catch(int errorID) {
+        std::cerr << "Error: Cant load story file " << path2story << std::endl;
+        exit(1);
+    }
     tinyxml2::XMLElement* worldElement = story.FirstChildElement("world");
     loadRooms(worldElement->FirstChildElement("room"));
     loadWorldMissions(worldElement->FirstChildElement("missions"));

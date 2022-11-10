@@ -541,16 +541,18 @@ class World {
 	tinyxml2::XMLDocument story;
 	Player player;
 	missions active_missions;	
-public:
-	World() {}
 	/**
-	 * @brief Construct a new World object
+	 * @brief Construct a new World object. This is a private constructor implemented for testing reasons. Should not be used in production.
 	 * 
 	 * @param path2story (const char*) The path to the story xml file.
 	 */
-	World(const char* path2story) {
-		story.LoadFile(path2story);
-	}
+	World(const char* path2story);
+public:
+	/**
+	 * @brief Construct a new World object. Default constructor. To config and setup world object use initWorld() method.
+	 * 
+	 */
+	World() {}
 	/**
 	 * @brief Get the World Rooms object
 	 * 
@@ -641,7 +643,7 @@ public:
 	 * 
 	 * @param path2story 
 	 */
-	void initWorld(const char*);
+	void initWorld(const std::string&);
 	/**
 	 * @brief Search key for room ID given in args.
 	 * 
