@@ -223,6 +223,7 @@ public:
 
 class SessionManager {
 //TODO Implement session manager class that will manage actions and handle user input.
+    std::string path2story;
     World game_world;
 public:
     /**
@@ -244,28 +245,35 @@ public:
     /**
      * @brief Player interaction with Movement action. 
      * 
+     * @return bool
      */
-    void doMove();
+    bool doMove();
     /**
      * @brief Player interaction with Search action.
      * 
      */
-    void doSearch();
+    bool doSearch();
     /**
-     * @brief Method to handle interaction with items.
+     * @brief Method to handle interaction with objects found in room.
      * 
      */
-    void doOpenInventory(items&);
+    bool doOpenInventory(items&);
     /**
      * @brief Method to handle interaction with NPCs.
      * 
      */
-    void doInteract();
+    bool doInteract();
     /**
-     * @brief Run an iteration of the game loop. This method handles the user input.
+     * @brief Handle item interaction.
      * 
      */
-    void doIteration();
+    bool doPickUp();
+    /**
+     * @brief Run an iteration of the game loop. This method handles the user input.
+     *
+     * @return Returns a bool if all missions are finished. 
+     */
+    bool doIteration();
 };
 
 #endif

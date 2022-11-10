@@ -8,6 +8,7 @@
  * @copyright Copyright (c) 2022
  * 
  */
+#include <sstream>
 #include "engine.cpp"
 #include "interface.hpp"
 
@@ -93,4 +94,45 @@ items& OpenInventory::doAction() {
 
 items& OpenInventory::operator()() {
     return doAction();
+}
+
+SessionManager::SessionManager(const std::string& path) {
+    game_world.initWorld(path);
+}
+
+void SessionManager::startSession() {
+    while (doIteration());
+}
+
+bool SessionManager::doMove() {
+    //TODO can implement neighbours better, not as integers in a vector rather than pointers. 
+    auto neighbours = game_world.getPlayer().getLocation()->getNeighbours();
+    nodes& world_rooms = game_world.getWorldRooms();
+    std::vector<Room*> choices;
+    for (size_t i = 0; i < world_rooms.size(); i++) {
+        for (size_t j = 0; j < neighbours.size(); j++) {
+            if (world_rooms[i]->getID() == neighbours[j]) {
+                std::cout << j+1 << ". " << world_rooms[i]->getChoiceDescription() << std::endl; 
+                choices.push_back(world_rooms[i].get());
+            }
+        }
+    }
+    std::string input;
+    int choice;
+    do {
+        std::cout << "Szoba sorszáma: "; getline(std::cin, input); 
+        std::stringstream(input) >> choice;
+        if (choice < 0 || choice > int(neighbours.size())) {
+            std::cout << "Rossz parancs, próbáld újra." << std::endl;
+        }
+    } while (choice < 0 || choice > int(neighbours.size()));
+    if (choice == 0) return false;
+    Move move_action = Move("Mozgás a kiválasztott szobába.", game_world);
+    move_action(choices[choice-1]->getID());
+    return true;
+}
+
+bool SessionManager::doIteration() {
+    //TODO implement iteration
+    return true;
 }

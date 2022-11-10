@@ -9,8 +9,7 @@
  * 
  */
 #include <gtest/gtest.h>
-#include "engine.hpp"
-#include "interface.hpp"
+#include "interface.cpp"
 
 class InterfaceTest : public ::testing::Test {
 protected:
@@ -28,18 +27,19 @@ TEST_F(InterfaceTest, test_Move_LockSystem) {
     int spawnID = testWorld.getPlayer().getLocation()->getID();
     EXPECT_EQ(1, spawnID);
     Move* test_move = dynamic_cast<Move*>(test_action);
+    ASSERT_EQ(typeid(Move), typeid(*test_action));
     if (test_move) {
-        test_move->doAction(3);
+        (*test_move)(3);
     }
     EXPECT_EQ(3, testWorld.getPlayer().getLocation()->getID());
     if (test_move) {
-        test_move->doAction(2);
+        (*test_move)(2);
     }
     EXPECT_EQ(3, testWorld.getPlayer().getLocation()->getID());
     item key_room2 = std::make_unique<Key>(2, "KeyTo2", 5, "This is a");
     testWorld.getPlayer().addItem(key_room2);
     if (test_move) {
-        test_move->doAction(2);
+        (*test_move)(2);
     }
     EXPECT_EQ(2, testWorld.getPlayer().getLocation()->getID());
     EXPECT_EQ(nullptr, testWorld.getPlayer().getInventory()[0].get());
@@ -47,5 +47,31 @@ TEST_F(InterfaceTest, test_Move_LockSystem) {
 }
 
 TEST_F(InterfaceTest, test_Search) {
-    //TODO Test Search Action class
+    Action* test_action = new Search("Test room search action.", testWorld);
+    Search* test_search = dynamic_cast<Search*>(test_action);
+    ASSERT_EQ(typeid(Search), typeid(*test_action));
+    search_results results = (*test_search)(); 
+    ASSERT_EQ(1, results.first.size());
+    ASSERT_EQ(1, results.second.size());
+    EXPECT_STREQ(std::string("TestObject1").c_str(), results.first[0]->getName().c_str());
+    EXPECT_STREQ(std::string("TestEntity1").c_str(), results.second[0]->getName().c_str());
+    delete test_action;
+}
+
+TEST_F(InterfaceTest, test_PickUp) {
+    Action* test_action = new Search("Test room search action.", testWorld);
+    Search* test_search = dynamic_cast<Search*>(test_action);
+    ASSERT_EQ(typeid(Search), typeid(*test_action));
+    search_results results = (*test_search)();
+    ASSERT_EQ(1, results.first.size());
+    ASSERT_EQ(1, results.second.size());
+    delete test_action;
+
+    test_action = new PickUp("Test pick up action", testWorld);
+    PickUp* test_pickup = dynamic_cast<PickUp*>(test_action);
+    ASSERT_EQ(typeid(PickUp), typeid(*test_action));
+    (*test_pickup)(results.first[0]);
+    EXPECT_EQ(1, testWorld.getPlayer().getInventory()[0]->getID());
+    EXPECT_STREQ(std::string("TestObject1").c_str(), testWorld.getPlayer().getInventory()[0]->getName().c_str());
+    delete test_action;
 }
