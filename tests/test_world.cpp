@@ -22,7 +22,6 @@ class WorldTest : public ::testing::Test {
             testWorld.initWorld("../test_story.xml");
         }
         void TearDown() override {
-            testWorld.destroyWorld();
         }
 };
 
@@ -80,7 +79,7 @@ TEST_F(WorldTest, test_initWorld_npcs) {
 TEST_F(WorldTest, test_initWorld_world_missions) {
     // Test if world missions are loaded correctly.
     ASSERT_EQ(testWorld.getWorldMission().size(), 1);
-    EXPECT_EQ(testWorld.getWorldMission()[0].getTargetRoom(), 1);
+    EXPECT_EQ(testWorld.getWorldMission()[0]->getTargetRoom(), 1);
 }
 
 TEST_F(WorldTest, test_initWorld_room_choiceDescription) {
@@ -109,6 +108,6 @@ TEST_F(WorldTest, test_cleanInventories) {
 }
 
 TEST_F(WorldTest, test_NPCMissions) {
-    EXPECT_EQ(1, testWorld.getWorldRooms()[0]->getPopulation()[0]->getMissions()[0].getTargetItem());
-    EXPECT_EQ(false, testWorld.getWorldRooms()[0]->getPopulation()[0]->getMissions()[0].checkStatus(testWorld.getPlayer()));
+    EXPECT_EQ(1, testWorld.getWorldRooms()[0]->getPopulation()[0]->getMissions()[0]->getTargetItem());
+    EXPECT_EQ(false, testWorld.getWorldRooms()[0]->getPopulation()[0]->getMissions()[0]->checkStatus(testWorld.getPlayer()));
 }

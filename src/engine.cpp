@@ -29,6 +29,15 @@ bool Room::unlock(item* k, Room* r) {
     return false;
 }
 
+Room::~Room() {
+		for (items::iterator iit = inventory.begin(); iit != inventory.end(); iit++) {
+			iit->reset();
+		}
+		for (npcs::iterator eit = roomPopulation.begin(); eit != roomPopulation.end(); eit++) {
+			eit->reset();
+		}
+	}
+
 bool Mission::checkStatus(Player& player) {
     if (status == finished) return true;
     if (targetItem != -1 && targetRoom == -1) {
@@ -63,6 +72,12 @@ bool Mission::checkStatus(Player& player) {
     }
     return false;
 }
+
+NPC::~NPC() {
+		for (auto mit = missions_to_give.begin(); mit != missions_to_give.end(); mit++) {
+			delete *mit;
+		}
+	}
 
 World::World(const char* path2story) {
     try {
@@ -206,26 +221,26 @@ void World::loadEntities(tinyxml2::XMLElement* firstEle, node& r) {
     }
 }
 
-Mission World::makeMission(tinyxml2::XMLElement* missionEle) {
+Mission* World::makeMission(tinyxml2::XMLElement* missionEle) {
     std::string description = missionEle->FirstChildElement("description")->GetText();
-    Mission retMission(description);
+    Mission* retMission = new Mission(description);
     int targetRoomID = -1;
     int targetItemID = -1;
     tinyxml2::XMLElement* targetRoomEle = missionEle->FirstChildElement("targetRoom");
     if (targetRoomEle != 0) {
         targetRoomEle->QueryIntText(&targetRoomID);
         if (targetRoomID != -1) {
-            retMission.setTargetRoom(targetRoomID);
+            retMission->setTargetRoom(targetRoomID);
         }
-    } else retMission.setTargetRoom(targetRoomID);
+    } else retMission->setTargetRoom(targetRoomID);
     tinyxml2::XMLElement* targetItemEle = missionEle->FirstChildElement("targetItem");
     if (targetItemEle != 0) {
         targetItemEle->QueryIntText(&targetItemID);
         if (targetItemID != -1) {
-            retMission.setTargetItem(targetItemID);
+            retMission->setTargetItem(targetItemID);
         }
-    } else retMission.setTargetItem(targetItemID);
-    retMission.startMission(); // Set mission status to active.
+    } else retMission->setTargetItem(targetItemID);
+    retMission->startMission(); // Set mission status to active.
     return retMission;
 }
 
@@ -233,7 +248,7 @@ void World::loadWorldMissions(tinyxml2::XMLElement* missionsEle) {
     tinyxml2::XMLElement* firstMission = missionsEle->FirstChildElement("mission");
     tinyxml2::XMLElement* actual = firstMission;
     while (actual) {
-        active_missions.push_back(makeMission(actual));
+        active_missions.emplace_back(makeMission(actual));
         actual = actual->NextSiblingElement("mission");
     }
 }
@@ -313,4 +328,17 @@ void World::initWorld(const std::string& path2story) {
         // Exit failure
         exit(1);
     }
+}
+
+void World::destroyWorld() {
+    for (nodes::iterator it = worldRooms.begin(); it != worldRooms.end(); it++) {
+        it->reset();
+    }
+    for (auto mit = active_missions.begin(); mit != active_missions.end(); mit++) {
+        delete *mit;
+    }
+}
+
+World::~World() {
+    this->destroyWorld();
 }

@@ -190,14 +190,14 @@ public:
      * @param m (Mission&): Mission to accept.
      * 
      */
-    void doAction(Mission&) ;
+    void doAction(Mission*) ;
     /**
      * @brief The AcceptMission object is a callable object, and will call the doAction method of the object. 
      * 
-     * @param m (Mission&): Mission to accept.
+     * @param m (Mission*): Mission to accept.
      * 
      */
-    void operator ()(Mission&) ;
+    void operator ()(Mission*) ;
 };
 
 class OpenInventory : public Action {

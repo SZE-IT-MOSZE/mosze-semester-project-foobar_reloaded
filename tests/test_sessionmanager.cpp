@@ -46,4 +46,13 @@ TEST_F(SessionManagerTest, test_Search_Items_Inspect_PickUp) {
     EXPECT_EQ(1, session_object->getWorld()->getPlayer().getInventory()[0]->getID());
 }
 
-//TODO test interaction with npc's
+TEST_F(SessionManagerTest, test_Search_Interact_Mission_Fail) {
+    EXPECT_EQ(true, session_object->doSearch()) << "Choose Interact with NPC's, then choose NCP to interact with it.";
+    EXPECT_EQ(active, session_object->getWorld()->getWorldRooms()[0]->getPopulation()[0]->getMissions()[0]->getStatus());
+}
+
+TEST_F(SessionManagerTest, test_Search_Interact_Mission_Success) {
+    session_object->getWorld()->getPlayer().addItem(session_object->getWorld()->getWorldRooms()[0]->getItems()[0]);
+    EXPECT_EQ(true, session_object->doSearch()) << "Choose Interact with NPC's, then choose NCP to interact with it.";
+    EXPECT_EQ(finished, session_object->getWorld()->getWorldRooms()[0]->getPopulation()[0]->getMissions()[0]->getStatus());
+}

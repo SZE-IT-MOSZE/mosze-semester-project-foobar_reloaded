@@ -55,8 +55,8 @@ Interact::Interact(const std::string& desc, World& gm) : Action(desc, gm) {}
 std::string Interact::doAction(npc& n) {
     missions npc_missions = n->getMissions();
     if (npc_missions.size() == 0) return n->getDialog();
-    for (missions::iterator it = npc_missions.begin(); it != npc_missions.end(); it++) {
-        if (it->checkStatus(game_world.getPlayer())) {
+    for (auto it = npc_missions.begin(); it != npc_missions.end(); it++) {
+        if ((*it)->checkStatus(game_world.getPlayer())) {
             //move npc items to players inventory
             game_world.getPlayer().addItem(n->getInventory()[0]);
             //remove target item from players inventory
@@ -64,7 +64,7 @@ std::string Interact::doAction(npc& n) {
                 game_world.getPlayer().getInventory().begin(),
                 game_world.getPlayer().getInventory().end(),
                 [&it](item& i) {
-                    if (i->getID() == it->getTargetItem()) return true;
+                    if (i->getID() == (*it)->getTargetItem()) return true;
                     return false;
                 }
             );
@@ -83,11 +83,11 @@ std::string Interact::operator()(npc& n) {
 
 AcceptMission::AcceptMission(const std::string& desc, World& gm) : Action(desc, gm) {}
 
-void AcceptMission::doAction(Mission& m) {
+void AcceptMission::doAction(Mission* m) {
     game_world.startMission(m);
 }
 
-void AcceptMission::operator ()(Mission& m) {
+void AcceptMission::operator ()(Mission* m) {
     doAction(m);
 }
 

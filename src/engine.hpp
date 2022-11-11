@@ -64,7 +64,7 @@ typedef std::pair<int, std::vector<int>> roomConnection;
  * @typedef Vector of missions. 
  * 
  */
-typedef std::vector<Mission> missions;
+typedef std::vector<Mission*> missions;
 
 enum missionStatus{finished, active, inactive};
 
@@ -259,6 +259,7 @@ public:
 	 * @return std::string 
 	 */
 	std::string getDialogNoAcess() {return dialog_no_access;}
+	~NPC();
 };
 
 /**
@@ -445,14 +446,7 @@ public:
 	 *
 	 * 
 	 */
-	~Room() {
-		for (items::iterator iit = inventory.begin(); iit != inventory.end(); iit++) {
-			iit->reset();
-		}
-		for (npcs::iterator eit = roomPopulation.begin(); eit != roomPopulation.end(); eit++) {
-			eit->reset();
-		}
-	}
+	~Room();
 };
 
 /**
@@ -462,9 +456,9 @@ public:
  */
 class Mission {
 	std::string description;
+	missionStatus status;
 	int targetRoom;
 	int targetItem;
-	missionStatus status;
 public:
 	/**
 	 * @brief Construct a new Mission object.
@@ -524,7 +518,13 @@ public:
 	 * 
 	 * @return missionStatus 
 	 */
-	missionStatus getStatus() {return status;}	
+	missionStatus& getStatus() {return status;}	
+	/**
+	 * @brief Get the Description object
+	 * 
+	 * @return std::string 
+	 */
+	std::string getDescription() {return description;}
 	/**
 	 * @brief Change mission status to active.
 	 * 
@@ -553,6 +553,11 @@ class World {
 	 * @param path2story (const char*) The path to the story xml file.
 	 */
 	World(const char* path2story);
+	/**
+	 * @brief Free resources used by world. This is not public, because class World's desctructor will call it.
+	 * 
+	 */
+	void destroyWorld();
 public:
 	/**
 	 * @brief Construct a new World object. Default constructor. To config and setup world object use initWorld() method.
@@ -623,7 +628,7 @@ public:
 	 * @param missionEle 
 	 * @return Mission 
 	 */
-	Mission makeMission(tinyxml2::XMLElement*);
+	Mission* makeMission(tinyxml2::XMLElement*);
 	/**
 	 * @brief Load world story missions from xml doc.
 	 * 
@@ -683,8 +688,9 @@ public:
 	 * 
 	 * @param m 
 	 */
-	void startMission(Mission& m) {
-		active_missions.push_back(m.startMission());
+	void startMission(Mission* m) {
+		m->startMission();
+		active_missions.push_back(m);
 	}
 	/**
 	 * @brief Iterates through every room, entity inventory in the world and removes item smart pointers that point to nullptr. This is neccessary, because if an item is moved from one place to another, then it leaves a smart pointer pointing to a nullptr.
@@ -692,16 +698,9 @@ public:
 	 */
 	void cleanInventories();
 	/**
-	 * @brief Free resources used by world.
+	 * @brief Destroy the World object
 	 * 
 	 */
-	void destroyWorld() {
-		for (nodes::iterator it = worldRooms.begin(); it != worldRooms.end(); it++) {
-			it->reset();
-		}
-	}
-	~World() {
-		this->destroyWorld();
-	}
+	~World();
 };
 #endif

@@ -24,7 +24,7 @@ class RoomTest : public ::testing::Test {
         npcs testEntities;
         void SetUp() override {
             for (int i = 0; i < 10; i++) {
-                testRooms.emplace_back(new Room("Room", i, "This is a test room.", "Room", unlocked));
+                testRooms.emplace_back(new Room("Room", i, "This is a test room.", "Room", locked));
                 testItems.emplace_back(new Object("Item No. " + std::to_string(i), i, "This is a test item."));
                 testKeys.emplace_back(new Key(i, "TestKey No." + std::to_string(i), i, "This is a testKey."));
                 testEntities.emplace_back(new NPC("TestEntity No." + std::to_string(i), "TestDialog", missions{}));
