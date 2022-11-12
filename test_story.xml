@@ -16,17 +16,6 @@
                 <description>This is test object 1</description>
                 <id>1</id>
             </object>
-            <object>
-                <name>TestObject1</name>
-                <description>This is test object 1</description>
-                <id>5</id>
-            </object>
-            <key>
-                <name>TestKey1</name>
-                <id>6</id>
-                <description>This is test key 1</description>
-                <keyID>2</keyID>
-            </key>
         </inventory>
         <connections>
             <id>2</id>

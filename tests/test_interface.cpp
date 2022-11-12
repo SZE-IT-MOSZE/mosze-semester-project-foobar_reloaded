@@ -112,7 +112,7 @@ TEST_F(InterfaceTest, test_Interact_Success) {
     ASSERT_EQ(typeid(Interact), typeid(*test_action));
     EXPECT_STREQ(results.second[0]->getDialog().c_str(), (*test_interaction)(results.second[0]).c_str());
     EXPECT_EQ(finished, results.second[0]->getMissions()[0]->getStatus());
-    EXPECT_EQ(4, testWorld.getPlayer().getInventory()[0]->getID());
+    EXPECT_EQ(7, testWorld.getPlayer().getInventory()[0]->getID());
     EXPECT_EQ(1, testWorld.getPlayer().getInventory().size());
     delete test_action;  
 }
