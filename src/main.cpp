@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2022
  * 
  */
-#include "sessionmanager.hpp"
+#include "sessionmanager.cpp"
 #include "Config.h"
 #include <string>
 #include <iostream>
