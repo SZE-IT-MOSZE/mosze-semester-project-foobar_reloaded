@@ -92,7 +92,9 @@ item* World::searchKey(int roomID) {
     for (items::iterator it = player.getInventory().begin(); it != player.getInventory().end(); it++) {
         Key* k = dynamic_cast<Key*>(it->get());
         if (k != nullptr) {
-            return (&(*it));
+            if (k->getKeyID() == roomID) {
+                return (&(*it));
+            }
         }
     }
     return nullptr; 
@@ -136,37 +138,70 @@ void World::RoomFactory(const std::string& name, int id, const std::string& desc
     worldRooms.emplace_back(std::move(newRoom));
 }
 
+tinyxml2::XMLElement* checkXMLElement(tinyxml2::XMLElement* parent, const std::string& element_name) {
+    tinyxml2::XMLElement* e = parent->FirstChildElement(element_name.c_str());
+    if (e == nullptr) {
+        std::cout << "XML Error at line: " << parent->GetLineNum() << std::endl;
+        exit(1);
+    }
+    return e;
+}
+
 items World::makeInventory(tinyxml2::XMLElement* invEle) {
     tinyxml2::XMLElement* firstObj = invEle->FirstChildElement("object");
-    tinyxml2::XMLElement* actual = firstObj;
     items retItems;
-    while(actual) {
-        const std::string objName(actual->FirstChildElement("name")->GetText());
-        const std::string desc(actual->FirstChildElement("description")->GetText());
-        int id = -1;
-        actual->FirstChildElement("id")->QueryIntText(&id);
-        auto newObj = std::make_unique<Object>(objName, id, desc);
-        retItems.push_back(std::move(newObj));
-        actual = actual->NextSiblingElement("object");
+    if (firstObj) {
+        tinyxml2::XMLElement* actual = firstObj;
+        while(actual) {
+            const char* name_c_string = checkXMLElement(actual, "name")->GetText();
+            const char* desc_c_string = checkXMLElement(actual, "description")->GetText();
+            if (name_c_string == nullptr || desc_c_string == nullptr) {
+                std::cout << "XML Error: Bad object tags given at line: " << actual->GetLineNum() << std::endl;
+                exit(1);
+            }
+            const std::string objName(name_c_string);
+            const std::string desc(desc_c_string);
+            int id = -1;
+            checkXMLElement(actual, "id")->QueryIntText(&id);
+            if (id == -1) {
+                std::cout << "XML Error: Bad object tags given at line: " << actual->GetLineNum() << std::endl;
+                exit(1);
+            }
+            auto newObj = std::make_unique<Object>(objName, id, desc);
+            retItems.push_back(std::move(newObj));
+            actual = actual->NextSiblingElement("object");
+        }
     }
     tinyxml2::XMLElement* firstKey = invEle->FirstChildElement("key");
-    tinyxml2::XMLElement* actualKey = firstKey;
-    while(actualKey) {
-        const std::string key_name(actual->FirstChildElement("name")->GetText());
-        const std::string key_desc(actual->FirstChildElement("description")->GetText());
-        int id = -1;
-        actualKey->FirstChildElement("id")->QueryIntText(&id);
-        int keyID = -1; 
-        actualKey->FirstChildElement("keyID")->QueryIntText(&keyID);
-        auto newKey= std::make_unique<Key>(keyID, key_name, id, key_desc);
-        retItems.push_back(std::move(newKey));
-        actualKey = actualKey->NextSiblingElement("key");
+    if (firstKey) {
+        tinyxml2::XMLElement* actualKey = firstKey;
+        while(actualKey) {
+            const char* key_name_c_string = actualKey->FirstChildElement("name")->GetText();
+            const char* key_desc_c_string = actualKey->FirstChildElement("description")->GetText();
+            if (key_name_c_string == nullptr || key_desc_c_string == nullptr) {
+                std::cout << "XML Error: Bad key tags given at line: " << actualKey->GetLineNum() << std::endl;
+                exit(1);
+            }
+            const std::string key_name(key_name_c_string);
+            const std::string key_desc(key_desc_c_string);
+            int id = -1;
+            actualKey->FirstChildElement("id")->QueryIntText(&id);
+            int keyID = -1; 
+            actualKey->FirstChildElement("keyID")->QueryIntText(&keyID);
+            if (id == -1 || keyID == -1 ) {
+                std::cout << "XML Error: Bad key tags given at line: " << actualKey->GetLineNum() << std::endl;
+                exit(1);
+            }
+            auto newKey= std::make_unique<Key>(keyID, key_name, id, key_desc);
+            retItems.push_back(std::move(newKey));
+            actualKey = actualKey->NextSiblingElement("key");
+        }
     }
     return retItems;
 }
 
 neighbours World::parseConnections(tinyxml2::XMLElement* conns) {
-    tinyxml2::XMLElement* firstConn = conns->FirstChildElement("id");
+    tinyxml2::XMLElement* firstConn = checkXMLElement(conns, "id");
     tinyxml2::XMLElement* actual = firstConn;
     std::vector<int> connections;
     while(actual) {
@@ -182,25 +217,61 @@ void World::loadRooms(tinyxml2::XMLElement* firstRoom) {
     const char* elementName = "room";
     tinyxml2::XMLElement* actual = firstRoom;
     while(actual) {
-        const std::string roomName(actual->FirstChildElement("name")->GetText());
-        const std::string roomDescription(actual->FirstChildElement("description")->GetText());
-        const std::string choiceDescription(actual->FirstChildElement("choice")->GetText());
+        tinyxml2::XMLElement* name = checkXMLElement(actual, "name");
+        const char * roomName_cstring = name->GetText();
+        tinyxml2::XMLElement* description = checkXMLElement(actual, "description");
+        const char * roomDesc_cstring = description->GetText();
+        tinyxml2::XMLElement* choice_description = actual->FirstChildElement("choice");
+        if (choice_description == nullptr) {
+            std::cout << "XML Error: Bad room choice tags given at line: " << actual->GetLineNum() << std::endl;
+            exit(1);
+        }
+        const char * choiceDesc_cstring = choice_description->GetText();
+        if (roomName_cstring == nullptr || roomDesc_cstring == nullptr || choiceDesc_cstring == nullptr) {
+            std::cout << "XML Error: Bad room tags given at line: " << actual->GetLineNum() << std::endl;
+            exit(1);
+        }
+        const std::string roomName(roomName_cstring);
+        const std::string roomDescription(roomDesc_cstring);
+        const std::string choiceDescription(choiceDesc_cstring);
+        tinyxml2::XMLElement* id = actual->FirstChildElement("id");
+        if (id == nullptr) {
+            std::cout << "XML Error: Bad room id tags given at line: " << actual->GetLineNum() << std::endl;
+            exit(1);
+        }
         int roomID = 0;
-        actual->FirstChildElement("id")->QueryIntText(&roomID);
+        id->QueryIntText(&roomID);
+        tinyxml2::XMLElement* lock = actual->FirstChildElement("lock");
+        if (lock == nullptr) {
+            std::cout << "XML Error: Bad room lock tags given at line: " << actual->GetLineNum() << std::endl;
+            exit(1);
+        }
         LockStatus ls;
         int lockInt = -1;
-        actual->FirstChildElement("lock")->QueryIntText(&lockInt);
+        lock->QueryIntText(&lockInt);
         if (lockInt != -1) {
             if (lockInt == 0) {
                 ls = unlocked;
             } else ls = locked;
-        } else exit(1); //Exit failure, because there is no value in lock, or no lock tag.
+        } else {
+            std::cout << "XML Error: Bad room lock tags given at line: " << actual->GetLineNum() << std::endl;
+            exit(1); //Exit failure, because there is no value in lock, or no lock tag.
+        }
         tinyxml2::XMLElement* conns = actual->FirstChildElement("connections");
-        RoomFactory(roomName, roomID, roomDescription, choiceDescription, ls, parseConnections(conns)); // Construct room with name, id and desc
+        if (conns == nullptr) {
+            std::cout << "XML Error: Bad room connections tags given at line: " << actual->GetLineNum() << std::endl;
+            exit(1);
+        }
+        RoomFactory(roomName, roomID, roomDescription, choiceDescription, ls, parseConnections(conns));
         tinyxml2::XMLElement* invEle = actual->FirstChildElement("inventory");
-        items inv = makeInventory(invEle);
-        worldRooms.back()->addItems(inv);
-        loadEntities(actual->FirstChildElement("entity"), worldRooms.back());
+        if (invEle) {
+            items inv = makeInventory(invEle);
+            worldRooms.back()->addItems(inv);
+        }
+        tinyxml2::XMLElement* entEle = actual->FirstChildElement("entity");
+        if (entEle) {
+            loadEntities(entEle, worldRooms.back());
+        }
         actual = actual->NextSiblingElement(elementName);
     }
 }
@@ -208,33 +279,56 @@ void World::loadRooms(tinyxml2::XMLElement* firstRoom) {
 void World::loadEntities(tinyxml2::XMLElement* firstEle, node& r) {
     tinyxml2::XMLElement* actual = firstEle;
     while(actual) {
-        const std::string name = actual->FirstChildElement("name")->GetText();
-        const std::string dialog = actual->FirstChildElement("dialog")->GetText();
+        tinyxml2::XMLElement* name = actual->FirstChildElement("name");
+        if (name == nullptr) {
+            std::cout << "XML Error: Bad entity name tags given at line: " << actual->GetLineNum() << std::endl;
+            exit(1);
+        }
+        const char * name_cstring = name->GetText();
+        tinyxml2::XMLElement* dialog = actual->FirstChildElement("dialog");
+        if (dialog == nullptr) {
+            std::cout << "XML Error: Bad entity dialog tags given at line: " << actual->GetLineNum() << std::endl;
+            exit(1);
+        }
+        const char * dialog_cstring = dialog->GetText();
+        if (name_cstring == nullptr || dialog_cstring == nullptr) {
+            std::cout << "XML Error: Bad entity tags given at line: " << actual->GetLineNum() << std::endl;
+            exit(1);
+        }
+        const std::string ent_name(name_cstring);
+        const std::string ent_dialog(dialog_cstring);
         tinyxml2::XMLElement* invele = actual->FirstChildElement("inventory");
-        items inv = makeInventory(invele);
         tinyxml2::XMLElement* missionEle = actual->FirstChildElement("missions");
-        missions npc_missions = loadNPCMissions(missionEle);
-        npc newEnt = std::make_unique<NPC>(name, dialog, npc_missions);
-        newEnt->addItems(inv);
-        r->addEntity(newEnt);
+        if (missionEle) {
+            missions npc_missions = loadNPCMissions(missionEle);
+            npc newEnt = std::make_unique<NPC>(ent_name, ent_dialog, npc_missions);
+            if (invele) {
+                items inv = makeInventory(invele);
+                newEnt->addItems(inv);
+            }
+            r->addEntity(newEnt);
+        } else {
+            std::cout << "XMl Error: Entity must have missions and inventory. Error at line: " << actual->GetLineNum() << std::endl;
+            exit(0);
+        }
         actual = actual->NextSiblingElement("entity");
     }
 }
 
 Mission* World::makeMission(tinyxml2::XMLElement* missionEle) {
-    std::string description = missionEle->FirstChildElement("description")->GetText();
+    std::string description = checkXMLElement(missionEle, "description")->GetText();
     Mission* retMission = new Mission(description);
     int targetRoomID = -1;
     int targetItemID = -1;
     tinyxml2::XMLElement* targetRoomEle = missionEle->FirstChildElement("targetRoom");
-    if (targetRoomEle != 0) {
+    if (targetRoomEle) {
         targetRoomEle->QueryIntText(&targetRoomID);
         if (targetRoomID != -1) {
             retMission->setTargetRoom(targetRoomID);
         }
     } else retMission->setTargetRoom(targetRoomID);
     tinyxml2::XMLElement* targetItemEle = missionEle->FirstChildElement("targetItem");
-    if (targetItemEle != 0) {
+    if (targetItemEle) {
         targetItemEle->QueryIntText(&targetItemID);
         if (targetItemID != -1) {
             retMission->setTargetItem(targetItemID);
@@ -246,20 +340,24 @@ Mission* World::makeMission(tinyxml2::XMLElement* missionEle) {
 
 void World::loadWorldMissions(tinyxml2::XMLElement* missionsEle) {
     tinyxml2::XMLElement* firstMission = missionsEle->FirstChildElement("mission");
-    tinyxml2::XMLElement* actual = firstMission;
-    while (actual) {
-        active_missions.emplace_back(makeMission(actual));
-        actual = actual->NextSiblingElement("mission");
+    if (firstMission) {
+        tinyxml2::XMLElement* actual = firstMission;
+        while (actual) {
+            active_missions.emplace_back(makeMission(actual));
+            actual = actual->NextSiblingElement("mission");
+        }
     }
 }
 
 missions World::loadNPCMissions(tinyxml2::XMLElement* missionsEle) {
     tinyxml2::XMLElement* firstMission = missionsEle->FirstChildElement("mission");
-    tinyxml2::XMLElement* actual = firstMission;
     missions npc_missions;
-    while (actual) {
-        npc_missions.push_back(makeMission(actual));
-        actual = actual->NextSiblingElement("mission");
+    if (firstMission) {
+        tinyxml2::XMLElement* actual = firstMission;
+        while (actual) {
+            npc_missions.push_back(makeMission(actual));
+            actual = actual->NextSiblingElement("mission");
+        }
     }
     return npc_missions;
 }
@@ -316,12 +414,24 @@ void World::initWorld(const std::string& path2story) {
     try {
         story.LoadFile(path2story.c_str());
     } catch(int errorID) {
-        std::cerr << "Error: Cant load story file " << path2story << std::endl;
+        std::cerr << "Error: Cant load story file: " << path2story << std::endl;
         exit(1);
     }
     tinyxml2::XMLElement* worldElement = story.FirstChildElement("world");
-    loadRooms(worldElement->FirstChildElement("room"));
-    loadWorldMissions(worldElement->FirstChildElement("missions"));
+    if (worldElement==nullptr) {
+        std::cout << "XMl Error: no world element." << std::endl;
+        exit(1);
+    }
+    tinyxml2::XMLElement* firstRoom = checkXMLElement(worldElement, "room");
+    if (firstRoom==nullptr) {
+        std::cout << "XMl Error: no room element." << std::endl;
+        exit(1);
+    }
+    loadRooms(firstRoom);
+    tinyxml2::XMLElement* missionsElem = worldElement->FirstChildElement("missions");
+    if (missionsElem!=nullptr) {
+        loadWorldMissions(missionsElem);
+    }
     if (setPlayerSpawn(worldElement->FirstChildElement("spawn")));
     else {
         std::cerr << "Error: no player spawn location given." << std::endl;

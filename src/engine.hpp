@@ -537,6 +537,13 @@ public:
 };
 
 /**
+ * @brief Check if xml tag is given in the story file. exit(1) if not.
+ * 
+ * @return tinyxml2::XMLElement* 
+ */
+tinyxml2::XMLElement* checkXMLElement(tinyxml2::XMLElement*, const std::string&);
+
+/**
  * @brief The world that contains and manages all the rooms, entities. 
  * A World object will able to parse the story file and initialize the game and run it.
  * 
@@ -692,6 +699,12 @@ public:
 		m->startMission();
 		active_missions.push_back(m);
 	}
+	/**
+	 * @brief Get the Active Missions object
+	 * 
+	 * @return missions& 
+	 */
+	missions& getActiveMissions() {return active_missions;}
 	/**
 	 * @brief Iterates through every room, entity inventory in the world and removes item smart pointers that point to nullptr. This is neccessary, because if an item is moved from one place to another, then it leaves a smart pointer pointing to a nullptr.
 	 * 

@@ -16,6 +16,17 @@
                 <description>This is test object 1</description>
                 <id>1</id>
             </object>
+            <object>
+                <name>TestObject1</name>
+                <description>This is test object 1</description>
+                <id>5</id>
+            </object>
+            <key>
+                <name>TestKey1</name>
+                <id>6</id>
+                <description>This is test key 1</description>
+                <keyID>2</keyID>
+            </key>
         </inventory>
         <connections>
             <id>2</id>
@@ -25,11 +36,12 @@
             <name>TestEntity1</name>
             <dialog>This is a test dialog.</dialog>
             <inventory>
-                <object>
-                    <name>TestObject4</name>
-                    <description>This is an object in TestEntity1's inv.</description>
-                    <id>4</id>
-                </object>
+                <key>
+                    <name>TestKey1</name>
+                    <id>7</id>
+                    <description>This is test key 1</description>
+                    <keyID>2</keyID>
+                </key>
             </inventory>
             <missions>
                 <mission>
@@ -49,13 +61,6 @@
         <choice>Choice Description of room 2</choice>
         <id>2</id>
         <lock>1</lock>
-        <inventory>
-            <object>
-                <name>TestObject2</name>
-                <id>2</id>
-                <description>This is test object 2</description>
-            </object>
-        </inventory>
         <connections>
             <id>1</id>
             <id>3</id>

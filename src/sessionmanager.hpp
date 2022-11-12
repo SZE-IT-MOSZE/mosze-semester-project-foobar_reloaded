@@ -32,10 +32,11 @@ public:
     SessionManager(const std::string&);
     World* getWorld() {return &game_world;}
     /**
-     * @brief Start game session. 
+     * @brief Start game session. Returns true if game is successfully finished. 
      * 
+     * @return true 
      */
-    void startSession();
+    bool startSession();
     /**
      * @brief Return possible actions, that can be performed in the current state of the game world and the player. 
      * 
@@ -61,7 +62,7 @@ public:
      * @return true
      * @return false 
      */
-    bool doOpenInventory(items&);
+    bool doInspectFoundItems(items&);
     /**
      * @brief Method to handle interaction with NPCs.
      * 
@@ -82,7 +83,23 @@ public:
      * @return true 
      * @return false 
      */
-    bool doInspect(item&);
+    bool doInspectFoundItem(item&);
+    /**
+     * @brief Open players inventory.
+     * 
+     * @param player_inventory 
+     * @return true 
+     * @return false 
+     */
+    bool doInspectPlayerInventory();
+    /**
+     * @brief Print out desciption of inentory item.
+     * 
+     * @param i 
+     * @return true 
+     * @return false 
+     */
+    bool doInspectInventoryItem(item&);
     /**
      * @brief Run an iteration of the game loop. This method handles the user input.
      *

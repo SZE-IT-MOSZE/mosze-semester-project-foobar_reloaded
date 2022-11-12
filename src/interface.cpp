@@ -56,6 +56,7 @@ std::string Interact::doAction(npc& n) {
     missions npc_missions = n->getMissions();
     if (npc_missions.size() == 0) return n->getDialog();
     for (auto it = npc_missions.begin(); it != npc_missions.end(); it++) {
+        if ((*it)->getStatus() == finished) return n->getDialog();
         if ((*it)->checkStatus(game_world.getPlayer())) {
             //move npc items to players inventory
             game_world.getPlayer().addItem(n->getInventory()[0]);

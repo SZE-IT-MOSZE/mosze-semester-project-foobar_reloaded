@@ -16,14 +16,15 @@ int promptChoice(int max) {
     std::string input;
     int choice;
     do {
-        std::cout << "Szoba sorszáma: "; getline(std::cin, input); 
+        std::cout << "Választás sorszáma: "; getline(std::cin, input); 
+        if (std::strcmp("Close", input.c_str()) == 0) exit(0);
         try {
             choice = std::stoi(input, nullptr);
         } catch (const std::invalid_argument& ia) {
             choice = -1;
         }
         if (choice < 0 || choice > max) {
-            std::cout << "Rossz parancs, próbáld újra." << std::endl;
+            std::cout << "Rossz parancs, próbáld újra. (Kilépéshez írd be a - Close - parancsot.)" << std::endl;
         }
     } while (choice < 0 || choice > max);
     return choice;
@@ -33,8 +34,9 @@ SessionManager::SessionManager(const std::string& path) {
     game_world.initWorld(path);
 }
 
-void SessionManager::startSession() {
-    while (doIteration());
+bool SessionManager::startSession() {
+    while (!doIteration()) game_world.cleanInventories(); // Run inventory thrash cleaner method.
+    return true;
 }
 
 bool SessionManager::doMove() {
@@ -74,7 +76,7 @@ bool SessionManager::doSearch() {
     case 0:
         return false;
     case 1:
-        return doOpenInventory(results.first);
+        return doInspectFoundItems(results.first);
     case 2:
         return doInteract(results.second);
     }
@@ -87,7 +89,7 @@ bool SessionManager::doPickUp(item& selected_item) {
     return true;
 }
 
-bool SessionManager::doInspect(item& selected_item) {
+bool SessionManager::doInspectFoundItem(item& selected_item) {
     std::cout << selected_item->getName() << ": " << selected_item->getDescription() << std::endl;
     std::cout << "0. Vissza" << std::endl;
     std::cout << "1. Eltesz" << std::endl;
@@ -102,14 +104,14 @@ bool SessionManager::doInspect(item& selected_item) {
     return false;
 }
 
-bool SessionManager::doOpenInventory(items& found_items) {
+bool SessionManager::doInspectFoundItems(items& found_items) {
     std::cout << "0. Vissza" << std::endl;
     for (int i = 0; i < int(found_items.size()); i++) {
         std::cout << i+1 << ". " << found_items[i]->getName() << std::endl;
     }
     int choice = promptChoice(int(found_items.size()));
     if (choice == 0) return false;
-    return doInspect(found_items[choice-1]);
+    return doInspectFoundItem(found_items[choice-1]);
 }
 
 bool SessionManager::doInteract(npcs& found_npcs) {
@@ -125,6 +127,64 @@ bool SessionManager::doInteract(npcs& found_npcs) {
     return true;
 }
 
+bool SessionManager::doInspectPlayerInventory() {
+    items& player_inventory = game_world.getPlayer().getInventory();
+    std::cout << "0. Vissza" << std::endl;
+    for (int i = 0; i < int(player_inventory.size()); i++) {
+        std::cout << i+1 << ". " << player_inventory[i]->getName() << std::endl;
+    }
+    int choice = promptChoice(int(player_inventory.size()));
+    if (choice == 0) return false;
+    return doInspectInventoryItem(player_inventory[choice-1]);
+}
+
+bool SessionManager::doInspectInventoryItem(item& i) {
+    std::cout << i->getDescription() << std::endl;
+    std::cout << "0. Vissza" << std::endl;
+    std::cout << "1. Töröl" << std::endl;
+    int choice = promptChoice(1);
+    if (choice == 0) return false;
+    return false;
+}
+
 bool SessionManager::doIteration() {
-    return true;
+    // Print out the room's desciption, that the player is in.
+    std::cout << game_world.getPlayer().getLocation()->getDescription() << std::endl;
+
+    // List out possible choices.
+    std::cout << "1. Mozgás kiválasztott szobába." << std::endl;
+    std::cout << "2. Kutasd át a szobát." << std::endl;
+    std::cout << "3. Saját tárgyak." << std::endl;
+
+    // Prompt for user input.
+    int choice = promptChoice(3);
+    switch (choice)
+    {
+    case 1:
+        doMove();
+        break;
+    case 2:
+        doSearch();
+        break;
+    case 3:
+        doInspectPlayerInventory();
+        break;
+    default:
+        break;
+    }
+
+    // Check for game finish.
+    bool game_finished = true;
+    for (auto it = game_world.getActiveMissions().begin(); it != game_world.getActiveMissions().end(); it++) {
+        if ((*it)->getStatus() == active) game_finished = false;
+    }
+    for (auto it = game_world.getWorldRooms().begin(); it != game_world.getWorldRooms().end(); it++) {
+        for (auto npc_it = (*it)->getPopulation().begin(); npc_it != (*it)->getPopulation().end(); npc_it++) {
+            for (auto mission_it = (*npc_it)->getMissions().begin(); mission_it != (*npc_it)->getMissions().end(); mission_it++) {
+                if ((*mission_it)->getStatus() == active) game_finished = false;
+            }
+        }
+    }
+
+    return game_finished;
 }
