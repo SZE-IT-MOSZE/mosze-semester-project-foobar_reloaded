@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <world>
     <title>SpaceWalk</title>
+    <spawn>
+        1
+    </spawn>
     <room>
         <name>TestRoom1</name>
         <description>This is the first test room</description>
+        <choice>Choice Description of room 1</choice>
         <id>1</id>
+        <lock>0</lock>
         <inventory>
             <object>
                 <name>TestObject1</name>
@@ -20,17 +25,21 @@
             <name>TestEntity1</name>
             <dialog>This is a test dialog.</dialog>
             <inventory>
-                <object>
-                    <name>TestObject4</name>
-                    <description>This is an object in TestEntity1's inv.</description>
-                    <id>4</id>
-                </object>
+                <key>
+                    <name>TestKey1</name>
+                    <id>7</id>
+                    <description>This is test key 1</description>
+                    <keyID>2</keyID>
+                </key>
             </inventory>
             <missions>
                 <mission>
                     <description>
                         This is a NPC test mission.
                     </description>
+                    <targetItem>
+                        1
+                    </targetItem>
                 </mission>
             </missions>
         </entity>
@@ -38,14 +47,9 @@
     <room>
         <name>TestRoom2</name>
         <description>This is the second test room</description>
+        <choice>Choice Description of room 2</choice>
         <id>2</id>
-        <inventory>
-            <object>
-                <name>TestObject2</name>
-                <id>2</id>
-                <description>This is test object 2</description>
-            </object>
-        </inventory>
+        <lock>1</lock>
         <connections>
             <id>1</id>
             <id>3</id>
@@ -54,7 +58,9 @@
     <room>
         <name>TestRoom3</name>
         <description>This is the third test room</description>
+        <choice>Choice Description of room 3</choice>
         <id>3</id>
+        <lock>0</lock>
         <inventory>
             <object>
                 <name>TestObject3</name>
@@ -75,6 +81,9 @@
             <targetRoom>
                 1
             </targetRoom>
+            <targetItem>
+                2
+            </targetItem>
         </mission>
     </missions>
 </world>

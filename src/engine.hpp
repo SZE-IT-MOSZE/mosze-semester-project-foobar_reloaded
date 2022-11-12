@@ -1,11 +1,15 @@
+/**
+ * @file engine.hpp
+ * @author Peter Bence (ecneb2000@gmail.com)
+ * @brief Definition and part implementation of game logic.
+ * @version 0.1
+ * @date 2022-10-29
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #ifndef ENGINE
 #define ENGINE
-#include <vector>
-#include <string>
-#include <map>
-#include <iostream>
-#include <memory>
-#include "tinyxml2.h"
 
 class World;
 class Object;
@@ -60,9 +64,9 @@ typedef std::pair<int, std::vector<int>> roomConnection;
  * @typedef Vector of missions. 
  * 
  */
-typedef std::vector<Mission> missions;
+typedef std::vector<Mission*> missions;
 
-enum missionStatus{finished, active, unactive};
+enum missionStatus{finished, active, inactive};
 
 /**
  * @brief Base class for any object that can be owned by an Entity or Room.
@@ -127,7 +131,7 @@ public:
 	int getKeyID() {
 		return keyID;
 	}
-};
+	};
 
 /**
  * @brief Base class for a NPC, USER or any other Entity living in the game world.
@@ -229,6 +233,7 @@ public:
 
 class NPC : public Entity {
 	std::string dialog;
+	std::string dialog_no_access = "Ezzel az NPCvel most nem tudsz kommunikálni, folytasd a felfedezést, és gyere vissza kicsit később.";
 	missions missions_to_give;
 public:
 	/**
@@ -242,14 +247,26 @@ public:
 	missions& getMissions() {
 		return missions_to_give;
 	}
+	/**
+	 * @brief Get the Dialog object
+	 * 
+	 * @return std::string 
+	 */
 	std::string getDialog() {return dialog;}
+	/**
+	 * @brief Get the Dialog No Acess object
+	 * 
+	 * @return std::string 
+	 */
+	std::string getDialogNoAcess() {return dialog_no_access;}
+	~NPC();
 };
 
 /**
  * @brief  Enum class to make tracking room lockstatus easier.
  * 
  */
-enum LockStatus{locked, unlocked};
+enum LockStatus{unlocked, locked};
 
 /**
  * @brief Part of the World. A room that contains items, that can be collected, players or npc can move in and out of these rooms.
@@ -260,7 +277,8 @@ class Room {
 	const std::string roomName; // Name of the room.
 	const int roomID; // ID of the room, that connects a key to this room.
 	const std::string description; // Description of the room.
-	LockStatus lock;
+	const std::string choiceDescription;
+	LockStatus lock; 
 	npcs roomPopulation;
 	neighbours connectedRooms; // Neighbouring rooms.
 	items inventory; // Items, that can be found in the room.
@@ -271,17 +289,19 @@ public:
 	 * @param n (std::string&): Name of the Room that cant be changed later. 
 	 * @param id (int): This have to be a unique ID to be able to connect keys with rooms. 
 	 * @param desc (std::string&): Description of the room. Cant be changed later.
+	 * @param choice (std::string&): Desciption for choice generation.
 	 */
-	Room(const std::string& n, int id, const std::string& desc) : roomName(n), roomID(id), description(desc), lock(locked) {}
+	Room(const std::string& n, int id, const std::string& desc, const std::string& choice, LockStatus ls) : roomName(n), roomID(id), description(desc), choiceDescription(choice), lock(ls) {}
 	/**
 	 * @brief Construct a new Room object
 	 * 
 	 * @param n (std::string&): Name of the Room that cant be changed later. 
 	 * @param id (int): This have to be a unique ID to be able to connect keys with rooms. 
 	 * @param desc (std::string&): Description of the room. Cant be changed later.
+	 * @param choice (std::string&): Desciption for choice generation.
 	 * @param cn Connected neighbours
 	 */
-	Room(const std::string& n, int id, const std::string& desc, neighbours cn) : roomName(n), roomID(id), description(desc), lock(locked), connectedRooms(cn) {}
+	Room(const std::string& n, int id, const std::string& desc, const std::string& choice, LockStatus ls, neighbours cn) : roomName(n), roomID(id), description(desc), choiceDescription(choice), lock(ls), connectedRooms(cn) {}
 	/**
 	 * @brief Get the Name of the Room
 	 * 
@@ -300,6 +320,12 @@ public:
 	 * @return description (std::string) 
 	 */
 	std::string getDescription() const {return description;}
+	/**
+	 * @brief Get the Choice Description of the Room 
+	 * 
+	 * @return std::string 
+	 */
+	std::string getChoiceDescription() const {return choiceDescription;}
 	/**
 	 * @brief Get the Neighbours object
 	 * 
@@ -396,7 +422,7 @@ public:
 	 * @return true 
 	 * @return false 
 	 */
-	bool static unlock(item&, node&);
+	bool static unlock(item*, Room*);
 	/**
 	 * @brief Check wheter room is locked or not. Returns true if locked, false otherwise.
 	 * 
@@ -414,20 +440,13 @@ public:
 	 * 
 	 * @return const entities& 
 	 */
-	const npcs& getPopulation() {return roomPopulation;}
+	npcs& getPopulation() {return roomPopulation;}
 	/**
 	 * @brief Destroy the Room object. Reset all nodes in the neighours vector and all items in inventory.
 	 *
 	 * 
 	 */
-	~Room() {
-		for (items::iterator iit = inventory.begin(); iit != inventory.end(); iit++) {
-			iit->reset();
-		}
-		for (npcs::iterator eit = roomPopulation.begin(); eit != roomPopulation.end(); eit++) {
-			eit->reset();
-		}
-	}
+	~Room();
 };
 
 /**
@@ -437,16 +456,9 @@ public:
  */
 class Mission {
 	std::string description;
+	missionStatus status;
 	int targetRoom;
 	int targetItem;
-	missionStatus status;
-	/**
-	 * @brief Private method, for completing mission
-	 * 
-	 */
-	void complete() {
-		status = finished;
-	}
 public:
 	/**
 	 * @brief Construct a new Mission object.
@@ -487,6 +499,13 @@ public:
 		return *this;
 	}
 	/**
+	 * @brief Set missionStatus to finished. 
+	 * 
+	 */
+	void complete() {
+		status = finished;
+	}
+	/**
 	 * @brief Check if mission is accomplished
 	 * 
 	 * @param player 
@@ -494,6 +513,18 @@ public:
 	 * @return false 
 	 */
 	bool checkStatus(Player&);
+	/**
+	 * @brief Get the Status object
+	 * 
+	 * @return missionStatus 
+	 */
+	missionStatus& getStatus() {return status;}	
+	/**
+	 * @brief Get the Description object
+	 * 
+	 * @return std::string 
+	 */
+	std::string getDescription() {return description;}
 	/**
 	 * @brief Change mission status to active.
 	 * 
@@ -506,6 +537,13 @@ public:
 };
 
 /**
+ * @brief Check if xml tag is given in the story file. exit(1) if not.
+ * 
+ * @return tinyxml2::XMLElement* 
+ */
+tinyxml2::XMLElement* checkXMLElement(tinyxml2::XMLElement*, const std::string&);
+
+/**
  * @brief The world that contains and manages all the rooms, entities. 
  * A World object will able to parse the story file and initialize the game and run it.
  * 
@@ -516,16 +554,23 @@ class World {
 	tinyxml2::XMLDocument story;
 	Player player;
 	missions active_missions;	
-public:
-	World() {}
 	/**
-	 * @brief Construct a new World object
+	 * @brief Construct a new World object. This is a private constructor implemented for testing reasons. Should not be used in production.
 	 * 
 	 * @param path2story (const char*) The path to the story xml file.
 	 */
-	World(const char* path2story) {
-		story.LoadFile(path2story);
-	}
+	World(const char* path2story);
+	/**
+	 * @brief Free resources used by world. This is not public, because class World's desctructor will call it.
+	 * 
+	 */
+	void destroyWorld();
+public:
+	/**
+	 * @brief Construct a new World object. Default constructor. To config and setup world object use initWorld() method.
+	 * 
+	 */
+	World() {}
 	/**
 	 * @brief Get the World Rooms object
 	 * 
@@ -548,8 +593,10 @@ public:
 	 * @param title (const std::string&): Name of the Room
 	 * @param id (const std::string&): ID of the Room
 	 * @param desc (const std::string&): Description of the Room
+	 * @param choice (const std::string&): Choice description of the Room
+	 * @param ls (LockStatus): Status of the lock of the Room.
 	 */
-	void RoomFactory(const std::string&, int, const std::string&, neighbours);
+	void RoomFactory(const std::string&, int, const std::string&, const std::string&, LockStatus, neighbours);
 	/**
 	 * @brief Get the Story object
 	 * 
@@ -588,7 +635,7 @@ public:
 	 * @param missionEle 
 	 * @return Mission 
 	 */
-	Mission makeMission(tinyxml2::XMLElement*);
+	Mission* makeMission(tinyxml2::XMLElement*);
 	/**
 	 * @brief Load world story missions from xml doc.
 	 * 
@@ -603,20 +650,38 @@ public:
 	 */
 	missions loadNPCMissions(tinyxml2::XMLElement*);
 	/**
+	 * @brief Set the Player Spawn Room. The XML element contains the id of the spawn room. 
+	 * 
+	 * @param spawnEle
+	 * @return true if spawn location is given in XML file, false otherwise
+	 */
+	bool setPlayerSpawn(tinyxml2::XMLElement*);
+	/**
 	 * @brief Initialize world with the xml story file.
 	 * 
 	 * @param path2story 
 	 */
-	void initWorld(const char*);
+	void initWorld(const std::string&);
 	/**
-	 * @brief move entity to room
+	 * @brief Search key for room ID given in args.
 	 * 
-	 * @param player 
-	 * @param room 
+	 * @param roomID (int): ID of the room which's key should be searched for.
+	 * @return Object* 
 	 */
-	void enterRoom(node& r) {
-		player.setLocation(r.get());
-	}
+	item* searchKey(int);	
+	/**
+	 * @brief Searches for the room which's id was given in args, if it finds the room, then returns the pointer of that room, nullptr otherwise.
+	 * 
+	 * @param id (int) Room's id.
+	 * @return Room* 
+	 */
+	Room* lookUpRoom(int);
+	/**
+	 * @brief Sets player's location to the room, which's id was given in the args. 
+	 * 
+	 * @param id (int) The room's id.
+	 */
+	bool enterRoom(int);
 	/**
 	 * @brief Get the Player object
 	 * 
@@ -630,20 +695,25 @@ public:
 	 * 
 	 * @param m 
 	 */
-	void startMission(Mission& m) {
-		active_missions.push_back(m.startMission());
+	void startMission(Mission* m) {
+		m->startMission();
+		active_missions.push_back(m);
 	}
 	/**
-	 * @brief Free resources used by world.
+	 * @brief Get the Active Missions object
+	 * 
+	 * @return missions& 
+	 */
+	missions& getActiveMissions() {return active_missions;}
+	/**
+	 * @brief Iterates through every room, entity inventory in the world and removes item smart pointers that point to nullptr. This is neccessary, because if an item is moved from one place to another, then it leaves a smart pointer pointing to a nullptr.
 	 * 
 	 */
-	void destroyWorld() {
-		for (nodes::iterator it = worldRooms.begin(); it != worldRooms.end(); it++) {
-			it->reset();
-		}
-	}
-	~World() {
-		this->destroyWorld();
-	}
+	void cleanInventories();
+	/**
+	 * @brief Destroy the World object
+	 * 
+	 */
+	~World();
 };
 #endif

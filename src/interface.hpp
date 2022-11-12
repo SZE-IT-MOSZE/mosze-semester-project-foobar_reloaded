@@ -1,7 +1,17 @@
+/**
+ * @file interface.hpp
+ * @author Peter Bence (ecneb2000@gmail.com)
+ * @brief Implementation of interface that connects the game with game engine.
+ * @version 0.1
+ * @date 2022-10-29
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #ifndef INTERFACE
 #define INTERFACE
 
-typedef std::pair<items&, const npcs&> search_results;
+typedef std::pair<items&, npcs&> search_results;
 
 /**
  * @brief Abstract class representing a player action.
@@ -24,7 +34,7 @@ public:
      * @brief Take action with the player character.
      * 
      */
-    virtual void doAction();
+    void doAction();
     /**
      * @brief Get the Description object
      * 
@@ -35,7 +45,8 @@ public:
      * @brief The object created from the Action class, can be called like a function.
      * 
      */
-    virtual void operator ()() = 0;
+    void operator ()();
+    virtual ~Action() = default;
 };
 
 /**
@@ -56,16 +67,16 @@ public:
      * @brief Take action with the player character and move to another room.
      * 
      * @param r (node&): The room that the player will be moved to.
-     * 
+     * @return bool 
      */
-    void doAction(node&) ; 
+    bool doAction(int); 
     /**
      * @brief The Move object is a callable object, and will call the doAction method of the object. 
      * 
      * @param r (node&): The room that the player will be moved to.
-     * 
+     * @return bool 
      */
-    void operator ()(node&) ;
+    bool operator ()(int);
 };
 
 /**
@@ -85,19 +96,15 @@ public:
     /**
      * @brief Take action with player character and search through the room, that the player is in.
      * 
-     * @param r (Room*): The pointer to the room, that the player is in. This is a pointer because if the player object has a location attribute that stores the Room's pointer.
-     * 
      * @return search_results 
      */
-    search_results doAction(Room*) ;
+    search_results doAction();
     /**
      * @brief The Search object is a callable object, and will call the doAction method of the object. 
      * 
-     * @param r (Room*): The pointer to the room, that the player is in. This is a pointer because if the player object has a location attribute that stores the Room's pointer.
-     * 
      * @return search_results 
      */
-    search_results operator ()(Room*) ;
+    search_results operator ()();
 };
 
 /**
@@ -148,9 +155,9 @@ public:
      * @brief Interact with the npc.
      * 
      * @param npc (npc&): The smart pointer of the npc that will be talked to.
-     * 
+     * @return std::string 
      */
-    missions doAction(npc&) ;
+    std::string doAction(npc&);
     /**
      * @brief Accept NPC's mission.
      * 
@@ -164,7 +171,7 @@ public:
      * @param npc (npc&): The smart pointer of the npc that will be talked to.
      * 
      */
-    void operator ()(npc&) ;
+    std::string operator ()(npc&);
 };
 
 class AcceptMission : public Action {
@@ -183,14 +190,35 @@ public:
      * @param m (Mission&): Mission to accept.
      * 
      */
-    void doAction(Mission&) ;
+    void doAction(Mission*) ;
     /**
      * @brief The AcceptMission object is a callable object, and will call the doAction method of the object. 
      * 
-     * @param m (Mission&): Mission to accept.
+     * @param m (Mission*): Mission to accept.
      * 
      */
-    void operator ()(Mission&) ;
+    void operator ()(Mission*) ;
+};
+
+class OpenInventory : public Action {
+public:
+    /**
+     * @brief Construct a new Open Inventory object
+     * 
+     */
+    OpenInventory(const std::string&, World&);
+    /**
+     * @brief Interact with the players inventory. Returns the inventory of the player.
+     * 
+     * @return items& 
+     */
+    items& doAction();
+    /**
+     * @brief The OpenInventory object is a callable object, and will call the doAction method of the object.
+     * 
+     * @return items& 
+     */
+    items& operator ()();
 };
 
 #endif

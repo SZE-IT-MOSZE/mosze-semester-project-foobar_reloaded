@@ -1,10 +1,15 @@
-#include <gtest/gtest.h>
-#include "engine.cpp"
-
 /**
- * @brief This test module intented to test the initWorld and destroyWorld methods of class World.
+ * @file test_world.cpp
+ * @author Peter Bence (ecneb2000@gmail.com)
+ * @brief Testing software of class World, that is the main module of the game engine.
+ * @version 0.1
+ * @date 2022-10-29
+ * 
+ * @copyright Copyright (c) 2022
  * 
  */
+#include <gtest/gtest.h>
+#include "engine.cpp"
 
 /**
  * @brief GTest Class initializes world, from test story file.
@@ -17,7 +22,6 @@ class WorldTest : public ::testing::Test {
             testWorld.initWorld("../test_story.xml");
         }
         void TearDown() override {
-            testWorld.destroyWorld();
         }
 };
 
@@ -75,5 +79,35 @@ TEST_F(WorldTest, test_initWorld_npcs) {
 TEST_F(WorldTest, test_initWorld_world_missions) {
     // Test if world missions are loaded correctly.
     ASSERT_EQ(testWorld.getWorldMission().size(), 1);
-    EXPECT_EQ(testWorld.getWorldMission()[0].getTargetRoom(), 1);
+    EXPECT_EQ(testWorld.getWorldMission()[0]->getTargetRoom(), 1);
+}
+
+TEST_F(WorldTest, test_initWorld_room_choiceDescription) {
+    EXPECT_STREQ(std::string("Choice Description of room 1").c_str(), testWorld.getWorldRooms()[0]->getChoiceDescription().c_str());
+    EXPECT_STREQ(std::string("Choice Description of room 2").c_str(), testWorld.getWorldRooms()[1]->getChoiceDescription().c_str());
+    EXPECT_STREQ(std::string("Choice Description of room 3").c_str(), testWorld.getWorldRooms()[2]->getChoiceDescription().c_str());
+}
+
+TEST_F(WorldTest, test_initWorld_room_initial_lock_status) {
+    EXPECT_EQ(false, testWorld.getWorldRooms()[0]->isLocked());
+    EXPECT_EQ(true, testWorld.getWorldRooms()[1]->isLocked());
+    EXPECT_EQ(false, testWorld.getWorldRooms()[2]->isLocked());
+}
+
+TEST_F(WorldTest, test_cleanInventories) {
+    testWorld.getPlayer().addItem(testWorld.getWorldRooms()[0]->getItems()[0]);
+    EXPECT_EQ(1, testWorld.getWorldRooms()[0]->getItems().size());
+    testWorld.cleanInventories();
+    EXPECT_EQ(0, testWorld.getWorldRooms()[0]->getItems().size()) << "The size of the room inventory vector should be 0, because when cleanInventories() is called, all thrash should be removed from inventories.";
+    EXPECT_EQ(1, testWorld.getPlayer().getInventory().size());
+    testWorld.getWorldRooms()[1]->addItem(testWorld.getPlayer().getInventory()[0]);
+    testWorld.cleanInventories();
+    EXPECT_EQ(0, testWorld.getWorldRooms()[0]->getItems().size());
+    EXPECT_EQ(2, testWorld.getWorldRooms()[1]->getItems().size());
+    EXPECT_EQ(0, testWorld.getPlayer().getInventory().size());
+}
+
+TEST_F(WorldTest, test_NPCMissions) {
+    EXPECT_EQ(1, testWorld.getWorldRooms()[0]->getPopulation()[0]->getMissions()[0]->getTargetItem());
+    EXPECT_EQ(false, testWorld.getWorldRooms()[0]->getPopulation()[0]->getMissions()[0]->checkStatus(testWorld.getPlayer()));
 }
