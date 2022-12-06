@@ -1,0 +1,28 @@
+@startuml
+
+(*) --> "Engine: Render choices"
+
+if "Choice" then
+    -->[Move] "Player: Chooses to move to another room"
+    --> "Engine: Render available rooms"
+    --> "Player: Chooses destination room"
+    --> "Engine: Move player to chosen room"
+    --> "Engine: Check mission status"
+    if "Are all missions finished?" then
+        --> [Yes] (*)
+    else
+        --> [No] "Engine: Render choices"
+    endif
+else
+    --> [Search Room] "Player: Stay and search room"
+    --> "Engine: Render search results"
+    if "Search for" then
+        --> [Items] "Engine: Render found items"
+        --> "Player: Pick up item"
+        --> "Engine: Check mission status"
+    else
+        --> [NPCs] "Engine: Render found NPCs" 
+        --> "Player: Interact with NPC"
+        --> "Engine: Check mission status"
+    endif
+@enduml
