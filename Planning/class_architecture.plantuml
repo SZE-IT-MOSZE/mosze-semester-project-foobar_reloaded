@@ -1,0 +1,120 @@
+@startuml
+
+class World {
+    -title : std::string 
+	-worldRooms : nodes 
+	-story : tinyxml2::XMLDocument 
+	-player : Player 
+	-active_missions : missions 
+    -void destroyWorld() 
+    +nodes& getWorldRooms()
+    +missions& getWorldMission()
+    +void RoomFactory(const std::string &, int, const std::string &, const std::string &, LockStatus, neighbours)
+    +tinyxml2::XMlDocument& getStory()
+    +items makeInventory(tinyxml2::XMlElement*)
+    +neighbours parseConnections(tinyxml2::XMlElement*)
+    +void loadRooms (tinyxml2::XMLElement *)
+    +void loadEntities (tinyxml2::XMLElement *, node &)
+    +Mission* makeMission (tinyxml2::XMLElement *)
+    +void loadWorldMissions (tinyxml2::XMLElement *)
+    +missions loadNPCMissions (tinyxml2::XMLElement *)
+    +bool setPlayerSpawn (tinyxml2::XMLElement *)
+    +void initWorld (const std::string &)
+    +item* searchKey (int)
+    +Room* lookUpRoom (int)
+    +bool enterRoom (int)
+    +Player& getPlayer ()
+    +void startMission (Mission *m)
+    +missions& getActiveMissions ()
+    +void cleanInventories ()
+}
+World "1" *-down- "many" Room : contains
+World "1" *- "many" Mission : contains
+
+class Room{
+    -roomName : const std::string
+    -roomID : const int
+    -description : const std::string
+    -choiceDescription : const std::string
+    -lock : LockStatus
+    -roomPopulation : npcs
+    -connectedRooms : neighbours
+    -inventory : items
+    +std::string getName() const
+    +int getID() const
+    +std::string getDescription() const
+    +std::string getChoicesDescription() const
+    +neighbours getNeighbours() const
+    +items& getItems()
+    +Room& addNeighbour(int)
+    +Room& addNeighbours(neighbours)
+    +Room& addItem(item&)
+    +Room& addItems(items&)
+    +Room& addEntity(npc&)
+    +Room& addEntities(npcs&)
+    +Room& setLock(LockStatus)
+    +bool isLocked()
+    +npcs& getPopulation()
+    +{static} bool unlock(item*, Room*)
+}
+Room "1" *-down- "many" Object : contains
+
+class Object{
+    #objectName : const std::string
+    #objectDescriptor : const std::string
+    #objID : int
+    +std::string getName() const
+    +int getID() const
+    +std::string getDescription() const
+}
+
+class Key{
+    -keyID : const int
+    +int getKeyID()
+}
+
+abstract Entity { 
+    #name : const std::string
+    #inventory : items
+    #hp : int
+    #stamina : int
+    #intelligence : int
+    #strenght : int
+    +std::string getName()
+    +items& getInventory()
+    +Entity& addItem(item&)
+    +Entity& addItems(item&)
+}
+Entity "1" *- "many" Object : contains
+
+class Player{
+    +Room* getLocation()
+    +Entity& setLocation(Room*)
+}
+class NPC{
+    +missions& getMissions()
+    +std::string getDialog()
+    +std::string getDialogNoAccess()
+}
+NPC "1" *- "many" Mission : contains
+
+class Mission{
+    -description : const std::string
+    -status : missionStatus
+    -targetRoom : int
+    -targetItem : int
+    +Mission& setTargetRoom(int)
+    +Mission& setTargetItem(int)
+    +int getTargetRoom()
+    +int getTargetItem()
+    +void complete()
+    +missionStatus& getStatus()
+    +std::string getDescription()
+    +Mission& startMission()
+}
+
+Entity <|-up- Player 
+Entity <|- NPC
+Object <|- Key
+
+@enduml

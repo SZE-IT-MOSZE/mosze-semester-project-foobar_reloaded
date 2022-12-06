@@ -61,7 +61,7 @@ Az év 2094. A mesterséges intelligencia teljes mértékben átvette az irány�
 
 \section{Struktura}
 \begin{figure}[H]
-    \includegraphics[width=0.75\columnwidth]{Class_Architecture.jpg}
+    \includegraphics[width=1\columnwidth]{class_architecture.png}
     \caption{Class Architecture}\label{fig:2}
 \end{figure}
 
@@ -202,10 +202,14 @@ TEST_F(RoomTest, test_Item_operation_methods) {
     }
 \end{lstlisting}
 \subsection{Github Actions}
-A githubnak egy nagyon hasznos funkciója az Actions amivel automatizált Workflow-okat lehet lefuttatni. Mi ennek a funkciónak a segítségével futtatjuk le a megírt teszteket. Ez egy remek újítás, mivel ez megakadályozza a hibás kódok master branchre való feltöltését.
+A githubnak egy nagyon hasznos funkciója az Actions amivel automatizált Workflow-okat lehet lefuttatni. Mi ennek a funkciónak a segítségével futtatjuk le a megírt teszteket. Ez egy remek újítás, mivel ez megakadályozza a hibás kódok master branchre való feltöltését. Ezt a funkciót a repository beállításainál a Branches fülben lehet megtatlálni.
 \begin{figure}[H]
     \includegraphics[width=1.0\columnwidth]{github_actions.png}
     \caption{Workflows}\label{fig:7}
+\end{figure}
+\begin{figure}[H]
+    \includegraphics[width=1.0\columnwidth]{github_branch_protection.png}
+    \caption{BranchProtection}\label{fig:8}
 \end{figure}
 \newpage
 
@@ -214,7 +218,7 @@ A githubnak egy nagyon hasznos funkciója az Actions amivel automatizált Workfl
 A játék fejlesztéséhez scrum és kanban módszertant törekszünk követni. Ehhez a github "Projektek" felülete nyújt segítséget, ahol egy kanban táblán vesszük fel a tevékeny-\\ségeket amik alkotják a backlogot.
 \begin{figure}[H]
     \includegraphics[width=1.0\columnwidth]{kanban_scrum.png}
-    \caption{Kanban tábla}\label{fig:8}
+    \caption{Kanban tábla}\label{fig:9}
 \end{figure}
 \newpage
 \subsection{Dokumentáció}
@@ -222,7 +226,7 @@ A játék fejlesztéséhez scrum és kanban módszertant törekszünk követni. 
 A Doxygen nagy segítségnek bizonyult a fejlesztés során, a kódunk megfelelő kommentelésével hasznos dokumentációt készít számunka, hogy megértsük és fel tudjuk használni a másik kódját.
 \begin{figure}[H]
     \includegraphics[width=1.0\columnwidth]{doxygen_sample.png}
-    \caption{Doxygen}\label{fig:9}
+    \caption{Doxygen}\label{fig:10}
 \end{figure}
 
 \section{Fejlesztési eszközök}
