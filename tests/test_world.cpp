@@ -72,7 +72,7 @@ TEST_F(WorldTest, test_initWorld_npcs) {
     std::string firstEntName = "TestEntity1";
     ASSERT_EQ(testWorld.getWorldRooms()[0]->getPopulation().size(), 1);
     EXPECT_STREQ(testWorld.getWorldRooms()[0]->getPopulation()[0]->getName().c_str(), firstEntName.c_str());
-    EXPECT_EQ(testWorld.getWorldRooms()[0]->getPopulation()[0]->getInventory()[0]->getID(), 4);
+    EXPECT_EQ(testWorld.getWorldRooms()[0]->getPopulation()[0]->getInventory()[0]->getID(), 7);
     EXPECT_STREQ(std::string("This is a test dialog.").c_str(), testWorld.getWorldRooms()[0]->getPopulation()[0]->getDialog().c_str());
 }
 
@@ -103,7 +103,7 @@ TEST_F(WorldTest, test_cleanInventories) {
     testWorld.getWorldRooms()[1]->addItem(testWorld.getPlayer().getInventory()[0]);
     testWorld.cleanInventories();
     EXPECT_EQ(0, testWorld.getWorldRooms()[0]->getItems().size());
-    EXPECT_EQ(2, testWorld.getWorldRooms()[1]->getItems().size());
+    EXPECT_EQ(1, testWorld.getWorldRooms()[1]->getItems().size());
     EXPECT_EQ(0, testWorld.getPlayer().getInventory().size());
 }
 
