@@ -63,3 +63,9 @@ cmake ../ -DTEST_UNIT=ON
 ```
 make
 ```
+
+## Usage
+
+```
+./spacewalk --story [PATHTOGAMEFILE]
+```
