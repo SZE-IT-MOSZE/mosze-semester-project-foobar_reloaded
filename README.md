@@ -57,3 +57,9 @@ cmake ../ -DTEST_INTERFACE=ON
 mkdir build && cd build
 cmake ../ -DTEST_UNIT=ON
 ```
+
+### Make használata
+
+```
+make
+```
