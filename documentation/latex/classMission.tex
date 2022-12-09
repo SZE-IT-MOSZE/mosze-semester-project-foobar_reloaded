@@ -1,0 +1,197 @@
+\hypertarget{classMission}{}\doxysection{Mission Class Reference}
+\label{classMission}\index{Mission@{Mission}}
+
+
+class \mbox{\hyperlink{classMission}{Mission}} helps to create a mission system, that will give objectives, to accomplish, for the player. This will give the player a direction, how to finish the story.  
+
+
+
+
+{\ttfamily \#include $<$engine.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classMission_a1be89fcd62743b4cd5dc90173c7f5989}{Mission}} (const std\+::string \&desc)
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{classMission}{Mission}} object. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classMission_a884a28aaae7aad2c577afcea15a56326}{get\+Target\+Room}} ()
+\begin{DoxyCompactList}\small\item\em Get the Target \mbox{\hyperlink{classRoom}{Room}} ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMission}{Mission}} \& \mbox{\hyperlink{classMission_a033272cba7b608db238186cda751e90c}{set\+Target\+Room}} (int target\+Room\+ID)
+\begin{DoxyCompactList}\small\item\em Set the Target \mbox{\hyperlink{classRoom}{Room}} ID. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classMission_af8dd5b1e2a55325444f376136080f1c7}{get\+Target\+Item}} ()
+\begin{DoxyCompactList}\small\item\em Get the Target Item ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMission}{Mission}} \& \mbox{\hyperlink{classMission_a3dab81a9f7879985e212fc1fbbbeb4b1}{set\+Target\+Item}} (int target\+Item\+ID)
+\begin{DoxyCompactList}\small\item\em Set the Target Item ID. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMission_a5485947be776bf3253c025579703e96a}{complete}} ()
+\begin{DoxyCompactList}\small\item\em Set mission\+Status to finished. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMission_a9d25c92eeec776ed2f78e26820dd9fdf}{check\+Status}} (\mbox{\hyperlink{classPlayer}{Player}} \&)
+\begin{DoxyCompactList}\small\item\em Check if mission is accomplished. \end{DoxyCompactList}\item 
+mission\+Status \& \mbox{\hyperlink{classMission_a22ebe17b936830e4de998f6c6f76c8dd}{get\+Status}} ()
+\begin{DoxyCompactList}\small\item\em Get the Status object. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classMission_a898cf05954be9d621e0fff55a7428328}{get\+Description}} ()
+\begin{DoxyCompactList}\small\item\em Get the Description object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMission}{Mission}} \& \mbox{\hyperlink{classMission_a805c131ffa57243dea169737a6271797}{start\+Mission}} ()
+\begin{DoxyCompactList}\small\item\em Change mission status to active. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+class \mbox{\hyperlink{classMission}{Mission}} helps to create a mission system, that will give objectives, to accomplish, for the player. This will give the player a direction, how to finish the story. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classMission_a1be89fcd62743b4cd5dc90173c7f5989}\label{classMission_a1be89fcd62743b4cd5dc90173c7f5989}} 
+\index{Mission@{Mission}!Mission@{Mission}}
+\index{Mission@{Mission}!Mission@{Mission}}
+\doxysubsubsection{\texorpdfstring{Mission()}{Mission()}}
+{\footnotesize\ttfamily Mission\+::\+Mission (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{desc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a new \mbox{\hyperlink{classMission}{Mission}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em desc} & Description of the mission. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classMission_a9d25c92eeec776ed2f78e26820dd9fdf}\label{classMission_a9d25c92eeec776ed2f78e26820dd9fdf}} 
+\index{Mission@{Mission}!checkStatus@{checkStatus}}
+\index{checkStatus@{checkStatus}!Mission@{Mission}}
+\doxysubsubsection{\texorpdfstring{checkStatus()}{checkStatus()}}
+{\footnotesize\ttfamily bool Mission\+::check\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlayer}{Player}} \&}]{player }\end{DoxyParamCaption})}
+
+
+
+Check if mission is accomplished. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMission_a5485947be776bf3253c025579703e96a}\label{classMission_a5485947be776bf3253c025579703e96a}} 
+\index{Mission@{Mission}!complete@{complete}}
+\index{complete@{complete}!Mission@{Mission}}
+\doxysubsubsection{\texorpdfstring{complete()}{complete()}}
+{\footnotesize\ttfamily void Mission\+::complete (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set mission\+Status to finished. 
+
+\mbox{\Hypertarget{classMission_a898cf05954be9d621e0fff55a7428328}\label{classMission_a898cf05954be9d621e0fff55a7428328}} 
+\index{Mission@{Mission}!getDescription@{getDescription}}
+\index{getDescription@{getDescription}!Mission@{Mission}}
+\doxysubsubsection{\texorpdfstring{getDescription()}{getDescription()}}
+{\footnotesize\ttfamily std\+::string Mission\+::get\+Description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the Description object. 
+
+\begin{DoxyReturn}{Returns}
+std\+::string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMission_a22ebe17b936830e4de998f6c6f76c8dd}\label{classMission_a22ebe17b936830e4de998f6c6f76c8dd}} 
+\index{Mission@{Mission}!getStatus@{getStatus}}
+\index{getStatus@{getStatus}!Mission@{Mission}}
+\doxysubsubsection{\texorpdfstring{getStatus()}{getStatus()}}
+{\footnotesize\ttfamily mission\+Status \& Mission\+::get\+Status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the Status object. 
+
+\begin{DoxyReturn}{Returns}
+mission\+Status 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMission_af8dd5b1e2a55325444f376136080f1c7}\label{classMission_af8dd5b1e2a55325444f376136080f1c7}} 
+\index{Mission@{Mission}!getTargetItem@{getTargetItem}}
+\index{getTargetItem@{getTargetItem}!Mission@{Mission}}
+\doxysubsubsection{\texorpdfstring{getTargetItem()}{getTargetItem()}}
+{\footnotesize\ttfamily int Mission\+::get\+Target\+Item (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the Target Item ID. 
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMission_a884a28aaae7aad2c577afcea15a56326}\label{classMission_a884a28aaae7aad2c577afcea15a56326}} 
+\index{Mission@{Mission}!getTargetRoom@{getTargetRoom}}
+\index{getTargetRoom@{getTargetRoom}!Mission@{Mission}}
+\doxysubsubsection{\texorpdfstring{getTargetRoom()}{getTargetRoom()}}
+{\footnotesize\ttfamily int Mission\+::get\+Target\+Room (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the Target \mbox{\hyperlink{classRoom}{Room}} ID. 
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMission_a3dab81a9f7879985e212fc1fbbbeb4b1}\label{classMission_a3dab81a9f7879985e212fc1fbbbeb4b1}} 
+\index{Mission@{Mission}!setTargetItem@{setTargetItem}}
+\index{setTargetItem@{setTargetItem}!Mission@{Mission}}
+\doxysubsubsection{\texorpdfstring{setTargetItem()}{setTargetItem()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classMission}{Mission}} \& Mission\+::set\+Target\+Item (\begin{DoxyParamCaption}\item[{int}]{target\+Item\+ID }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the Target Item ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em target\+Item\+ID} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classMission}{Mission}}\& 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMission_a033272cba7b608db238186cda751e90c}\label{classMission_a033272cba7b608db238186cda751e90c}} 
+\index{Mission@{Mission}!setTargetRoom@{setTargetRoom}}
+\index{setTargetRoom@{setTargetRoom}!Mission@{Mission}}
+\doxysubsubsection{\texorpdfstring{setTargetRoom()}{setTargetRoom()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classMission}{Mission}} \& Mission\+::set\+Target\+Room (\begin{DoxyParamCaption}\item[{int}]{target\+Room\+ID }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the Target \mbox{\hyperlink{classRoom}{Room}} ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em target\+Room\+ID} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classMission}{Mission}}\& 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMission_a805c131ffa57243dea169737a6271797}\label{classMission_a805c131ffa57243dea169737a6271797}} 
+\index{Mission@{Mission}!startMission@{startMission}}
+\index{startMission@{startMission}!Mission@{Mission}}
+\doxysubsubsection{\texorpdfstring{startMission()}{startMission()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classMission}{Mission}} \& Mission\+::start\+Mission (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Change mission status to active. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classMission}{Mission}}\& 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{engine_8hpp}{engine.\+hpp}}\item 
+src/\mbox{\hyperlink{engine_8cpp}{engine.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,542 @@
+\begin{theindex}
+
+  \item {$\sim$Room}
+    \subitem {Room}, \hyperpage{33}
+
+  \indexspace
+
+  \item {Accept}
+    \subitem {tinyxml2::XMLComment}, \hyperpage{49}
+    \subitem {tinyxml2::XMLDeclaration}, \hyperpage{52}
+    \subitem {tinyxml2::XMLDocument}, \hyperpage{56}
+    \subitem {tinyxml2::XMLElement}, \hyperpage{64}
+    \subitem {tinyxml2::XMLNode}, \hyperpage{73}
+    \subitem {tinyxml2::XMLText}, \hyperpage{84}
+    \subitem {tinyxml2::XMLUnknown}, \hyperpage{87}
+  \item {AcceptMission}, \hyperpage{9}
+    \subitem {AcceptMission}, \hyperpage{9}
+    \subitem {doAction}, \hyperpage{10}
+    \subitem {operator()}, \hyperpage{10}
+  \item {acceptMission}
+    \subitem {Interact}, \hyperpage{16}
+  \item {Action}, \hyperpage{10}
+    \subitem {Action}, \hyperpage{11}
+    \subitem {doAction}, \hyperpage{11}
+    \subitem {getDescription}, \hyperpage{12}
+    \subitem {operator()}, \hyperpage{12}
+  \item {addEntities}
+    \subitem {Room}, \hyperpage{33}
+  \item {addEntity}
+    \subitem {Room}, \hyperpage{33}
+  \item {addItem}
+    \subitem {Entity}, \hyperpage{14}
+    \subitem {Room}, \hyperpage{34}
+  \item {addItems}
+    \subitem {Entity}, \hyperpage{14}
+    \subitem {Room}, \hyperpage{34}
+  \item {addNeighbour}
+    \subitem {Room}, \hyperpage{35}
+  \item {addNeighbours}
+    \subitem {Room}, \hyperpage{35}
+  \item {Alloc}
+    \subitem {tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}, \hyperpage{19}
+  \item {Attribute}
+    \subitem {tinyxml2::XMLElement}, \hyperpage{64}
+
+  \indexspace
+
+  \item {checkStatus}
+    \subitem {Mission}, \hyperpage{21}
+  \item {ClearBuffer}
+    \subitem {tinyxml2::XMLPrinter}, \hyperpage{80}
+  \item {CStr}
+    \subitem {tinyxml2::XMLPrinter}, \hyperpage{80}
+  \item {CStrSize}
+    \subitem {tinyxml2::XMLPrinter}, \hyperpage{80}
+
+  \indexspace
+
+  \item {DeepClone}
+    \subitem {tinyxml2::XMLNode}, \hyperpage{73}
+  \item {DeepCopy}
+    \subitem {tinyxml2::XMLDocument}, \hyperpage{56}
+  \item {DeleteAttribute}
+    \subitem {tinyxml2::XMLElement}, \hyperpage{64}
+  \item {DeleteChild}
+    \subitem {tinyxml2::XMLNode}, \hyperpage{74}
+  \item {DeleteChildren}
+    \subitem {tinyxml2::XMLNode}, \hyperpage{74}
+  \item {DeleteNode}
+    \subitem {tinyxml2::XMLDocument}, \hyperpage{57}
+  \item {destroyWorld}
+    \subitem {World}, \hyperpage{42}
+  \item {doAction}
+    \subitem {AcceptMission}, \hyperpage{10}
+    \subitem {Action}, \hyperpage{11}
+    \subitem {Interact}, \hyperpage{17}
+    \subitem {Move}, \hyperpage{24}
+    \subitem {PickUp}, \hyperpage{29}
+    \subitem {Search}, \hyperpage{39}
+
+  \indexspace
+
+  \item {engine.hpp}
+    \subitem {LockStatus}, \hyperpage{95}
+  \item {enterRoom}
+    \subitem {World}, \hyperpage{42}
+  \item {Entity}, \hyperpage{13}
+    \subitem {addItem}, \hyperpage{14}
+    \subitem {addItems}, \hyperpage{14}
+    \subitem {Entity}, \hyperpage{13}
+    \subitem {getInventory}, \hyperpage{14}
+    \subitem {getName}, \hyperpage{15}
+  \item {ErrorStr}
+    \subitem {tinyxml2::XMLDocument}, \hyperpage{57}
+
+  \indexspace
+
+  \item {FirstChildElement}
+    \subitem {tinyxml2::XMLNode}, \hyperpage{74}
+  \item {Free}
+    \subitem {tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}, \hyperpage{20}
+
+  \indexspace
+
+  \item {getDescription}
+    \subitem {Action}, \hyperpage{12}
+    \subitem {Object}, \hyperpage{27}
+    \subitem {Room}, \hyperpage{35}
+  \item {getID}
+    \subitem {Object}, \hyperpage{27}
+    \subitem {Room}, \hyperpage{35}
+  \item {getInventory}
+    \subitem {Entity}, \hyperpage{14}
+  \item {getItems}
+    \subitem {Room}, \hyperpage{36}
+  \item {getKeyID}
+    \subitem {Key}, \hyperpage{18}
+  \item {getLocation}
+    \subitem {Player}, \hyperpage{30}
+  \item {getName}
+    \subitem {Entity}, \hyperpage{15}
+    \subitem {Object}, \hyperpage{27}
+    \subitem {Room}, \hyperpage{36}
+  \item {getNeighbours}
+    \subitem {Room}, \hyperpage{36}
+  \item {getPlayer}
+    \subitem {World}, \hyperpage{42}
+  \item {getPopulation}
+    \subitem {Room}, \hyperpage{36}
+  \item {getStory}
+    \subitem {World}, \hyperpage{42}
+  \item {getTargetItem}
+    \subitem {Mission}, \hyperpage{22}
+  \item {getTargetRoom}
+    \subitem {Mission}, \hyperpage{22}
+  \item {GetText}
+    \subitem {tinyxml2::XMLElement}, \hyperpage{65}
+  \item {GetUserData}
+    \subitem {tinyxml2::XMLNode}, \hyperpage{74}
+  \item {getWorldMission}
+    \subitem {World}, \hyperpage{42}
+  \item {getWorldRooms}
+    \subitem {World}, \hyperpage{43}
+
+  \indexspace
+
+  \item {HasBOM}
+    \subitem {tinyxml2::XMLDocument}, \hyperpage{57}
+
+  \indexspace
+
+  \item {initWorld}
+    \subitem {World}, \hyperpage{43}
+  \item {InsertAfterChild}
+    \subitem {tinyxml2::XMLNode}, \hyperpage{74}
+  \item {InsertEndChild}
+    \subitem {tinyxml2::XMLNode}, \hyperpage{74}
+  \item {InsertFirstChild}
+    \subitem {tinyxml2::XMLNode}, \hyperpage{75}
+  \item {InsertNewChildElement}
+    \subitem {tinyxml2::XMLElement}, \hyperpage{65}
+  \item {IntAttribute}
+    \subitem {tinyxml2::XMLElement}, \hyperpage{65}
+  \item {Interact}, \hyperpage{15}
+    \subitem {acceptMission}, \hyperpage{16}
+    \subitem {doAction}, \hyperpage{17}
+    \subitem {Interact}, \hyperpage{16}
+    \subitem {operator()}, \hyperpage{17}
+  \item {IntValue}
+    \subitem {tinyxml2::XMLAttribute}, \hyperpage{48}
+  \item {isLocked}
+    \subitem {Room}, \hyperpage{37}
+  \item {ItemSize}
+    \subitem {tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}, \hyperpage{20}
+
+  \indexspace
+
+  \item {Key}, \hyperpage{17}
+    \subitem {getKeyID}, \hyperpage{18}
+    \subitem {Key}, \hyperpage{18}
+
+  \indexspace
+
+  \item {LastChildElement}
+    \subitem {tinyxml2::XMLNode}, \hyperpage{75}
+  \item {loadEntities}
+    \subitem {World}, \hyperpage{43}
+  \item {LoadFile}
+    \subitem {tinyxml2::XMLDocument}, \hyperpage{57}
+  \item {loadNPCMissions}
+    \subitem {World}, \hyperpage{44}
+  \item {loadRooms}
+    \subitem {World}, \hyperpage{44}
+  \item {loadWorldMissions}
+    \subitem {World}, \hyperpage{44}
+  \item {LockStatus}
+    \subitem {engine.hpp}, \hyperpage{95}
+
+  \indexspace
+
+  \item {makeInventory}
+    \subitem {World}, \hyperpage{44}
+  \item {makeMission}
+    \subitem {World}, \hyperpage{45}
+  \item {Mission}, \hyperpage{20}
+    \subitem {checkStatus}, \hyperpage{21}
+    \subitem {getTargetItem}, \hyperpage{22}
+    \subitem {getTargetRoom}, \hyperpage{22}
+    \subitem {Mission}, \hyperpage{21}
+    \subitem {setTargetItem}, \hyperpage{22}
+    \subitem {setTargetRoom}, \hyperpage{23}
+    \subitem {startMission}, \hyperpage{23}
+  \item {Move}, \hyperpage{23}
+    \subitem {doAction}, \hyperpage{24}
+    \subitem {Move}, \hyperpage{24}
+    \subitem {operator()}, \hyperpage{25}
+
+  \indexspace
+
+  \item {NewComment}
+    \subitem {tinyxml2::XMLDocument}, \hyperpage{57}
+  \item {NewDeclaration}
+    \subitem {tinyxml2::XMLDocument}, \hyperpage{58}
+  \item {NewElement}
+    \subitem {tinyxml2::XMLDocument}, \hyperpage{58}
+  \item {NewText}
+    \subitem {tinyxml2::XMLDocument}, \hyperpage{58}
+  \item {NewUnknown}
+    \subitem {tinyxml2::XMLDocument}, \hyperpage{58}
+  \item {NPC}, \hyperpage{25}
+    \subitem {NPC}, \hyperpage{25}
+
+  \indexspace
+
+  \item {Object}, \hyperpage{26}
+    \subitem {getDescription}, \hyperpage{27}
+    \subitem {getID}, \hyperpage{27}
+    \subitem {getName}, \hyperpage{27}
+    \subitem {Object}, \hyperpage{27}
+  \item {OpenElement}
+    \subitem {tinyxml2::XMLPrinter}, \hyperpage{81}
+  \item {operator()}
+    \subitem {AcceptMission}, \hyperpage{10}
+    \subitem {Action}, \hyperpage{12}
+    \subitem {Interact}, \hyperpage{17}
+    \subitem {Move}, \hyperpage{25}
+    \subitem {PickUp}, \hyperpage{29}
+    \subitem {Search}, \hyperpage{39}
+
+  \indexspace
+
+  \item {Parse}
+    \subitem {tinyxml2::XMLDocument}, \hyperpage{58}
+  \item {parseConnections}
+    \subitem {World}, \hyperpage{45}
+  \item {ParseDeep}
+    \subitem {tinyxml2::XMLComment}, \hyperpage{49}
+    \subitem {tinyxml2::XMLDeclaration}, \hyperpage{53}
+    \subitem {tinyxml2::XMLElement}, \hyperpage{65}
+    \subitem {tinyxml2::XMLText}, \hyperpage{84}
+    \subitem {tinyxml2::XMLUnknown}, \hyperpage{87}
+  \item {PickUp}, \hyperpage{28}
+    \subitem {doAction}, \hyperpage{29}
+    \subitem {operator()}, \hyperpage{29}
+    \subitem {PickUp}, \hyperpage{28}
+  \item {Player}, \hyperpage{29}
+    \subitem {getLocation}, \hyperpage{30}
+    \subitem {Player}, \hyperpage{30}
+    \subitem {setLocation}, \hyperpage{31}
+  \item {Print}
+    \subitem {tinyxml2::XMLDocument}, \hyperpage{59}
+  \item {PrintSpace}
+    \subitem {tinyxml2::XMLPrinter}, \hyperpage{81}
+  \item {PushHeader}
+    \subitem {tinyxml2::XMLPrinter}, \hyperpage{81}
+
+  \indexspace
+
+  \item {QueryAttribute}
+    \subitem {tinyxml2::XMLElement}, \hyperpage{66}
+  \item {QueryIntAttribute}
+    \subitem {tinyxml2::XMLElement}, \hyperpage{66}
+  \item {QueryIntText}
+    \subitem {tinyxml2::XMLElement}, \hyperpage{66}
+  \item {QueryIntValue}
+    \subitem {tinyxml2::XMLAttribute}, \hyperpage{48}
+
+  \indexspace
+
+  \item {Room}, \hyperpage{31}
+    \subitem {$\sim$Room}, \hyperpage{33}
+    \subitem {addEntities}, \hyperpage{33}
+    \subitem {addEntity}, \hyperpage{33}
+    \subitem {addItem}, \hyperpage{34}
+    \subitem {addItems}, \hyperpage{34}
+    \subitem {addNeighbour}, \hyperpage{35}
+    \subitem {addNeighbours}, \hyperpage{35}
+    \subitem {getDescription}, \hyperpage{35}
+    \subitem {getID}, \hyperpage{35}
+    \subitem {getItems}, \hyperpage{36}
+    \subitem {getName}, \hyperpage{36}
+    \subitem {getNeighbours}, \hyperpage{36}
+    \subitem {getPopulation}, \hyperpage{36}
+    \subitem {isLocked}, \hyperpage{37}
+    \subitem {Room}, \hyperpage{32, 33}
+    \subitem {setLock}, \hyperpage{37}
+    \subitem {unlock}, \hyperpage{37}
+  \item {RoomFactory}
+    \subitem {World}, \hyperpage{46}
+  \item {RootElement}
+    \subitem {tinyxml2::XMLDocument}, \hyperpage{59}
+
+  \indexspace
+
+  \item {SaveFile}
+    \subitem {tinyxml2::XMLDocument}, \hyperpage{59}
+  \item {Search}, \hyperpage{38}
+    \subitem {doAction}, \hyperpage{39}
+    \subitem {operator()}, \hyperpage{39}
+    \subitem {Search}, \hyperpage{38}
+  \item {SetBOM}
+    \subitem {tinyxml2::XMLDocument}, \hyperpage{59}
+  \item {setLocation}
+    \subitem {Player}, \hyperpage{31}
+  \item {setLock}
+    \subitem {Room}, \hyperpage{37}
+  \item {setTargetItem}
+    \subitem {Mission}, \hyperpage{22}
+  \item {setTargetRoom}
+    \subitem {Mission}, \hyperpage{23}
+  \item {SetText}
+    \subitem {tinyxml2::XMLElement}, \hyperpage{67}
+  \item {SetTracked}
+    \subitem {tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}, \hyperpage{20}
+  \item {SetUserData}
+    \subitem {tinyxml2::XMLNode}, \hyperpage{75}
+  \item {SetValue}
+    \subitem {tinyxml2::XMLNode}, \hyperpage{75}
+  \item {ShallowClone}
+    \subitem {tinyxml2::XMLComment}, \hyperpage{50}
+    \subitem {tinyxml2::XMLDeclaration}, \hyperpage{53}
+    \subitem {tinyxml2::XMLDocument}, \hyperpage{60}
+    \subitem {tinyxml2::XMLElement}, \hyperpage{67}
+    \subitem {tinyxml2::XMLNode}, \hyperpage{75}
+    \subitem {tinyxml2::XMLText}, \hyperpage{85}
+    \subitem {tinyxml2::XMLUnknown}, \hyperpage{87}
+  \item {ShallowEqual}
+    \subitem {tinyxml2::XMLComment}, \hyperpage{50}
+    \subitem {tinyxml2::XMLDeclaration}, \hyperpage{53}
+    \subitem {tinyxml2::XMLDocument}, \hyperpage{60}
+    \subitem {tinyxml2::XMLElement}, \hyperpage{68}
+    \subitem {tinyxml2::XMLNode}, \hyperpage{76}
+    \subitem {tinyxml2::XMLText}, \hyperpage{85}
+    \subitem {tinyxml2::XMLUnknown}, \hyperpage{87}
+  \item {src/engine.cpp}, \hyperpage{93}
+  \item {src/engine.hpp}, \hyperpage{93}, \hyperpage{95}
+  \item {src/interface.cpp}, \hyperpage{98}
+  \item {src/interface.hpp}, \hyperpage{98}, \hyperpage{100}
+  \item {src/main.cpp}, \hyperpage{100}
+  \item {src/tinyxml2.h}, \hyperpage{101}
+  \item {startMission}
+    \subitem {Mission}, \hyperpage{23}
+    \subitem {World}, \hyperpage{46}
+
+  \indexspace
+
+  \item {tinyxml2::DynArray$<$ T, INITIAL\_SIZE $>$}, \hyperpage{12}
+  \item {tinyxml2::Entity}, \hyperpage{15}
+  \item {tinyxml2::MemPool}, \hyperpage{19}
+  \item {tinyxml2::MemPoolT$<$ ITEM\_SIZE $>$}, \hyperpage{19}
+    \subitem {Alloc}, \hyperpage{19}
+    \subitem {Free}, \hyperpage{20}
+    \subitem {ItemSize}, \hyperpage{20}
+    \subitem {SetTracked}, \hyperpage{20}
+  \item {tinyxml2::StrPair}, \hyperpage{40}
+  \item {tinyxml2::XMLAttribute}, \hyperpage{46}
+    \subitem {IntValue}, \hyperpage{48}
+    \subitem {QueryIntValue}, \hyperpage{48}
+  \item {tinyxml2::XMLComment}, \hyperpage{48}
+    \subitem {Accept}, \hyperpage{49}
+    \subitem {ParseDeep}, \hyperpage{49}
+    \subitem {ShallowClone}, \hyperpage{50}
+    \subitem {ShallowEqual}, \hyperpage{50}
+    \subitem {ToComment}, \hyperpage{50}
+  \item {tinyxml2::XMLConstHandle}, \hyperpage{51}
+  \item {tinyxml2::XMLDeclaration}, \hyperpage{52}
+    \subitem {Accept}, \hyperpage{52}
+    \subitem {ParseDeep}, \hyperpage{53}
+    \subitem {ShallowClone}, \hyperpage{53}
+    \subitem {ShallowEqual}, \hyperpage{53}
+    \subitem {ToDeclaration}, \hyperpage{54}
+  \item {tinyxml2::XMLDocument}, \hyperpage{54}
+    \subitem {Accept}, \hyperpage{56}
+    \subitem {DeepCopy}, \hyperpage{56}
+    \subitem {DeleteNode}, \hyperpage{57}
+    \subitem {ErrorStr}, \hyperpage{57}
+    \subitem {HasBOM}, \hyperpage{57}
+    \subitem {LoadFile}, \hyperpage{57}
+    \subitem {NewComment}, \hyperpage{57}
+    \subitem {NewDeclaration}, \hyperpage{58}
+    \subitem {NewElement}, \hyperpage{58}
+    \subitem {NewText}, \hyperpage{58}
+    \subitem {NewUnknown}, \hyperpage{58}
+    \subitem {Parse}, \hyperpage{58}
+    \subitem {Print}, \hyperpage{59}
+    \subitem {RootElement}, \hyperpage{59}
+    \subitem {SaveFile}, \hyperpage{59}
+    \subitem {SetBOM}, \hyperpage{59}
+    \subitem {ShallowClone}, \hyperpage{60}
+    \subitem {ShallowEqual}, \hyperpage{60}
+    \subitem {ToDocument}, \hyperpage{60}
+  \item {tinyxml2::XMLElement}, \hyperpage{61}
+    \subitem {Accept}, \hyperpage{64}
+    \subitem {Attribute}, \hyperpage{64}
+    \subitem {DeleteAttribute}, \hyperpage{64}
+    \subitem {GetText}, \hyperpage{65}
+    \subitem {InsertNewChildElement}, \hyperpage{65}
+    \subitem {IntAttribute}, \hyperpage{65}
+    \subitem {ParseDeep}, \hyperpage{65}
+    \subitem {QueryAttribute}, \hyperpage{66}
+    \subitem {QueryIntAttribute}, \hyperpage{66}
+    \subitem {QueryIntText}, \hyperpage{66}
+    \subitem {SetText}, \hyperpage{67}
+    \subitem {ShallowClone}, \hyperpage{67}
+    \subitem {ShallowEqual}, \hyperpage{68}
+    \subitem {ToElement}, \hyperpage{68}
+  \item {tinyxml2::XMLHandle}, \hyperpage{69}
+  \item {tinyxml2::XMLNode}, \hyperpage{71}
+    \subitem {Accept}, \hyperpage{73}
+    \subitem {DeepClone}, \hyperpage{73}
+    \subitem {DeleteChild}, \hyperpage{74}
+    \subitem {DeleteChildren}, \hyperpage{74}
+    \subitem {FirstChildElement}, \hyperpage{74}
+    \subitem {GetUserData}, \hyperpage{74}
+    \subitem {InsertAfterChild}, \hyperpage{74}
+    \subitem {InsertEndChild}, \hyperpage{74}
+    \subitem {InsertFirstChild}, \hyperpage{75}
+    \subitem {LastChildElement}, \hyperpage{75}
+    \subitem {SetUserData}, \hyperpage{75}
+    \subitem {SetValue}, \hyperpage{75}
+    \subitem {ShallowClone}, \hyperpage{75}
+    \subitem {ShallowEqual}, \hyperpage{76}
+    \subitem {ToComment}, \hyperpage{76}
+    \subitem {ToDeclaration}, \hyperpage{76}
+    \subitem {ToDocument}, \hyperpage{76}
+    \subitem {ToElement}, \hyperpage{77}
+    \subitem {ToText}, \hyperpage{77}
+    \subitem {ToUnknown}, \hyperpage{77}
+    \subitem {Value}, \hyperpage{77}
+  \item {tinyxml2::XMLPrinter}, \hyperpage{78}
+    \subitem {ClearBuffer}, \hyperpage{80}
+    \subitem {CStr}, \hyperpage{80}
+    \subitem {CStrSize}, \hyperpage{80}
+    \subitem {OpenElement}, \hyperpage{81}
+    \subitem {PrintSpace}, \hyperpage{81}
+    \subitem {PushHeader}, \hyperpage{81}
+    \subitem {Visit}, \hyperpage{81, 82}
+    \subitem {VisitEnter}, \hyperpage{82}
+    \subitem {VisitExit}, \hyperpage{82}
+    \subitem {XMLPrinter}, \hyperpage{80}
+  \item {tinyxml2::XMLText}, \hyperpage{83}
+    \subitem {Accept}, \hyperpage{84}
+    \subitem {ParseDeep}, \hyperpage{84}
+    \subitem {ShallowClone}, \hyperpage{85}
+    \subitem {ShallowEqual}, \hyperpage{85}
+    \subitem {ToText}, \hyperpage{85}
+  \item {tinyxml2::XMLUnknown}, \hyperpage{86}
+    \subitem {Accept}, \hyperpage{87}
+    \subitem {ParseDeep}, \hyperpage{87}
+    \subitem {ShallowClone}, \hyperpage{87}
+    \subitem {ShallowEqual}, \hyperpage{87}
+    \subitem {ToUnknown}, \hyperpage{88}
+  \item {tinyxml2::XMLUtil}, \hyperpage{88}
+  \item {tinyxml2::XMLVisitor}, \hyperpage{89}
+    \subitem {Visit}, \hyperpage{90, 91}
+    \subitem {VisitEnter}, \hyperpage{91}
+    \subitem {VisitExit}, \hyperpage{91}
+  \item {ToComment}
+    \subitem {tinyxml2::XMLComment}, \hyperpage{50}
+    \subitem {tinyxml2::XMLNode}, \hyperpage{76}
+  \item {ToDeclaration}
+    \subitem {tinyxml2::XMLDeclaration}, \hyperpage{54}
+    \subitem {tinyxml2::XMLNode}, \hyperpage{76}
+  \item {ToDocument}
+    \subitem {tinyxml2::XMLDocument}, \hyperpage{60}
+    \subitem {tinyxml2::XMLNode}, \hyperpage{76}
+  \item {ToElement}
+    \subitem {tinyxml2::XMLElement}, \hyperpage{68}
+    \subitem {tinyxml2::XMLNode}, \hyperpage{77}
+  \item {ToText}
+    \subitem {tinyxml2::XMLNode}, \hyperpage{77}
+    \subitem {tinyxml2::XMLText}, \hyperpage{85}
+  \item {ToUnknown}
+    \subitem {tinyxml2::XMLNode}, \hyperpage{77}
+    \subitem {tinyxml2::XMLUnknown}, \hyperpage{88}
+
+  \indexspace
+
+  \item {unlock}
+    \subitem {Room}, \hyperpage{37}
+
+  \indexspace
+
+  \item {Value}
+    \subitem {tinyxml2::XMLNode}, \hyperpage{77}
+  \item {Visit}
+    \subitem {tinyxml2::XMLPrinter}, \hyperpage{81, 82}
+    \subitem {tinyxml2::XMLVisitor}, \hyperpage{90, 91}
+  \item {VisitEnter}
+    \subitem {tinyxml2::XMLPrinter}, \hyperpage{82}
+    \subitem {tinyxml2::XMLVisitor}, \hyperpage{91}
+  \item {VisitExit}
+    \subitem {tinyxml2::XMLPrinter}, \hyperpage{82}
+    \subitem {tinyxml2::XMLVisitor}, \hyperpage{91}
+
+  \indexspace
+
+  \item {World}, \hyperpage{40}
+    \subitem {destroyWorld}, \hyperpage{42}
+    \subitem {enterRoom}, \hyperpage{42}
+    \subitem {getPlayer}, \hyperpage{42}
+    \subitem {getStory}, \hyperpage{42}
+    \subitem {getWorldMission}, \hyperpage{42}
+    \subitem {getWorldRooms}, \hyperpage{43}
+    \subitem {initWorld}, \hyperpage{43}
+    \subitem {loadEntities}, \hyperpage{43}
+    \subitem {loadNPCMissions}, \hyperpage{44}
+    \subitem {loadRooms}, \hyperpage{44}
+    \subitem {loadWorldMissions}, \hyperpage{44}
+    \subitem {makeInventory}, \hyperpage{44}
+    \subitem {makeMission}, \hyperpage{45}
+    \subitem {parseConnections}, \hyperpage{45}
+    \subitem {RoomFactory}, \hyperpage{46}
+    \subitem {startMission}, \hyperpage{46}
+    \subitem {World}, \hyperpage{41}
+
+  \indexspace
+
+  \item {XMLPrinter}
+    \subitem {tinyxml2::XMLPrinter}, \hyperpage{80}
+
+\end{theindex}

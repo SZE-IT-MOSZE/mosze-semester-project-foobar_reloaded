@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<world>
+    <title>SpaceWalk</title>
+    <spawn>
+        1
+    </spawn>
+    <room>
+        <name>TestRoom1</name>
+        <description>This is the first test room</description>
+        <choice>Choice Description of room 1</choice>
+        <id>1</id>
+        <lock>0</lock>
+        <inventory>
+            <object>
+                <name>TestObject1</name>
+                <description>This is test object 1</description>
+                <id>1</id>
+            </object>
+        </inventory>
+        <connections>
+            <id>2</id>
+            <id>3</id>
+        </connections>
+        <entity>
+            <name>TestEntity1</name>
+            <dialog>This is a test dialog.</dialog>
+            <inventory>
+                <key>
+                    <name>TestKey1</name>
+                    <id>7</id>
+                    <description>This is test key 1</description>
+                    <keyID>2</keyID>
+                </key>
+            </inventory>
+            <missions>
+                <mission>
+                    <description>
+                        This is a NPC test mission.
+                    </description>
+                    <targetItem>
+                        1
+                    </targetItem>
+                </mission>
+            </missions>
+        </entity>
+    </room>
+    <room>
+        <name>TestRoom2</name>
+        <description>This is the second test room</description>
+        <choice>Choice Description of room 2</choice>
+        <id>2</id>
+        <lock>1</lock>
+        <connections>
+            <id>1</id>
+            <id>3</id>
+        </connections>
+    </room>
+    <room>
+        <name>TestRoom3</name>
+        <description>This is the third test room</description>
+        <choice>Choice Description of room 3</choice>
+        <id>3</id>
+        <lock>0</lock>
+        <inventory>
+            <object>
+                <name>TestObject3</name>
+                <id>3</id>
+                <description>This is test object 3</description>
+            </object>
+        </inventory>
+        <connections>
+            <id>1</id>
+            <id>2</id>
+        </connections>
+    </room>
+    <missions>
+        <mission>
+            <description>
+                This is a test mission.
+            </description>
+            <targetRoom>
+                1
+            </targetRoom>
+            <targetItem>
+                2
+            </targetItem>
+        </mission>
+    </missions>
+</world>

@@ -1,0 +1,144 @@
+\hypertarget{classEntity}{}\doxysection{Entity Class Reference}
+\label{classEntity}\index{Entity@{Entity}}
+
+
+Base class for a \mbox{\hyperlink{classNPC}{NPC}}, USER or any other \mbox{\hyperlink{classEntity}{Entity}} living in the game world.  
+
+
+
+
+{\ttfamily \#include $<$engine.\+hpp$>$}
+
+Inheritance diagram for Entity\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classEntity}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classEntity_afeaa874d724166b9ad1c240cbd1127ea}{Entity}} (const std\+::string \&n)
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{classEntity}{Entity}} object. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classEntity_a403f69eb888da7c5a690b79c658cdf47}{get\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Get the Name of the \mbox{\hyperlink{classEntity}{Entity}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEntity}{Entity}} \& \mbox{\hyperlink{classEntity_a0a4f093c549569becf5e0e42b8a1ceb2}{add\+Item}} (item \&i)
+\begin{DoxyCompactList}\small\item\em Add Item to \mbox{\hyperlink{classEntity}{Entity}}\textquotesingle{}s inventory. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classEntity}{Entity}} \& \mbox{\hyperlink{classEntity_a9b0ef78013c984bc8cd8944332a14058}{add\+Items}} (items \&i)
+\begin{DoxyCompactList}\small\item\em Add multiple items from an item vector to the entity\textquotesingle{}s inventory. \end{DoxyCompactList}\item 
+items \& \mbox{\hyperlink{classEntity_a38aad2959e7cbeaf15aa0dbf71df66c5}{get\+Inventory}} ()
+\begin{DoxyCompactList}\small\item\em Get the Inventory object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classEntity_a9a7d9df9b47e597a6abd76235e0b726c}\label{classEntity_a9a7d9df9b47e597a6abd76235e0b726c}} 
+const std\+::string {\bfseries name}
+\item 
+\mbox{\Hypertarget{classEntity_a562bde3c1faccef4d8287b0e48f7a454}\label{classEntity_a562bde3c1faccef4d8287b0e48f7a454}} 
+items {\bfseries inventory}
+\item 
+\mbox{\Hypertarget{classEntity_ab2047c7cc0414f54fb2492deac18d11c}\label{classEntity_ab2047c7cc0414f54fb2492deac18d11c}} 
+int {\bfseries hp}
+\item 
+\mbox{\Hypertarget{classEntity_a678cabe0f474900de17f2cf551782e4f}\label{classEntity_a678cabe0f474900de17f2cf551782e4f}} 
+int {\bfseries stamina}
+\item 
+\mbox{\Hypertarget{classEntity_a37bb4d7fa2cce152bb384c502194105e}\label{classEntity_a37bb4d7fa2cce152bb384c502194105e}} 
+int {\bfseries intelligence}
+\item 
+\mbox{\Hypertarget{classEntity_a09accc77d3e2876eb2ef50294e28682b}\label{classEntity_a09accc77d3e2876eb2ef50294e28682b}} 
+int {\bfseries strenght}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class for a \mbox{\hyperlink{classNPC}{NPC}}, USER or any other \mbox{\hyperlink{classEntity}{Entity}} living in the game world. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classEntity_afeaa874d724166b9ad1c240cbd1127ea}\label{classEntity_afeaa874d724166b9ad1c240cbd1127ea}} 
+\index{Entity@{Entity}!Entity@{Entity}}
+\index{Entity@{Entity}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{Entity()}{Entity()}}
+{\footnotesize\ttfamily Entity\+::\+Entity (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a new \mbox{\hyperlink{classEntity}{Entity}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & (std\+::string) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classEntity_a0a4f093c549569becf5e0e42b8a1ceb2}\label{classEntity_a0a4f093c549569becf5e0e42b8a1ceb2}} 
+\index{Entity@{Entity}!addItem@{addItem}}
+\index{addItem@{addItem}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{addItem()}{addItem()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEntity}{Entity}} \& Entity\+::add\+Item (\begin{DoxyParamCaption}\item[{item \&}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Add Item to \mbox{\hyperlink{classEntity}{Entity}}\textquotesingle{}s inventory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & (item\&)\+: Item to move to \mbox{\hyperlink{classEntity}{Entity}}\textquotesingle{}s inventory \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classEntity}{Entity}}\& 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEntity_a9b0ef78013c984bc8cd8944332a14058}\label{classEntity_a9b0ef78013c984bc8cd8944332a14058}} 
+\index{Entity@{Entity}!addItems@{addItems}}
+\index{addItems@{addItems}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{addItems()}{addItems()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classEntity}{Entity}} \& Entity\+::add\+Items (\begin{DoxyParamCaption}\item[{items \&}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Add multiple items from an item vector to the entity\textquotesingle{}s inventory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classEntity}{Entity}}\& 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEntity_a38aad2959e7cbeaf15aa0dbf71df66c5}\label{classEntity_a38aad2959e7cbeaf15aa0dbf71df66c5}} 
+\index{Entity@{Entity}!getInventory@{getInventory}}
+\index{getInventory@{getInventory}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{getInventory()}{getInventory()}}
+{\footnotesize\ttfamily items \& Entity\+::get\+Inventory (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the Inventory object. 
+
+\begin{DoxyReturn}{Returns}
+items\& 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classEntity_a403f69eb888da7c5a690b79c658cdf47}\label{classEntity_a403f69eb888da7c5a690b79c658cdf47}} 
+\index{Entity@{Entity}!getName@{getName}}
+\index{getName@{getName}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily std\+::string Entity\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the Name of the \mbox{\hyperlink{classEntity}{Entity}}. 
+
+\begin{DoxyReturn}{Returns}
+std\+::string 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{engine_8hpp}{engine.\+hpp}}\end{DoxyCompactItemize}

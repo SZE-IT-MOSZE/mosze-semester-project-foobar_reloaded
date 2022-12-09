@@ -1,0 +1,32 @@
+\hypertarget{sessionmanager_8hpp_source}{}\doxysection{sessionmanager.\+hpp}
+\label{sessionmanager_8hpp_source}\index{src/sessionmanager.hpp@{src/sessionmanager.hpp}}
+\mbox{\hyperlink{sessionmanager_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#ifndef SESSIONMANAGER}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#define SESSIONMANAGER}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{20 \textcolor{keywordtype}{int} \mbox{\hyperlink{sessionmanager_8hpp_af03ca83734d5e44bec10cc4b1d8185a0}{promptChoice}}(\textcolor{keywordtype}{int});}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{keyword}{class }\mbox{\hyperlink{classSessionManager}{SessionManager}} \{}
+\DoxyCodeLine{23 \textcolor{comment}{//TODO Implement session manager class that will manage actions and handle user input.}}
+\DoxyCodeLine{24     std::string path2story;}
+\DoxyCodeLine{25     \mbox{\hyperlink{classWorld}{World}} game\_world;}
+\DoxyCodeLine{26 \textcolor{keyword}{public}:}
+\DoxyCodeLine{32     \mbox{\hyperlink{classSessionManager}{SessionManager}}(\textcolor{keyword}{const} std::string\&);}
+\DoxyCodeLine{33     \mbox{\hyperlink{classWorld}{World}}* getWorld() \{\textcolor{keywordflow}{return} \&game\_world;\}}
+\DoxyCodeLine{39     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classSessionManager_a097db5df9899739225b53db0eda3b8a6}{startSession}}();}
+\DoxyCodeLine{44     std::vector<Action> \mbox{\hyperlink{classSessionManager_a8535d41153f0b13f9a302b1c77bbd55b}{possibleActions}}();}
+\DoxyCodeLine{51     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classSessionManager_a914604e4b42e3277f2205139a552b2bd}{doMove}}();}
+\DoxyCodeLine{58     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classSessionManager_a254ed59a6a3ee213641a6cc326076009}{doSearch}}();}
+\DoxyCodeLine{65     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classSessionManager_a9153cfefcd310b5946fabedcaa4e52a4}{doInspectFoundItems}}(items\&);}
+\DoxyCodeLine{72     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classSessionManager_a2de817274f9c8a4e232aa82b39dd8376}{doInteract}}(npcs\&);}
+\DoxyCodeLine{79     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classSessionManager_a3ccb33bf4bb16d37dc141cff10040867}{doPickUp}}(item\&);}
+\DoxyCodeLine{86     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classSessionManager_ae37ca9c13acad0ccf0f1e4f818a47e55}{doInspectFoundItem}}(item\&);}
+\DoxyCodeLine{94     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classSessionManager_afac3cc37c06e97c828a94847901149de}{doInspectPlayerInventory}}();}
+\DoxyCodeLine{102     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classSessionManager_ad454773f33e88b8264e0ed30dec978f2}{doInspectInventoryItem}}(item\&);}
+\DoxyCodeLine{108     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classSessionManager_aa4adca97f7fcc7364c70edcfca12b10f}{doIteration}}();}
+\DoxyCodeLine{109 \};}
+\DoxyCodeLine{110 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,409 @@
+\hypertarget{classWorld}{}\doxysection{World Class Reference}
+\label{classWorld}\index{World@{World}}
+
+
+The world that contains and manages all the rooms, entities. A \mbox{\hyperlink{classWorld}{World}} object will able to parse the story file and initialize the game and run it.  
+
+
+
+
+{\ttfamily \#include $<$engine.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classWorld_afa39d4e6f714a7a3691ac0c656f5e8a8}{World}} ()
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{classWorld}{World}} object. Default constructor. To config and setup world object use \mbox{\hyperlink{classWorld_a8062aeabd34a755e7f37b7d45b0a0a6e}{init\+World()}} method. \end{DoxyCompactList}\item 
+nodes \& \mbox{\hyperlink{classWorld_ab33c8044ee9d0d313ecdb49f2ac4e0e6}{get\+World\+Rooms}} ()
+\begin{DoxyCompactList}\small\item\em Get the \mbox{\hyperlink{classWorld}{World}} Rooms object. \end{DoxyCompactList}\item 
+missions \& \mbox{\hyperlink{classWorld_a1c527a7bbe0becc008a87694d823a54b}{get\+World\+Mission}} ()
+\begin{DoxyCompactList}\small\item\em Get the \mbox{\hyperlink{classWorld}{World}} \mbox{\hyperlink{classMission}{Mission}} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWorld_a984ffcf3f40a43c47ea88603f87b913e}{Room\+Factory}} (const std\+::string \&, int, const std\+::string \&, const std\+::string \&, \mbox{\hyperlink{engine_8hpp_ab094fe208c346804d724d8e644966814}{Lock\+Status}}, neighbours)
+\begin{DoxyCompactList}\small\item\em Create \mbox{\hyperlink{classRoom}{Room}} with initial params and add it to world\+Rooms. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{tinyxml2\+::\+XMLDocument}} \& \mbox{\hyperlink{classWorld_a9bde3dadff7330368dfa23472b413e15}{get\+Story}} ()
+\begin{DoxyCompactList}\small\item\em Get the Story object. \end{DoxyCompactList}\item 
+items \mbox{\hyperlink{classWorld_a39726af0e673618bce3d38905d231474}{make\+Inventory}} (\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}} $\ast$)
+\begin{DoxyCompactList}\small\item\em create inventory \end{DoxyCompactList}\item 
+neighbours \mbox{\hyperlink{classWorld_af6c6a2b46fd04184fdc40e555f5e6d84}{parse\+Connections}} (\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}} $\ast$)
+\begin{DoxyCompactList}\small\item\em Load neigbouring rooms id\textquotesingle{}s to connection map. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWorld_a6dfdc648be232d7ab9d9273a0402aad4}{load\+Rooms}} (\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}} $\ast$)
+\begin{DoxyCompactList}\small\item\em This function iterates through the room elements of the world element in the xml file and constructs the rooms of the world. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWorld_aec9dd58e7936679047cac1354b035c5c}{load\+Entities}} (\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}} $\ast$, node \&)
+\begin{DoxyCompactList}\small\item\em Load entities from xml doc. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMission}{Mission}} $\ast$ \mbox{\hyperlink{classWorld_a946772ec9dcf987ae465a48aafeeda05}{make\+Mission}} (\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}} $\ast$)
+\begin{DoxyCompactList}\small\item\em Construct a new mission with a description, then set mission targets. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWorld_a2a2b8418ca0fb5549feadf39e58733b0}{load\+World\+Missions}} (\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}} $\ast$)
+\begin{DoxyCompactList}\small\item\em Load world story missions from xml doc. \end{DoxyCompactList}\item 
+missions \mbox{\hyperlink{classWorld_a522b4cfae34951b735cd56fca2a027b0}{load\+NPCMissions}} (\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}} $\ast$)
+\begin{DoxyCompactList}\small\item\em Load missions of an \mbox{\hyperlink{classNPC}{NPC}}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classWorld_a0b93ed200f740637fd7b525c0ce40d43}{set\+Player\+Spawn}} (\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}} $\ast$)
+\begin{DoxyCompactList}\small\item\em Set the \mbox{\hyperlink{classPlayer}{Player}} Spawn \mbox{\hyperlink{classRoom}{Room}}. The XML element contains the id of the spawn room. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWorld_a8062aeabd34a755e7f37b7d45b0a0a6e}{init\+World}} (const std\+::string \&)
+\begin{DoxyCompactList}\small\item\em Initialize world with the xml story file. \end{DoxyCompactList}\item 
+item $\ast$ \mbox{\hyperlink{classWorld_a083eda457a35f89614933415da9a100c}{search\+Key}} (int)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classSearch}{Search}} key for room ID given in args. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classRoom}{Room}} $\ast$ \mbox{\hyperlink{classWorld_a9a758b1cfe4486815807cc5456c27935}{look\+Up\+Room}} (int)
+\begin{DoxyCompactList}\small\item\em Searches for the room which\textquotesingle{}s id was given in args, if it finds the room, then returns the pointer of that room, nullptr otherwise. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classWorld_ae8f819a8c1ebf93022a6a0b27be083f8}{enter\+Room}} (int)
+\begin{DoxyCompactList}\small\item\em Sets player\textquotesingle{}s location to the room, which\textquotesingle{}s id was given in the args. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPlayer}{Player}} \& \mbox{\hyperlink{classWorld_ad992171c7b88c0f34449033a9fe22481}{get\+Player}} ()
+\begin{DoxyCompactList}\small\item\em Get the \mbox{\hyperlink{classPlayer}{Player}} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWorld_a212240354aa38d04bad3a9467102d94b}{start\+Mission}} (\mbox{\hyperlink{classMission}{Mission}} $\ast$m)
+\begin{DoxyCompactList}\small\item\em Start mission by changing mission\textquotesingle{}s status to in progress and placing it to the active\+\_\+missions vector. \end{DoxyCompactList}\item 
+missions \& \mbox{\hyperlink{classWorld_aae89e547280f3015b193fec4dd144591}{get\+Active\+Missions}} ()
+\begin{DoxyCompactList}\small\item\em Get the Active Missions object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classWorld_a1060f14bf22f6ba587db24c8333128fd}{clean\+Inventories}} ()
+\begin{DoxyCompactList}\small\item\em Iterates through every room, entity inventory in the world and removes item smart pointers that point to nullptr. This is neccessary, because if an item is moved from one place to another, then it leaves a smart pointer pointing to a nullptr. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classWorld_a8c73fba541a5817fff65147ba47cd827}{$\sim$\+World}} ()
+\begin{DoxyCompactList}\small\item\em Destroy the \mbox{\hyperlink{classWorld}{World}} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The world that contains and manages all the rooms, entities. A \mbox{\hyperlink{classWorld}{World}} object will able to parse the story file and initialize the game and run it. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classWorld_afa39d4e6f714a7a3691ac0c656f5e8a8}\label{classWorld_afa39d4e6f714a7a3691ac0c656f5e8a8}} 
+\index{World@{World}!World@{World}}
+\index{World@{World}!World@{World}}
+\doxysubsubsection{\texorpdfstring{World()}{World()}}
+{\footnotesize\ttfamily World\+::\+World (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a new \mbox{\hyperlink{classWorld}{World}} object. Default constructor. To config and setup world object use \mbox{\hyperlink{classWorld_a8062aeabd34a755e7f37b7d45b0a0a6e}{init\+World()}} method. 
+
+\mbox{\Hypertarget{classWorld_a8c73fba541a5817fff65147ba47cd827}\label{classWorld_a8c73fba541a5817fff65147ba47cd827}} 
+\index{World@{World}!````~World@{$\sim$World}}
+\index{````~World@{$\sim$World}!World@{World}}
+\doxysubsubsection{\texorpdfstring{$\sim$World()}{~World()}}
+{\footnotesize\ttfamily World\+::$\sim$\+World (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destroy the \mbox{\hyperlink{classWorld}{World}} object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classWorld_a1060f14bf22f6ba587db24c8333128fd}\label{classWorld_a1060f14bf22f6ba587db24c8333128fd}} 
+\index{World@{World}!cleanInventories@{cleanInventories}}
+\index{cleanInventories@{cleanInventories}!World@{World}}
+\doxysubsubsection{\texorpdfstring{cleanInventories()}{cleanInventories()}}
+{\footnotesize\ttfamily void World\+::clean\+Inventories (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Iterates through every room, entity inventory in the world and removes item smart pointers that point to nullptr. This is neccessary, because if an item is moved from one place to another, then it leaves a smart pointer pointing to a nullptr. 
+
+\mbox{\Hypertarget{classWorld_ae8f819a8c1ebf93022a6a0b27be083f8}\label{classWorld_ae8f819a8c1ebf93022a6a0b27be083f8}} 
+\index{World@{World}!enterRoom@{enterRoom}}
+\index{enterRoom@{enterRoom}!World@{World}}
+\doxysubsubsection{\texorpdfstring{enterRoom()}{enterRoom()}}
+{\footnotesize\ttfamily bool World\+::enter\+Room (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Sets player\textquotesingle{}s location to the room, which\textquotesingle{}s id was given in the args. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & (int) The room\textquotesingle{}s id. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classWorld_aae89e547280f3015b193fec4dd144591}\label{classWorld_aae89e547280f3015b193fec4dd144591}} 
+\index{World@{World}!getActiveMissions@{getActiveMissions}}
+\index{getActiveMissions@{getActiveMissions}!World@{World}}
+\doxysubsubsection{\texorpdfstring{getActiveMissions()}{getActiveMissions()}}
+{\footnotesize\ttfamily missions \& World\+::get\+Active\+Missions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the Active Missions object. 
+
+\begin{DoxyReturn}{Returns}
+missions\& 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWorld_ad992171c7b88c0f34449033a9fe22481}\label{classWorld_ad992171c7b88c0f34449033a9fe22481}} 
+\index{World@{World}!getPlayer@{getPlayer}}
+\index{getPlayer@{getPlayer}!World@{World}}
+\doxysubsubsection{\texorpdfstring{getPlayer()}{getPlayer()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPlayer}{Player}} \& World\+::get\+Player (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the \mbox{\hyperlink{classPlayer}{Player}} object. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classPlayer}{Player}}\& 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWorld_a9bde3dadff7330368dfa23472b413e15}\label{classWorld_a9bde3dadff7330368dfa23472b413e15}} 
+\index{World@{World}!getStory@{getStory}}
+\index{getStory@{getStory}!World@{World}}
+\doxysubsubsection{\texorpdfstring{getStory()}{getStory()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{tinyxml2\+::\+XMLDocument}} \& World\+::get\+Story (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the Story object. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classtinyxml2_1_1XMLDocument}{tinyxml2\+::\+XMLDocument}}\& 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWorld_a1c527a7bbe0becc008a87694d823a54b}\label{classWorld_a1c527a7bbe0becc008a87694d823a54b}} 
+\index{World@{World}!getWorldMission@{getWorldMission}}
+\index{getWorldMission@{getWorldMission}!World@{World}}
+\doxysubsubsection{\texorpdfstring{getWorldMission()}{getWorldMission()}}
+{\footnotesize\ttfamily missions \& World\+::get\+World\+Mission (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the \mbox{\hyperlink{classWorld}{World}} \mbox{\hyperlink{classMission}{Mission}} object. 
+
+\begin{DoxyReturn}{Returns}
+missions\& 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWorld_ab33c8044ee9d0d313ecdb49f2ac4e0e6}\label{classWorld_ab33c8044ee9d0d313ecdb49f2ac4e0e6}} 
+\index{World@{World}!getWorldRooms@{getWorldRooms}}
+\index{getWorldRooms@{getWorldRooms}!World@{World}}
+\doxysubsubsection{\texorpdfstring{getWorldRooms()}{getWorldRooms()}}
+{\footnotesize\ttfamily nodes \& World\+::get\+World\+Rooms (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the \mbox{\hyperlink{classWorld}{World}} Rooms object. 
+
+\begin{DoxyReturn}{Returns}
+nodes 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWorld_a8062aeabd34a755e7f37b7d45b0a0a6e}\label{classWorld_a8062aeabd34a755e7f37b7d45b0a0a6e}} 
+\index{World@{World}!initWorld@{initWorld}}
+\index{initWorld@{initWorld}!World@{World}}
+\doxysubsubsection{\texorpdfstring{initWorld()}{initWorld()}}
+{\footnotesize\ttfamily void World\+::init\+World (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path2story }\end{DoxyParamCaption})}
+
+
+
+Initialize world with the xml story file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path2story} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classWorld_aec9dd58e7936679047cac1354b035c5c}\label{classWorld_aec9dd58e7936679047cac1354b035c5c}} 
+\index{World@{World}!loadEntities@{loadEntities}}
+\index{loadEntities@{loadEntities}!World@{World}}
+\doxysubsubsection{\texorpdfstring{loadEntities()}{loadEntities()}}
+{\footnotesize\ttfamily void World\+::load\+Entities (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}} $\ast$}]{first\+Ele,  }\item[{node \&}]{r }\end{DoxyParamCaption})}
+
+
+
+Load entities from xml doc. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em first\+Ele} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classWorld_a522b4cfae34951b735cd56fca2a027b0}\label{classWorld_a522b4cfae34951b735cd56fca2a027b0}} 
+\index{World@{World}!loadNPCMissions@{loadNPCMissions}}
+\index{loadNPCMissions@{loadNPCMissions}!World@{World}}
+\doxysubsubsection{\texorpdfstring{loadNPCMissions()}{loadNPCMissions()}}
+{\footnotesize\ttfamily missions World\+::load\+NPCMissions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}} $\ast$}]{missions\+Ele }\end{DoxyParamCaption})}
+
+
+
+Load missions of an \mbox{\hyperlink{classNPC}{NPC}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em missions\+Ele} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+missions 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWorld_a6dfdc648be232d7ab9d9273a0402aad4}\label{classWorld_a6dfdc648be232d7ab9d9273a0402aad4}} 
+\index{World@{World}!loadRooms@{loadRooms}}
+\index{loadRooms@{loadRooms}!World@{World}}
+\doxysubsubsection{\texorpdfstring{loadRooms()}{loadRooms()}}
+{\footnotesize\ttfamily void World\+::load\+Rooms (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}} $\ast$}]{first\+Room }\end{DoxyParamCaption})}
+
+
+
+This function iterates through the room elements of the world element in the xml file and constructs the rooms of the world. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em first\+Room} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classWorld_a2a2b8418ca0fb5549feadf39e58733b0}\label{classWorld_a2a2b8418ca0fb5549feadf39e58733b0}} 
+\index{World@{World}!loadWorldMissions@{loadWorldMissions}}
+\index{loadWorldMissions@{loadWorldMissions}!World@{World}}
+\doxysubsubsection{\texorpdfstring{loadWorldMissions()}{loadWorldMissions()}}
+{\footnotesize\ttfamily void World\+::load\+World\+Missions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}} $\ast$}]{missions\+Ele }\end{DoxyParamCaption})}
+
+
+
+Load world story missions from xml doc. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em first\+Ele} & first mission element in xml doc. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classWorld_a9a758b1cfe4486815807cc5456c27935}\label{classWorld_a9a758b1cfe4486815807cc5456c27935}} 
+\index{World@{World}!lookUpRoom@{lookUpRoom}}
+\index{lookUpRoom@{lookUpRoom}!World@{World}}
+\doxysubsubsection{\texorpdfstring{lookUpRoom()}{lookUpRoom()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classRoom}{Room}} $\ast$ World\+::look\+Up\+Room (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Searches for the room which\textquotesingle{}s id was given in args, if it finds the room, then returns the pointer of that room, nullptr otherwise. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & (int) \mbox{\hyperlink{classRoom}{Room}}\textquotesingle{}s id. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Room$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWorld_a39726af0e673618bce3d38905d231474}\label{classWorld_a39726af0e673618bce3d38905d231474}} 
+\index{World@{World}!makeInventory@{makeInventory}}
+\index{makeInventory@{makeInventory}!World@{World}}
+\doxysubsubsection{\texorpdfstring{makeInventory()}{makeInventory()}}
+{\footnotesize\ttfamily items World\+::make\+Inventory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}} $\ast$}]{inv\+Ele }\end{DoxyParamCaption})}
+
+
+
+create inventory 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inv\+Ele} & (\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}}$\ast$) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+items 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWorld_a946772ec9dcf987ae465a48aafeeda05}\label{classWorld_a946772ec9dcf987ae465a48aafeeda05}} 
+\index{World@{World}!makeMission@{makeMission}}
+\index{makeMission@{makeMission}!World@{World}}
+\doxysubsubsection{\texorpdfstring{makeMission()}{makeMission()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classMission}{Mission}} $\ast$ World\+::make\+Mission (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}} $\ast$}]{mission\+Ele }\end{DoxyParamCaption})}
+
+
+
+Construct a new mission with a description, then set mission targets. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mission\+Ele} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classMission}{Mission}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWorld_af6c6a2b46fd04184fdc40e555f5e6d84}\label{classWorld_af6c6a2b46fd04184fdc40e555f5e6d84}} 
+\index{World@{World}!parseConnections@{parseConnections}}
+\index{parseConnections@{parseConnections}!World@{World}}
+\doxysubsubsection{\texorpdfstring{parseConnections()}{parseConnections()}}
+{\footnotesize\ttfamily neighbours World\+::parse\+Connections (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}} $\ast$}]{conns }\end{DoxyParamCaption})}
+
+
+
+Load neigbouring rooms id\textquotesingle{}s to connection map. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em conns} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$int$>$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWorld_a984ffcf3f40a43c47ea88603f87b913e}\label{classWorld_a984ffcf3f40a43c47ea88603f87b913e}} 
+\index{World@{World}!RoomFactory@{RoomFactory}}
+\index{RoomFactory@{RoomFactory}!World@{World}}
+\doxysubsubsection{\texorpdfstring{RoomFactory()}{RoomFactory()}}
+{\footnotesize\ttfamily void World\+::\+Room\+Factory (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{int}]{id,  }\item[{const std\+::string \&}]{desc,  }\item[{const std\+::string \&}]{choice,  }\item[{\mbox{\hyperlink{engine_8hpp_ab094fe208c346804d724d8e644966814}{Lock\+Status}}}]{ls,  }\item[{neighbours}]{nids }\end{DoxyParamCaption})}
+
+
+
+Create \mbox{\hyperlink{classRoom}{Room}} with initial params and add it to world\+Rooms. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em title} & (const std\+::string\&)\+: Name of the \mbox{\hyperlink{classRoom}{Room}} \\
+\hline
+{\em id} & (const std\+::string\&)\+: ID of the \mbox{\hyperlink{classRoom}{Room}} \\
+\hline
+{\em desc} & (const std\+::string\&)\+: Description of the \mbox{\hyperlink{classRoom}{Room}} \\
+\hline
+{\em choice} & (const std\+::string\&)\+: Choice description of the \mbox{\hyperlink{classRoom}{Room}} \\
+\hline
+{\em ls} & (Lock\+Status)\+: Status of the lock of the \mbox{\hyperlink{classRoom}{Room}}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classWorld_a083eda457a35f89614933415da9a100c}\label{classWorld_a083eda457a35f89614933415da9a100c}} 
+\index{World@{World}!searchKey@{searchKey}}
+\index{searchKey@{searchKey}!World@{World}}
+\doxysubsubsection{\texorpdfstring{searchKey()}{searchKey()}}
+{\footnotesize\ttfamily item $\ast$ World\+::search\+Key (\begin{DoxyParamCaption}\item[{int}]{room\+ID }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{classSearch}{Search}} key for room ID given in args. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em room\+ID} & (int)\+: ID of the room which\textquotesingle{}s key should be searched for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Object$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWorld_a0b93ed200f740637fd7b525c0ce40d43}\label{classWorld_a0b93ed200f740637fd7b525c0ce40d43}} 
+\index{World@{World}!setPlayerSpawn@{setPlayerSpawn}}
+\index{setPlayerSpawn@{setPlayerSpawn}!World@{World}}
+\doxysubsubsection{\texorpdfstring{setPlayerSpawn()}{setPlayerSpawn()}}
+{\footnotesize\ttfamily bool World\+::set\+Player\+Spawn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}} $\ast$}]{spawn\+Ele }\end{DoxyParamCaption})}
+
+
+
+Set the \mbox{\hyperlink{classPlayer}{Player}} Spawn \mbox{\hyperlink{classRoom}{Room}}. The XML element contains the id of the spawn room. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em spawn\+Ele} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if spawn location is given in XML file, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classWorld_a212240354aa38d04bad3a9467102d94b}\label{classWorld_a212240354aa38d04bad3a9467102d94b}} 
+\index{World@{World}!startMission@{startMission}}
+\index{startMission@{startMission}!World@{World}}
+\doxysubsubsection{\texorpdfstring{startMission()}{startMission()}}
+{\footnotesize\ttfamily void World\+::start\+Mission (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMission}{Mission}} $\ast$}]{m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Start mission by changing mission\textquotesingle{}s status to in progress and placing it to the active\+\_\+missions vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{engine_8hpp}{engine.\+hpp}}\item 
+src/\mbox{\hyperlink{engine_8cpp}{engine.\+cpp}}\end{DoxyCompactItemize}

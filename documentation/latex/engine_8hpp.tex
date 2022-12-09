@@ -1,0 +1,120 @@
+\hypertarget{engine_8hpp}{}\doxysection{src/engine.hpp File Reference}
+\label{engine_8hpp}\index{src/engine.hpp@{src/engine.hpp}}
+
+
+Definition and part implementation of game logic.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classObject}{Object}}
+\begin{DoxyCompactList}\small\item\em Base class for any object that can be owned by an \mbox{\hyperlink{classEntity}{Entity}} or \mbox{\hyperlink{classRoom}{Room}}. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classKey}{Key}}
+\begin{DoxyCompactList}\small\item\em An object that can open a room. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classEntity}{Entity}}
+\begin{DoxyCompactList}\small\item\em Base class for a \mbox{\hyperlink{classNPC}{NPC}}, USER or any other \mbox{\hyperlink{classEntity}{Entity}} living in the game world. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classPlayer}{Player}}
+\item 
+class \mbox{\hyperlink{classNPC}{NPC}}
+\item 
+class \mbox{\hyperlink{classRoom}{Room}}
+\begin{DoxyCompactList}\small\item\em Part of the \mbox{\hyperlink{classWorld}{World}}. A room that contains items, that can be collected, players or npc can move in and out of these rooms. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classMission}{Mission}}
+\begin{DoxyCompactList}\small\item\em class \mbox{\hyperlink{classMission}{Mission}} helps to create a mission system, that will give objectives, to accomplish, for the player. This will give the player a direction, how to finish the story. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classWorld}{World}}
+\begin{DoxyCompactList}\small\item\em The world that contains and manages all the rooms, entities. A \mbox{\hyperlink{classWorld}{World}} object will able to parse the story file and initialize the game and run it. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{engine_8hpp_a11d5cfc7f4ee63af492650f814613676}\label{engine_8hpp_a11d5cfc7f4ee63af492650f814613676}} 
+typedef std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classRoom}{Room}} $>$ {\bfseries node}
+\item 
+\mbox{\Hypertarget{engine_8hpp_a6ad33b8370388d88c314bc134a06fcb3}\label{engine_8hpp_a6ad33b8370388d88c314bc134a06fcb3}} 
+typedef std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classObject}{Object}} $>$ {\bfseries item}
+\item 
+\mbox{\Hypertarget{engine_8hpp_aed014f1ca0f3a1bd961aab55362db84f}\label{engine_8hpp_aed014f1ca0f3a1bd961aab55362db84f}} 
+typedef std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classNPC}{NPC}} $>$ {\bfseries npc}
+\item 
+\mbox{\Hypertarget{engine_8hpp_a57109917742bf8b08a4b7c51b8be7133}\label{engine_8hpp_a57109917742bf8b08a4b7c51b8be7133}} 
+typedef std\+::vector$<$ node $>$ {\bfseries nodes}
+\item 
+\mbox{\Hypertarget{engine_8hpp_a4ffa1f914a0acfb83a4b82da32c374b9}\label{engine_8hpp_a4ffa1f914a0acfb83a4b82da32c374b9}} 
+typedef std\+::vector$<$ int $>$ {\bfseries neighbours}
+\item 
+\mbox{\Hypertarget{engine_8hpp_aaa43833d115823c7e319a5006a92bb33}\label{engine_8hpp_aaa43833d115823c7e319a5006a92bb33}} 
+typedef std\+::vector$<$ item $>$ {\bfseries items}
+\item 
+\mbox{\Hypertarget{engine_8hpp_a75148359f8fc7d734168a30691c2733e}\label{engine_8hpp_a75148359f8fc7d734168a30691c2733e}} 
+typedef std\+::vector$<$ npc $>$ {\bfseries npcs}
+\item 
+\mbox{\Hypertarget{engine_8hpp_a4b9efe00681f10aa7f15b68e39e7eb22}\label{engine_8hpp_a4b9efe00681f10aa7f15b68e39e7eb22}} 
+typedef std\+::pair$<$ int, std\+::vector$<$ int $>$ $>$ {\bfseries room\+Connection}
+\item 
+\mbox{\Hypertarget{engine_8hpp_ac24f67fe8fb68d57cfaf51b86ced128b}\label{engine_8hpp_ac24f67fe8fb68d57cfaf51b86ced128b}} 
+typedef std\+::vector$<$ \mbox{\hyperlink{classMission}{Mission}} $\ast$ $>$ {\bfseries missions}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{engine_8hpp_a9705cde58bb7b64af268c922e784c3fc}\label{engine_8hpp_a9705cde58bb7b64af268c922e784c3fc}} 
+enum {\bfseries mission\+Status} \{ {\bfseries finished}
+, {\bfseries active}
+, {\bfseries inactive}
+ \}
+\item 
+enum \mbox{\hyperlink{engine_8hpp_ab094fe208c346804d724d8e644966814}{Lock\+Status}} \{ {\bfseries unlocked}
+, {\bfseries locked}
+ \}
+\begin{DoxyCompactList}\small\item\em Enum class to make tracking room lockstatus easier. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}} $\ast$ \mbox{\hyperlink{engine_8hpp_afa8c63a4bbe8612a0b30b07d5306fd7c}{check\+XMLElement}} (\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}} $\ast$, const std\+::string \&)
+\begin{DoxyCompactList}\small\item\em Check if xml tag is given in the story file. exit(1) if not. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Definition and part implementation of game logic. 
+
+\begin{DoxyAuthor}{Author}
+Peter Bence (\href{mailto:ecneb2000@gmail.com}{\texttt{ ecneb2000@gmail.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/10-\/29
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{engine_8hpp_ab094fe208c346804d724d8e644966814}\label{engine_8hpp_ab094fe208c346804d724d8e644966814}} 
+\index{engine.hpp@{engine.hpp}!LockStatus@{LockStatus}}
+\index{LockStatus@{LockStatus}!engine.hpp@{engine.hpp}}
+\doxysubsubsection{\texorpdfstring{LockStatus}{LockStatus}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{engine_8hpp_ab094fe208c346804d724d8e644966814}{Lock\+Status}}}
+
+
+
+Enum class to make tracking room lockstatus easier. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{engine_8hpp_afa8c63a4bbe8612a0b30b07d5306fd7c}\label{engine_8hpp_afa8c63a4bbe8612a0b30b07d5306fd7c}} 
+\index{engine.hpp@{engine.hpp}!checkXMLElement@{checkXMLElement}}
+\index{checkXMLElement@{checkXMLElement}!engine.hpp@{engine.hpp}}
+\doxysubsubsection{\texorpdfstring{checkXMLElement()}{checkXMLElement()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}} $\ast$ check\+XMLElement (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}} $\ast$}]{parent,  }\item[{const std\+::string \&}]{element\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Check if xml tag is given in the story file. exit(1) if not. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}}$\ast$ 
+\end{DoxyReturn}

@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<xs:schema>
+    <xs:element name="room">
+        <xs:complexType>
+            <xs:element name="name"/>
+            <xs:element name="description"/>
+            <xs:element name="choice"/>
+            <xs:element name="id"/>
+            <xs:element name="lock"/>
+            <xs:element name="inventory">
+                <xs:complexType>
+                    <xs:element name="object">
+                        <xs:complexType>
+                            <xs:element name="name"/>
+                            <xs:element name="description"/>
+                            <xs:element name="id"/>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="key">
+                        <xs:complexType>
+                            <xs:element name="name"/>
+                            <xs:element name="description"/>
+                            <xs:element name="id"/>
+                            <xs:element name="keyID"/>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="connections">
+                <xs:complexType>
+                    <xs:element name="id"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="entity">
+                <xs:complexType>
+                    <xs:element name="name"/>
+                    <xs:element name="dialog"/>
+                    <xs:element name="inventory">
+                        <xs:complexType>
+                            <xs:element name="object">
+                                <xs:complexType>
+                                    <xs:element name="name"/>
+                                    <xs:element name="description"/>
+                                    <xs:element name="id"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="key">
+                                <xs:complexType>
+                                    <xs:element name="name"/>
+                                    <xs:element name="description"/>
+                                    <xs:element name="id"/>
+                                    <xs:element name="keyID"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="missions">
+                        <xs:complexType>
+                            <xs:element name="missions">
+                                <xs:complexType>
+                                    <xs:element name="description"/>
+                                    <xs:element name="targetItem"/>
+                                    <xs:element name="targetRoom"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:complexType>
+            </xs:element>       
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

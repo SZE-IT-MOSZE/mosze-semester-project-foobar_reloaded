@@ -1,0 +1,53 @@
+\hypertarget{engine_8cpp}{}\doxysection{src/engine.cpp File Reference}
+\label{engine_8cpp}\index{src/engine.cpp@{src/engine.cpp}}
+
+
+Implementation of the game logic.  
+
+
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include \char`\"{}tinyxml2.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}engine.\+hpp\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}} $\ast$ \mbox{\hyperlink{engine_8cpp_af33ad7ea63113df9bbad576aad65e4f6}{check\+XMLElement}} (\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}} $\ast$parent, const std\+::string \&element\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Check if xml tag is given in the story file. exit(1) if not. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of the game logic. 
+
+\begin{DoxyAuthor}{Author}
+Peter Bence (\href{mailto:ecneb2000@gmail.com}{\texttt{ ecneb2000@gmail.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/10-\/29
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{engine_8cpp_af33ad7ea63113df9bbad576aad65e4f6}\label{engine_8cpp_af33ad7ea63113df9bbad576aad65e4f6}} 
+\index{engine.cpp@{engine.cpp}!checkXMLElement@{checkXMLElement}}
+\index{checkXMLElement@{checkXMLElement}!engine.cpp@{engine.cpp}}
+\doxysubsubsection{\texorpdfstring{checkXMLElement()}{checkXMLElement()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}} $\ast$ check\+XMLElement (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}} $\ast$}]{parent,  }\item[{const std\+::string \&}]{element\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Check if xml tag is given in the story file. exit(1) if not. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classtinyxml2_1_1XMLElement}{tinyxml2\+::\+XMLElement}}$\ast$ 
+\end{DoxyReturn}

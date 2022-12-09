@@ -1,0 +1,91 @@
+\hypertarget{classPickUp}{}\doxysection{Pick\+Up Class Reference}
+\label{classPickUp}\index{PickUp@{PickUp}}
+
+
+Realisation of the action class, the player picking up an item.  
+
+
+
+
+{\ttfamily \#include $<$interface.\+hpp$>$}
+
+Inheritance diagram for Pick\+Up\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classPickUp}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPickUp_aa2ce4636c1d7e0e8b6c44d48fb7d9c34}{Pick\+Up}} (const std\+::string \&, \mbox{\hyperlink{classWorld}{World}} \&)
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{classAction}{Action}} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPickUp_a85b544ffd73e101db8e7c631e130c5a0}{do\+Action}} (item \&)
+\begin{DoxyCompactList}\small\item\em Take action with the player character and pick up the desired item and place it into the player\textquotesingle{}s inventory. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPickUp_a132b342c4720548223dd09194e948876}{operator()}} (item \&)
+\begin{DoxyCompactList}\small\item\em The \mbox{\hyperlink{classPickUp}{Pick\+Up}} object is a callable object, and will call the do\+Action method of the object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Realisation of the action class, the player picking up an item. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classPickUp_aa2ce4636c1d7e0e8b6c44d48fb7d9c34}\label{classPickUp_aa2ce4636c1d7e0e8b6c44d48fb7d9c34}} 
+\index{PickUp@{PickUp}!PickUp@{PickUp}}
+\index{PickUp@{PickUp}!PickUp@{PickUp}}
+\doxysubsubsection{\texorpdfstring{PickUp()}{PickUp()}}
+{\footnotesize\ttfamily Pick\+Up\+::\+Pick\+Up (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{desc,  }\item[{\mbox{\hyperlink{classWorld}{World}} \&}]{gm }\end{DoxyParamCaption})}
+
+
+
+Construct a new \mbox{\hyperlink{classAction}{Action}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em desc} & (std\+::string)\+: Description of the action. \\
+\hline
+{\em gm} & (\mbox{\hyperlink{classWorld}{World}}\&)\+: The game world, so the action class can access the ongoing games attributes. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classPickUp_a85b544ffd73e101db8e7c631e130c5a0}\label{classPickUp_a85b544ffd73e101db8e7c631e130c5a0}} 
+\index{PickUp@{PickUp}!doAction@{doAction}}
+\index{doAction@{doAction}!PickUp@{PickUp}}
+\doxysubsubsection{\texorpdfstring{doAction()}{doAction()}}
+{\footnotesize\ttfamily void Pick\+Up\+::do\+Action (\begin{DoxyParamCaption}\item[{item \&}]{i }\end{DoxyParamCaption})}
+
+
+
+Take action with the player character and pick up the desired item and place it into the player\textquotesingle{}s inventory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & (item\&)\+: The smart pointer\textquotesingle{}s reference of the item that will be picked up and placed into the player\textquotesingle{}s inventory. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPickUp_a132b342c4720548223dd09194e948876}\label{classPickUp_a132b342c4720548223dd09194e948876}} 
+\index{PickUp@{PickUp}!operator()@{operator()}}
+\index{operator()@{operator()}!PickUp@{PickUp}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily void Pick\+Up\+::operator() (\begin{DoxyParamCaption}\item[{item \&}]{i }\end{DoxyParamCaption})}
+
+
+
+The \mbox{\hyperlink{classPickUp}{Pick\+Up}} object is a callable object, and will call the do\+Action method of the object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & (item\&)\+: The smart pointer\textquotesingle{}s reference of the item that will be picked up and placed into the player\textquotesingle{}s inventory. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{interface_8hpp}{interface.\+hpp}}\item 
+src/\mbox{\hyperlink{interface_8cpp}{interface.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,102 @@
+\hypertarget{classObject}{}\doxysection{Object Class Reference}
+\label{classObject}\index{Object@{Object}}
+
+
+Base class for any object that can be owned by an \mbox{\hyperlink{classEntity}{Entity}} or \mbox{\hyperlink{classRoom}{Room}}.  
+
+
+
+
+{\ttfamily \#include $<$engine.\+hpp$>$}
+
+Inheritance diagram for Object\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classObject}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classObject_a093caad8e34a80b953f16f10724b39aa}{Object}} (const std\+::string \&n, const int id, const std\+::string \&d)
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{classObject}{Object}} object. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classObject_acb9b466607cb80beaaa30ece2f7f570a}{get\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Get the Name object. \end{DoxyCompactList}\item 
+int const \mbox{\hyperlink{classObject_aaad299b2f249c9d89a419b5c1ac22e85}{get\+ID}} ()
+\begin{DoxyCompactList}\small\item\em Get the ID of the object. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classObject_a3f44136a9cb5eda00144695c1a0b1a2c}{get\+Description}} () const
+\begin{DoxyCompactList}\small\item\em Get the Description of the object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class for any object that can be owned by an \mbox{\hyperlink{classEntity}{Entity}} or \mbox{\hyperlink{classRoom}{Room}}. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classObject_a093caad8e34a80b953f16f10724b39aa}\label{classObject_a093caad8e34a80b953f16f10724b39aa}} 
+\index{Object@{Object}!Object@{Object}}
+\index{Object@{Object}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{Object()}{Object()}}
+{\footnotesize\ttfamily Object\+::\+Object (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{n,  }\item[{const int}]{id,  }\item[{const std\+::string \&}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a new \mbox{\hyperlink{classObject}{Object}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & (std\+::string\&) Name of the \mbox{\hyperlink{classObject}{Object}} \\
+\hline
+{\em d} & (std\+::string\&)\+: Description of the object \\
+\hline
+{\em id} & (int)\+: Creation ID of the item \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classObject_a3f44136a9cb5eda00144695c1a0b1a2c}\label{classObject_a3f44136a9cb5eda00144695c1a0b1a2c}} 
+\index{Object@{Object}!getDescription@{getDescription}}
+\index{getDescription@{getDescription}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{getDescription()}{getDescription()}}
+{\footnotesize\ttfamily std\+::string Object\+::get\+Description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the Description of the object. 
+
+\begin{DoxyReturn}{Returns}
+object\+Description (std\+::string) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classObject_aaad299b2f249c9d89a419b5c1ac22e85}\label{classObject_aaad299b2f249c9d89a419b5c1ac22e85}} 
+\index{Object@{Object}!getID@{getID}}
+\index{getID@{getID}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{getID()}{getID()}}
+{\footnotesize\ttfamily int const Object\+::get\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the ID of the object. 
+
+\begin{DoxyReturn}{Returns}
+obj\+ID (int) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classObject_acb9b466607cb80beaaa30ece2f7f570a}\label{classObject_acb9b466607cb80beaaa30ece2f7f570a}} 
+\index{Object@{Object}!getName@{getName}}
+\index{getName@{getName}!Object@{Object}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily std\+::string Object\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the Name object. 
+
+\begin{DoxyReturn}{Returns}
+object\+Name (std\+::string) 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{engine_8hpp}{engine.\+hpp}}\end{DoxyCompactItemize}

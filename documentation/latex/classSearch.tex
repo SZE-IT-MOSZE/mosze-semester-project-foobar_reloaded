@@ -1,0 +1,87 @@
+\hypertarget{classSearch}{}\doxysection{Search Class Reference}
+\label{classSearch}\index{Search@{Search}}
+
+
+Realisation of the action class, respresenting the search of a room.  
+
+
+
+
+{\ttfamily \#include $<$interface.\+hpp$>$}
+
+Inheritance diagram for Search\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classSearch}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSearch_a27bcf7da709120cb65d9e38de18cdc55}{Search}} (const std\+::string \&, \mbox{\hyperlink{classWorld}{World}} \&)
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{classAction}{Action}} object. \end{DoxyCompactList}\item 
+search\+\_\+results \mbox{\hyperlink{classSearch_a703ccdd48a408fba38960195aae8228f}{do\+Action}} ()
+\begin{DoxyCompactList}\small\item\em Take action with player character and search through the room, that the player is in. \end{DoxyCompactList}\item 
+search\+\_\+results \mbox{\hyperlink{classSearch_a50416969727e1db4feea3d8e986d77f7}{operator()}} ()
+\begin{DoxyCompactList}\small\item\em The \mbox{\hyperlink{classSearch}{Search}} object is a callable object, and will call the do\+Action method of the object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Realisation of the action class, respresenting the search of a room. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSearch_a27bcf7da709120cb65d9e38de18cdc55}\label{classSearch_a27bcf7da709120cb65d9e38de18cdc55}} 
+\index{Search@{Search}!Search@{Search}}
+\index{Search@{Search}!Search@{Search}}
+\doxysubsubsection{\texorpdfstring{Search()}{Search()}}
+{\footnotesize\ttfamily Search\+::\+Search (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{desc,  }\item[{\mbox{\hyperlink{classWorld}{World}} \&}]{gm }\end{DoxyParamCaption})}
+
+
+
+Construct a new \mbox{\hyperlink{classAction}{Action}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em desc} & (std\+::string)\+: Description of the action. \\
+\hline
+{\em gm} & (\mbox{\hyperlink{classWorld}{World}}\&)\+: The game world, so the action class can access the ongoing games attributes. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSearch_a703ccdd48a408fba38960195aae8228f}\label{classSearch_a703ccdd48a408fba38960195aae8228f}} 
+\index{Search@{Search}!doAction@{doAction}}
+\index{doAction@{doAction}!Search@{Search}}
+\doxysubsubsection{\texorpdfstring{doAction()}{doAction()}}
+{\footnotesize\ttfamily search\+\_\+results Search\+::do\+Action (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Take action with player character and search through the room, that the player is in. 
+
+\begin{DoxyReturn}{Returns}
+search\+\_\+results 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSearch_a50416969727e1db4feea3d8e986d77f7}\label{classSearch_a50416969727e1db4feea3d8e986d77f7}} 
+\index{Search@{Search}!operator()@{operator()}}
+\index{operator()@{operator()}!Search@{Search}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily search\+\_\+results Search\+::operator() (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The \mbox{\hyperlink{classSearch}{Search}} object is a callable object, and will call the do\+Action method of the object. 
+
+\begin{DoxyReturn}{Returns}
+search\+\_\+results 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{interface_8hpp}{interface.\+hpp}}\item 
+src/\mbox{\hyperlink{interface_8cpp}{interface.\+cpp}}\end{DoxyCompactItemize}

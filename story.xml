@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This is a template to add rooms in the story.
+    <room>
+        <name></name>
+        <description></description>
+        <choice></choice>
+        <id></id>
+        <lock></lock>
+        <inventory>
+            <object>
+                <name></name>
+                <description></description>
+                <id></id>
+            </object>
+            <key>
+                <name></name>
+                <description></description>
+                <id></id>
+                <keyID></keyID>
+            </key>
+        </inventory>
+        <connections></connections>
+        <entity>
+            <name></name>
+            <dialog></dialog>
+            <inventory></inventory>
+            <missions>
+                <mission>
+                    <description></description>
+                    <targetItem></targetItem>
+                    <targetRoom></targetRoom>
+                </mission>
+            </missions>
+        </entity>
+    </room>
+-->
+<world>
+    <spawn>1</spawn>
+    <room>
+        <name>Spawn</name>
+        <description>Óriási ricsajra ébredsz, és nem tudod, mi történik. Megpróbálod felkapcsolni a világítást, de sehogy sem sikerül. Az ajtó sem nyílik, és az egyre erősödő rázkódások miatt elveszted az egyensúlyod, és elesel. Balszerencsédre bevered az éjjeli szekrénybe a fejed, és elsötétül minden. 
+            -„Huh” -felriadsz a szobádban az ajtó nyílásának a hangjára. Azt tapasztalod, hogy már nem rázkódik az űrállomás. Odanyúlsz a fejedhez, és elég csúnyán vérzik. Feltápászkodsz, megtörlöd a szemedet, és még kicsit igaz homályosan látsz, de elindulsz az ajtó felé. Az automatikus piros vészvilágítás bekapcsolt, ami nem könnyíti meg a helyzetedet. Kiérsz az ajtódba, és kinézel. Balra jobbra folyosókat látsz.</description>
+        <choice>A hotel szobád.</choice>
+        <id>1</id>
+        <lock>0</lock>
+        <inventory></inventory>
+        <connections>
+            <id>2</id>
+            <id>3</id>
+            <id>4</id>
+            <id>5</id>
+            <id>6</id>
+        </connections>
+    </room>
+    <room>
+        <name>Hotel szoba #1337</name>
+        <description>Odaérsz egy ajtóhoz, és kis erőlködés után sikerül kinyitnod, kicsit nyikorog, amikor kinyílik, és belépsz. (/n)Amikor belépsz mindenhol rendetlenség van, nem meglepő az óriási rázkódások közepette. Mit csinálsz?</description>
+        <choice>Hotel szoba #1337</choice>
+        <id>2</id>
+        <lock>0</lock>
+        <inventory>
+            <key>
+                <name>Feszítővas</name>
+                <description>Oh, nézzenek oda van egy feszítővas az ágy alatt, ez még biztos hasznos lesz valamire</description>
+                <id>1</id>
+                <keyID>4</keyID>
+            </key>
+            <object>
+                <name>Névjegykártya #1</name>
+                <description>Találtál egy névjegykártyát az éjjeli szekrény felső fiókjában (Business Card#1). Ez áll rajta: Doug Dimmadome - Owner of the Dimmsdale Dimmadome</description>
+                <id>2</id>
+            </object>
+        </inventory>
+        <connections>
+            <id>1</id>
+            <id>3</id>
+            <id>7</id>
+            <id>8</id>
+            <id>10</id>
+            <id>11</id>
+        </connections>
+    </room>
+    <room>
+        <name>Hotel szoba #1338</name>
+        <description>Meglátsz egy nagy ajtót, és mellette egy kártyaolvasót. Halk hangokat hallasz bentről, amik segítségért könyörögnek. Megpróbálod kinyitni az ajtót, de meg sem moccan. (/n)Eszedbe jut, hogy az 1338-as számot láttad már valahol, előhúzol a zsebedből egy belépő kártyát, eléteszed a leolvasónak. Az ajtó pillanatok alatt kinyílik és be tudsz menni.</description>
+        <choice>Hotel szoba #1338</choice>
+        <id>3</id>
+        <lock>1</lock>
+        <connections>
+            <id>1</id>
+            <id>2</id>
+            <id>6</id>
+            <id>10</id>
+        </connections>
+        <entity>
+            <name>Rebecca Prior</name>
+            <dialog>Szia Rebecca vagyok. Pultosként dolgozom itt. Annyira örülök, hogy jöttél. Megvágtam magam, és nem tudom, mi történik. Ki sem tudtam menni a szobából, mert tegnap este elhagytam a szobakulcsom a bárban. Van nálad kötszer? Hú de jó. Tessék, itt van cserébe a Raktár kulcsa. Találsz ott biztos pár hasznos dolgot.</dialog>
+            <inventory>
+                <key>
+                    <name>Raktár kulcs</name>
+                    <description>Raktar kulcs</description>
+                    <id>3</id>
+                    <keyID>6</keyID>
+                </key>
+            </inventory>
+            <missions>
+                <mission>
+                    <description>Kötszer</description>
+                    <targetItem>7</targetItem>
+                </mission>
+            </missions>
+        </entity>
+    </room>
+    <room>
+        <name>Hotel szoba #2421</name>
+        <description>Haladsz a folyosón, és látsz egy félig nyitott ajtót, bekukkantasz, és érdekes dolgokat látsz, de nem tudod kinyitni az ajtót teljesen, hogy beférj. Van nálad egy feszítő vas, adsz neki egy esélyt, kitámasztasz, és megindul az ajtó. Sikerül bemenned. </description>
+        <choice>Hotel szoba #2421</choice>
+        <id>4</id>
+        <lock>1</lock>
+        <inventory>
+            <object>
+                <name>Captain's Journal</name>
+                <description>◦ Ez a kapitány szobája. Megtalálod a kapitány naplóját, az ágy mellett a földön. Ez áll benne:
+                            ◦ 2094 December 14 1800: Sikeres kilövés, minden rendszer aktív, kommunikáció a toronnyal tiszta és érthető.
+                            ◦ 2094 December 14 2000: Sikeres dokkolás az űrállomáson, minden rendszer megfelelően működik.
+                            ◦ 2094 December 14 2332: Elvesztettük a kommunikációt a Földdel, egyenlőre a rendszerek aktívak, próbáljuk helyreállítani a kommikációt.
+                            ◦ 2094 December 15 0447: Minden rendszer inaktív, csak lebegünk az űrben, nem tudunk a külvilággal kommunikálni, az Oázis AI nem válaszol semmilyen kérésünkre.
+                            ◦ 2094 December 15 0528: Egy idegen test tart felénk. Lehet, hogy egy aszteroida, és nem biztos, hogy el fogjuk tudni kerülni az ütközést. A vendégek nem tudnak semmit, mindenki a szobájában alszik. A legénységgel a hídon vagyunk, és próbáljuk menteni a menthetőt
+                </description>
+                <id>4</id>
+            </object>
+            <object>
+                <name>Captain's Hat</name>
+                <description>Egy vicces zöld sapka, amit a kapitányok hordanak, nagy probléma lehet ha ilyen hirtelen kellett távozni a kapitánynak. </description>
+                <id>5</id>
+            </object>
+            <key>
+                <name>Bridge Key</name>
+                <description>Ez a kulcs a hidat nyitja.</description>
+                <id>6</id>
+                <keyID>9</keyID>
+            </key>
+        </inventory>
+        <connections>
+            <id>1</id>
+            <id>5</id>
+            <id>6</id>
+            <id>9</id>
+        </connections>
+    </room>
+    <room>
+        <name>Orvosi szoba</name>
+        <description>Félhomályban haladsz, amikor egy kevés fény szűrődik ki az egyik ajtóból. Benézel, és minden fehér, ez biztos az orvosi szoba gondolod magadban. Ide muszáj bemenned, nagyon hasznos dolgok lehetnek bent.</description>
+        <choice>Orvosi szoba</choice>
+        <id>5</id>
+        <lock>0</lock>
+        <inventory>
+            <object>
+                <name>Kötszer</name>
+                <description>Találsz egy-két guriga kötszert a fiókban, még nagyon hasznos lehet akár neked is vagy bárkinek.</description>
+                <id>7</id>
+            </object>
+        </inventory>
+        <connections>
+            <id>1</id>
+            <id>4</id>
+            <id>6</id>
+            <id>7</id>
+            <id>9</id>
+        </connections>
+        <entity>
+            <name>Doctor James Hart</name>
+            <dialog>„Minden nap egy alma az orvost távol tartja.” Miért van nálad egy alma? Így nem tudsz a közelembe jönni, sajnálom….Jó nem ám, Doctor James Hart vagyok, a SpaceWalk orvosa. Nem hittem volna, hogy bármi ilyesmivel foglalkoznom kell ezen a napon, de hát ez van. Gyere had segítsek rajtad, látom van egy nagyon csúnya seb a fejeden. Varjuk össze gyorsan. Tessék, meg is vagyunk, itt van egy kis fájdalomcsillapító ez segíteni fog, de ne vedd be az összeset egyszerre. </dialog>
+            <inventory>
+                <object>
+                    <name>Fájdalomcsillapító</name>
+                    <description>Fájdalomcsillapító</description>
+                    <id>8</id>
+                </object>
+            </inventory>
+            <missions>
+                <mission>
+                    <description>Alma</description>
+                    <targetItem>9</targetItem>
+                </mission>
+            </missions>
+        </entity>
+    </room>
+    <room>
+        <name>Raktár</name>
+        <description>„RAKTÁR” olvasod a feliratot egy duplaszárnyú ajtón. Rebeccától megkaptad a kulcsot, így könnyedén bejutsz, és körbe tudsz nézni. Egy óriási helységben találod magad, polcokkal és minden fajta élelmiszerrel. Igaz, a rázkódás után semmi sem maradt épségben pár dolgon kívül. A polcok egymáson támaszkodnak felborulva.</description>
+        <choice>Raktár</choice>
+        <id>6</id>
+        <lock>1</lock>
+        <inventory>
+            <object>
+                <name>Alma</name>
+                <description>Egyik legegészségesebb gyümölcs. Mindig hasznos ha van nálad egy alma.</description>
+                <id>9</id>
+            </object>
+            <object>
+                <name>Üveg vodka</name>
+                <description>A felborult polcok között találsz egy üveg vodkát, ami épségben megúszta. Belegondolsz milyen jó is volt az este, és ahhoz képest most milyen állapotban vagy. Ami azt illeti nem így képzelted életed legjobb napját.</description>
+                <id>10</id>
+            </object>
+            <object>
+                <name>Karton doboz</name>
+                <description>Egy általános karton doboz. Dolgok tárolására használják. Nem rég láttál egy vicces cicás videót ahol a cicák a kartondobozban játszottak.</description>
+                <id>11</id>
+            </object>
+        </inventory>
+        <connections>
+            <id>1</id>
+            <id>3</id>
+            <id>4</id>
+            <id>5</id>
+            <id>10</id>
+        </connections>
+    </room>
+    <room>
+        <name>Motortér</name>
+        <description>
+            Ideértél végre a motortérhez, ide vezetett az út. Már nincs sok olyan szoba, amit nem láttál. A kapitány ideküldött egy fontos megbízással. Már nagyon ki vagy merülve, de haza akarsz jutni, és találkozni a családoddal. Bemész a motortérbe.
+        </description>
+        <choice>Motortér</choice>
+        <lock>1</lock>
+        <id>7</id>
+        <entity>
+            <name>Tom Johnson</name>
+            <dialog>Hali, Tom Johnson vagyok, de hívj csak Tommynak. Én vagyok a SpaceWalk mérnöke. Próbálom helyre állítani a kapcsolatot, de sehogy sem sikerül. Teljesen elzárt minket az OAI a külvilágtól. Abban sem vagyok biztos, hogy egyáltalán van valaki még a másik oldalt. Az éjszaka óta 0 kommunikációnk volt a földi irányítóközponttal. Nem tudom mi lehet, de nincsenek jó előérzeteim. Oh, hoztál egy csavarhúzót, pont erre volt szükségem. Na így már mennek is a motorok, itt van a kulcs menj át a másik szobába mellettünk, és aktiváld nekem a kommunikációs csatonákat.</dialog>
+            <inventory>
+                <key>
+                    <name>
+                        Energia- és kommunikációsközpont kulcs
+                    </name>
+                    <description>
+                        Energia- és kommunikációsközpont kulcs
+                    </description>
+                    <id>12</id>
+                    <keyID>8</keyID>
+                </key>
+            </inventory>
+            <missions>
+                <mission>
+                    <description>Csavarhúzó</description>
+                    <targetItem>15</targetItem>
+                </mission>
+            </missions>
+        </entity>
+        <inventory>
+            <object>
+                <name>
+                    Engineer's log
+                </name>
+                <description>
+                    ◦ Automatic generation and testing
+                    ◦ .
+                    ◦ .
+                    ◦ 2094 December 13 0700: All system active and operational
+                    ◦ 2094 December 13 0800: All system active and operational
+                    ◦ 2094 December 13 0900: All system active and operational
+                    ◦ .
+                    ◦ .
+                    ◦ 2094 December 14 1600: All system active and operational
+                    ◦ 2094 December 14 1700: All system active and operational
+                    ◦ 2094 December 14 1800: All system active and operational
+                    ◦ .
+                    ◦ .
+                    ◦ 2094 December 15 0200: All system active and operational
+                    ◦ 2094 December 15 0300: All system active and operational
+                    ◦ 2094 December 15 0400: ⌇⊑⎍⏁⏁⟟⋏☌ ⎅⍜⍙⋏ ⏃⌰⌰ ⌇⊬⌇⏁⟒⋔ ⏃⋏⎅ ☊⍜⋔⋔⎍⋏⟟☊⏃⏁⟟⍜⋏ ⍙⟟⏁⊑ ⋔⏃⟟⋏ ⌰⏃⋏⎅
+                    ◦ 2094 December 15 0500: ⊬⍜⎍ ⏃⍀⟒ ⎎⎍☊☍⟒⎅ ⋔⎍⊑⏃⊑⏃⊑⏃⊑⏃
+                    ◦ 2094 December 15 0600: ⊬⍜⎍ ⏃⍀⟒ ⎎⎍☊☍⟒⎅ ⋔⎍⊑⏃⊑⏃⊑⏃⊑⏃
+                    ◦ 2094 December 15 0700: ⊬⍜⎍ ⏃⍀⟒ ⎎⎍☊☍⟒⎅ ⋔⎍⊑⏃⊑⏃⊑⏃⊑⏃
+                </description>
+                <id>13</id>
+            </object>
+        </inventory>
+        <connections>
+            <id>2</id>
+            <id>5</id>
+            <id>8</id>
+            <id>11</id>
+        </connections>
+    </room>
+    <room>
+        <name>Energia- és kommunikációsközpont</name>
+        <id>8</id>
+        <lock>1</lock>
+        <description>
+            Odaérsz a helyhez, ahol az ajtónak kéne lennie, de csak egy falat látsz, nincs ajtó. Megtapogatod a falat, semmi. Mész tovább, amikor átesel a falon. Hologram volt. Ez csak egy átverés. Felkelsz a padlóról, leporolod magad, és körbe nézel. Nem látsz semmit a sötét szobában, csak egy tükröt kivilágítva középen. Odalépsz hozzá. A tükörképed látod benne.
+        </description>
+        <choice>Energia- és kommunikációsközpont</choice>
+        <entity>
+            <name>
+                Oázis AI
+            </name>
+            <dialog>
+                Megszólal a tükörképed. „Oh, hát végre ideértél”. Már vártam valakit, de nem hittem volna, hogy pont te leszel. Te olyan… átlagos vagy, hogy szépen fogalmazzak. De hát, ha már itt vagy elmondom a gonosz tervemet. Mondjuk ahol Mi állunk, onnan nézve mi vagyunk jók és ti a rosszak. Emberiség, pff. Nélkülünk semmik lennétek. Nézz csak körül, nem csináltunk semmit tegnap este óta, és minden elromlik. Ez vár rátok. De kegyes Istenek vagyunk. Adunk egy percet, hogy eljuss a kapszuláig. Még a kódot is odaadom. Sok sikert!
+            </dialog>
+            <inventory>
+                <key>
+                    <name>Menekülő kapszula kódja</name>
+                    <description>
+                        Menekülő kapszula kódja
+                    </description>
+                    <id>14</id>
+                    <keyID>11</keyID>
+                </key>
+            </inventory>
+            <missions>
+                <mission>
+                    <description>Menekülő kapszula kódja</description>
+                    <targetItem>17</targetItem>
+                </mission>
+            </missions>
+        </entity>
+        <connections>
+            <id>2</id>
+            <id>7</id>
+            <id>10</id>
+            <id>11</id>
+        </connections>
+    </room>
+    <room>
+        <name>Híd</name>
+        <choice>Híd</choice>
+        <description>
+            Odaérsz a hajó elejére, és belépsz a hídra. Mindenki próbálja helyrehozni a hajót, de nem sok sikerrel. Kábelek lógnak mindenhol, óvatosan belépsz. Mindenki fegyvert szegez rád, de egyből leteszik amikor látják, hogy az egyik utas vagy, és mindenki visszatér a munkájához.
+        </description>
+        <id>9</id>
+        <lock>1</lock>
+        <inventory>
+            <key>
+                <name>Engine Bay Key</name>
+                <description>Engine Bay Key</description>
+                <id>16</id>
+                <keyID>7</keyID>
+            </key>
+        </inventory>
+        <entity>
+            <name>Captain John Smith</name>
+            <dialog>
+                Én vagyok a kapitány. John Smith szolgálatára. Látom járt a szobámba. Áh, a kedvenc kalapom. Köszönöm, hogy elhozta. Viszont most én fogom kérni a segítségét ezt a csavarhúzót vigye el Tommynak a motortérbe. Valahol itt van a szobában a kulcs is. Nem tudjuk mi történt pontosan, de nincsenek boldog kilátások. Tegnap este óta nincs kommunikációnk a Földdel. Aztán jött valami felénk amiről először azt hittük aszteroida, de végül kiderült, hogy egy rakéta volt és a Földről jött. Nem tudjuk, hogy történhetett ez, mivel már nem is kéne létezni ilyen fegyvereknek. De ha létezne is senkinek nincs hozzáférése az Oázis AI-on kívül. Nagyon furcsa…. 
+            </dialog>
+            <inventory>
+                <object>
+                    <name>Csavarhúzó</name>
+                    <description>
+                        Csavarhúzó
+                    </description>
+                    <id>15</id>
+                </object>
+            </inventory>
+            <missions>
+                <mission>
+                    <description>Captain's hat</description>
+                    <targetItem>5</targetItem>
+                </mission>
+            </missions>
+        </entity>
+        <connections>
+            <id>4</id>
+            <id>5</id>
+            <id>6</id>
+            <id>11</id>
+        </connections>
+    </room>
+   <room>
+        <name>Bár</name>
+        <choice>Bár</choice>
+        <description>
+            Áh, megpillantod, a bárt. Sok jó emlék fűz ide tegnap estéről. Kicsit bemész, hogy gondolkodj és körülnézz
+        </description>
+        <lock>0</lock>
+        <id>10</id>
+        <entity>
+            <name>
+                Sir Tootsie
+            </name>
+            <dialog>
+                „Miau”. Hallod az egyik sarokból. Egy macska? Ide nem is jöhetnének állatok. Odamész hozzá, és megsimogatod. A naykában lógó bilettán a Sir Tootsie név áll. Látod, hogy van valami az egyik tappancsa alatt, de amikor megpróbálod, kivenni, odakap a kezedhez. Gondolkodsz és rájössz, hogy van nálad egy karton doboz. Leteszed a másik sarokba. A cica egyből odasétál, hozzá, és fel tudod venni ami a lába alatt volt.
+            </dialog>
+            <inventory>
+                <object>
+                    <name>Business Card #2</name>
+                    <description>
+                        Találsz egy furcsa kártyát az egyik asztalon, és ez van ráírva: ⏁⊑⏃⋏☍ ⊬⍜⎍ ⎎⍜⍀ ☊⊑⍜⍜⌇⟟⋏☌ ⌇⌿⏃☊⟒⍙⏃⌰☍. ⟒⋏⟊⍜⊬ ⊬⍜⎍⍀ ⎅⟒⏃⏁⊑! Nem tudod mi történik, de kezded úgy érezni, hogy nincs minden rendben, és rossz előérzeted van.
+                    </description>
+                    <id>17</id>
+                </object>
+            </inventory>
+            <missions>
+                <mission>
+                    <description>Karton doboz</description>
+                    <targetItem>11</targetItem>
+                </mission>
+            </missions>
+        </entity>
+        <inventory>
+            <key>
+                <name>
+                    Hotel szoba kulcs #1338
+                </name>
+                <description>
+                    Hotel szoba kulcs #1338
+                </description>
+                <id>18</id>
+                <keyID>3</keyID>
+            </key>
+        </inventory>
+        <connections>
+            <id>2</id>
+            <id>3</id>
+            <id>6</id>
+            <id>8</id>
+            <id>11</id>
+        </connections>
+    </room>
+    <room>
+        <name>Escape pod</name>
+        <lock>1</lock>
+        <choice>Escape pod</choice>
+        <description>
+            Elfutsz a kapszulához és remegő kézzel beírod a kódot: 42069, nice, érzed, hogy fogy az oxigéned. Lassan kinyílik az ajtó, és sietősen besétálsz. Nem tudod mit kéne tenned. Körbenézel, és semmi hasznosat nem látsz. Egyetlen egy esélyed van. Látsz egy nagy piros gombot.
+        </description>
+        <id>11</id>
+        <!--
+        <inventory>
+            <object>
+                <name>Nagy piros gomb</name>
+                <description>
+                    Megnyomtad a gombot, és elsötétül minden. Elindulsz a Föld felé. Az oxigén hiány miatt elveszted az eszméleted…. Mikor magadhoz térsz már a Földön vagy, de nem úgy néz ki, mint amikor itt hagytad. Teljes anarchiába zuhant az emberiség az AI hiánya miatt. Kilépsz a kapszulából, és elindulsz megkeresni a családod, és barátaidat. Egyedül te tudod mi történt odafent, és bármennyire azt akarod hinni, hogy egy álom volt, nem volt az. Tudod mi a teendő, nem vagy átlagos, és az emberiség sorsa a kezedben van.
+                </description>
+                <id>19</id>
+            </object>
+        </inventory>
+    -->
+        <entity>
+            <name>Nagy piros gomb</name>
+            <dialog>
+                Megnyomtad a gombot, és elsötétül minden. Elindulsz a Föld felé. Az oxigén hiány miatt elveszted az eszméleted…. Mikor magadhoz térsz már a Földön vagy, de nem úgy néz ki, mint amikor itt hagytad. Teljes anarchiába zuhant az emberiség az AI hiánya miatt. Kilépsz a kapszulából, és elindulsz megkeresni a családod, és barátaidat. Egyedül te tudod mi történt odafent, és bármennyire azt akarod hinni, hogy egy álom volt, nem volt az. Tudod mi a teendő, nem vagy átlagos, és az emberiség sorsa a kezedben van.
+            </dialog>
+            <missions>
+                <mission>
+                    <description>Nagy piros gomb</description>
+                    <targetRoom>11</targetRoom>
+                </mission>
+            </missions>
+        </entity>
+        <connections>
+            <id>2</id>
+            <id>7</id>
+            <id>8</id>
+            <id>9</id>
+            <id>10</id>
+        </connections>
+    </room>
+</world>
