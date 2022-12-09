@@ -148,8 +148,10 @@ bool SessionManager::doInspectInventoryItem(item& i) {
 }
 
 bool SessionManager::doIteration() {
+    std::cout << "\n";
     // Print out the room's desciption, that the player is in.
     std::cout << game_world.getPlayer().getLocation()->getDescription() << std::endl;
+    std::cout << "\n";
 
     // List out possible choices.
     std::cout << "1. Mozgás kiválasztott szobába." << std::endl;

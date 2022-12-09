@@ -1,0 +1,68 @@
+\hypertarget{interface_8hpp_source}{}\doxysection{interface.\+hpp}
+\label{interface_8hpp_source}\index{src/interface.hpp@{src/interface.hpp}}
+\mbox{\hyperlink{interface_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#ifndef INTERFACE}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#define INTERFACE}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{typedef} std::pair<items\&, npcs\&> search\_results;}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{20 \textcolor{keyword}{class }\mbox{\hyperlink{classAction}{Action}} \{}
+\DoxyCodeLine{21     std::string description;}
+\DoxyCodeLine{22 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{23     \mbox{\hyperlink{classWorld}{World}}\& game\_world;}
+\DoxyCodeLine{24 \textcolor{keyword}{public}:}
+\DoxyCodeLine{32     \mbox{\hyperlink{classAction}{Action}}(\textcolor{keyword}{const} std::string\&, \mbox{\hyperlink{classWorld}{World}}\&);}
+\DoxyCodeLine{37     \textcolor{keywordtype}{void} \mbox{\hyperlink{classAction_ac98cce3a596ebde13d1c22611e09bb33}{doAction}}();}
+\DoxyCodeLine{43     std::string \mbox{\hyperlink{classAction_a55152a878eaf9d74438ce8b1e891b7f3}{getDescription}}();}
+\DoxyCodeLine{48     \textcolor{keywordtype}{void} \mbox{\hyperlink{classAction_aab9b44e44a9ff95d892c1bc7edb855d3}{operator ()}}();}
+\DoxyCodeLine{49     \textcolor{keyword}{virtual} \mbox{\hyperlink{classAction}{\string~Action}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{50 \};}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{56 \textcolor{keyword}{class }\mbox{\hyperlink{classMove}{Move}} : \textcolor{keyword}{public} \mbox{\hyperlink{classAction}{Action}} \{}
+\DoxyCodeLine{57 \textcolor{keyword}{public}:}
+\DoxyCodeLine{65     \mbox{\hyperlink{classMove}{Move}}(\textcolor{keyword}{const} std::string\&, \mbox{\hyperlink{classWorld}{World}}\&);}
+\DoxyCodeLine{72     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classAction_ac98cce3a596ebde13d1c22611e09bb33}{doAction}}(\textcolor{keywordtype}{int}); }
+\DoxyCodeLine{79     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classAction_aab9b44e44a9ff95d892c1bc7edb855d3}{operator ()}}(\textcolor{keywordtype}{int});}
+\DoxyCodeLine{80 \};}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{86 \textcolor{keyword}{class }\mbox{\hyperlink{classSearch}{Search}} : \textcolor{keyword}{public} \mbox{\hyperlink{classAction}{Action}} \{}
+\DoxyCodeLine{87 \textcolor{keyword}{public}:}
+\DoxyCodeLine{95     \mbox{\hyperlink{classSearch}{Search}}(\textcolor{keyword}{const} std::string\&, \mbox{\hyperlink{classWorld}{World}}\&);}
+\DoxyCodeLine{101     search\_results \mbox{\hyperlink{classSearch_a703ccdd48a408fba38960195aae8228f}{doAction}}();}
+\DoxyCodeLine{107     search\_results \mbox{\hyperlink{classSearch_a50416969727e1db4feea3d8e986d77f7}{operator ()}}();}
+\DoxyCodeLine{108 \};}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{114 \textcolor{keyword}{class }\mbox{\hyperlink{classPickUp}{PickUp}} : \textcolor{keyword}{public} \mbox{\hyperlink{classAction}{Action}} \{}
+\DoxyCodeLine{115 \textcolor{keyword}{public}:}
+\DoxyCodeLine{123     \mbox{\hyperlink{classPickUp}{PickUp}}(\textcolor{keyword}{const} std::string\&, \mbox{\hyperlink{classWorld}{World}}\&);}
+\DoxyCodeLine{130     \textcolor{keywordtype}{void} \mbox{\hyperlink{classAction_ac98cce3a596ebde13d1c22611e09bb33}{doAction}}(item\&) ;}
+\DoxyCodeLine{137     \textcolor{keywordtype}{void} \mbox{\hyperlink{classAction_aab9b44e44a9ff95d892c1bc7edb855d3}{operator ()}}(item\&) ;}
+\DoxyCodeLine{138 \};}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{144 \textcolor{keyword}{class }\mbox{\hyperlink{classInteract}{Interact}} : \textcolor{keyword}{public} \mbox{\hyperlink{classAction}{Action}} \{}
+\DoxyCodeLine{145 \textcolor{keyword}{public}:}
+\DoxyCodeLine{153     \mbox{\hyperlink{classInteract}{Interact}}(\textcolor{keyword}{const} std::string\&, \mbox{\hyperlink{classWorld}{World}}\&);}
+\DoxyCodeLine{160     std::string \mbox{\hyperlink{classAction_ac98cce3a596ebde13d1c22611e09bb33}{doAction}}(npc\&);}
+\DoxyCodeLine{167     \textcolor{keywordtype}{void} \mbox{\hyperlink{classInteract_a29b38ced0bd32d5139c156c4510bd74e}{acceptMission}}(npc\&); }
+\DoxyCodeLine{174     std::string \mbox{\hyperlink{classAction_aab9b44e44a9ff95d892c1bc7edb855d3}{operator ()}}(npc\&);}
+\DoxyCodeLine{175 \};}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{177 \textcolor{keyword}{class }\mbox{\hyperlink{classAcceptMission}{AcceptMission}} : \textcolor{keyword}{public} \mbox{\hyperlink{classAction}{Action}} \{}
+\DoxyCodeLine{178 \textcolor{keyword}{public}:}
+\DoxyCodeLine{186     \mbox{\hyperlink{classAcceptMission}{AcceptMission}}(\textcolor{keyword}{const} std::string\&, \mbox{\hyperlink{classWorld}{World}}\&);}
+\DoxyCodeLine{193     \textcolor{keywordtype}{void} \mbox{\hyperlink{classAction_ac98cce3a596ebde13d1c22611e09bb33}{doAction}}(\mbox{\hyperlink{classMission}{Mission}}*) ;}
+\DoxyCodeLine{200     \textcolor{keywordtype}{void} \mbox{\hyperlink{classAction_aab9b44e44a9ff95d892c1bc7edb855d3}{operator ()}}(\mbox{\hyperlink{classMission}{Mission}}*) ;}
+\DoxyCodeLine{201 \};}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{203 \textcolor{keyword}{class }\mbox{\hyperlink{classOpenInventory}{OpenInventory}} : \textcolor{keyword}{public} \mbox{\hyperlink{classAction}{Action}} \{}
+\DoxyCodeLine{204 \textcolor{keyword}{public}:}
+\DoxyCodeLine{209     \mbox{\hyperlink{classOpenInventory}{OpenInventory}}(\textcolor{keyword}{const} std::string\&, \mbox{\hyperlink{classWorld}{World}}\&);}
+\DoxyCodeLine{215     items\& \mbox{\hyperlink{classOpenInventory_a6fa5e07d272e12e0270c8399f10fcbfd}{doAction}}();}
+\DoxyCodeLine{221     items\& \mbox{\hyperlink{classOpenInventory_aa4a9c0295cd181db0947a05e5f932e0f}{operator ()}}();}
+\DoxyCodeLine{222 \};}
+\DoxyCodeLine{223 }
+\DoxyCodeLine{224 \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

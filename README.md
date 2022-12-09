@@ -2,43 +2,64 @@
 
 A Roleplay Space adventure game. You can move room to room, collect items and open new paths to explore the game world. Meet and interact with NPCs.
 
-## Business Requirements
+## Project documentation
 
-1. Command line user interface
-2. Load story from file
-3. User choices change storyline
-4. User can interact with **NPC**s
-5. User can interact with items
-6. (8bit Graphics)
+A projekt dokumentálása megtalálható a documentation/main.pdf dokumentumban.
 
-## Technical Requirements
+## Build with cmake
 
-1. Create class hierarchy / architecture.
-2. Define Use Cases.
-3. Define Activities with diagrams.
+CMake legenerálja a makefile-t a CMakeLists.txt alapján, majd a `make` parancs segítségével lehet lefordítani a programot.
 
-## Architecture
+### Spacewalk
 
-### Class Architecture
+```
+mkdir build && cd build
+cmake ../
+```
 
-![Class Architecture](Planning/Class_Architecture.jpg)
+### Test Room
 
-### Component Architecure
+```
+mkdir build && cd build
+cmake ../ -DTEST_ROOM=ON
+```
 
-![Component Architecure](Planning/Component_Connection.jpg)
+### Test World 
 
-### World Initialization Sequence
+```
+mkdir build && cd build
+cmake ../ -DTEST_WORLD=ON
+```
+### Test Object 
 
-![World Initialization Sequence](Planning/World_Initialization_Sequence.jpg)
+```
+mkdir build && cd build
+cmake ../ -DTEST_OBJECT=ON
+```
 
-### Functional Use Case diagram
+### Test session manager 
 
-![Functional Use Cases](Planning/Functional_UseCase.jpg)
+```
+mkdir build && cd build
+cmake ../ -DTEST_SESSION=ON
+```
 
-### Game Loop Activity Diagram
+### Test Interface 
 
-![Game Loop](Planning/GameLoop_ActivityDiagram.jpg)
+```
+mkdir build && cd build
+cmake ../ -DTEST_INTERFACE=ON
+```
 
-## References
+### Test Unit 
 
-[TinyXML2](https://github.com/leethomason/tinyxml2)
+```
+mkdir build && cd build
+cmake ../ -DTEST_UNIT=ON
+```
+
+### Make használata
+
+```
+make
+```

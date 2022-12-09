@@ -1,0 +1,318 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\contentsline {chapter}{\numberline {1}Space\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Walk\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}The\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Game}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Business Requirements}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Technical Requirements}{1}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Architecture}{1}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Class Architecture}{1}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}Component Architecure}{1}{subsection.1.3.2}%
+\contentsline {subsection}{\numberline {1.3.3}World Initialization Sequence}{1}{subsection.1.3.3}%
+\contentsline {subsection}{\numberline {1.3.4}Functional Use Case diagram}{1}{subsection.1.3.4}%
+\contentsline {subsection}{\numberline {1.3.5}Game Loop Activity Diagram}{1}{subsection.1.3.5}%
+\contentsline {section}{\numberline {1.4}References}{1}{section.1.4}%
+\contentsline {chapter}{\numberline {2}Hierarchical Index}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Class Hierarchy}{3}{section.2.1}%
+\contentsline {chapter}{\numberline {3}Class Index}{5}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Class List}{5}{section.3.1}%
+\contentsline {chapter}{\numberline {4}File Index}{7}{chapter.4}%
+\contentsline {section}{\numberline {4.1}File List}{7}{section.4.1}%
+\contentsline {chapter}{\numberline {5}Class Documentation}{9}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Accept\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Mission Class Reference}{9}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Constructor \& Destructor Documentation}{9}{subsection.5.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.1.1}AcceptMission()}{9}{subsubsection.5.1.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Member Function Documentation}{10}{subsection.5.1.2}%
+\contentsline {subsubsection}{\numberline {5.1.2.1}doAction()}{10}{subsubsection.5.1.2.1}%
+\contentsline {subsubsection}{\numberline {5.1.2.2}operator()()}{10}{subsubsection.5.1.2.2}%
+\contentsline {section}{\numberline {5.2}Action Class Reference}{10}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Detailed Description}{11}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Constructor \& Destructor Documentation}{11}{subsection.5.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.2.1}Action()}{11}{subsubsection.5.2.2.1}%
+\contentsline {subsection}{\numberline {5.2.3}Member Function Documentation}{11}{subsection.5.2.3}%
+\contentsline {subsubsection}{\numberline {5.2.3.1}doAction()}{12}{subsubsection.5.2.3.1}%
+\contentsline {subsubsection}{\numberline {5.2.3.2}getDescription()}{12}{subsubsection.5.2.3.2}%
+\contentsline {subsubsection}{\numberline {5.2.3.3}operator()()}{12}{subsubsection.5.2.3.3}%
+\contentsline {section}{\numberline {5.3}tinyxml2\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Dyn\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Array$<$ T, INITIAL\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}SIZE $>$ Class Template Reference}{12}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Entity Class Reference}{13}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Detailed Description}{13}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}Constructor \& Destructor Documentation}{13}{subsection.5.4.2}%
+\contentsline {subsubsection}{\numberline {5.4.2.1}Entity()}{13}{subsubsection.5.4.2.1}%
+\contentsline {subsection}{\numberline {5.4.3}Member Function Documentation}{14}{subsection.5.4.3}%
+\contentsline {subsubsection}{\numberline {5.4.3.1}addItem()}{14}{subsubsection.5.4.3.1}%
+\contentsline {subsubsection}{\numberline {5.4.3.2}addItems()}{14}{subsubsection.5.4.3.2}%
+\contentsline {subsubsection}{\numberline {5.4.3.3}getInventory()}{14}{subsubsection.5.4.3.3}%
+\contentsline {subsubsection}{\numberline {5.4.3.4}getName()}{15}{subsubsection.5.4.3.4}%
+\contentsline {section}{\numberline {5.5}tinyxml2\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Entity Struct Reference}{15}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Interact Class Reference}{15}{section.5.6}%
+\contentsline {subsection}{\numberline {5.6.1}Detailed Description}{16}{subsection.5.6.1}%
+\contentsline {subsection}{\numberline {5.6.2}Constructor \& Destructor Documentation}{16}{subsection.5.6.2}%
+\contentsline {subsubsection}{\numberline {5.6.2.1}Interact()}{16}{subsubsection.5.6.2.1}%
+\contentsline {subsection}{\numberline {5.6.3}Member Function Documentation}{16}{subsection.5.6.3}%
+\contentsline {subsubsection}{\numberline {5.6.3.1}acceptMission()}{16}{subsubsection.5.6.3.1}%
+\contentsline {subsubsection}{\numberline {5.6.3.2}doAction()}{17}{subsubsection.5.6.3.2}%
+\contentsline {subsubsection}{\numberline {5.6.3.3}operator()()}{17}{subsubsection.5.6.3.3}%
+\contentsline {section}{\numberline {5.7}Key Class Reference}{17}{section.5.7}%
+\contentsline {subsection}{\numberline {5.7.1}Detailed Description}{18}{subsection.5.7.1}%
+\contentsline {subsection}{\numberline {5.7.2}Constructor \& Destructor Documentation}{18}{subsection.5.7.2}%
+\contentsline {subsubsection}{\numberline {5.7.2.1}Key()}{18}{subsubsection.5.7.2.1}%
+\contentsline {subsection}{\numberline {5.7.3}Member Function Documentation}{18}{subsection.5.7.3}%
+\contentsline {subsubsection}{\numberline {5.7.3.1}getKeyID()}{18}{subsubsection.5.7.3.1}%
+\contentsline {section}{\numberline {5.8}tinyxml2\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Mem\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pool Class Reference}{19}{section.5.8}%
+\contentsline {section}{\numberline {5.9}tinyxml2\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Mem\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}PoolT$<$ ITEM\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}SIZE $>$ Class Template Reference}{19}{section.5.9}%
+\contentsline {subsection}{\numberline {5.9.1}Member Function Documentation}{19}{subsection.5.9.1}%
+\contentsline {subsubsection}{\numberline {5.9.1.1}Alloc()}{20}{subsubsection.5.9.1.1}%
+\contentsline {subsubsection}{\numberline {5.9.1.2}Free()}{20}{subsubsection.5.9.1.2}%
+\contentsline {subsubsection}{\numberline {5.9.1.3}ItemSize()}{20}{subsubsection.5.9.1.3}%
+\contentsline {subsubsection}{\numberline {5.9.1.4}SetTracked()}{20}{subsubsection.5.9.1.4}%
+\contentsline {section}{\numberline {5.10}Mission Class Reference}{20}{section.5.10}%
+\contentsline {subsection}{\numberline {5.10.1}Detailed Description}{21}{subsection.5.10.1}%
+\contentsline {subsection}{\numberline {5.10.2}Constructor \& Destructor Documentation}{21}{subsection.5.10.2}%
+\contentsline {subsubsection}{\numberline {5.10.2.1}Mission()}{21}{subsubsection.5.10.2.1}%
+\contentsline {subsection}{\numberline {5.10.3}Member Function Documentation}{21}{subsection.5.10.3}%
+\contentsline {subsubsection}{\numberline {5.10.3.1}checkStatus()}{21}{subsubsection.5.10.3.1}%
+\contentsline {subsubsection}{\numberline {5.10.3.2}getTargetItem()}{22}{subsubsection.5.10.3.2}%
+\contentsline {subsubsection}{\numberline {5.10.3.3}getTargetRoom()}{22}{subsubsection.5.10.3.3}%
+\contentsline {subsubsection}{\numberline {5.10.3.4}setTargetItem()}{22}{subsubsection.5.10.3.4}%
+\contentsline {subsubsection}{\numberline {5.10.3.5}setTargetRoom()}{23}{subsubsection.5.10.3.5}%
+\contentsline {subsubsection}{\numberline {5.10.3.6}startMission()}{23}{subsubsection.5.10.3.6}%
+\contentsline {section}{\numberline {5.11}Move Class Reference}{23}{section.5.11}%
+\contentsline {subsection}{\numberline {5.11.1}Detailed Description}{24}{subsection.5.11.1}%
+\contentsline {subsection}{\numberline {5.11.2}Constructor \& Destructor Documentation}{24}{subsection.5.11.2}%
+\contentsline {subsubsection}{\numberline {5.11.2.1}Move()}{24}{subsubsection.5.11.2.1}%
+\contentsline {subsection}{\numberline {5.11.3}Member Function Documentation}{24}{subsection.5.11.3}%
+\contentsline {subsubsection}{\numberline {5.11.3.1}doAction()}{24}{subsubsection.5.11.3.1}%
+\contentsline {subsubsection}{\numberline {5.11.3.2}operator()()}{25}{subsubsection.5.11.3.2}%
+\contentsline {section}{\numberline {5.12}NPC Class Reference}{25}{section.5.12}%
+\contentsline {subsection}{\numberline {5.12.1}Constructor \& Destructor Documentation}{25}{subsection.5.12.1}%
+\contentsline {subsubsection}{\numberline {5.12.1.1}NPC()}{26}{subsubsection.5.12.1.1}%
+\contentsline {section}{\numberline {5.13}Object Class Reference}{26}{section.5.13}%
+\contentsline {subsection}{\numberline {5.13.1}Detailed Description}{26}{subsection.5.13.1}%
+\contentsline {subsection}{\numberline {5.13.2}Constructor \& Destructor Documentation}{27}{subsection.5.13.2}%
+\contentsline {subsubsection}{\numberline {5.13.2.1}Object()}{27}{subsubsection.5.13.2.1}%
+\contentsline {subsection}{\numberline {5.13.3}Member Function Documentation}{27}{subsection.5.13.3}%
+\contentsline {subsubsection}{\numberline {5.13.3.1}getDescription()}{27}{subsubsection.5.13.3.1}%
+\contentsline {subsubsection}{\numberline {5.13.3.2}getID()}{27}{subsubsection.5.13.3.2}%
+\contentsline {subsubsection}{\numberline {5.13.3.3}getName()}{28}{subsubsection.5.13.3.3}%
+\contentsline {section}{\numberline {5.14}Pick\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Up Class Reference}{28}{section.5.14}%
+\contentsline {subsection}{\numberline {5.14.1}Detailed Description}{28}{subsection.5.14.1}%
+\contentsline {subsection}{\numberline {5.14.2}Constructor \& Destructor Documentation}{28}{subsection.5.14.2}%
+\contentsline {subsubsection}{\numberline {5.14.2.1}PickUp()}{28}{subsubsection.5.14.2.1}%
+\contentsline {subsection}{\numberline {5.14.3}Member Function Documentation}{29}{subsection.5.14.3}%
+\contentsline {subsubsection}{\numberline {5.14.3.1}doAction()}{29}{subsubsection.5.14.3.1}%
+\contentsline {subsubsection}{\numberline {5.14.3.2}operator()()}{29}{subsubsection.5.14.3.2}%
+\contentsline {section}{\numberline {5.15}Player Class Reference}{29}{section.5.15}%
+\contentsline {subsection}{\numberline {5.15.1}Constructor \& Destructor Documentation}{30}{subsection.5.15.1}%
+\contentsline {subsubsection}{\numberline {5.15.1.1}Player()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{30}{subsubsection.5.15.1.1}%
+\contentsline {subsubsection}{\numberline {5.15.1.2}Player()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{30}{subsubsection.5.15.1.2}%
+\contentsline {subsection}{\numberline {5.15.2}Member Function Documentation}{30}{subsection.5.15.2}%
+\contentsline {subsubsection}{\numberline {5.15.2.1}getLocation()}{30}{subsubsection.5.15.2.1}%
+\contentsline {subsubsection}{\numberline {5.15.2.2}setLocation()}{31}{subsubsection.5.15.2.2}%
+\contentsline {section}{\numberline {5.16}Room Class Reference}{31}{section.5.16}%
+\contentsline {subsection}{\numberline {5.16.1}Detailed Description}{32}{subsection.5.16.1}%
+\contentsline {subsection}{\numberline {5.16.2}Constructor \& Destructor Documentation}{32}{subsection.5.16.2}%
+\contentsline {subsubsection}{\numberline {5.16.2.1}Room()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{32}{subsubsection.5.16.2.1}%
+\contentsline {subsubsection}{\numberline {5.16.2.2}Room()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{33}{subsubsection.5.16.2.2}%
+\contentsline {subsubsection}{\numberline {5.16.2.3}$\sim $Room()}{33}{subsubsection.5.16.2.3}%
+\contentsline {subsection}{\numberline {5.16.3}Member Function Documentation}{33}{subsection.5.16.3}%
+\contentsline {subsubsection}{\numberline {5.16.3.1}addEntities()}{33}{subsubsection.5.16.3.1}%
+\contentsline {subsubsection}{\numberline {5.16.3.2}addEntity()}{34}{subsubsection.5.16.3.2}%
+\contentsline {subsubsection}{\numberline {5.16.3.3}addItem()}{34}{subsubsection.5.16.3.3}%
+\contentsline {subsubsection}{\numberline {5.16.3.4}addItems()}{34}{subsubsection.5.16.3.4}%
+\contentsline {subsubsection}{\numberline {5.16.3.5}addNeighbour()}{35}{subsubsection.5.16.3.5}%
+\contentsline {subsubsection}{\numberline {5.16.3.6}addNeighbours()}{35}{subsubsection.5.16.3.6}%
+\contentsline {subsubsection}{\numberline {5.16.3.7}getDescription()}{35}{subsubsection.5.16.3.7}%
+\contentsline {subsubsection}{\numberline {5.16.3.8}getID()}{36}{subsubsection.5.16.3.8}%
+\contentsline {subsubsection}{\numberline {5.16.3.9}getItems()}{36}{subsubsection.5.16.3.9}%
+\contentsline {subsubsection}{\numberline {5.16.3.10}getName()}{36}{subsubsection.5.16.3.10}%
+\contentsline {subsubsection}{\numberline {5.16.3.11}getNeighbours()}{36}{subsubsection.5.16.3.11}%
+\contentsline {subsubsection}{\numberline {5.16.3.12}getPopulation()}{37}{subsubsection.5.16.3.12}%
+\contentsline {subsubsection}{\numberline {5.16.3.13}isLocked()}{37}{subsubsection.5.16.3.13}%
+\contentsline {subsubsection}{\numberline {5.16.3.14}setLock()}{37}{subsubsection.5.16.3.14}%
+\contentsline {subsubsection}{\numberline {5.16.3.15}unlock()}{37}{subsubsection.5.16.3.15}%
+\contentsline {section}{\numberline {5.17}Search Class Reference}{38}{section.5.17}%
+\contentsline {subsection}{\numberline {5.17.1}Detailed Description}{38}{subsection.5.17.1}%
+\contentsline {subsection}{\numberline {5.17.2}Constructor \& Destructor Documentation}{38}{subsection.5.17.2}%
+\contentsline {subsubsection}{\numberline {5.17.2.1}Search()}{38}{subsubsection.5.17.2.1}%
+\contentsline {subsection}{\numberline {5.17.3}Member Function Documentation}{39}{subsection.5.17.3}%
+\contentsline {subsubsection}{\numberline {5.17.3.1}doAction()}{39}{subsubsection.5.17.3.1}%
+\contentsline {subsubsection}{\numberline {5.17.3.2}operator()()}{39}{subsubsection.5.17.3.2}%
+\contentsline {section}{\numberline {5.18}tinyxml2\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::Str\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pair Class Reference}{40}{section.5.18}%
+\contentsline {section}{\numberline {5.19}World Class Reference}{40}{section.5.19}%
+\contentsline {subsection}{\numberline {5.19.1}Detailed Description}{41}{subsection.5.19.1}%
+\contentsline {subsection}{\numberline {5.19.2}Constructor \& Destructor Documentation}{41}{subsection.5.19.2}%
+\contentsline {subsubsection}{\numberline {5.19.2.1}World()}{41}{subsubsection.5.19.2.1}%
+\contentsline {subsection}{\numberline {5.19.3}Member Function Documentation}{42}{subsection.5.19.3}%
+\contentsline {subsubsection}{\numberline {5.19.3.1}destroyWorld()}{42}{subsubsection.5.19.3.1}%
+\contentsline {subsubsection}{\numberline {5.19.3.2}enterRoom()}{42}{subsubsection.5.19.3.2}%
+\contentsline {subsubsection}{\numberline {5.19.3.3}getPlayer()}{42}{subsubsection.5.19.3.3}%
+\contentsline {subsubsection}{\numberline {5.19.3.4}getStory()}{42}{subsubsection.5.19.3.4}%
+\contentsline {subsubsection}{\numberline {5.19.3.5}getWorldMission()}{43}{subsubsection.5.19.3.5}%
+\contentsline {subsubsection}{\numberline {5.19.3.6}getWorldRooms()}{43}{subsubsection.5.19.3.6}%
+\contentsline {subsubsection}{\numberline {5.19.3.7}initWorld()}{43}{subsubsection.5.19.3.7}%
+\contentsline {subsubsection}{\numberline {5.19.3.8}loadEntities()}{43}{subsubsection.5.19.3.8}%
+\contentsline {subsubsection}{\numberline {5.19.3.9}loadNPCMissions()}{44}{subsubsection.5.19.3.9}%
+\contentsline {subsubsection}{\numberline {5.19.3.10}loadRooms()}{44}{subsubsection.5.19.3.10}%
+\contentsline {subsubsection}{\numberline {5.19.3.11}loadWorldMissions()}{44}{subsubsection.5.19.3.11}%
+\contentsline {subsubsection}{\numberline {5.19.3.12}makeInventory()}{45}{subsubsection.5.19.3.12}%
+\contentsline {subsubsection}{\numberline {5.19.3.13}makeMission()}{45}{subsubsection.5.19.3.13}%
+\contentsline {subsubsection}{\numberline {5.19.3.14}parseConnections()}{45}{subsubsection.5.19.3.14}%
+\contentsline {subsubsection}{\numberline {5.19.3.15}RoomFactory()}{46}{subsubsection.5.19.3.15}%
+\contentsline {subsubsection}{\numberline {5.19.3.16}startMission()}{46}{subsubsection.5.19.3.16}%
+\contentsline {section}{\numberline {5.20}tinyxml2\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::XMLAttribute Class Reference}{46}{section.5.20}%
+\contentsline {subsection}{\numberline {5.20.1}Detailed Description}{48}{subsection.5.20.1}%
+\contentsline {subsection}{\numberline {5.20.2}Member Function Documentation}{48}{subsection.5.20.2}%
+\contentsline {subsubsection}{\numberline {5.20.2.1}IntValue()}{48}{subsubsection.5.20.2.1}%
+\contentsline {subsubsection}{\numberline {5.20.2.2}QueryIntValue()}{48}{subsubsection.5.20.2.2}%
+\contentsline {section}{\numberline {5.21}tinyxml2\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::XMLComment Class Reference}{48}{section.5.21}%
+\contentsline {subsection}{\numberline {5.21.1}Detailed Description}{49}{subsection.5.21.1}%
+\contentsline {subsection}{\numberline {5.21.2}Member Function Documentation}{49}{subsection.5.21.2}%
+\contentsline {subsubsection}{\numberline {5.21.2.1}Accept()}{49}{subsubsection.5.21.2.1}%
+\contentsline {subsubsection}{\numberline {5.21.2.2}ParseDeep()}{50}{subsubsection.5.21.2.2}%
+\contentsline {subsubsection}{\numberline {5.21.2.3}ShallowClone()}{50}{subsubsection.5.21.2.3}%
+\contentsline {subsubsection}{\numberline {5.21.2.4}ShallowEqual()}{50}{subsubsection.5.21.2.4}%
+\contentsline {subsubsection}{\numberline {5.21.2.5}ToComment()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{50}{subsubsection.5.21.2.5}%
+\contentsline {subsubsection}{\numberline {5.21.2.6}ToComment()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{51}{subsubsection.5.21.2.6}%
+\contentsline {section}{\numberline {5.22}tinyxml2\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::XMLConst\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Handle Class Reference}{51}{section.5.22}%
+\contentsline {subsection}{\numberline {5.22.1}Detailed Description}{51}{subsection.5.22.1}%
+\contentsline {section}{\numberline {5.23}tinyxml2\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::XMLDeclaration Class Reference}{52}{section.5.23}%
+\contentsline {subsection}{\numberline {5.23.1}Detailed Description}{52}{subsection.5.23.1}%
+\contentsline {subsection}{\numberline {5.23.2}Member Function Documentation}{52}{subsection.5.23.2}%
+\contentsline {subsubsection}{\numberline {5.23.2.1}Accept()}{53}{subsubsection.5.23.2.1}%
+\contentsline {subsubsection}{\numberline {5.23.2.2}ParseDeep()}{53}{subsubsection.5.23.2.2}%
+\contentsline {subsubsection}{\numberline {5.23.2.3}ShallowClone()}{53}{subsubsection.5.23.2.3}%
+\contentsline {subsubsection}{\numberline {5.23.2.4}ShallowEqual()}{54}{subsubsection.5.23.2.4}%
+\contentsline {subsubsection}{\numberline {5.23.2.5}ToDeclaration()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{54}{subsubsection.5.23.2.5}%
+\contentsline {subsubsection}{\numberline {5.23.2.6}ToDeclaration()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{54}{subsubsection.5.23.2.6}%
+\contentsline {section}{\numberline {5.24}tinyxml2\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::XMLDocument Class Reference}{54}{section.5.24}%
+\contentsline {subsection}{\numberline {5.24.1}Detailed Description}{56}{subsection.5.24.1}%
+\contentsline {subsection}{\numberline {5.24.2}Member Function Documentation}{56}{subsection.5.24.2}%
+\contentsline {subsubsection}{\numberline {5.24.2.1}Accept()}{56}{subsubsection.5.24.2.1}%
+\contentsline {subsubsection}{\numberline {5.24.2.2}DeepCopy()}{57}{subsubsection.5.24.2.2}%
+\contentsline {subsubsection}{\numberline {5.24.2.3}DeleteNode()}{57}{subsubsection.5.24.2.3}%
+\contentsline {subsubsection}{\numberline {5.24.2.4}ErrorStr()}{57}{subsubsection.5.24.2.4}%
+\contentsline {subsubsection}{\numberline {5.24.2.5}HasBOM()}{57}{subsubsection.5.24.2.5}%
+\contentsline {subsubsection}{\numberline {5.24.2.6}LoadFile()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{57}{subsubsection.5.24.2.6}%
+\contentsline {subsubsection}{\numberline {5.24.2.7}LoadFile()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{57}{subsubsection.5.24.2.7}%
+\contentsline {subsubsection}{\numberline {5.24.2.8}NewComment()}{58}{subsubsection.5.24.2.8}%
+\contentsline {subsubsection}{\numberline {5.24.2.9}NewDeclaration()}{58}{subsubsection.5.24.2.9}%
+\contentsline {subsubsection}{\numberline {5.24.2.10}NewElement()}{58}{subsubsection.5.24.2.10}%
+\contentsline {subsubsection}{\numberline {5.24.2.11}NewText()}{58}{subsubsection.5.24.2.11}%
+\contentsline {subsubsection}{\numberline {5.24.2.12}NewUnknown()}{58}{subsubsection.5.24.2.12}%
+\contentsline {subsubsection}{\numberline {5.24.2.13}Parse()}{59}{subsubsection.5.24.2.13}%
+\contentsline {subsubsection}{\numberline {5.24.2.14}Print()}{59}{subsubsection.5.24.2.14}%
+\contentsline {subsubsection}{\numberline {5.24.2.15}RootElement()}{59}{subsubsection.5.24.2.15}%
+\contentsline {subsubsection}{\numberline {5.24.2.16}SaveFile()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{59}{subsubsection.5.24.2.16}%
+\contentsline {subsubsection}{\numberline {5.24.2.17}SaveFile()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{59}{subsubsection.5.24.2.17}%
+\contentsline {subsubsection}{\numberline {5.24.2.18}SetBOM()}{60}{subsubsection.5.24.2.18}%
+\contentsline {subsubsection}{\numberline {5.24.2.19}ShallowClone()}{60}{subsubsection.5.24.2.19}%
+\contentsline {subsubsection}{\numberline {5.24.2.20}ShallowEqual()}{60}{subsubsection.5.24.2.20}%
+\contentsline {subsubsection}{\numberline {5.24.2.21}ToDocument()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{60}{subsubsection.5.24.2.21}%
+\contentsline {subsubsection}{\numberline {5.24.2.22}ToDocument()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{60}{subsubsection.5.24.2.22}%
+\contentsline {section}{\numberline {5.25}tinyxml2\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::XMLElement Class Reference}{61}{section.5.25}%
+\contentsline {subsection}{\numberline {5.25.1}Detailed Description}{63}{subsection.5.25.1}%
+\contentsline {subsection}{\numberline {5.25.2}Member Function Documentation}{64}{subsection.5.25.2}%
+\contentsline {subsubsection}{\numberline {5.25.2.1}Accept()}{64}{subsubsection.5.25.2.1}%
+\contentsline {subsubsection}{\numberline {5.25.2.2}Attribute()}{64}{subsubsection.5.25.2.2}%
+\contentsline {subsubsection}{\numberline {5.25.2.3}DeleteAttribute()}{65}{subsubsection.5.25.2.3}%
+\contentsline {subsubsection}{\numberline {5.25.2.4}GetText()}{65}{subsubsection.5.25.2.4}%
+\contentsline {subsubsection}{\numberline {5.25.2.5}InsertNewChildElement()}{65}{subsubsection.5.25.2.5}%
+\contentsline {subsubsection}{\numberline {5.25.2.6}IntAttribute()}{65}{subsubsection.5.25.2.6}%
+\contentsline {subsubsection}{\numberline {5.25.2.7}ParseDeep()}{66}{subsubsection.5.25.2.7}%
+\contentsline {subsubsection}{\numberline {5.25.2.8}QueryAttribute()}{66}{subsubsection.5.25.2.8}%
+\contentsline {subsubsection}{\numberline {5.25.2.9}QueryIntAttribute()}{66}{subsubsection.5.25.2.9}%
+\contentsline {subsubsection}{\numberline {5.25.2.10}QueryIntText()}{67}{subsubsection.5.25.2.10}%
+\contentsline {subsubsection}{\numberline {5.25.2.11}SetText()}{67}{subsubsection.5.25.2.11}%
+\contentsline {subsubsection}{\numberline {5.25.2.12}ShallowClone()}{68}{subsubsection.5.25.2.12}%
+\contentsline {subsubsection}{\numberline {5.25.2.13}ShallowEqual()}{68}{subsubsection.5.25.2.13}%
+\contentsline {subsubsection}{\numberline {5.25.2.14}ToElement()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{68}{subsubsection.5.25.2.14}%
+\contentsline {subsubsection}{\numberline {5.25.2.15}ToElement()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{68}{subsubsection.5.25.2.15}%
+\contentsline {section}{\numberline {5.26}tinyxml2\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::XMLHandle Class Reference}{69}{section.5.26}%
+\contentsline {subsection}{\numberline {5.26.1}Detailed Description}{70}{subsection.5.26.1}%
+\contentsline {section}{\numberline {5.27}tinyxml2\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::XMLNode Class Reference}{71}{section.5.27}%
+\contentsline {subsection}{\numberline {5.27.1}Detailed Description}{73}{subsection.5.27.1}%
+\contentsline {subsection}{\numberline {5.27.2}Member Function Documentation}{73}{subsection.5.27.2}%
+\contentsline {subsubsection}{\numberline {5.27.2.1}Accept()}{73}{subsubsection.5.27.2.1}%
+\contentsline {subsubsection}{\numberline {5.27.2.2}DeepClone()}{74}{subsubsection.5.27.2.2}%
+\contentsline {subsubsection}{\numberline {5.27.2.3}DeleteChild()}{74}{subsubsection.5.27.2.3}%
+\contentsline {subsubsection}{\numberline {5.27.2.4}DeleteChildren()}{74}{subsubsection.5.27.2.4}%
+\contentsline {subsubsection}{\numberline {5.27.2.5}FirstChildElement()}{74}{subsubsection.5.27.2.5}%
+\contentsline {subsubsection}{\numberline {5.27.2.6}GetUserData()}{74}{subsubsection.5.27.2.6}%
+\contentsline {subsubsection}{\numberline {5.27.2.7}InsertAfterChild()}{74}{subsubsection.5.27.2.7}%
+\contentsline {subsubsection}{\numberline {5.27.2.8}InsertEndChild()}{75}{subsubsection.5.27.2.8}%
+\contentsline {subsubsection}{\numberline {5.27.2.9}InsertFirstChild()}{75}{subsubsection.5.27.2.9}%
+\contentsline {subsubsection}{\numberline {5.27.2.10}LastChildElement()}{75}{subsubsection.5.27.2.10}%
+\contentsline {subsubsection}{\numberline {5.27.2.11}SetUserData()}{75}{subsubsection.5.27.2.11}%
+\contentsline {subsubsection}{\numberline {5.27.2.12}SetValue()}{75}{subsubsection.5.27.2.12}%
+\contentsline {subsubsection}{\numberline {5.27.2.13}ShallowClone()}{76}{subsubsection.5.27.2.13}%
+\contentsline {subsubsection}{\numberline {5.27.2.14}ShallowEqual()}{76}{subsubsection.5.27.2.14}%
+\contentsline {subsubsection}{\numberline {5.27.2.15}ToComment()}{76}{subsubsection.5.27.2.15}%
+\contentsline {subsubsection}{\numberline {5.27.2.16}ToDeclaration()}{76}{subsubsection.5.27.2.16}%
+\contentsline {subsubsection}{\numberline {5.27.2.17}ToDocument()}{77}{subsubsection.5.27.2.17}%
+\contentsline {subsubsection}{\numberline {5.27.2.18}ToElement()}{77}{subsubsection.5.27.2.18}%
+\contentsline {subsubsection}{\numberline {5.27.2.19}ToText()}{77}{subsubsection.5.27.2.19}%
+\contentsline {subsubsection}{\numberline {5.27.2.20}ToUnknown()}{77}{subsubsection.5.27.2.20}%
+\contentsline {subsubsection}{\numberline {5.27.2.21}Value()}{77}{subsubsection.5.27.2.21}%
+\contentsline {section}{\numberline {5.28}tinyxml2\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::XMLPrinter Class Reference}{78}{section.5.28}%
+\contentsline {subsection}{\numberline {5.28.1}Detailed Description}{79}{subsection.5.28.1}%
+\contentsline {subsection}{\numberline {5.28.2}Constructor \& Destructor Documentation}{80}{subsection.5.28.2}%
+\contentsline {subsubsection}{\numberline {5.28.2.1}XMLPrinter()}{80}{subsubsection.5.28.2.1}%
+\contentsline {subsection}{\numberline {5.28.3}Member Function Documentation}{80}{subsection.5.28.3}%
+\contentsline {subsubsection}{\numberline {5.28.3.1}ClearBuffer()}{80}{subsubsection.5.28.3.1}%
+\contentsline {subsubsection}{\numberline {5.28.3.2}CStr()}{80}{subsubsection.5.28.3.2}%
+\contentsline {subsubsection}{\numberline {5.28.3.3}CStrSize()}{81}{subsubsection.5.28.3.3}%
+\contentsline {subsubsection}{\numberline {5.28.3.4}OpenElement()}{81}{subsubsection.5.28.3.4}%
+\contentsline {subsubsection}{\numberline {5.28.3.5}PrintSpace()}{81}{subsubsection.5.28.3.5}%
+\contentsline {subsubsection}{\numberline {5.28.3.6}PushHeader()}{81}{subsubsection.5.28.3.6}%
+\contentsline {subsubsection}{\numberline {5.28.3.7}Visit()\hspace {0.1cm}{\footnotesize \ttfamily [1/4]}}{81}{subsubsection.5.28.3.7}%
+\contentsline {subsubsection}{\numberline {5.28.3.8}Visit()\hspace {0.1cm}{\footnotesize \ttfamily [2/4]}}{81}{subsubsection.5.28.3.8}%
+\contentsline {subsubsection}{\numberline {5.28.3.9}Visit()\hspace {0.1cm}{\footnotesize \ttfamily [3/4]}}{82}{subsubsection.5.28.3.9}%
+\contentsline {subsubsection}{\numberline {5.28.3.10}Visit()\hspace {0.1cm}{\footnotesize \ttfamily [4/4]}}{82}{subsubsection.5.28.3.10}%
+\contentsline {subsubsection}{\numberline {5.28.3.11}VisitEnter()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{82}{subsubsection.5.28.3.11}%
+\contentsline {subsubsection}{\numberline {5.28.3.12}VisitEnter()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{82}{subsubsection.5.28.3.12}%
+\contentsline {subsubsection}{\numberline {5.28.3.13}VisitExit()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{82}{subsubsection.5.28.3.13}%
+\contentsline {subsubsection}{\numberline {5.28.3.14}VisitExit()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{83}{subsubsection.5.28.3.14}%
+\contentsline {section}{\numberline {5.29}tinyxml2\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::XMLText Class Reference}{83}{section.5.29}%
+\contentsline {subsection}{\numberline {5.29.1}Detailed Description}{84}{subsection.5.29.1}%
+\contentsline {subsection}{\numberline {5.29.2}Member Function Documentation}{84}{subsection.5.29.2}%
+\contentsline {subsubsection}{\numberline {5.29.2.1}Accept()}{84}{subsubsection.5.29.2.1}%
+\contentsline {subsubsection}{\numberline {5.29.2.2}ParseDeep()}{85}{subsubsection.5.29.2.2}%
+\contentsline {subsubsection}{\numberline {5.29.2.3}ShallowClone()}{85}{subsubsection.5.29.2.3}%
+\contentsline {subsubsection}{\numberline {5.29.2.4}ShallowEqual()}{85}{subsubsection.5.29.2.4}%
+\contentsline {subsubsection}{\numberline {5.29.2.5}ToText()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{85}{subsubsection.5.29.2.5}%
+\contentsline {subsubsection}{\numberline {5.29.2.6}ToText()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{86}{subsubsection.5.29.2.6}%
+\contentsline {section}{\numberline {5.30}tinyxml2\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::XMLUnknown Class Reference}{86}{section.5.30}%
+\contentsline {subsection}{\numberline {5.30.1}Detailed Description}{86}{subsection.5.30.1}%
+\contentsline {subsection}{\numberline {5.30.2}Member Function Documentation}{87}{subsection.5.30.2}%
+\contentsline {subsubsection}{\numberline {5.30.2.1}Accept()}{87}{subsubsection.5.30.2.1}%
+\contentsline {subsubsection}{\numberline {5.30.2.2}ParseDeep()}{87}{subsubsection.5.30.2.2}%
+\contentsline {subsubsection}{\numberline {5.30.2.3}ShallowClone()}{87}{subsubsection.5.30.2.3}%
+\contentsline {subsubsection}{\numberline {5.30.2.4}ShallowEqual()}{88}{subsubsection.5.30.2.4}%
+\contentsline {subsubsection}{\numberline {5.30.2.5}ToUnknown()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{88}{subsubsection.5.30.2.5}%
+\contentsline {subsubsection}{\numberline {5.30.2.6}ToUnknown()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{88}{subsubsection.5.30.2.6}%
+\contentsline {section}{\numberline {5.31}tinyxml2\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::XMLUtil Class Reference}{88}{section.5.31}%
+\contentsline {section}{\numberline {5.32}tinyxml2\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::XMLVisitor Class Reference}{89}{section.5.32}%
+\contentsline {subsection}{\numberline {5.32.1}Detailed Description}{90}{subsection.5.32.1}%
+\contentsline {subsection}{\numberline {5.32.2}Member Function Documentation}{90}{subsection.5.32.2}%
+\contentsline {subsubsection}{\numberline {5.32.2.1}Visit()\hspace {0.1cm}{\footnotesize \ttfamily [1/4]}}{90}{subsubsection.5.32.2.1}%
+\contentsline {subsubsection}{\numberline {5.32.2.2}Visit()\hspace {0.1cm}{\footnotesize \ttfamily [2/4]}}{90}{subsubsection.5.32.2.2}%
+\contentsline {subsubsection}{\numberline {5.32.2.3}Visit()\hspace {0.1cm}{\footnotesize \ttfamily [3/4]}}{91}{subsubsection.5.32.2.3}%
+\contentsline {subsubsection}{\numberline {5.32.2.4}Visit()\hspace {0.1cm}{\footnotesize \ttfamily [4/4]}}{91}{subsubsection.5.32.2.4}%
+\contentsline {subsubsection}{\numberline {5.32.2.5}VisitEnter()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{91}{subsubsection.5.32.2.5}%
+\contentsline {subsubsection}{\numberline {5.32.2.6}VisitEnter()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{91}{subsubsection.5.32.2.6}%
+\contentsline {subsubsection}{\numberline {5.32.2.7}VisitExit()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{91}{subsubsection.5.32.2.7}%
+\contentsline {subsubsection}{\numberline {5.32.2.8}VisitExit()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{92}{subsubsection.5.32.2.8}%
+\contentsline {chapter}{\numberline {6}File Documentation}{93}{chapter.6}%
+\contentsline {section}{\numberline {6.1}src/engine.cpp File Reference}{93}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Detailed Description}{93}{subsection.6.1.1}%
+\contentsline {section}{\numberline {6.2}src/engine.hpp File Reference}{93}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Detailed Description}{94}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}Enumeration Type Documentation}{95}{subsection.6.2.2}%
+\contentsline {subsubsection}{\numberline {6.2.2.1}LockStatus}{95}{subsubsection.6.2.2.1}%
+\contentsline {section}{\numberline {6.3}engine.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{95}{section.6.3}%
+\contentsline {section}{\numberline {6.4}src/interface.cpp File Reference}{98}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}Detailed Description}{98}{subsection.6.4.1}%
+\contentsline {section}{\numberline {6.5}src/interface.hpp File Reference}{98}{section.6.5}%
+\contentsline {subsection}{\numberline {6.5.1}Detailed Description}{99}{subsection.6.5.1}%
+\contentsline {section}{\numberline {6.6}interface.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{100}{section.6.6}%
+\contentsline {section}{\numberline {6.7}src/main.cpp File Reference}{100}{section.6.7}%
+\contentsline {subsection}{\numberline {6.7.1}Detailed Description}{101}{subsection.6.7.1}%
+\contentsline {section}{\numberline {6.8}tinyxml2.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{101}{section.6.8}%
+\contentsline {chapter}{Index}{121}{section*.98}%

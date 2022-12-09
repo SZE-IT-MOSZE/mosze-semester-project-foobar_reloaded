@@ -1,0 +1,101 @@
+\hypertarget{classAction}{}\doxysection{Action Class Reference}
+\label{classAction}\index{Action@{Action}}
+
+
+Abstract class representing a player action.  
+
+
+
+
+{\ttfamily \#include $<$interface.\+hpp$>$}
+
+Inheritance diagram for Action\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.794872cm]{classAction}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classAction_a73661efd24e942f6871f6e4b74b1d10f}{Action}} (const std\+::string \&, \mbox{\hyperlink{classWorld}{World}} \&)
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{classAction}{Action}} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAction_ac98cce3a596ebde13d1c22611e09bb33}{do\+Action}} ()
+\begin{DoxyCompactList}\small\item\em Take action with the player character. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classAction_a55152a878eaf9d74438ce8b1e891b7f3}{get\+Description}} ()
+\begin{DoxyCompactList}\small\item\em Get the Description object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAction_aab9b44e44a9ff95d892c1bc7edb855d3}{operator()}} ()
+\begin{DoxyCompactList}\small\item\em The object created from the \mbox{\hyperlink{classAction}{Action}} class, can be called like a function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classAction_aef5294ec3690d5d81c2a67be4320074a}\label{classAction_aef5294ec3690d5d81c2a67be4320074a}} 
+\mbox{\hyperlink{classWorld}{World}} \& {\bfseries game\+\_\+world}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract class representing a player action. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classAction_a73661efd24e942f6871f6e4b74b1d10f}\label{classAction_a73661efd24e942f6871f6e4b74b1d10f}} 
+\index{Action@{Action}!Action@{Action}}
+\index{Action@{Action}!Action@{Action}}
+\doxysubsubsection{\texorpdfstring{Action()}{Action()}}
+{\footnotesize\ttfamily Action\+::\+Action (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{desc,  }\item[{\mbox{\hyperlink{classWorld}{World}} \&}]{gm }\end{DoxyParamCaption})}
+
+
+
+Construct a new \mbox{\hyperlink{classAction}{Action}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em desc} & (std\+::string)\+: Description of the action. \\
+\hline
+{\em gm} & (\mbox{\hyperlink{classWorld}{World}}\&)\+: The game world, so the action class can access the ongoing games attributes. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classAction_ac98cce3a596ebde13d1c22611e09bb33}\label{classAction_ac98cce3a596ebde13d1c22611e09bb33}} 
+\index{Action@{Action}!doAction@{doAction}}
+\index{doAction@{doAction}!Action@{Action}}
+\doxysubsubsection{\texorpdfstring{doAction()}{doAction()}}
+{\footnotesize\ttfamily void Action\+::do\+Action (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Take action with the player character. 
+
+\mbox{\Hypertarget{classAction_a55152a878eaf9d74438ce8b1e891b7f3}\label{classAction_a55152a878eaf9d74438ce8b1e891b7f3}} 
+\index{Action@{Action}!getDescription@{getDescription}}
+\index{getDescription@{getDescription}!Action@{Action}}
+\doxysubsubsection{\texorpdfstring{getDescription()}{getDescription()}}
+{\footnotesize\ttfamily std\+::string Action\+::get\+Description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the Description object. 
+
+\begin{DoxyReturn}{Returns}
+std\+::string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classAction_aab9b44e44a9ff95d892c1bc7edb855d3}\label{classAction_aab9b44e44a9ff95d892c1bc7edb855d3}} 
+\index{Action@{Action}!operator()@{operator()}}
+\index{operator()@{operator()}!Action@{Action}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily void Action\+::operator() (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The object created from the \mbox{\hyperlink{classAction}{Action}} class, can be called like a function. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{interface_8hpp}{interface.\+hpp}}\item 
+src/\mbox{\hyperlink{interface_8cpp}{interface.\+cpp}}\end{DoxyCompactItemize}

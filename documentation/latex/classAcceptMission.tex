@@ -1,0 +1,77 @@
+\hypertarget{classAcceptMission}{}\doxysection{Accept\+Mission Class Reference}
+\label{classAcceptMission}\index{AcceptMission@{AcceptMission}}
+Inheritance diagram for Accept\+Mission\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classAcceptMission}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classAcceptMission_a1d24e8922660c4bd3a5fa1d742759a14}{Accept\+Mission}} (const std\+::string \&, \mbox{\hyperlink{classWorld}{World}} \&)
+\begin{DoxyCompactList}\small\item\em Construct a new Accept \mbox{\hyperlink{classMission}{Mission}} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAcceptMission_aa77fefc16ff1784cf2598a052346376e}{do\+Action}} (\mbox{\hyperlink{classMission}{Mission}} $\ast$)
+\begin{DoxyCompactList}\small\item\em Accept mission given in args. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAcceptMission_afe1eb891a575d627ae6f11c80658ee99}{operator()}} (\mbox{\hyperlink{classMission}{Mission}} $\ast$)
+\begin{DoxyCompactList}\small\item\em The \mbox{\hyperlink{classAcceptMission}{Accept\+Mission}} object is a callable object, and will call the do\+Action method of the object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classAcceptMission_a1d24e8922660c4bd3a5fa1d742759a14}\label{classAcceptMission_a1d24e8922660c4bd3a5fa1d742759a14}} 
+\index{AcceptMission@{AcceptMission}!AcceptMission@{AcceptMission}}
+\index{AcceptMission@{AcceptMission}!AcceptMission@{AcceptMission}}
+\doxysubsubsection{\texorpdfstring{AcceptMission()}{AcceptMission()}}
+{\footnotesize\ttfamily Accept\+Mission\+::\+Accept\+Mission (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{desc,  }\item[{\mbox{\hyperlink{classWorld}{World}} \&}]{gm }\end{DoxyParamCaption})}
+
+
+
+Construct a new Accept \mbox{\hyperlink{classMission}{Mission}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em desc} & (std\+::string)\+: Description of the action. \\
+\hline
+{\em gm} & (\mbox{\hyperlink{classWorld}{World}}\&)\+: The game world, so the action class can access the ongoing games attributes. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classAcceptMission_aa77fefc16ff1784cf2598a052346376e}\label{classAcceptMission_aa77fefc16ff1784cf2598a052346376e}} 
+\index{AcceptMission@{AcceptMission}!doAction@{doAction}}
+\index{doAction@{doAction}!AcceptMission@{AcceptMission}}
+\doxysubsubsection{\texorpdfstring{doAction()}{doAction()}}
+{\footnotesize\ttfamily void Accept\+Mission\+::do\+Action (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMission}{Mission}} $\ast$}]{m }\end{DoxyParamCaption})}
+
+
+
+Accept mission given in args. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & (\mbox{\hyperlink{classMission}{Mission}}\&)\+: \mbox{\hyperlink{classMission}{Mission}} to accept. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classAcceptMission_afe1eb891a575d627ae6f11c80658ee99}\label{classAcceptMission_afe1eb891a575d627ae6f11c80658ee99}} 
+\index{AcceptMission@{AcceptMission}!operator()@{operator()}}
+\index{operator()@{operator()}!AcceptMission@{AcceptMission}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily void Accept\+Mission\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMission}{Mission}} $\ast$}]{m }\end{DoxyParamCaption})}
+
+
+
+The \mbox{\hyperlink{classAcceptMission}{Accept\+Mission}} object is a callable object, and will call the do\+Action method of the object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & (Mission$\ast$)\+: \mbox{\hyperlink{classMission}{Mission}} to accept. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{interface_8hpp}{interface.\+hpp}}\item 
+src/\mbox{\hyperlink{interface_8cpp}{interface.\+cpp}}\end{DoxyCompactItemize}

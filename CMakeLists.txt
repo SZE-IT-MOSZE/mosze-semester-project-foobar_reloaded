@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
 
 # set the project name
-project(SpaceWalk VERSION 0.1)
+project(SpaceWalk VERSION 1.0)
 
 # common comp flags
 add_compile_options(-g -Wall)

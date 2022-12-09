@@ -9,5 +9,6 @@ var searchData=
   ['next_6',['Next',['../classtinyxml2_1_1XMLAttribute.html#aa8c7cf4c94a636ae75046658e551614e',1,'tinyxml2::XMLAttribute']]],
   ['nextsibling_7',['NextSibling',['../classtinyxml2_1_1XMLNode.html#af986c568061b020cf6232bec091388c0',1,'tinyxml2::XMLNode::NextSibling()'],['../classtinyxml2_1_1XMLHandle.html#aad2eccc7c7c7b18145877c978c3850b5',1,'tinyxml2::XMLHandle::NextSibling()']]],
   ['nextsiblingelement_8',['NextSiblingElement',['../classtinyxml2_1_1XMLNode.html#a14ea560df31110ff07a9f566171bf797',1,'tinyxml2::XMLNode::NextSiblingElement()'],['../classtinyxml2_1_1XMLHandle.html#ae41d88ee061f3c49a081630ff753b2c5',1,'tinyxml2::XMLHandle::NextSiblingElement()']]],
-  ['nochildren_9',['NoChildren',['../classtinyxml2_1_1XMLNode.html#ac3ab489e6e202a3cd1762d3b332e89d4',1,'tinyxml2::XMLNode']]]
+  ['nochildren_9',['NoChildren',['../classtinyxml2_1_1XMLNode.html#ac3ab489e6e202a3cd1762d3b332e89d4',1,'tinyxml2::XMLNode']]],
+  ['npc_10',['NPC',['../classNPC.html',1,'NPC'],['../classNPC.html#a289d324ec052a59c682fc18754427e70',1,'NPC::NPC()']]]
 ];

@@ -75,43 +75,43 @@ $(function() {
 <div class="contents">
 <div class="textblock"><p ><a class="anchor" id="md_README"></a> A Roleplay Space adventure game. You can move room to room, collect items and open new paths to explore the game world. Meet and interact with NPCs.</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
-Business Requirements</h1>
-<ol type="1">
-<li>Command line user interface</li>
-<li>Load story from file</li>
-<li>User choices change storyline</li>
-<li>User can interact with **NPC**s</li>
-<li>User can interact with items</li>
-<li>(8bit Graphics)</li>
-</ol>
+Project documentation</h1>
+<p >A projekt dokumentálása megtalálható a documentation/main.pdf dokumentumban.</p>
 <h1><a class="anchor" id="autotoc_md2"></a>
-Technical Requirements</h1>
-<ol type="1">
-<li>Create class hierarchy / architecture.</li>
-<li>Define Use Cases.</li>
-<li>Define Activities with diagrams.</li>
-</ol>
-<h1><a class="anchor" id="autotoc_md3"></a>
-Architecture</h1>
-<h2><a class="anchor" id="autotoc_md4"></a>
-Class Architecture</h2>
-<p ><img src="Planning/Class_Architecture.jpg" alt="Class Architecture" class="inline"/></p>
-<h2><a class="anchor" id="autotoc_md5"></a>
-Component Architecure</h2>
-<p ><img src="Planning/Component_Connection.jpg" alt="Component Architecure" class="inline"/></p>
-<h2><a class="anchor" id="autotoc_md6"></a>
-World Initialization Sequence</h2>
-<p ><img src="Planning/World_Initialization_Sequence.jpg" alt="World Initialization Sequence" class="inline"/></p>
-<h2><a class="anchor" id="autotoc_md7"></a>
-Functional Use Case diagram</h2>
-<p ><img src="Planning/Functional_UseCase.jpg" alt="Functional Use Cases" class="inline"/></p>
-<h2><a class="anchor" id="autotoc_md8"></a>
-Game Loop Activity Diagram</h2>
-<p ><img src="Planning/GameLoop_ActivityDiagram.jpg" alt="Game Loop" class="inline"/></p>
-<h1><a class="anchor" id="autotoc_md9"></a>
-References</h1>
-<p ><a href="https://github.com/leethomason/tinyxml2">TinyXML2</a> </p>
-</div></div><!-- PageDoc -->
+Build with cmake</h1>
+<p >CMake legenerálja a makefile-t a CMakeLists.txt alapján, majd a <code>make</code> parancs segítségével lehet lefordítani a programot.</p>
+<h2><a class="anchor" id="autotoc_md3"></a>
+Spacewalk</h2>
+<div class="fragment"><div class="line">mkdir build &amp;&amp; cd build</div>
+<div class="line">cmake ../</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md4"></a>
+Test Room</h2>
+<div class="fragment"><div class="line">mkdir build &amp;&amp; cd build</div>
+<div class="line">cmake ../ -DTEST_ROOM=ON</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md5"></a>
+Test World</h2>
+<div class="fragment"><div class="line">mkdir build &amp;&amp; cd build</div>
+<div class="line">cmake ../ -DTEST_WORLD=ON</div>
+</div><!-- fragment --> <h2><a class="anchor" id="autotoc_md6"></a>
+Test Object</h2>
+<div class="fragment"><div class="line">mkdir build &amp;&amp; cd build</div>
+<div class="line">cmake ../ -DTEST_OBJECT=ON</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md7"></a>
+Test session manager</h2>
+<div class="fragment"><div class="line">mkdir build &amp;&amp; cd build</div>
+<div class="line">cmake ../ -DTEST_SESSION=ON</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md8"></a>
+Test Interface</h2>
+<div class="fragment"><div class="line">mkdir build &amp;&amp; cd build</div>
+<div class="line">cmake ../ -DTEST_INTERFACE=ON</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md9"></a>
+Test Unit</h2>
+<div class="fragment"><div class="line">mkdir build &amp;&amp; cd build</div>
+<div class="line">cmake ../ -DTEST_UNIT=ON</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md10"></a>
+Make használata</h2>
+<div class="fragment"><div class="line">make</div>
+</div><!-- fragment --> </div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
