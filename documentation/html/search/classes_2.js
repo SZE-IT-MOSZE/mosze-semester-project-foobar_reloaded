@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['key_0',['Key',['../classKey.html',1,'']]]
+  ['entity_0',['Entity',['../classEntity.html',1,'Entity'],['../structtinyxml2_1_1Entity.html',1,'tinyxml2::Entity']]]
 ];

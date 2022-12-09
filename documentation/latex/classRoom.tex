@@ -12,9 +12,9 @@ Part of the \mbox{\hyperlink{classWorld}{World}}. A room that contains items, th
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classRoom_a6444c5cbd53d2120b05a75850ea404cf}{Room}} (const std\+::string \&n, int id, const std\+::string \&desc)
+\mbox{\hyperlink{classRoom_aa42a884037958ae4378b080a728fd6cd}{Room}} (const std\+::string \&n, int id, const std\+::string \&desc, const std\+::string \&choice, \mbox{\hyperlink{engine_8hpp_ab094fe208c346804d724d8e644966814}{Lock\+Status}} ls)
 \begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{classRoom}{Room}} object. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classRoom_a132d556e8031d955cd0c60cd15e21e35}{Room}} (const std\+::string \&n, int id, const std\+::string \&desc, neighbours cn)
+\mbox{\hyperlink{classRoom_aaae60d72bd443130411c52fb4a65cbe1}{Room}} (const std\+::string \&n, int id, const std\+::string \&desc, const std\+::string \&choice, \mbox{\hyperlink{engine_8hpp_ab094fe208c346804d724d8e644966814}{Lock\+Status}} ls, neighbours cn)
 \begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{classRoom}{Room}} object. \end{DoxyCompactList}\item 
 std\+::string \mbox{\hyperlink{classRoom_a767de198f529425dd4ba81810e44d6e4}{get\+Name}} () const
 \begin{DoxyCompactList}\small\item\em Get the Name of the \mbox{\hyperlink{classRoom}{Room}}. \end{DoxyCompactList}\item 
@@ -22,6 +22,8 @@ int \mbox{\hyperlink{classRoom_aa6f8e73b0570d7cc208189ebf79b9042}{get\+ID}} () c
 \begin{DoxyCompactList}\small\item\em Get the room\+ID of the \mbox{\hyperlink{classRoom}{Room}}. \end{DoxyCompactList}\item 
 std\+::string \mbox{\hyperlink{classRoom_a33c1c0ac8a2e43da7b59522175811d63}{get\+Description}} () const
 \begin{DoxyCompactList}\small\item\em Get the Description of the \mbox{\hyperlink{classRoom}{Room}}. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classRoom_ad6fece9ffea703fc4f3e051865c736db}{get\+Choice\+Description}} () const
+\begin{DoxyCompactList}\small\item\em Get the Choice Description of the \mbox{\hyperlink{classRoom}{Room}}. \end{DoxyCompactList}\item 
 neighbours \mbox{\hyperlink{classRoom_acb1d70492c33d7ea25ddceaf7efa10b6}{get\+Neighbours}} () const
 \begin{DoxyCompactList}\small\item\em Get the Neighbours object. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classRoom}{Room}} \& \mbox{\hyperlink{classRoom_a5b561ea8bbec5e89ad3775da897abc3e}{add\+Neighbour}} (int rid)
@@ -34,22 +36,22 @@ items \& \mbox{\hyperlink{classRoom_a40bed777c79ab2b9a3d0f8bf28eb008d}{get\+Item
 \begin{DoxyCompactList}\small\item\em Add new item to the Inventory of the \mbox{\hyperlink{classRoom}{Room}}. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classRoom}{Room}} \& \mbox{\hyperlink{classRoom_a93d03e0d911cb12e6eaa1e05eddda1b1}{add\+Items}} (items \&inv)
 \begin{DoxyCompactList}\small\item\em Add new Items to the Inventory of the \mbox{\hyperlink{classRoom}{Room}}. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classRoom}{Room}} \& \mbox{\hyperlink{classRoom_afa0bebd4b898687e8c9cd6ed2b7e5d67}{add\+Entity}} (ent \&e)
+\mbox{\hyperlink{classRoom}{Room}} \& \mbox{\hyperlink{classRoom_a2509b6120116ab81f5a76783f42c61e4}{add\+Entity}} (npc \&e)
 \begin{DoxyCompactList}\small\item\em Add entity to the population of the room. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classRoom}{Room}} \& \mbox{\hyperlink{classRoom_a472a6e27ca1547c9051f1b89692ed0ca}{add\+Entities}} (entities \&ents)
+\mbox{\hyperlink{classRoom}{Room}} \& \mbox{\hyperlink{classRoom_a223eae1522f3d53c4feb2d60bb1794ce}{add\+Entities}} (npcs \&ents)
 \begin{DoxyCompactList}\small\item\em Add a bunch of entities to the population of the room. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classRoom}{Room}} \& \mbox{\hyperlink{classRoom_a3e1b856c3f6c5f562796e857fe4777ac}{set\+Lock}} (Lock\+Status stat)
+\mbox{\hyperlink{classRoom}{Room}} \& \mbox{\hyperlink{classRoom_a3e1b856c3f6c5f562796e857fe4777ac}{set\+Lock}} (\mbox{\hyperlink{engine_8hpp_ab094fe208c346804d724d8e644966814}{Lock\+Status}} stat)
 \begin{DoxyCompactList}\small\item\em Set the Lock object. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classRoom_adc25ce4a3d509baf2d74ce4feaadcfbd}{is\+Locked}} ()
 \begin{DoxyCompactList}\small\item\em Check wheter room is locked or not. Returns true if locked, false otherwise. \end{DoxyCompactList}\item 
-const entities \& \mbox{\hyperlink{classRoom_a0261eb1bbcd1fccb9715fbb1d814a85c}{get\+Population}} ()
+npcs \& \mbox{\hyperlink{classRoom_a7e7064a3d4555cc1eed79fb1c0615a46}{get\+Population}} ()
 \begin{DoxyCompactList}\small\item\em Get the Population object. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classRoom_a67d5da09983cc53097807fd43ba5481a}{$\sim$\+Room}} ()
 \begin{DoxyCompactList}\small\item\em Destroy the \mbox{\hyperlink{classRoom}{Room}} object. Reset all nodes in the neighours vector and all items in inventory. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static bool \mbox{\hyperlink{classRoom_a10b2b4671e8c461ba07716486c59b30d}{unlock}} (item \&k, node \&r)
+static bool \mbox{\hyperlink{classRoom_a3cbc05e25b150d37241f0b292dc139a3}{unlock}} (item $\ast$, \mbox{\hyperlink{classRoom}{Room}} $\ast$)
 \begin{DoxyCompactList}\small\item\em With the right key the room given in the argument can be unlocked. If the key fits the door, after it unlocked the room, it cant be used anymore. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -59,11 +61,11 @@ Part of the \mbox{\hyperlink{classWorld}{World}}. A room that contains items, th
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classRoom_a6444c5cbd53d2120b05a75850ea404cf}\label{classRoom_a6444c5cbd53d2120b05a75850ea404cf}} 
+\mbox{\Hypertarget{classRoom_aa42a884037958ae4378b080a728fd6cd}\label{classRoom_aa42a884037958ae4378b080a728fd6cd}} 
 \index{Room@{Room}!Room@{Room}}
 \index{Room@{Room}!Room@{Room}}
 \doxysubsubsection{\texorpdfstring{Room()}{Room()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily Room\+::\+Room (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{n,  }\item[{int}]{id,  }\item[{const std\+::string \&}]{desc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily Room\+::\+Room (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{n,  }\item[{int}]{id,  }\item[{const std\+::string \&}]{desc,  }\item[{const std\+::string \&}]{choice,  }\item[{\mbox{\hyperlink{engine_8hpp_ab094fe208c346804d724d8e644966814}{Lock\+Status}}}]{ls }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -77,12 +79,14 @@ Construct a new \mbox{\hyperlink{classRoom}{Room}} object.
 \hline
 {\em desc} & (std\+::string\&)\+: Description of the room. Cant be changed later. \\
 \hline
+{\em choice} & (std\+::string\&)\+: Desciption for choice generation. \\
+\hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classRoom_a132d556e8031d955cd0c60cd15e21e35}\label{classRoom_a132d556e8031d955cd0c60cd15e21e35}} 
+\mbox{\Hypertarget{classRoom_aaae60d72bd443130411c52fb4a65cbe1}\label{classRoom_aaae60d72bd443130411c52fb4a65cbe1}} 
 \index{Room@{Room}!Room@{Room}}
 \index{Room@{Room}!Room@{Room}}
 \doxysubsubsection{\texorpdfstring{Room()}{Room()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily Room\+::\+Room (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{n,  }\item[{int}]{id,  }\item[{const std\+::string \&}]{desc,  }\item[{neighbours}]{cn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily Room\+::\+Room (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{n,  }\item[{int}]{id,  }\item[{const std\+::string \&}]{desc,  }\item[{const std\+::string \&}]{choice,  }\item[{\mbox{\hyperlink{engine_8hpp_ab094fe208c346804d724d8e644966814}{Lock\+Status}}}]{ls,  }\item[{neighbours}]{cn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -95,6 +99,8 @@ Construct a new \mbox{\hyperlink{classRoom}{Room}} object.
 {\em id} & (int)\+: This have to be a unique ID to be able to connect keys with rooms. \\
 \hline
 {\em desc} & (std\+::string\&)\+: Description of the room. Cant be changed later. \\
+\hline
+{\em choice} & (std\+::string\&)\+: Desciption for choice generation. \\
 \hline
 {\em cn} & Connected neighbours \\
 \hline
@@ -103,7 +109,7 @@ Construct a new \mbox{\hyperlink{classRoom}{Room}} object.
 \index{Room@{Room}!````~Room@{$\sim$Room}}
 \index{````~Room@{$\sim$Room}!Room@{Room}}
 \doxysubsubsection{\texorpdfstring{$\sim$Room()}{~Room()}}
-{\footnotesize\ttfamily Room\+::$\sim$\+Room (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily Room\+::$\sim$\+Room (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
@@ -112,11 +118,11 @@ Destroy the \mbox{\hyperlink{classRoom}{Room}} object. Reset all nodes in the ne
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classRoom_a472a6e27ca1547c9051f1b89692ed0ca}\label{classRoom_a472a6e27ca1547c9051f1b89692ed0ca}} 
+\mbox{\Hypertarget{classRoom_a223eae1522f3d53c4feb2d60bb1794ce}\label{classRoom_a223eae1522f3d53c4feb2d60bb1794ce}} 
 \index{Room@{Room}!addEntities@{addEntities}}
 \index{addEntities@{addEntities}!Room@{Room}}
 \doxysubsubsection{\texorpdfstring{addEntities()}{addEntities()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classRoom}{Room}} \& Room\+::add\+Entities (\begin{DoxyParamCaption}\item[{entities \&}]{ents }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classRoom}{Room}} \& Room\+::add\+Entities (\begin{DoxyParamCaption}\item[{npcs \&}]{ents }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -130,11 +136,11 @@ Add a bunch of entities to the population of the room.
 \begin{DoxyReturn}{Returns}
 \mbox{\hyperlink{classRoom}{Room}}\& 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classRoom_afa0bebd4b898687e8c9cd6ed2b7e5d67}\label{classRoom_afa0bebd4b898687e8c9cd6ed2b7e5d67}} 
+\mbox{\Hypertarget{classRoom_a2509b6120116ab81f5a76783f42c61e4}\label{classRoom_a2509b6120116ab81f5a76783f42c61e4}} 
 \index{Room@{Room}!addEntity@{addEntity}}
 \index{addEntity@{addEntity}!Room@{Room}}
 \doxysubsubsection{\texorpdfstring{addEntity()}{addEntity()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classRoom}{Room}} \& Room\+::add\+Entity (\begin{DoxyParamCaption}\item[{ent \&}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classRoom}{Room}} \& Room\+::add\+Entity (\begin{DoxyParamCaption}\item[{npc \&}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -220,6 +226,19 @@ Add multiple neighbours to the Neighbours object.
 \begin{DoxyReturn}{Returns}
 \mbox{\hyperlink{classRoom}{Room}}\& 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classRoom_ad6fece9ffea703fc4f3e051865c736db}\label{classRoom_ad6fece9ffea703fc4f3e051865c736db}} 
+\index{Room@{Room}!getChoiceDescription@{getChoiceDescription}}
+\index{getChoiceDescription@{getChoiceDescription}!Room@{Room}}
+\doxysubsubsection{\texorpdfstring{getChoiceDescription()}{getChoiceDescription()}}
+{\footnotesize\ttfamily std\+::string Room\+::get\+Choice\+Description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the Choice Description of the \mbox{\hyperlink{classRoom}{Room}}. 
+
+\begin{DoxyReturn}{Returns}
+std\+::string 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classRoom_a33c1c0ac8a2e43da7b59522175811d63}\label{classRoom_a33c1c0ac8a2e43da7b59522175811d63}} 
 \index{Room@{Room}!getDescription@{getDescription}}
 \index{getDescription@{getDescription}!Room@{Room}}
@@ -285,11 +304,11 @@ Get the Neighbours object.
 \begin{DoxyReturn}{Returns}
 neighbours (const nodes) 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classRoom_a0261eb1bbcd1fccb9715fbb1d814a85c}\label{classRoom_a0261eb1bbcd1fccb9715fbb1d814a85c}} 
+\mbox{\Hypertarget{classRoom_a7e7064a3d4555cc1eed79fb1c0615a46}\label{classRoom_a7e7064a3d4555cc1eed79fb1c0615a46}} 
 \index{Room@{Room}!getPopulation@{getPopulation}}
 \index{getPopulation@{getPopulation}!Room@{Room}}
 \doxysubsubsection{\texorpdfstring{getPopulation()}{getPopulation()}}
-{\footnotesize\ttfamily const entities \& Room\+::get\+Population (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily npcs \& Room\+::get\+Population (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -317,7 +336,7 @@ false
 \index{Room@{Room}!setLock@{setLock}}
 \index{setLock@{setLock}!Room@{Room}}
 \doxysubsubsection{\texorpdfstring{setLock()}{setLock()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classRoom}{Room}} \& Room\+::set\+Lock (\begin{DoxyParamCaption}\item[{Lock\+Status}]{stat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classRoom}{Room}} \& Room\+::set\+Lock (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{engine_8hpp_ab094fe208c346804d724d8e644966814}{Lock\+Status}}}]{stat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -331,11 +350,11 @@ Set the Lock object.
 \begin{DoxyReturn}{Returns}
 \mbox{\hyperlink{classRoom}{Room}}\& 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classRoom_a10b2b4671e8c461ba07716486c59b30d}\label{classRoom_a10b2b4671e8c461ba07716486c59b30d}} 
+\mbox{\Hypertarget{classRoom_a3cbc05e25b150d37241f0b292dc139a3}\label{classRoom_a3cbc05e25b150d37241f0b292dc139a3}} 
 \index{Room@{Room}!unlock@{unlock}}
 \index{unlock@{unlock}!Room@{Room}}
 \doxysubsubsection{\texorpdfstring{unlock()}{unlock()}}
-{\footnotesize\ttfamily static bool Room\+::unlock (\begin{DoxyParamCaption}\item[{item \&}]{k,  }\item[{node \&}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+{\footnotesize\ttfamily bool Room\+::unlock (\begin{DoxyParamCaption}\item[{item $\ast$}]{k,  }\item[{\mbox{\hyperlink{classRoom}{Room}} $\ast$}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
@@ -355,6 +374,7 @@ false
 \end{DoxyReturn}
 
 
-The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-src/engine.\+hpp\end{DoxyCompactItemize}
+src/\mbox{\hyperlink{engine_8hpp}{engine.\+hpp}}\item 
+src/\mbox{\hyperlink{engine_8cpp}{engine.\+cpp}}\end{DoxyCompactItemize}

@@ -2,13 +2,19 @@
 \label{classEntity}\index{Entity@{Entity}}
 
 
-Base class for a NPC, USER or any other \mbox{\hyperlink{classEntity}{Entity}} living in the game world.  
+Base class for a \mbox{\hyperlink{classNPC}{NPC}}, USER or any other \mbox{\hyperlink{classEntity}{Entity}} living in the game world.  
 
 
 
 
 {\ttfamily \#include $<$engine.\+hpp$>$}
 
+Inheritance diagram for Entity\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classEntity}
+\end{center}
+\end{figure}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -21,17 +27,32 @@ std\+::string \mbox{\hyperlink{classEntity_a403f69eb888da7c5a690b79c658cdf47}{ge
 \mbox{\hyperlink{classEntity}{Entity}} \& \mbox{\hyperlink{classEntity_a9b0ef78013c984bc8cd8944332a14058}{add\+Items}} (items \&i)
 \begin{DoxyCompactList}\small\item\em Add multiple items from an item vector to the entity\textquotesingle{}s inventory. \end{DoxyCompactList}\item 
 items \& \mbox{\hyperlink{classEntity_a38aad2959e7cbeaf15aa0dbf71df66c5}{get\+Inventory}} ()
-\begin{DoxyCompactList}\small\item\em Get the Inventory object. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classEntity_adf18cdc1c033d4e4a42dba746b5fd831}\label{classEntity_adf18cdc1c033d4e4a42dba746b5fd831}} 
-int {\bfseries get\+Location} ()
+\begin{DoxyCompactList}\small\item\em Get the Inventory object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classEntity_a56dfa77b16a99939f8e17446aac4d0fc}\label{classEntity_a56dfa77b16a99939f8e17446aac4d0fc}} 
-\mbox{\hyperlink{classEntity}{Entity}} \& {\bfseries set\+Location} (int room\+ID)
+\mbox{\Hypertarget{classEntity_a9a7d9df9b47e597a6abd76235e0b726c}\label{classEntity_a9a7d9df9b47e597a6abd76235e0b726c}} 
+const std\+::string {\bfseries name}
+\item 
+\mbox{\Hypertarget{classEntity_a562bde3c1faccef4d8287b0e48f7a454}\label{classEntity_a562bde3c1faccef4d8287b0e48f7a454}} 
+items {\bfseries inventory}
+\item 
+\mbox{\Hypertarget{classEntity_ab2047c7cc0414f54fb2492deac18d11c}\label{classEntity_ab2047c7cc0414f54fb2492deac18d11c}} 
+int {\bfseries hp}
+\item 
+\mbox{\Hypertarget{classEntity_a678cabe0f474900de17f2cf551782e4f}\label{classEntity_a678cabe0f474900de17f2cf551782e4f}} 
+int {\bfseries stamina}
+\item 
+\mbox{\Hypertarget{classEntity_a37bb4d7fa2cce152bb384c502194105e}\label{classEntity_a37bb4d7fa2cce152bb384c502194105e}} 
+int {\bfseries intelligence}
+\item 
+\mbox{\Hypertarget{classEntity_a09accc77d3e2876eb2ef50294e28682b}\label{classEntity_a09accc77d3e2876eb2ef50294e28682b}} 
+int {\bfseries strenght}
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Base class for a NPC, USER or any other \mbox{\hyperlink{classEntity}{Entity}} living in the game world. 
+Base class for a \mbox{\hyperlink{classNPC}{NPC}}, USER or any other \mbox{\hyperlink{classEntity}{Entity}} living in the game world. 
 
 
 
@@ -120,4 +141,4 @@ std\+::string
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-src/engine.\+hpp\end{DoxyCompactItemize}
+src/\mbox{\hyperlink{engine_8hpp}{engine.\+hpp}}\end{DoxyCompactItemize}

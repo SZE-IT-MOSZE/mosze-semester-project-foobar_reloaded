@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['object_0',['Object',['../classObject.html',1,'']]]
+  ['key_0',['Key',['../classKey.html',1,'']]]
 ];

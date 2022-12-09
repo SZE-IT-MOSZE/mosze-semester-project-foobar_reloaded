@@ -1,0 +1,226 @@
+\hypertarget{classSessionManager}{}\doxysection{Session\+Manager Class Reference}
+\label{classSessionManager}\index{SessionManager@{SessionManager}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSessionManager_ac53f56c3c3b1914ed1118f011a093fdf}{Session\+Manager}} (const std\+::string \&)
+\begin{DoxyCompactList}\small\item\em Construct a new Session Manager object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSessionManager_a6a4c254732cff3b08905a926dd8971dc}\label{classSessionManager_a6a4c254732cff3b08905a926dd8971dc}} 
+\mbox{\hyperlink{classWorld}{World}} $\ast$ {\bfseries get\+World} ()
+\item 
+bool \mbox{\hyperlink{classSessionManager_a097db5df9899739225b53db0eda3b8a6}{start\+Session}} ()
+\begin{DoxyCompactList}\small\item\em Start game session. Returns true if game is successfully finished. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classAction}{Action}} $>$ \mbox{\hyperlink{classSessionManager_a8535d41153f0b13f9a302b1c77bbd55b}{possible\+Actions}} ()
+\begin{DoxyCompactList}\small\item\em Return possible actions, that can be performed in the current state of the game world and the player. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classSessionManager_a914604e4b42e3277f2205139a552b2bd}{do\+Move}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classPlayer}{Player}} interaction with Movement action. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classSessionManager_a254ed59a6a3ee213641a6cc326076009}{do\+Search}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classPlayer}{Player}} interaction with \mbox{\hyperlink{classSearch}{Search}} action. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classSessionManager_a9153cfefcd310b5946fabedcaa4e52a4}{do\+Inspect\+Found\+Items}} (items \&)
+\begin{DoxyCompactList}\small\item\em Method to handle interaction with objects found in room. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classSessionManager_a2de817274f9c8a4e232aa82b39dd8376}{do\+Interact}} (npcs \&)
+\begin{DoxyCompactList}\small\item\em Method to handle interaction with NPCs. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classSessionManager_a3ccb33bf4bb16d37dc141cff10040867}{do\+Pick\+Up}} (item \&)
+\begin{DoxyCompactList}\small\item\em Pick up selected item. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classSessionManager_ae37ca9c13acad0ccf0f1e4f818a47e55}{do\+Inspect\+Found\+Item}} (item \&)
+\begin{DoxyCompactList}\small\item\em Inspect found item. Print out name and description of the item. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classSessionManager_afac3cc37c06e97c828a94847901149de}{do\+Inspect\+Player\+Inventory}} ()
+\begin{DoxyCompactList}\small\item\em Open players inventory. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classSessionManager_ad454773f33e88b8264e0ed30dec978f2}{do\+Inspect\+Inventory\+Item}} (item \&)
+\begin{DoxyCompactList}\small\item\em Print out desciption of inentory item. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classSessionManager_aa4adca97f7fcc7364c70edcfca12b10f}{do\+Iteration}} ()
+\begin{DoxyCompactList}\small\item\em Run an iteration of the game loop. This method handles the user input. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSessionManager_ac53f56c3c3b1914ed1118f011a093fdf}\label{classSessionManager_ac53f56c3c3b1914ed1118f011a093fdf}} 
+\index{SessionManager@{SessionManager}!SessionManager@{SessionManager}}
+\index{SessionManager@{SessionManager}!SessionManager@{SessionManager}}
+\doxysubsubsection{\texorpdfstring{SessionManager()}{SessionManager()}}
+{\footnotesize\ttfamily Session\+Manager\+::\+Session\+Manager (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path }\end{DoxyParamCaption})}
+
+
+
+Construct a new Session Manager object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path2story} & (std\+::string) \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSessionManager_ae37ca9c13acad0ccf0f1e4f818a47e55}\label{classSessionManager_ae37ca9c13acad0ccf0f1e4f818a47e55}} 
+\index{SessionManager@{SessionManager}!doInspectFoundItem@{doInspectFoundItem}}
+\index{doInspectFoundItem@{doInspectFoundItem}!SessionManager@{SessionManager}}
+\doxysubsubsection{\texorpdfstring{doInspectFoundItem()}{doInspectFoundItem()}}
+{\footnotesize\ttfamily bool Session\+Manager\+::do\+Inspect\+Found\+Item (\begin{DoxyParamCaption}\item[{item \&}]{selected\+\_\+item }\end{DoxyParamCaption})}
+
+
+
+Inspect found item. Print out name and description of the item. 
+
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSessionManager_a9153cfefcd310b5946fabedcaa4e52a4}\label{classSessionManager_a9153cfefcd310b5946fabedcaa4e52a4}} 
+\index{SessionManager@{SessionManager}!doInspectFoundItems@{doInspectFoundItems}}
+\index{doInspectFoundItems@{doInspectFoundItems}!SessionManager@{SessionManager}}
+\doxysubsubsection{\texorpdfstring{doInspectFoundItems()}{doInspectFoundItems()}}
+{\footnotesize\ttfamily bool Session\+Manager\+::do\+Inspect\+Found\+Items (\begin{DoxyParamCaption}\item[{items \&}]{found\+\_\+items }\end{DoxyParamCaption})}
+
+
+
+Method to handle interaction with objects found in room. 
+
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSessionManager_ad454773f33e88b8264e0ed30dec978f2}\label{classSessionManager_ad454773f33e88b8264e0ed30dec978f2}} 
+\index{SessionManager@{SessionManager}!doInspectInventoryItem@{doInspectInventoryItem}}
+\index{doInspectInventoryItem@{doInspectInventoryItem}!SessionManager@{SessionManager}}
+\doxysubsubsection{\texorpdfstring{doInspectInventoryItem()}{doInspectInventoryItem()}}
+{\footnotesize\ttfamily bool Session\+Manager\+::do\+Inspect\+Inventory\+Item (\begin{DoxyParamCaption}\item[{item \&}]{i }\end{DoxyParamCaption})}
+
+
+
+Print out desciption of inentory item. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSessionManager_afac3cc37c06e97c828a94847901149de}\label{classSessionManager_afac3cc37c06e97c828a94847901149de}} 
+\index{SessionManager@{SessionManager}!doInspectPlayerInventory@{doInspectPlayerInventory}}
+\index{doInspectPlayerInventory@{doInspectPlayerInventory}!SessionManager@{SessionManager}}
+\doxysubsubsection{\texorpdfstring{doInspectPlayerInventory()}{doInspectPlayerInventory()}}
+{\footnotesize\ttfamily bool Session\+Manager\+::do\+Inspect\+Player\+Inventory (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Open players inventory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player\+\_\+inventory} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSessionManager_a2de817274f9c8a4e232aa82b39dd8376}\label{classSessionManager_a2de817274f9c8a4e232aa82b39dd8376}} 
+\index{SessionManager@{SessionManager}!doInteract@{doInteract}}
+\index{doInteract@{doInteract}!SessionManager@{SessionManager}}
+\doxysubsubsection{\texorpdfstring{doInteract()}{doInteract()}}
+{\footnotesize\ttfamily bool Session\+Manager\+::do\+Interact (\begin{DoxyParamCaption}\item[{npcs \&}]{found\+\_\+npcs }\end{DoxyParamCaption})}
+
+
+
+Method to handle interaction with NPCs. 
+
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSessionManager_aa4adca97f7fcc7364c70edcfca12b10f}\label{classSessionManager_aa4adca97f7fcc7364c70edcfca12b10f}} 
+\index{SessionManager@{SessionManager}!doIteration@{doIteration}}
+\index{doIteration@{doIteration}!SessionManager@{SessionManager}}
+\doxysubsubsection{\texorpdfstring{doIteration()}{doIteration()}}
+{\footnotesize\ttfamily bool Session\+Manager\+::do\+Iteration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Run an iteration of the game loop. This method handles the user input. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool if all missions are finished. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSessionManager_a914604e4b42e3277f2205139a552b2bd}\label{classSessionManager_a914604e4b42e3277f2205139a552b2bd}} 
+\index{SessionManager@{SessionManager}!doMove@{doMove}}
+\index{doMove@{doMove}!SessionManager@{SessionManager}}
+\doxysubsubsection{\texorpdfstring{doMove()}{doMove()}}
+{\footnotesize\ttfamily bool Session\+Manager\+::do\+Move (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{classPlayer}{Player}} interaction with Movement action. 
+
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSessionManager_a3ccb33bf4bb16d37dc141cff10040867}\label{classSessionManager_a3ccb33bf4bb16d37dc141cff10040867}} 
+\index{SessionManager@{SessionManager}!doPickUp@{doPickUp}}
+\index{doPickUp@{doPickUp}!SessionManager@{SessionManager}}
+\doxysubsubsection{\texorpdfstring{doPickUp()}{doPickUp()}}
+{\footnotesize\ttfamily bool Session\+Manager\+::do\+Pick\+Up (\begin{DoxyParamCaption}\item[{item \&}]{selected\+\_\+item }\end{DoxyParamCaption})}
+
+
+
+Pick up selected item. 
+
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSessionManager_a254ed59a6a3ee213641a6cc326076009}\label{classSessionManager_a254ed59a6a3ee213641a6cc326076009}} 
+\index{SessionManager@{SessionManager}!doSearch@{doSearch}}
+\index{doSearch@{doSearch}!SessionManager@{SessionManager}}
+\doxysubsubsection{\texorpdfstring{doSearch()}{doSearch()}}
+{\footnotesize\ttfamily bool Session\+Manager\+::do\+Search (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{classPlayer}{Player}} interaction with \mbox{\hyperlink{classSearch}{Search}} action. 
+
+\begin{DoxyReturn}{Returns}
+true 
+
+false ~\newline
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSessionManager_a8535d41153f0b13f9a302b1c77bbd55b}\label{classSessionManager_a8535d41153f0b13f9a302b1c77bbd55b}} 
+\index{SessionManager@{SessionManager}!possibleActions@{possibleActions}}
+\index{possibleActions@{possibleActions}!SessionManager@{SessionManager}}
+\doxysubsubsection{\texorpdfstring{possibleActions()}{possibleActions()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{classAction}{Action}} $>$ Session\+Manager\+::possible\+Actions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Return possible actions, that can be performed in the current state of the game world and the player. 
+
+\mbox{\Hypertarget{classSessionManager_a097db5df9899739225b53db0eda3b8a6}\label{classSessionManager_a097db5df9899739225b53db0eda3b8a6}} 
+\index{SessionManager@{SessionManager}!startSession@{startSession}}
+\index{startSession@{startSession}!SessionManager@{SessionManager}}
+\doxysubsubsection{\texorpdfstring{startSession()}{startSession()}}
+{\footnotesize\ttfamily bool Session\+Manager\+::start\+Session (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Start game session. Returns true if game is successfully finished. 
+
+\begin{DoxyReturn}{Returns}
+true 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{sessionmanager_8hpp}{sessionmanager.\+hpp}}\item 
+src/sessionmanager.\+cpp\end{DoxyCompactItemize}

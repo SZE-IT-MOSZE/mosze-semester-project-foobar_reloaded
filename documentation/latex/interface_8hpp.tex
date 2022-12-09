@@ -1,0 +1,47 @@
+\hypertarget{interface_8hpp}{}\doxysection{src/interface.hpp File Reference}
+\label{interface_8hpp}\index{src/interface.hpp@{src/interface.hpp}}
+
+
+Implementation of interface that connects the game with game engine.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classAction}{Action}}
+\begin{DoxyCompactList}\small\item\em Abstract class representing a player action. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classMove}{Move}}
+\begin{DoxyCompactList}\small\item\em Realisation of the action class, representing movement from a room to another. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classSearch}{Search}}
+\begin{DoxyCompactList}\small\item\em Realisation of the action class, respresenting the search of a room. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classPickUp}{Pick\+Up}}
+\begin{DoxyCompactList}\small\item\em Realisation of the action class, the player picking up an item. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classInteract}{Interact}}
+\begin{DoxyCompactList}\small\item\em Realisation of the action class, interaction with an \mbox{\hyperlink{classNPC}{NPC}}. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classAcceptMission}{Accept\+Mission}}
+\item 
+class \mbox{\hyperlink{classOpenInventory}{Open\+Inventory}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{interface_8hpp_ac9e3805c8f651b41defd51b09f318d7f}\label{interface_8hpp_ac9e3805c8f651b41defd51b09f318d7f}} 
+typedef std\+::pair$<$ items \&, npcs \& $>$ {\bfseries search\+\_\+results}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of interface that connects the game with game engine. 
+
+\begin{DoxyAuthor}{Author}
+Peter Bence (\href{mailto:ecneb2000@gmail.com}{\texttt{ ecneb2000@gmail.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2022-\/10-\/29
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2022 
+\end{DoxyCopyright}

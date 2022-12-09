@@ -22,8 +22,16 @@ int \mbox{\hyperlink{classMission_af8dd5b1e2a55325444f376136080f1c7}{get\+Target
 \begin{DoxyCompactList}\small\item\em Get the Target Item ID. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classMission}{Mission}} \& \mbox{\hyperlink{classMission_a3dab81a9f7879985e212fc1fbbbeb4b1}{set\+Target\+Item}} (int target\+Item\+ID)
 \begin{DoxyCompactList}\small\item\em Set the Target Item ID. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{classMission_a481130fc0a081988b4b7fb78b6ad272a}{check\+Status}} (ent \&player)
-\begin{DoxyCompactList}\small\item\em Check if mission is accomplished. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \mbox{\hyperlink{classMission_a5485947be776bf3253c025579703e96a}{complete}} ()
+\begin{DoxyCompactList}\small\item\em Set mission\+Status to finished. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMission_a9d25c92eeec776ed2f78e26820dd9fdf}{check\+Status}} (\mbox{\hyperlink{classPlayer}{Player}} \&)
+\begin{DoxyCompactList}\small\item\em Check if mission is accomplished. \end{DoxyCompactList}\item 
+mission\+Status \& \mbox{\hyperlink{classMission_a22ebe17b936830e4de998f6c6f76c8dd}{get\+Status}} ()
+\begin{DoxyCompactList}\small\item\em Get the Status object. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classMission_a898cf05954be9d621e0fff55a7428328}{get\+Description}} ()
+\begin{DoxyCompactList}\small\item\em Get the Description object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMission}{Mission}} \& \mbox{\hyperlink{classMission_a805c131ffa57243dea169737a6271797}{start\+Mission}} ()
+\begin{DoxyCompactList}\small\item\em Change mission status to active. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -50,11 +58,11 @@ Construct a new \mbox{\hyperlink{classMission}{Mission}} object.
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classMission_a481130fc0a081988b4b7fb78b6ad272a}\label{classMission_a481130fc0a081988b4b7fb78b6ad272a}} 
+\mbox{\Hypertarget{classMission_a9d25c92eeec776ed2f78e26820dd9fdf}\label{classMission_a9d25c92eeec776ed2f78e26820dd9fdf}} 
 \index{Mission@{Mission}!checkStatus@{checkStatus}}
 \index{checkStatus@{checkStatus}!Mission@{Mission}}
 \doxysubsubsection{\texorpdfstring{checkStatus()}{checkStatus()}}
-{\footnotesize\ttfamily bool Mission\+::check\+Status (\begin{DoxyParamCaption}\item[{ent \&}]{player }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily bool Mission\+::check\+Status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPlayer}{Player}} \&}]{player }\end{DoxyParamCaption})}
 
 
 
@@ -69,6 +77,42 @@ Check if mission is accomplished.
 true 
 
 false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMission_a5485947be776bf3253c025579703e96a}\label{classMission_a5485947be776bf3253c025579703e96a}} 
+\index{Mission@{Mission}!complete@{complete}}
+\index{complete@{complete}!Mission@{Mission}}
+\doxysubsubsection{\texorpdfstring{complete()}{complete()}}
+{\footnotesize\ttfamily void Mission\+::complete (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set mission\+Status to finished. 
+
+\mbox{\Hypertarget{classMission_a898cf05954be9d621e0fff55a7428328}\label{classMission_a898cf05954be9d621e0fff55a7428328}} 
+\index{Mission@{Mission}!getDescription@{getDescription}}
+\index{getDescription@{getDescription}!Mission@{Mission}}
+\doxysubsubsection{\texorpdfstring{getDescription()}{getDescription()}}
+{\footnotesize\ttfamily std\+::string Mission\+::get\+Description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the Description object. 
+
+\begin{DoxyReturn}{Returns}
+std\+::string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMission_a22ebe17b936830e4de998f6c6f76c8dd}\label{classMission_a22ebe17b936830e4de998f6c6f76c8dd}} 
+\index{Mission@{Mission}!getStatus@{getStatus}}
+\index{getStatus@{getStatus}!Mission@{Mission}}
+\doxysubsubsection{\texorpdfstring{getStatus()}{getStatus()}}
+{\footnotesize\ttfamily mission\+Status \& Mission\+::get\+Status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the Status object. 
+
+\begin{DoxyReturn}{Returns}
+mission\+Status 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classMission_af8dd5b1e2a55325444f376136080f1c7}\label{classMission_af8dd5b1e2a55325444f376136080f1c7}} 
 \index{Mission@{Mission}!getTargetItem@{getTargetItem}}
@@ -132,8 +176,22 @@ Set the Target \mbox{\hyperlink{classRoom}{Room}} ID.
 \begin{DoxyReturn}{Returns}
 \mbox{\hyperlink{classMission}{Mission}}\& 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classMission_a805c131ffa57243dea169737a6271797}\label{classMission_a805c131ffa57243dea169737a6271797}} 
+\index{Mission@{Mission}!startMission@{startMission}}
+\index{startMission@{startMission}!Mission@{Mission}}
+\doxysubsubsection{\texorpdfstring{startMission()}{startMission()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classMission}{Mission}} \& Mission\+::start\+Mission (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
-The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+
+Change mission status to active. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classMission}{Mission}}\& 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-src/engine.\+hpp\end{DoxyCompactItemize}
+src/\mbox{\hyperlink{engine_8hpp}{engine.\+hpp}}\item 
+src/\mbox{\hyperlink{engine_8cpp}{engine.\+cpp}}\end{DoxyCompactItemize}

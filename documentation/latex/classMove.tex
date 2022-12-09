@@ -1,0 +1,97 @@
+\hypertarget{classMove}{}\doxysection{Move Class Reference}
+\label{classMove}\index{Move@{Move}}
+
+
+Realisation of the action class, representing movement from a room to another.  
+
+
+
+
+{\ttfamily \#include $<$interface.\+hpp$>$}
+
+Inheritance diagram for Move\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMove}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classMove_a87f5da55561da67fbe601a5104867f9d}{Move}} (const std\+::string \&, \mbox{\hyperlink{classWorld}{World}} \&)
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{classAction}{Action}} object. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMove_ab7259344d1c438f58d81084bb061b894}{do\+Action}} (int)
+\begin{DoxyCompactList}\small\item\em Take action with the player character and move to another room. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMove_a3631da2d9413228df5e4b3ce08bcb201}{operator()}} (int)
+\begin{DoxyCompactList}\small\item\em The \mbox{\hyperlink{classMove}{Move}} object is a callable object, and will call the do\+Action method of the object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Realisation of the action class, representing movement from a room to another. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classMove_a87f5da55561da67fbe601a5104867f9d}\label{classMove_a87f5da55561da67fbe601a5104867f9d}} 
+\index{Move@{Move}!Move@{Move}}
+\index{Move@{Move}!Move@{Move}}
+\doxysubsubsection{\texorpdfstring{Move()}{Move()}}
+{\footnotesize\ttfamily Move\+::\+Move (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{desc,  }\item[{\mbox{\hyperlink{classWorld}{World}} \&}]{gm }\end{DoxyParamCaption})}
+
+
+
+Construct a new \mbox{\hyperlink{classAction}{Action}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em desc} & (std\+::string)\+: Description of the action. \\
+\hline
+{\em gm} & (\mbox{\hyperlink{classWorld}{World}}\&)\+: The game world, so the action class can access the ongoing games attributes. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classMove_ab7259344d1c438f58d81084bb061b894}\label{classMove_ab7259344d1c438f58d81084bb061b894}} 
+\index{Move@{Move}!doAction@{doAction}}
+\index{doAction@{doAction}!Move@{Move}}
+\doxysubsubsection{\texorpdfstring{doAction()}{doAction()}}
+{\footnotesize\ttfamily bool Move\+::do\+Action (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Take action with the player character and move to another room. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & (node\&)\+: The room that the player will be moved to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classMove_a3631da2d9413228df5e4b3ce08bcb201}\label{classMove_a3631da2d9413228df5e4b3ce08bcb201}} 
+\index{Move@{Move}!operator()@{operator()}}
+\index{operator()@{operator()}!Move@{Move}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily bool Move\+::operator() (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+The \mbox{\hyperlink{classMove}{Move}} object is a callable object, and will call the do\+Action method of the object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & (node\&)\+: The room that the player will be moved to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{interface_8hpp}{interface.\+hpp}}\item 
+src/\mbox{\hyperlink{interface_8cpp}{interface.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,111 @@
+\hypertarget{classInteract}{}\doxysection{Interact Class Reference}
+\label{classInteract}\index{Interact@{Interact}}
+
+
+Realisation of the action class, interaction with an \mbox{\hyperlink{classNPC}{NPC}}.  
+
+
+
+
+{\ttfamily \#include $<$interface.\+hpp$>$}
+
+Inheritance diagram for Interact\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classInteract}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classInteract_ac48885aaa2a86610ebb4e2b82a445a77}{Interact}} (const std\+::string \&, \mbox{\hyperlink{classWorld}{World}} \&)
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{classAction}{Action}} object. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classInteract_a044c69c7009ef5348c9e80a7dcd4d2e3}{do\+Action}} (npc \&)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classInteract}{Interact}} with the npc. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classInteract_a29b38ced0bd32d5139c156c4510bd74e}{accept\+Mission}} (npc \&)
+\begin{DoxyCompactList}\small\item\em Accept \mbox{\hyperlink{classNPC}{NPC}}\textquotesingle{}s mission. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classInteract_ac6064ee23bbb1967ef6cef18ca057d04}{operator()}} (npc \&)
+\begin{DoxyCompactList}\small\item\em The \mbox{\hyperlink{classInteract}{Interact}} object is a callable object, and will call the do\+Action method of the object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Realisation of the action class, interaction with an \mbox{\hyperlink{classNPC}{NPC}}. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classInteract_ac48885aaa2a86610ebb4e2b82a445a77}\label{classInteract_ac48885aaa2a86610ebb4e2b82a445a77}} 
+\index{Interact@{Interact}!Interact@{Interact}}
+\index{Interact@{Interact}!Interact@{Interact}}
+\doxysubsubsection{\texorpdfstring{Interact()}{Interact()}}
+{\footnotesize\ttfamily Interact\+::\+Interact (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{desc,  }\item[{\mbox{\hyperlink{classWorld}{World}} \&}]{gm }\end{DoxyParamCaption})}
+
+
+
+Construct a new \mbox{\hyperlink{classAction}{Action}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em desc} & (std\+::string)\+: Description of the action. \\
+\hline
+{\em gm} & (\mbox{\hyperlink{classWorld}{World}}\&)\+: The game world, so the action class can access the ongoing games attributes. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classInteract_a29b38ced0bd32d5139c156c4510bd74e}\label{classInteract_a29b38ced0bd32d5139c156c4510bd74e}} 
+\index{Interact@{Interact}!acceptMission@{acceptMission}}
+\index{acceptMission@{acceptMission}!Interact@{Interact}}
+\doxysubsubsection{\texorpdfstring{acceptMission()}{acceptMission()}}
+{\footnotesize\ttfamily void Interact\+::accept\+Mission (\begin{DoxyParamCaption}\item[{npc \&}]{ }\end{DoxyParamCaption})}
+
+
+
+Accept \mbox{\hyperlink{classNPC}{NPC}}\textquotesingle{}s mission. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em npc} & (npc\&)\+: The smart pointer of the npc that will be talked to. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classInteract_a044c69c7009ef5348c9e80a7dcd4d2e3}\label{classInteract_a044c69c7009ef5348c9e80a7dcd4d2e3}} 
+\index{Interact@{Interact}!doAction@{doAction}}
+\index{doAction@{doAction}!Interact@{Interact}}
+\doxysubsubsection{\texorpdfstring{doAction()}{doAction()}}
+{\footnotesize\ttfamily std\+::string Interact\+::do\+Action (\begin{DoxyParamCaption}\item[{npc \&}]{n }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{classInteract}{Interact}} with the npc. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em npc} & (npc\&)\+: The smart pointer of the npc that will be talked to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classInteract_ac6064ee23bbb1967ef6cef18ca057d04}\label{classInteract_ac6064ee23bbb1967ef6cef18ca057d04}} 
+\index{Interact@{Interact}!operator()@{operator()}}
+\index{operator()@{operator()}!Interact@{Interact}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily std\+::string Interact\+::operator() (\begin{DoxyParamCaption}\item[{npc \&}]{n }\end{DoxyParamCaption})}
+
+
+
+The \mbox{\hyperlink{classInteract}{Interact}} object is a callable object, and will call the do\+Action method of the object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em npc} & (npc\&)\+: The smart pointer of the npc that will be talked to. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{interface_8hpp}{interface.\+hpp}}\item 
+src/\mbox{\hyperlink{interface_8cpp}{interface.\+cpp}}\end{DoxyCompactItemize}
