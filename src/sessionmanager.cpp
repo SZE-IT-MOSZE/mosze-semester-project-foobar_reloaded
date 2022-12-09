@@ -36,6 +36,7 @@ SessionManager::SessionManager(const std::string& path) {
 
 bool SessionManager::startSession() {
     while (!doIteration()) game_world.cleanInventories(); // Run inventory thrash cleaner method.
+    game_world.cleanInventories();
     return true;
 }
 
@@ -187,6 +188,5 @@ bool SessionManager::doIteration() {
             }
         }
     }
-
     return game_finished;
 }

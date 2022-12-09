@@ -59,17 +59,19 @@ std::string Interact::doAction(npc& n) {
         if ((*it)->getStatus() == finished) return n->getDialog();
         if ((*it)->checkStatus(game_world.getPlayer())) {
             //move npc items to players inventory
-            game_world.getPlayer().addItem(n->getInventory()[0]);
-            //remove target item from players inventory
-            auto rm_it = remove_if(
-                game_world.getPlayer().getInventory().begin(),
-                game_world.getPlayer().getInventory().end(),
-                [&it](item& i) {
-                    if (i->getID() == (*it)->getTargetItem()) return true;
-                    return false;
-                }
-            );
-            game_world.getPlayer().getInventory().erase(rm_it, game_world.getPlayer().getInventory().end());
+            if (n->getInventory().size() > 0) {
+                game_world.getPlayer().addItem(n->getInventory()[0]);
+                //remove target item from players inventory
+                auto rm_it = remove_if(
+                    game_world.getPlayer().getInventory().begin(),
+                    game_world.getPlayer().getInventory().end(),
+                    [&it](item& i) {
+                        if (i->getID() == (*it)->getTargetItem()) return true;
+                        return false;
+                    }
+                );
+                game_world.getPlayer().getInventory().erase(rm_it, game_world.getPlayer().getInventory().end());
+            }
             //return npc's dialog
             return n->getDialog();
         }

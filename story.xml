@@ -425,15 +425,17 @@
             Elfutsz a kapszulához és remegő kézzel beírod a kódot: 42069, nice, érzed, hogy fogy az oxigéned. Lassan kinyílik az ajtó, és sietősen besétálsz. Nem tudod mit kéne tenned. Körbenézel, és semmi hasznosat nem látsz. Egyetlen egy esélyed van. Látsz egy nagy piros gombot.
         </description>
         <id>11</id>
+        <!--
         <inventory>
             <object>
                 <name>Nagy piros gomb</name>
                 <description>
-                    Nagy piros gomb. Valószínűleg a menekülő kapszulát indítja el.
+                    Megnyomtad a gombot, és elsötétül minden. Elindulsz a Föld felé. Az oxigén hiány miatt elveszted az eszméleted…. Mikor magadhoz térsz már a Földön vagy, de nem úgy néz ki, mint amikor itt hagytad. Teljes anarchiába zuhant az emberiség az AI hiánya miatt. Kilépsz a kapszulából, és elindulsz megkeresni a családod, és barátaidat. Egyedül te tudod mi történt odafent, és bármennyire azt akarod hinni, hogy egy álom volt, nem volt az. Tudod mi a teendő, nem vagy átlagos, és az emberiség sorsa a kezedben van.
                 </description>
                 <id>19</id>
             </object>
         </inventory>
+    -->
         <entity>
             <name>Nagy piros gomb</name>
             <dialog>
@@ -442,7 +444,7 @@
             <missions>
                 <mission>
                     <description>Nagy piros gomb</description>
-                    <targetItem>19</targetItem>
+                    <targetRoom>11</targetRoom>
                 </mission>
             </missions>
         </entity>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<world>
+    <title>SpaceWalk</title>
+    <spawn>
+        1
+    </spawn>
+    <room>
+        <name>TestRoom1</name>
+        <description>This is the first test room</description>
+        <choice>Choice Description of room 1</choice>
+        <id>1</id>
+        <lock>0</lock>
+        <inventory>
+            <object>
+                <name>TestObject1</name>
+                <description>This is test object 1</description>
+                <id>1</id>
+            </object>
+        </inventory>
+        <connections>
+            <id>2</id>
+            <id>3</id>
+        </connections>
+        <entity>
+            <name>TestEntity1</name>
+            <dialog>This is a test dialog.</dialog>
+            <inventory>
+                <key>
+                    <name>TestKey1</name>
+                    <id>7</id>
+                    <description>This is test key 1</description>
+                    <keyID>2</keyID>
+                </key>
+            </inventory>
+            <missions>
+                <mission>
+                    <description>
+                        This is a NPC test mission.
+                    </description>
+                    <targetItem>
+                        1
+                    </targetItem>
+                </mission>
+            </missions>
+        </entity>
+    </room>
+    <room>
+        <name>TestRoom1</name>
+        <description>This is the first test room</description>
+        <choice>Choice Description of room 1</choice>
+        <id>2</id>
+        <lock>0</lock>
+        <inventory>
+            <object>
+                <name>TestObject1</name>
+                <description>This is test object 1</description>
+                <id>2</id>
+            </object>
+        </inventory>
+        <connections>
+            <id>1</id>
+        </connections>
+        <entity>
+            <name>TestEntity1</name>
+            <dialog>This is a test dialog.</dialog>
+            <missions>
+                <mission>
+                    <description>
+                        This is a NPC test mission.
+                    </description>
+                    <targetItem>
+                       7 
+                    </targetItem>
+                </mission>
+            </missions>
+        </entity>
+    </room>
+</world>
