@@ -63,17 +63,3 @@ TEST_F(SessionManagerTest, test_Search_Interact_Mission_Success) {
     EXPECT_EQ(true, session_object->doSearch()) << "Choose Interact with NPC's, then choose NCP to interact with it.";
     EXPECT_EQ(finished, session_object->getWorld()->getWorldRooms()[0]->getPopulation()[0]->getMissions()[0]->getStatus());
 }
-
-TEST_F(SessionManagerTest, test_AllMissionsDone) {
-    nodes& worldrooms = session_object->getWorld()->getWorldRooms();
-    for ( auto i = 0; i < worldrooms.size(); i++ ) {
-        auto room = worldrooms[i].get();
-        for ( auto j = 0; j != room->getPopulation().size(); j++ ) {
-            auto population = room->getPopulation()[j].get(); 
-            for ( auto mit = population->getMissions().begin(); mit != population->getMissions().end(); mit++ ) {
-                (*mit)->complete();
-            }
-        }
-    }
-    session_object->startSession();
-}
